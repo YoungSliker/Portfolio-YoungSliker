@@ -1,0 +1,171 @@
+/* 方案3打开时，旧的层叠大图弹层彻底不显示，别再在背后冒出来添乱 */
+body.wide-carousel-lock .fusion-image-lightbox,
+body.wide-carousel-lock .fusion-image-lightbox.is-open,
+html.wide-carousel-lock .fusion-image-lightbox,
+html.wide-carousel-lock .fusion-image-lightbox.is-open {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* 1号外层高斯模糊背景边框加回，但厚度/存在感减小 */
+.wide-carousel-panel {
+    background: rgba(28, 21, 11, 0.18) !important;
+    border-radius: clamp(20px, 2vw, 30px) !important;
+    border: 1px solid rgba(255, 226, 151, 0.10) !important;
+    box-shadow:
+        0 18px 46px rgba(0, 0, 0, 0.22),
+        inset 0 0 0 1px rgba(255, 238, 181, 0.025) !important;
+    backdrop-filter: blur(8px) saturate(0.95) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(0.95) !important;
+    overflow: visible !important;
+}
+
+.wide-carousel-panel::after {
+    display: block !important;
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: -1 !important;
+    border-radius: inherit !important;
+    background:
+        linear-gradient(180deg, rgba(255, 214, 122, 0.045), rgba(16, 12, 7, 0.16)) !important;
+    pointer-events: none !important;
+}
+
+.wide-carousel-bg {
+    display: block !important;
+    opacity: 0.34 !important;
+    filter: blur(18px) saturate(1.02) brightness(0.70) !important;
+}
+
+/* 缩略图条：允许选中放大态溢出，不要把框裁掉 */
+.wide-carousel-thumbs-shell {
+    overflow: visible !important;
+    padding-top: 18px !important;
+    height: clamp(124px, 15vh, 164px) !important;
+}
+
+.wide-carousel-thumbs {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    align-items: center !important;
+    padding: 8px 14px 12px !important;
+    gap: clamp(16px, 1.6vw, 26px) !important;
+}
+
+/* 缩略图恢复原图比例：同高，不同宽；不要再强行长条统一宽度 */
+.wide-carousel-thumb {
+    --thumb-w: auto;
+    flex: 0 0 auto !important;
+    width: var(--thumb-w) !important;
+    min-width: 96px !important;
+    max-width: 260px !important;
+    height: 100% !important;
+    padding-top: 10px !important;
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 1 !important;
+    transform-origin: center center !important;
+    transition:
+        transform 0.28s cubic-bezier(0.16, 1, 0.28, 1),
+        filter 0.28s ease,
+        opacity 0.28s ease !important;
+}
+
+.wide-carousel-thumb:hover {
+    transform: translateY(-2px) scale(1.025) !important;
+}
+
+.wide-carousel-thumb.is-active {
+    z-index: 20 !important;
+    transform: translateY(-3px) scale(1.065) !important;
+}
+
+.wide-carousel-thumb-img {
+    position: relative !important;
+    display: block !important;
+    width: var(--thumb-w) !important;
+    min-width: 96px !important;
+    max-width: 260px !important;
+    height: clamp(58px, 7vh, 86px) !important;
+    border-radius: 8px !important;
+    overflow: visible !important;
+    background: rgba(20, 15, 8, 0.46) !important;
+}
+
+.wide-carousel-thumb-img img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    border-radius: 8px !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* 清掉旧的外层框，避免左右/高度计算继续错 */
+.wide-carousel-thumb.is-active::before,
+.wide-carousel-thumb.is-active::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* 选中框恢复“放大动画版本”：框跟着图片尺寸走，并外扩覆盖完整选中图 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: -5px !important;
+    z-index: 12 !important;
+    display: block !important;
+
+    border-radius: 12px !important;
+    border: 1.6px solid rgba(250, 220, 148, 0.98) !important;
+    box-shadow:
+        0 0 0 1px rgba(42, 28, 9, 0.28),
+        0 0 18px rgba(238, 187, 85, 0.24) !important;
+    pointer-events: none !important;
+    animation: wideThumbActivePop 0.28s cubic-bezier(0.16, 1, 0.28, 1) both !important;
+}
+
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: -11px !important;
+    z-index: 13 !important;
+    display: block !important;
+
+    width: 12px !important;
+    height: 12px !important;
+    transform: translateX(-50%) rotate(45deg) !important;
+    background: rgba(250, 220, 148, 0.98) !important;
+    box-shadow: 0 0 10px rgba(238, 187, 85, 0.22) !important;
+    pointer-events: none !important;
+}
+
+@keyframes wideThumbActivePop {
+    from {
+        opacity: 0;
+        transform: scale(0.94);
+        filter: blur(1px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* 标题牌圆角保持和谐一点，不要尖，也不要像药丸 */
+.wide-carousel-titleplate {
+    border-radius: 16px !important;
+}
+
+
+
+
+
+
+

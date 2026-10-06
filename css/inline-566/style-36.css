@@ -1,0 +1,37 @@
+/*
+  只改放大图弹层里的 x：
+  外层卡片组关闭按钮 .process-inline-close 不受影响。
+*/
+
+/* 放大图 x 默认状态 = 外层卡片组 x 的 hover 深金状态 */
+#fusion-image-lightbox .fusion-image-lightbox-close,
+.fusion-image-lightbox.is-open .fusion-image-lightbox-close,
+.fusion-image-lightbox .fusion-image-lightbox-card .fusion-image-lightbox-close {
+    background: rgba(78, 48, 14, 0.86) !important;
+    border: 1px solid rgba(255, 226, 151, 0.72) !important;
+    color: rgba(255, 238, 181, 0.96) !important;
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.34),
+        0 0 22px rgba(255, 194, 92, 0.20) !important;
+}
+
+/* 放大图 x hover 状态 = 外层卡片组 x 的默认黑金状态 */
+#fusion-image-lightbox .fusion-image-lightbox-close:hover,
+.fusion-image-lightbox.is-open .fusion-image-lightbox-close:hover,
+.fusion-image-lightbox .fusion-image-lightbox-card .fusion-image-lightbox-close:hover {
+    background: rgba(13, 9, 4, 0.82) !important;
+    border: 1px solid rgba(255, 226, 151, 0.46) !important;
+    color: rgba(255, 238, 181, 0.95) !important;
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.32),
+        0 0 22px rgba(255, 194, 92, 0.16) !important;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+/* v123：高斯模糊背景框四边改为 14px，并统一内外圆角视觉 */
+#bg12-content {
+    --bg12-inner-radius: 28px;
+    --bg12-frame-size: 14px;
+    --bg12-outer-radius: calc(var(--bg12-inner-radius) + var(--bg12-frame-size));
+}
+
+/* 外层高斯背景框：14px 等宽边框；外圆角 = 内圆角 + 边框宽度，视觉上内外弧线统一 */
+#bg12-content::before {
+    left: calc(var(--bg12-frame-size) * -1) !important;
+    right: calc(var(--bg12-frame-size) * -1) !important;
+    top: calc(var(--bg12-frame-size) * -1) !important;
+    bottom: calc(var(--bg12-frame-size) * -1) !important;
+    border-radius: var(--bg12-outer-radius) !important;
+}
+
+#bg12-content::after {
+    left: calc(var(--bg12-frame-size) * -1) !important;
+    right: calc(var(--bg12-frame-size) * -1) !important;
+    top: calc(var(--bg12-frame-size) * -1) !important;
+    bottom: calc(var(--bg12-frame-size) * -1) !important;
+    border-radius: var(--bg12-outer-radius) !important;
+}
+
+/* 内层图片和视频遮罩使用同一个内圆角 */
+#bg12-img,
+#bg12-video-mask,
+#bg12-video {
+    border-radius: var(--bg12-inner-radius) !important;
+}
+
+
+
+
+
+
+

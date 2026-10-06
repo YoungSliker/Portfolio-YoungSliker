@@ -1,0 +1,2074 @@
+.hardware328-section {
+    position: relative;
+    margin-top: 2.5rem;
+}
+
+.software347-section {
+    position: relative;
+    margin-top: clamp(2.5rem, 5vw, 5rem);
+}
+
+.software347-section .section-title-gold {
+    width: min(100% - 1.5rem, 1680px);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.software347,
+.software347 *,
+.software347 *::before,
+.software347 *::after {
+    box-sizing: border-box;
+}
+
+.software347 {
+    width: min(100% - 1.5rem, 1680px);
+    margin: 3rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.software347-card,
+.software347-flow {
+    border: 1px solid rgba(255, 226, 151, 0.15);
+    border-radius: 34px;
+    background: linear-gradient(150deg, rgba(255, 234, 159, 0.07), transparent 56%), rgba(45, 36, 18, 0.42);
+    box-shadow: 0 24px 70px rgba(18, 12, 4, 0.22);
+    backdrop-filter: blur(18px) saturate(1.05);
+    -webkit-backdrop-filter: blur(18px) saturate(1.05);
+}
+
+.software347-card {
+    overflow: hidden;
+    min-height: clamp(29rem, 36vw, 35rem);
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.software347-media {
+    position: relative;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 0;
+    background: transparent;
+}
+
+.software347-media::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 32%;
+    background: linear-gradient(180deg, transparent, rgba(16, 12, 6, 0.54));
+    pointer-events: none;
+}
+
+.software347-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.software347-media-plan img {
+    object-position: 48% 18%;
+}
+
+.software347-media-arch {
+    position: relative;
+    background: rgba(244, 238, 220, 0.92);
+}
+
+.software347-media-arch::before {
+    content: "";
+    position: absolute;
+    inset: -14%;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("../AIGC/绥远方志/硬件开发/agent-architecture.png");
+    background-size: cover;
+    background-position: center;
+    transform: rotate(180deg) scaleX(-1) scale(1.03);
+    filter: blur(7px) saturate(0.86) brightness(0.96) contrast(1.04);
+    opacity: 0.64;
+}
+
+.software347-media-arch img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 82%;
+    height: 82%;
+    margin: 7% auto;
+    object-fit: contain;
+    padding: 0;
+    border-radius: 18px;
+    filter: saturate(0.92) brightness(1.01) contrast(1.02);
+    box-shadow: 0 18px 45px rgba(10, 7, 3, 0.22);
+}
+
+.software347-media-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    padding: 1.2rem 1.2rem 0;
+}
+
+.software347-media-duo img {
+    border-radius: 18px;
+}
+
+.software347-caption {
+    padding: clamp(1rem, 1.35vw, 1.45rem) clamp(1.15rem, 1.6vw, 1.75rem) clamp(1.2rem, 1.65vw, 1.75rem);
+    color: rgba(255, 232, 178, 0.68);
+}
+
+.software347-caption span {
+    display: block;
+    margin: 0 0 0.35rem;
+    color: rgba(255, 229, 161, 0.7);
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+}
+
+.software347-caption b {
+    display: block;
+    margin: 0;
+    color: rgba(255, 241, 202, 0.94);
+    font-family: "Microsoft YaHei", sans-serif;
+    font-size: clamp(0.98rem, 1.08vw, 1.24rem);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1.22;
+}
+
+
+
+.software347-flow {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.55fr) minmax(0, 2.45fr);
+    gap: clamp(1.2rem, 2.35vw, 2.7rem);
+    min-height: clamp(7.8rem, 8.6vw, 9.3rem);
+    padding: clamp(1.18rem, 1.58vw, 1.55rem) clamp(1.55rem, 2.5vw, 2.8rem);
+    align-items: center;
+    background: radial-gradient(circle at 8% 28%, rgba(255, 230, 160, 0.12), transparent 36%), linear-gradient(90deg, rgba(255, 232, 155, 0.08), transparent 60%), rgba(40, 31, 14, 0.25);
+}
+
+.software347-flow-head p {
+    margin: 0 0 0.5rem;
+    color: rgba(255, 229, 161, 0.58);
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+}
+
+.software347-flow-head h4 {
+    margin: 0;
+    color: rgba(255, 241, 202, 0.9);
+    font-size: clamp(1.55rem, 2.05vw, 2.7rem);
+    font-weight: 300;
+    line-height: 1.12;
+}
+
+.software347-flow ol {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.85rem, 1.25vw, 1.25rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.software347-flow ol::before {
+    content: "";
+    position: absolute;
+    left: 1.12rem;
+    right: 1.12rem;
+    top: 1.06rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 226, 151, 0.08), rgba(255, 226, 151, 0.44), rgba(255, 226, 151, 0.08));
+}
+
+.software347-flow li {
+    position: relative;
+    min-width: 0;
+    padding: 2.25rem 0.15rem 0;
+    color: rgba(255, 232, 178, 0.64);
+}
+
+.software347-flow li span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    place-items: center;
+    width: 2.12rem;
+    height: 2.12rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 229, 161, 0.28);
+    background: rgba(23, 17, 8, 0.54);
+    color: rgba(255, 231, 166, 0.88);
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 800;
+}
+
+.software347-flow li b {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: rgba(255, 240, 199, 0.88);
+    font-size: clamp(0.98rem, 1.08vw, 1.24rem);
+    letter-spacing: 0.08em;
+}
+
+.software347-flow li em {
+    display: block;
+    font-style: normal;
+    font-size: clamp(0.76rem, 0.78vw, 0.9rem);
+    line-height: 1.55;
+    letter-spacing: 0.04em;
+}
+
+@media (max-width: 1920px) {
+    .hardware332-title {
+        font-size: clamp(1.85rem, 2.0vw, 3.2rem) !important;
+    }
+
+    .hardware332-title-flow {
+        font-size: 0.48em;
+        gap: clamp(0.35rem, 0.6vw, 0.7rem);
+    }
+
+    .hardware328-copy {
+        padding: clamp(1.2rem, 1.5vw, 2.2rem);
+        min-height: auto;
+    }
+
+    .hardware328-copy .detail-light {
+        font-size: clamp(0.88rem, 0.75vw, 1.05rem);
+        line-height: 1.68;
+        margin-top: 0.85rem;
+    }
+}
+
+@media (max-width: 1600px) {
+    .hardware332-title {
+        font-size: clamp(1.65rem, 1.8vw, 2.8rem) !important;
+    }
+
+    .hardware332-title-flow {
+        font-size: 0.45em;
+        gap: clamp(0.3rem, 0.5vw, 0.6rem);
+    }
+
+    .hardware328-copy {
+        padding: clamp(1.0rem, 1.3vw, 1.8rem);
+    }
+
+    .hardware328-copy .detail-light {
+        font-size: clamp(0.85rem, 0.68vw, 0.98rem);
+        line-height: 1.62;
+        margin-top: 0.75rem;
+    }
+}
+@media (max-width: 980px) {
+    .software347 {
+        grid-template-columns: 1fr;
+    }
+
+    .software347-flow {
+        grid-template-columns: 1fr;
+    }
+
+    .software347-flow ol {
+        grid-template-columns: 1fr;
+    }
+}
+
+.hardware328-section .section-title-gold {
+    width: min(100% - 1.5rem, 1680px);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.hardware328-section *,
+.hardware328-section *::before,
+.hardware328-section *::after {
+    box-sizing: border-box;
+}
+
+.hardware328 {
+    --hw328-ink: rgba(255, 241, 202, 0.96);
+    --hw328-soft: rgba(255, 229, 161, 0.72);
+    --hw328-muted: rgba(255, 232, 178, 0.5);
+    --hw328-card: rgba(45, 36, 18, 0.42);
+    --hw328-deep: rgba(16, 13, 7, 0.76);
+    --hw328-line: rgba(255, 226, 151, 0.17);
+    width: min(100% - 1.5rem, 1680px);
+    margin: 3rem auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.hardware328-poster,
+.hardware328-proof {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.hardware328-copy,
+.hardware328-photo {
+    border: 1px solid var(--hw328-line);
+    border-radius: 34px;
+    background:
+        linear-gradient(150deg, rgba(255, 234, 159, 0.07), transparent 56%),
+        var(--hw328-card);
+    box-shadow: 0 24px 70px rgba(18, 12, 4, 0.24);
+    backdrop-filter: blur(18px) saturate(1.05);
+    -webkit-backdrop-filter: blur(18px) saturate(1.05);
+}
+
+.hardware328-copy {
+    position: relative;
+    overflow: hidden;
+    grid-column: span 5;
+    min-height: 23rem;
+    padding: clamp(1.7rem, 2.8vw, 3.25rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hardware328-copy::before,
+.hardware328-copy::after {
+    position: absolute;
+    z-index: 0;
+    color: rgba(255, 235, 178, 0.24);
+    font-family: "Courier New", monospace;
+    font-size: clamp(0.56rem, 0.58vw, 0.68rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.hardware328-copy::before {
+    content: "/* voice + memory + wearable */";
+    top: clamp(1.15rem, 1.4vw, 1.7rem);
+    right: clamp(1.3rem, 2vw, 2.25rem);
+}
+
+.hardware328-copy::after {
+    content: ".suiyuan-guide { latency: .3s; mode: immersive; }";
+    left: clamp(1.45rem, 2.2vw, 2.65rem);
+    bottom: clamp(1rem, 1.4vw, 1.55rem);
+    opacity: 0.7;
+}
+
+.hardware328-copy > * {
+    position: relative;
+    z-index: 1;
+}
+
+.hardware328-kicker {
+    margin: 0 0 1rem;
+    color: var(--hw328-soft);
+    font-family: "Courier New", monospace;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+}
+
+.hardware328-copy h3 {
+    margin: 0;
+    color: var(--hw328-ink);
+    font-size: clamp(2.6rem, 4.05vw, 4.85rem);
+    font-weight: 300;
+    line-height: 1.14;
+    text-align: left;
+}
+
+.hardware331-title {
+    font-size: clamp(2.2rem, 3.2vw, 4rem) !important;
+    line-height: 1.18 !important;
+}
+
+.hardware331-title span {
+    display: block;
+    white-space: nowrap;
+}
+
+.hardware331-title span:nth-child(2),
+.hardware331-title span:nth-child(3) {
+    text-align: right;
+}
+
+.hardware332-title {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.28rem, 0.7vw, 0.7rem);
+    font-size: clamp(2.45rem, 3.65vw, 4.45rem) !important;
+    line-height: 1.08 !important;
+}
+
+.hardware332-title-main {
+    display: block;
+    white-space: nowrap;
+}
+
+.hardware332-title-flow {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: clamp(0.5rem, 1.1vw, 1.15rem);
+    width: 100%;
+    color: rgba(255, 240, 196, 0.78);
+    font-size: 0.5em;
+    letter-spacing: 0.1em;
+}
+
+.hardware332-title-flow i {
+    position: relative;
+    font-style: normal;
+    white-space: nowrap;
+}
+
+.hardware332-title-flow i + i::before {
+    content: "";
+    position: absolute;
+    left: calc(-0.56rem - 1px);
+    top: 50%;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 230, 166, 0.48);
+    transform: translateY(-50%);
+}
+
+.hardware328-copy .detail-light {
+    margin-top: 1.05rem;
+    color: var(--hw328-soft);
+    font-size: clamp(0.98rem, 1.02vw, 1.12rem);
+    line-height: 1.82;
+    letter-spacing: 0.09em;
+}
+
+.hardware328-em {
+    display: inline-block;
+    margin: 0 0.04em;
+    padding: 0 0.08em;
+    border-radius: 0;
+    background: linear-gradient(180deg, transparent 68%, rgba(255, 209, 103, 0.18) 0);
+    color: rgba(255, 237, 185, 0.9);
+    font-size: 1.02em;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 12px rgba(255, 205, 91, 0.12);
+    box-shadow: none;
+}
+
+.hardware328-tags {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    width: min(100%, 33rem);
+    margin-top: 1.35rem;
+    border: 1px solid rgba(255, 232, 168, 0.11);
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(24, 18, 8, 0.18);
+    box-shadow: inset 0 1px 0 rgba(255, 238, 190, 0.04);
+}
+
+.hardware328-tags span {
+    position: relative;
+    padding: 0.76rem 0.58rem 0.7rem;
+    border-radius: 0;
+    border: 0;
+    background: linear-gradient(180deg, rgba(255, 229, 154, 0.05), rgba(44, 34, 15, 0.07));
+    color: rgba(255, 231, 174, 0.68);
+    font-family: "Courier New", monospace;
+    font-size: clamp(0.72rem, 0.78vw, 0.86rem);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-align: center;
+    box-shadow: none;
+}
+
+.hardware328-tags span + span::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 24%;
+    bottom: 24%;
+    width: 1px;
+    background: rgba(255, 232, 168, 0.11);
+}
+
+.hardware328-photo {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    min-height: 17rem;
+    background: var(--hw328-deep);
+}
+
+.hardware328-photo::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, rgba(255, 226, 145, 0.06), transparent 38%),
+        linear-gradient(0deg, rgba(8, 6, 3, 0.78), transparent 38%);
+}
+
+.hardware328-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.92) brightness(0.98) contrast(1.04);
+}
+
+.hardware328-photo figcaption {
+    position: absolute;
+    z-index: 3;
+    left: 1.35rem;
+    right: 1.35rem;
+    bottom: 1.1rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--hw328-ink);
+    pointer-events: none;
+}
+
+.hardware328-photo figcaption span {
+    color: var(--hw328-soft);
+    font-family: "Courier New", monospace;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+}
+
+.hardware328-photo figcaption b {
+    font-size: clamp(1rem, 1.16vw, 1.28rem);
+    letter-spacing: 0.08em;
+    text-align: right;
+}
+
+.hardware328-main {
+    grid-column: span 7;
+    min-height: 23rem;
+}
+
+.hardware328-main img {
+    object-position: 48% 50%;
+    transform: scale(1.05);
+}
+
+.hardware328-circuit,
+.hardware328-shell,
+.hardware328-build {
+    grid-column: span 4;
+    min-height: 17.5rem;
+}
+
+.hardware328-circuit .hardware328-pair {
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.58fr);
+    gap: 0;
+    padding: 0;
+}
+
+.hardware328-circuit .hardware328-pair > img,
+.hardware328-circuit .hardware328-pcb-stack img {
+    border-radius: 0;
+}
+
+.hardware328-shell {
+    min-height: 20.5rem;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 10%, rgba(255, 229, 155, 0.13), transparent 36%),
+        linear-gradient(150deg, rgba(255, 234, 159, 0.08), transparent 58%),
+        var(--hw328-card);
+}
+
+.hardware328-shell::after {
+    background:
+        linear-gradient(180deg, rgba(255, 226, 145, 0.05), transparent 36%),
+        linear-gradient(0deg, rgba(8, 6, 3, 0.62), transparent 30%);
+}
+
+.hardware328-pair {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+    gap: 0.55rem;
+    padding: 0.65rem;
+}
+
+.hardware328-pair img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    border-radius: 20px;
+    padding: 0;
+}
+
+.hardware328-circuit .hardware328-pair > img:first-child {
+    object-position: 29% 50%;
+    transform: scale(1.02);
+}
+
+.hardware328-pcb-stack {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 0;
+    min-height: 0;
+    background: rgb(176, 153, 156);
+}
+
+.hardware328-pcb-stack img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    border-radius: 0;
+    background: rgb(176, 153, 156);
+}
+
+.hardware328-pcb-stack img:first-child {
+    object-position: 50% 50%;
+}
+
+.hardware328-pcb-stack img:last-child {
+    object-position: 50% 50%;
+}
+
+.hardware328-shell-card {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    padding: 0.78rem 0.78rem 4.25rem;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 0.62rem;
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+.hardware328-shell-note {
+    min-height: 5.9rem;
+    padding: 0.78rem 0.9rem 0.74rem;
+    border: 1px solid rgba(255, 226, 151, 0.14);
+    border-radius: 20px;
+    background:
+        linear-gradient(135deg, rgba(255, 231, 153, 0.08), transparent 68%),
+        rgba(18, 14, 7, 0.3);
+}
+
+.hardware328-shell-kicker {
+    margin: 0 0 0.35rem;
+    color: rgba(255, 230, 163, 0.8);
+    font-family: "Courier New", monospace;
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+}
+
+.hardware328-shell-note h4 {
+    margin: 0;
+    color: var(--hw328-ink);
+    font-family: inherit;
+    font-weight: 800;
+    font-size: clamp(1rem, 1.08vw, 1.24rem);
+    line-height: 1.18;
+    letter-spacing: 0.08em;
+}
+
+.hardware328-shell-note p:last-child {
+    margin: 0.42rem 0 0;
+    color: rgba(255, 232, 178, 0.62);
+    font-size: clamp(0.78rem, 0.78vw, 0.9rem);
+    line-height: 1.55;
+    letter-spacing: 0.06em;
+}
+
+.hardware328-shell-stage {
+    position: relative;
+    min-height: 10.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 226, 151, 0.13);
+    border-radius: 22px;
+    background:
+        linear-gradient(180deg, rgba(18, 14, 7, 0.1), rgba(18, 14, 7, 0.32)),
+        rgba(16, 13, 7, 0.46);
+}
+
+.hardware328-shell-stage::before {
+    content: "";
+    position: absolute;
+    inset: -14%;
+    z-index: 0;
+    pointer-events: none;
+    background: url("../AIGC/绥远方志/硬件开发/sketch.png") center / cover no-repeat;
+    filter: blur(7px) saturate(0.86) brightness(0.96) contrast(1.04);
+    opacity: 0.64;
+    transform: rotate(180deg) scaleX(-1) scale(1.03);
+}
+
+.hardware328-shell-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, transparent 58%, rgba(10, 7, 4, 0.36)),
+        radial-gradient(circle at 50% 25%, rgba(255, 229, 160, 0.06), transparent 48%);
+    border-radius: 22px;
+    clip-path: inset(0 round 22px);
+}
+
+.hardware328-shell-stage > img,
+.hardware328-model-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scale(1.08);
+    transition: opacity 0.42s ease, transform 0.72s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hardware328-shell-stage > img {
+    object-fit: cover;
+    border-radius: 22px;
+    clip-path: inset(0 round 22px);
+}
+
+.hardware328-shell-stage > img.is-active,
+.hardware328-model-carousel.is-active {
+    opacity: 1;
+    transform: scale(1.01);
+}
+
+.hardware328-shell-stage > img[data-shell-panel="industrial"] {
+    object-position: 54% 52%;
+}
+
+.hardware328-shell-stage > img[data-shell-panel="sketch"] {
+    object-position: 50% 42%;
+    object-fit: contain;
+    padding: 0.1rem;
+    background: transparent;
+    filter: saturate(0.92) brightness(1.01) contrast(1.02);
+}
+
+.hardware328-shell-stage > img[data-shell-panel="sketch"].is-active {
+    transform: scale(1);
+}
+
+.hardware328-model-carousel img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 44% 42%;
+    opacity: 0;
+    transform: scale(1.06);
+    transition: opacity 0.65s ease, transform 2.6s ease;
+    border-radius: 22px;
+    clip-path: inset(0 round 22px);
+}
+
+.hardware328-model-carousel img.is-current {
+    opacity: 1;
+    transform: scale(1.01);
+}
+
+.hardware328-magnifier {
+    position: absolute;
+    z-index: 30;
+    left: var(--lens-x-px, 50%);
+    top: var(--lens-y-px, 50%);
+    width: clamp(10.8rem, 10.8vw, 14rem);
+    height: clamp(10.8rem, 10.8vw, 14rem);
+    border-radius: 50%;
+    border: 3px solid rgba(255, 241, 188, 0.98);
+    overflow: hidden;
+    background: rgba(255, 250, 233, 0.92);
+    box-shadow:
+        0 24px 62px rgba(13, 8, 2, 0.48),
+        0 0 0 12px rgba(255, 223, 138, 0.12),
+        0 0 0 1px rgba(71, 48, 10, 0.45),
+        inset 0 0 0 1px rgba(76, 53, 14, 0.35),
+        inset 0 0 42px rgba(255, 239, 190, 0.34);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.78) rotate(-2deg);
+    transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hardware328-magnifier img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: none;
+    max-height: none;
+    width: auto;
+    height: auto;
+    object-fit: fill;
+    transform-origin: 0 0;
+    filter: contrast(1.08) brightness(1.02);
+    will-change: transform, width, height;
+}
+
+.hardware328-magnifier::before {
+    content: none;
+    display: none;
+}
+
+.hardware328-timeline {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.8fr) minmax(0, 2.2fr);
+    gap: clamp(1rem, 2vw, 2rem);
+    min-height: 8.8rem;
+    padding: clamp(1.2rem, 1.8vw, 1.65rem) clamp(1.35rem, 2.2vw, 2.2rem);
+    border: 1px solid rgba(255, 226, 151, 0.13);
+    border-radius: 30px;
+    background:
+        linear-gradient(120deg, rgba(255, 232, 155, 0.08), transparent 44%),
+        rgba(39, 31, 15, 0.28);
+    box-shadow: 0 24px 60px rgba(18, 12, 4, 0.18);
+    backdrop-filter: blur(16px) saturate(1.04);
+    -webkit-backdrop-filter: blur(16px) saturate(1.04);
+}
+
+.hardware347-process-line,
+.hardware347-chain-line {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.56fr) minmax(0, 2.44fr);
+    gap: clamp(1.2rem, 2.35vw, 2.7rem);
+    min-height: clamp(7.8rem, 8.6vw, 9.3rem);
+    margin-top: clamp(0.35rem, 0.8vw, 0.75rem);
+    padding: clamp(1.18rem, 1.58vw, 1.55rem) clamp(1.55rem, 2.5vw, 2.8rem);
+    border: 1px solid rgba(255, 226, 151, 0.13);
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at 8% 28%, rgba(255, 230, 160, 0.12), transparent 36%),
+        linear-gradient(90deg, rgba(255, 232, 155, 0.08), transparent 60%),
+        rgba(40, 31, 14, 0.25);
+    box-shadow: 0 24px 60px rgba(18, 12, 4, 0.16);
+    backdrop-filter: blur(16px) saturate(1.04);
+    -webkit-backdrop-filter: blur(16px) saturate(1.04);
+    align-items: center;
+}
+
+.hardware347-chain-line {
+    margin-top: clamp(0.65rem, 1vw, 1rem);
+    background:
+        radial-gradient(circle at 8% 28%, rgba(255, 230, 160, 0.1), transparent 34%),
+        linear-gradient(90deg, rgba(255, 232, 155, 0.07), transparent 62%),
+        rgba(40, 31, 14, 0.22);
+}
+
+.hardware347-process-head p,
+.hardware347-chain-head p {
+    margin: 0 0 0.5rem;
+    color: rgba(255, 229, 161, 0.58);
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+}
+
+.hardware347-process-head h4,
+.hardware347-chain-head h4 {
+    margin: 0;
+    color: rgba(255, 241, 202, 0.9);
+    font-size: clamp(1.55rem, 2.05vw, 2.7rem);
+    font-weight: 300;
+    line-height: 1.12;
+}
+
+.hardware347-process-line ol,
+.hardware347-chain-line ol {
+    position: relative;
+    display: grid;
+    gap: clamp(0.85rem, 1.25vw, 1.25rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.hardware347-process-line ol {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hardware347-chain-line ol {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.hardware347-process-line ol::before,
+.hardware347-chain-line ol::before {
+    content: "";
+    position: absolute;
+    left: 1.12rem;
+    right: 1.12rem;
+    top: 1.06rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 226, 151, 0.08), rgba(255, 226, 151, 0.44), rgba(255, 226, 151, 0.08));
+}
+
+.hardware347-process-line li,
+.hardware347-chain-line li {
+    position: relative;
+    min-width: 0;
+    padding: 2.25rem 0.15rem 0;
+    color: rgba(255, 232, 178, 0.64);
+}
+
+.hardware347-process-line li span,
+.hardware347-chain-line li span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    place-items: center;
+    width: 2.12rem;
+    height: 2.12rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 229, 161, 0.28);
+    background: rgba(23, 17, 8, 0.54);
+    color: rgba(255, 231, 166, 0.88);
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 800;
+}
+
+.hardware347-process-line li b,
+.hardware347-chain-line li b {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: rgba(255, 240, 199, 0.88);
+    font-size: clamp(0.98rem, 1.08vw, 1.24rem);
+    letter-spacing: 0.08em;
+}
+
+.hardware347-process-line li em,
+.hardware347-chain-line li em {
+    display: block;
+    font-style: normal;
+    font-size: clamp(0.76rem, 0.78vw, 0.9rem);
+    line-height: 1.55;
+    letter-spacing: 0.04em;
+}
+
+.hardware328-timeline-intro p {
+    margin: 0 0 0.5rem;
+    color: rgba(255, 229, 161, 0.62);
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+}
+
+.hardware328-timeline-intro h4 {
+    margin: 0;
+    color: rgba(255, 241, 202, 0.9);
+    font-size: clamp(1.45rem, 1.85vw, 2.25rem);
+    font-weight: 300;
+    line-height: 1.18;
+}
+
+.hardware328-timeline ol {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.7rem, 1.2vw, 1.15rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.hardware328-timeline ol::before {
+    content: "";
+    position: absolute;
+    left: 1.1rem;
+    right: 1.1rem;
+    top: 1.08rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 226, 151, 0.06), rgba(255, 226, 151, 0.42), rgba(255, 226, 151, 0.06));
+}
+
+.hardware328-timeline li {
+    position: relative;
+    min-width: 0;
+    padding-top: 2.25rem;
+    color: rgba(255, 232, 178, 0.62);
+}
+
+.hardware328-timeline li span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    place-items: center;
+    width: 2.15rem;
+    height: 2.15rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 229, 161, 0.28);
+    background: rgba(25, 19, 9, 0.5);
+    color: rgba(255, 231, 166, 0.86);
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 800;
+}
+
+.hardware328-timeline li b {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: rgba(255, 240, 199, 0.86);
+    font-size: clamp(0.92rem, 0.98vw, 1.08rem);
+    letter-spacing: 0.08em;
+}
+
+.hardware328-timeline li em {
+    display: block;
+    font-style: normal;
+    font-size: clamp(0.76rem, 0.78vw, 0.86rem);
+    line-height: 1.62;
+    letter-spacing: 0.04em;
+}
+
+.hardware328-magnifier::after {
+    content: "";
+    position: absolute;
+    right: -1.55rem;
+    bottom: 0.35rem;
+    width: 3rem;
+    height: 0.48rem;
+    border-radius: 999px;
+    background: rgba(255, 236, 174, 0.9);
+    box-shadow: 0 6px 16px rgba(13, 8, 2, 0.28);
+    transform: rotate(38deg);
+}
+
+.hardware328-shell-stage.is-magnifying + .hardware328-magnifier {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+.hardware328-shell-tabs {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.hardware328-shell-tabs button {
+    min-width: 0;
+    border: 1px solid rgba(231, 198, 130, 0.18);
+    border-radius: 18px;
+    padding: 0.58rem 0.5rem 0.52rem;
+    background: rgba(255, 235, 171, 0.08);
+    color: rgba(255, 237, 193, 0.72);
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 246, 214, 0.08);
+    transition: transform 0.24s ease, background 0.24s ease, color 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.hardware328-shell-tabs button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(232, 197, 122, 0.34);
+    background: rgba(255, 231, 158, 0.13);
+    color: rgba(255, 243, 207, 0.86);
+}
+
+.hardware328-shell-tabs button.is-active {
+    color: rgba(87, 57, 18, 0.96);
+    border-color: rgba(221, 181, 95, 0.42);
+    background: rgba(255, 225, 143, 0.82);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 250, 226, 0.58),
+        0 4px 10px rgba(58, 37, 8, 0.12);
+}
+
+.hardware328-shell-tabs span,
+.hardware328-shell-tabs small {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hardware328-shell-tabs span {
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.hardware328-shell-tabs small {
+    margin-top: 0.18rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    opacity: 0.66;
+    text-transform: uppercase;
+}
+
+.hardware328-build-single {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.hardware328-build-single img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 40%;
+    border-radius: 34px;
+    transition: opacity 0.38s ease, transform 0.9s ease, filter 0.38s ease;
+}
+
+.hardware328-build-single img.is-base {
+    opacity: 1;
+    transform: scale(1.01);
+}
+
+.hardware328-build-single img.is-hover {
+    opacity: 0;
+    transform: scale(1.035);
+}
+
+.hardware328-build:hover .hardware328-build-single img.is-base {
+    opacity: 0;
+    transform: scale(1.025);
+}
+
+.hardware328-build:hover .hardware328-build-single img.is-hover {
+    opacity: 1;
+    transform: scale(1.01);
+}
+
+.hardware328-shell figcaption b {
+    font-family: inherit;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+@media (max-width: 1180px) {
+    .hardware328 {
+        width: min(100% - 2rem, 1040px);
+    }
+
+    .hardware328-copy,
+    .hardware328-main,
+    .hardware328-circuit,
+    .hardware328-shell,
+    .hardware328-build,
+    .hardware328-timeline {
+        grid-column: 1 / -1;
+    }
+
+    .hardware328-timeline {
+        grid-template-columns: 1fr;
+    }
+
+    .hardware328-timeline ol {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hardware347-process-line,
+    .hardware347-chain-line {
+        grid-template-columns: 1fr;
+    }
+
+    .hardware347-process-line ol {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .hardware347-chain-line ol {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: 1.05rem;
+    }
+}
+
+@media (max-width: 680px) {
+    .hardware328 {
+        width: calc(100% - 1rem);
+    }
+
+    .hardware328-copy {
+        min-height: auto;
+        padding: 1.45rem;
+    }
+
+    .hardware328-pair {
+        grid-template-columns: 1fr;
+    }
+
+    .hardware328-main,
+    .hardware328-circuit,
+    .hardware328-shell,
+    .hardware328-build {
+        min-height: 20rem;
+    }
+
+    .hardware328-tags {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hardware328-timeline ol {
+        grid-template-columns: 1fr;
+    }
+
+    .hardware328-timeline ol::before {
+        display: none;
+    }
+
+    .hardware347-process-line ol,
+    .hardware347-chain-line ol {
+        grid-template-columns: 1fr;
+    }
+
+    .hardware347-process-line ol::before,
+    .hardware347-chain-line ol::before {
+        display: none;
+    }
+
+    .hardware328-tags {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-radius: 24px;
+    }
+
+    .hardware328-tags span:nth-child(3)::before {
+        display: none;
+    }
+}
+
+/* v347 software cards: align with hardware-card visual language */
+.software347-card {
+    min-height: clamp(25rem, 31vw, 31.5rem);
+    grid-template-rows: 1fr;
+    position: relative;
+}
+
+.software347-media {
+    margin: 0;
+    position: absolute;
+    inset: 0;
+    height: auto;
+    padding-top: 0;
+    overflow: hidden;
+}
+
+.software347-caption {
+    position: absolute;
+    left: clamp(1.55rem, 2vw, 2.1rem);
+    right: clamp(1.55rem, 2vw, 2.1rem);
+    bottom: clamp(1.45rem, 1.8vw, 2rem);
+    z-index: 3;
+    padding: 0;
+    pointer-events: none;
+}
+
+.software347-caption span {
+    margin-bottom: 0.5rem;
+}
+
+.software347-caption b {
+    margin: 0;
+    font-size: clamp(0.98rem, 1.16vw, 1.28rem);
+    letter-spacing: 0.08em;
+}
+
+
+
+.software347-media::after {
+    height: 48%;
+    background: linear-gradient(180deg, transparent 0%, rgba(16, 12, 6, 0.68) 66%, rgba(16, 12, 6, 0.86) 100%);
+}
+
+.software347-media-arch {
+    background: rgba(25, 20, 10, 0.42);
+}
+
+.software347-media-arch::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../AIGC/绥远方志/硬件开发/agent-architecture.png");
+    background-size: cover;
+    background-position: center;
+    transform: rotate(180deg) scaleX(-1) scale(1.18);
+    filter: blur(12px);
+    opacity: 0.48;
+}
+
+.software347-media-arch img {
+    position: relative;
+    z-index: 1;
+    width: 82%;
+    height: 82%;
+    margin: 7% auto;
+    padding: 0;
+    object-fit: contain;
+    border-radius: 18px;
+    box-shadow: 0 18px 45px rgba(10, 7, 3, 0.22);
+}
+
+.software347-media-duo {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 0.7rem;
+    padding: 0.7rem;
+    background: rgba(16, 13, 7, 0.58);
+}
+
+.software347-media-duo img:first-child {
+    object-position: center 38%;
+}
+
+.software347-media-duo img:last-child {
+    margin: 0;
+    width: 100%;
+    object-position: center 38%;
+}
+
+.software347-flow li em {
+    max-width: 24em;
+}
+
+/* v350: local polish for software cards, hardware spacing, process detail and entrance states */
+.hardware328 {
+    gap: clamp(0.95rem, 1vw, 1.05rem) !important;
+}
+
+.hardware328-poster,
+.hardware328-proof {
+    gap: clamp(0.95rem, 1vw, 1.05rem) !important;
+}
+
+.hardware347-chain-line,
+.hardware347-process-line {
+    margin: 0 !important;
+}
+
+.hardware328-photo figcaption,
+.software347-caption {
+    position: absolute;
+    z-index: 3;
+    left: 1.35rem;
+    right: 1.35rem;
+    bottom: 1.1rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 !important;
+    color: rgba(255, 241, 202, 0.96);
+    pointer-events: none;
+}
+
+.software347-caption span {
+    margin: 0 !important;
+    color: rgba(255, 229, 161, 0.72) !important;
+    font-family: "Courier New", monospace !important;
+    font-size: 0.76rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.2em !important;
+}
+
+.software347-caption b {
+    margin: 0 !important;
+    color: rgba(255, 241, 202, 0.96) !important;
+    font-family: "Microsoft YaHei", sans-serif !important;
+    font-size: clamp(1rem, 1.16vw, 1.28rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.18 !important;
+    text-align: right !important;
+}
+
+.software347-media-arch {
+    background: rgba(14, 10, 5, 0.54) !important;
+}
+
+.software347-media-arch::before {
+    inset: -12% !important;
+    z-index: 0 !important;
+    background-image: url("../AIGC/绥远方志/硬件开发/agent-architecture.png") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    transform: rotate(180deg) scaleX(-1) scale(1.22) !important;
+    filter: blur(18px) saturate(0.82) brightness(0.72) contrast(1.06) !important;
+    opacity: 0.72 !important;
+}
+
+.software347-media-arch img {
+    position: relative !important;
+    z-index: 1 !important;
+    width: 86% !important;
+    height: 76% !important;
+    margin: 8% auto 0 !important;
+    object-fit: contain !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    filter: saturate(0.95) brightness(1.03) contrast(1.02) !important;
+}
+
+.software347-media-duo {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.72rem !important;
+    padding: 0.78rem !important;
+    background: rgba(16, 13, 7, 0.58) !important;
+}
+
+.software347-media-duo img {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    border-radius: 18px !important;
+}
+
+.scheme-design-section .scheme-image-card {
+    margin-top: clamp(3.4rem, 4.4vw, 5.2rem) !important;
+}
+
+.scheme-design-section .scheme-stack-status {
+    margin-top: clamp(1.85rem, 2.4vw, 2.8rem) !important;
+}
+
+.scheme-design-section .scheme-stack-hint-under {
+    margin-top: 0.5rem !important;
+}
+
+.process-fusion-showcase:not(.is-simple) {
+    gap: clamp(0.78rem, 0.82vw, 0.96rem) !important;
+}
+
+.process-fusion-main,
+.process-fusion-bottom {
+    gap: clamp(0.78rem, 0.82vw, 0.96rem) !important;
+}
+
+.process-fusion-character,
+.process-fusion-motion {
+    margin-top: 0 !important;
+}
+
+.process-summary-text.is-fusion-summary {
+    width: min(112%, 1500px) !important;
+}
+
+.process-summary-line-text {
+    max-width: 112em !important;
+    line-height: 1.9 !important;
+}
+
+.detail-header [data-suiyuan-350-anim],
+.process-stage-card[data-suiyuan-350-anim] {
+    will-change: transform, opacity, filter;
+}
+
+.description-typewriter-text {
+    min-height: 9.2em;
+}
+
+.description-typewriter-text.is-typewriting::after {
+    content: "";
+    display: inline-block;
+    width: 0.08em;
+    height: 1em;
+    margin-left: 0.12em;
+    background: rgba(255, 224, 150, 0.72);
+    vertical-align: -0.12em;
+    animation: suiyuan350Caret 0.82s steps(1) infinite;
+}
+
+@keyframes suiyuan350Caret {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* v351: spacing, detail summary, centered hero hint, and TextPressure-style 2026 */
+#project-detail .detail-scroll-hint {
+    left: 50vw !important;
+    right: auto !important;
+    width: max-content !important;
+    min-width: 16rem !important;
+    text-align: center !important;
+    transform: translateX(-50%) !important;
+}
+
+#project-detail .detail-scroll-hint .scroll-text-cn,
+#project-detail .detail-scroll-hint .scroll-text-en {
+    margin-left: 0 !important;
+    text-indent: 0 !important;
+}
+
+#project-detail .max-w-\[1360px\] {
+    padding-bottom: 6rem !important;
+}
+
+#project-detail .detail-section {
+    margin-top: clamp(2rem, 3.2vw, 3.8rem) !important;
+    margin-bottom: 0 !important;
+    padding-top: clamp(1.8rem, 2.8vw, 3.2rem) !important;
+    padding-bottom: clamp(1.8rem, 2.8vw, 3.2rem) !important;
+}
+
+#project-detail .scheme-design-section {
+    padding-bottom: clamp(1.1rem, 1.5vw, 1.8rem) !important;
+}
+
+#project-detail .design-process-section {
+    margin-top: clamp(0.4rem, 0.8vw, 1rem) !important;
+    padding-top: clamp(1.2rem, 1.8vw, 2.2rem) !important;
+}
+
+#project-detail .hardware328-section,
+#project-detail .software347-section {
+    margin-top: clamp(1.4rem, 2vw, 2.8rem) !important;
+}
+
+.process-fusion-main,
+.process-fusion-bottom {
+    gap: 0.58rem !important;
+}
+
+.process-fusion-showcase:not(.is-simple) {
+    gap: 0.58rem !important;
+}
+
+.process-fusion-img-card,
+.process-fusion-motion {
+    margin: 0 !important;
+}
+
+.process-fusion-caption {
+    min-height: clamp(3.55rem, 3.4vw, 4.2rem) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+.process-summary-text.is-fusion-summary {
+    width: min(118%, 1700px) !important;
+    transform: translate(-50%, -30px) !important;
+}
+
+.process-summary-text.is-fusion-summary .process-summary-line-text {
+    max-width: 128em !important;
+    white-space: nowrap !important;
+    font-size: clamp(1rem, 1.08vw, 1.24rem) !important;
+    line-height: 1.82 !important;
+}
+
+.description-typewriter-text {
+    min-height: 9.6em;
+}
+
+.description-typewriter-text .text-type__cursor {
+    margin-left: 0.18em;
+    display: inline-block;
+    color: rgba(255, 224, 150, 0.88);
+    animation: suiyuan351TypeCursor 0.62s ease-in-out infinite alternate;
+}
+
+.description-typewriter-text.is-typewriting::after {
+    content: none !important;
+    display: none !important;
+}
+
+@keyframes suiyuan351TypeCursor {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.08;
+    }
+}
+
+/* v351 feedback fixes */
+#project-detail .hardware328-section {
+    margin-top: clamp(5.4rem, 7vw, 8.5rem) !important;
+}
+
+.process-summary-text.is-default-summary,
+.process-summary-text.is-fusion-summary {
+    font-size: clamp(0.86rem, 0.9vw, 1.02rem) !important;
+    line-height: 1.72 !important;
+    letter-spacing: 0.08em !important;
+}
+
+.process-summary-text.is-fusion-summary .process-summary-line-text {
+    font-size: clamp(0.86rem, 0.9vw, 1.02rem) !important;
+    line-height: 1.72 !important;
+}
+
+.process-fusion-showcase:not(.is-simple),
+.process-fusion-main,
+.process-fusion-bottom {
+    gap: 0.88rem !important;
+}
+
+.process-fusion-main {
+    row-gap: 0.88rem !important;
+    column-gap: 0.88rem !important;
+}
+
+.process-fusion-bottom {
+    margin-top: 0 !important;
+    row-gap: 0.88rem !important;
+    column-gap: 0.88rem !important;
+}
+
+.process-fusion-img-card,
+.process-fusion-motion {
+    border-radius: 0.86rem !important;
+    overflow: hidden !important;
+}
+
+.process-fusion-caption {
+    min-height: clamp(2.85rem, 2.75vw, 3.35rem) !important;
+    padding-top: 0.55rem !important;
+    padding-bottom: 0.58rem !important;
+}
+
+.design-process-section:not([data-suiyuan351-process-played="true"]) .process-stage-card {
+    opacity: 0 !important;
+    transform: translateY(54px) scale(0.92) !important;
+    filter: blur(10px) saturate(0.84) !important;
+}
+
+.hardware328-magnifier {
+    border: 1px solid rgba(255, 255, 255, 0.58) !important;
+    background:
+        radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.48), transparent 24%),
+        radial-gradient(circle at 72% 78%, rgba(255, 208, 132, 0.18), transparent 34%),
+        rgba(255, 252, 242, 0.18) !important;
+    box-shadow:
+        0 26px 62px rgba(13, 8, 2, 0.38),
+        0 0 0 1px rgba(255, 255, 255, 0.26),
+        0 0 0 10px rgba(255, 255, 255, 0.08),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.64),
+        inset 18px 18px 38px rgba(255, 255, 255, 0.28),
+        inset -22px -20px 42px rgba(130, 86, 24, 0.22) !important;
+    backdrop-filter: blur(8px) saturate(1.18) contrast(1.04) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(1.18) contrast(1.04) !important;
+}
+
+.hardware328-magnifier::before {
+    content: "" !important;
+    display: block !important;
+    position: absolute;
+    inset: 8%;
+    z-index: 4;
+    border-radius: inherit;
+    pointer-events: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.62);
+    border-left: 1px solid rgba(255, 255, 255, 0.38);
+    box-shadow:
+        inset 0 0 20px rgba(255, 255, 255, 0.22),
+        8px 0 14px rgba(255, 70, 110, 0.08),
+        -8px 0 14px rgba(70, 180, 255, 0.08);
+}
+
+.hardware328-magnifier::after {
+    content: "" !important;
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.34), transparent 28%),
+        linear-gradient(315deg, rgba(255, 255, 255, 0.16), transparent 34%);
+    mix-blend-mode: screen;
+}
+
+/* v352: GlareHover only stays on the AIGC Suiyuan card */
+#aigc .card-base[onclick*="openProject('suiyuan')"] {
+    --gh-angle: -30deg;
+    --gh-duration: 1450ms;
+    --gh-size: 360%;
+    --gh-rgba: rgba(234, 179, 8, 0.48);
+}
+
+#aigc .card-base[onclick*="openProject('suiyuan')"] {
+    position: relative;
+    overflow: hidden;
+}
+
+.process-stage-inner {
+    position: absolute !important;
+    inset: 0 !important;
+    overflow: visible !important;
+}
+
+#aigc .card-base[onclick*="openProject('suiyuan')"]::after {
+    content: "" !important;
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            var(--gh-angle),
+            hsla(0, 0%, 0%, 0) 48%,
+            rgba(156, 94, 12, 0.18) 57%,
+            var(--gh-rgba) 65%,
+            rgba(255, 238, 151, 0.62) 70%,
+            rgba(255, 196, 42, 0.34) 76%,
+            hsla(0, 0%, 0%, 0) 88%,
+            hsla(0, 0%, 0%, 0) 100%
+        );
+    background-size: var(--gh-size) var(--gh-size), 100% 100%;
+    background-repeat: no-repeat;
+    background-position: -145% -145%, 0 0;
+    opacity: 0;
+    mix-blend-mode: normal;
+    transition:
+        background-position var(--gh-duration) ease,
+        opacity 260ms ease;
+}
+
+#aigc .card-base[onclick*="openProject('suiyuan')"]:hover::after {
+    background-position: 145% 145%, 0 0;
+    opacity: 0.92;
+}
+
+#aigc .card-base[onclick*="openProject('suiyuan')"]:hover {
+    border-color: rgba(234, 179, 8, 0.86) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 225, 120, 0.28),
+        0 22px 55px rgba(234, 179, 8, 0.18),
+        0 0 38px rgba(255, 215, 96, 0.16) !important;
+}
+
+.process-stage-card::after {
+    content: none !important;
+    display: none !important;
+}
+
+.process-stage-card:hover {
+    cursor: pointer;
+}
+
+/* v351: TiltedCard-style motion tuning for process cards */
+.process-stage-card {
+    perspective: 800px !important;
+}
+
+.process-stage-inner {
+    transform-style: preserve-3d !important;
+    transform-origin: center center !important;
+    transition:
+        transform 0.42s cubic-bezier(0.18, 0.82, 0.22, 1),
+        filter 0.32s ease !important;
+}
+
+.process-stage-img {
+    transform: translateZ(0) !important;
+}
+
+.process-stage-card.is-process-tilting .process-stage-img {
+    transform: translateZ(0) scale(1.01) !important;
+}
+
+/* v417: only the software/hardware development-flow cards switch */
+.dev417-card-stage {
+    position: relative;
+    grid-column: 1 / -1;
+    min-height: clamp(25rem, 31vw, 31.5rem);
+    transition: min-height 380ms ease;
+}
+
+.dev417-card-panel {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.95rem, 1vw, 1.05rem);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(34px) scale(0.992);
+    filter: blur(8px);
+    transition: opacity 420ms ease, transform 420ms ease, filter 420ms ease;
+}
+
+.dev417-card-panel.is-active {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+}
+
+.dev417-card-panel.is-from-left {
+    transform: translateX(-34px) scale(0.992);
+}
+
+.dev417-card-panel > .hardware328-photo,
+.dev417-card-panel > .software347-card {
+    grid-column: auto !important;
+    width: 100%;
+    min-height: clamp(25rem, 31vw, 31.5rem);
+}
+
+.hardware328-proof .dev417-card-panel > .software347-card {
+    margin: 0;
+}
+
+.software347 .dev417-card-panel > .hardware328-photo {
+    margin: 0;
+}
+
+.dev417-flow-switch {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.dev417-flow-switch::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: -1;
+    border-radius: inherit;
+    background:
+        radial-gradient(circle at var(--dev417-glow-x, 18%) 12%, rgba(255, 231, 151, 0.18), transparent 34%),
+        linear-gradient(110deg, rgba(255, 233, 154, 0.08), transparent 58%);
+    opacity: 0.75;
+    pointer-events: none;
+    transition: opacity 360ms ease, background 360ms ease;
+}
+
+.dev417-flow-switch.is-software::after {
+    background:
+        radial-gradient(circle at var(--dev417-glow-x, 82%) 14%, rgba(255, 231, 151, 0.16), transparent 34%),
+        linear-gradient(110deg, rgba(255, 233, 154, 0.06), transparent 58%);
+}
+
+.hardware347-process-line.dev417-flow-switch,
+.software347-flow.dev417-flow-switch {
+    grid-template-columns: minmax(14rem, 0.55fr) minmax(0, 2.45fr) !important;
+    align-items: center !important;
+}
+
+.dev417-flow-head {
+    min-width: 0;
+}
+
+.dev417-flow-tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.46rem;
+    margin-top: clamp(0.85rem, 1.1vw, 1.15rem);
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+}
+
+.dev417-flow-tabs button {
+    min-width: 5.35rem;
+    height: 2rem;
+    border: 1px solid rgba(229, 196, 123, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 231, 158, 0.1);
+    color: rgba(255, 235, 184, 0.66);
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: color 220ms ease, background 220ms ease, box-shadow 220ms ease, border-color 220ms ease, transform 220ms ease;
+}
+
+.dev417-flow-tabs button:hover {
+    color: rgba(255, 244, 211, 0.88);
+    border-color: rgba(229, 196, 123, 0.4);
+    background: rgba(255, 231, 158, 0.16);
+    transform: translateY(-1px);
+}
+
+.dev417-flow-tabs button.is-active {
+    color: rgba(82, 53, 15, 0.96);
+    border-color: rgba(221, 181, 95, 0.44);
+    background: rgba(255, 226, 145, 0.84);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 250, 226, 0.55),
+        0 4px 10px rgba(52, 32, 7, 0.13);
+}
+
+.dev417-flow-stage {
+    position: relative;
+    min-height: clamp(6.5rem, 7.4vw, 8rem);
+    transition: min-height 360ms ease;
+}
+
+.dev417-flow-switch .dev417-flow-panel {
+    position: absolute;
+    inset: 0;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: clamp(0.85rem, 1.25vw, 1.25rem) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(26px) scale(0.992);
+    filter: blur(7px);
+    transition: opacity 380ms ease, transform 380ms ease, filter 380ms ease;
+}
+
+.dev417-flow-switch .dev417-flow-panel::before {
+    content: "";
+    position: absolute;
+    left: 1.12rem;
+    right: 1.12rem;
+    top: 1.06rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 226, 151, 0.08), rgba(255, 226, 151, 0.44), rgba(255, 226, 151, 0.08));
+}
+
+.dev417-flow-switch .dev417-flow-panel.is-active {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+}
+
+.dev417-flow-switch .dev417-flow-panel.is-from-left {
+    transform: translateX(-26px) scale(0.992);
+}
+
+.dev417-flow-switch .dev417-flow-panel li {
+    position: relative;
+    min-width: 0;
+    padding: 2.25rem 0.15rem 0;
+    color: rgba(255, 232, 178, 0.64);
+}
+
+.dev417-flow-switch .dev417-flow-panel li span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    place-items: center;
+    width: 2.12rem;
+    height: 2.12rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 229, 161, 0.28);
+    background: rgba(23, 17, 8, 0.54);
+    color: rgba(255, 231, 166, 0.88);
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 800;
+}
+
+.dev417-flow-switch .dev417-flow-panel li b {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: rgba(255, 240, 199, 0.88);
+    font-size: clamp(0.98rem, 1.08vw, 1.24rem);
+    letter-spacing: 0.08em;
+}
+
+.dev417-flow-switch .dev417-flow-panel li em {
+    display: block;
+    max-width: 24em;
+    font-style: normal;
+    font-size: clamp(0.76rem, 0.78vw, 0.9rem);
+    line-height: 1.55;
+    letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+    .dev417-card-panel {
+        grid-template-columns: 1fr;
+        position: relative;
+    }
+
+    .dev417-card-stage {
+        min-height: auto;
+    }
+
+    .hardware347-process-line.dev417-flow-switch,
+    .software347-flow.dev417-flow-switch {
+        grid-template-columns: 1fr !important;
+    }
+
+    .dev417-flow-switch .dev417-flow-panel {
+        grid-template-columns: 1fr !important;
+        position: relative;
+    }
+
+    .dev417-flow-stage {
+        min-height: 18rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

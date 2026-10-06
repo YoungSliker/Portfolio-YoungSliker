@@ -1,0 +1,14 @@
+.fusion-image-lightbox.is-open {
+    z-index: 999 !important;
+}
+
+.fusion-image-lightbox-card {
+    pointer-events: auto !important;
+}
+
+
+
+
+
+
+

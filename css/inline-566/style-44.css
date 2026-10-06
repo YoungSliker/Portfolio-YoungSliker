@@ -1,0 +1,45 @@
+.process-summary-text::before,
+.process-summary-text::after {
+    content: none !important;
+    display: none !important;
+}
+
+.process-summary-text {
+    display: grid !important;
+    gap: 0.28rem !important;
+    justify-items: center !important;
+}
+
+.process-summary-line {
+    display: grid !important;
+    grid-template-columns: auto minmax(0, auto) auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    column-gap: 0.9em !important;
+    width: 100% !important;
+}
+
+.process-summary-line-text {
+    display: block !important;
+    min-width: 0 !important;
+    text-align: center !important;
+}
+
+.process-summary-mark {
+    display: inline-block !important;
+    width: 2.2em !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 221, 145, 0.42), transparent) !important;
+    transform: translateY(0.02em) !important;
+}
+
+.process-summary-line .process-summary-mark:first-child {
+    transform: translateY(0.02em) scaleX(-1) !important;
+}
+
+
+
+
+
+
+

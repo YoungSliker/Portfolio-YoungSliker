@@ -1,0 +1,19 @@
+.process-fusion-intro.process-fusion-panel::before {
+    background: var(--process-intro-bg, url("AIGC/绥远方志/融合篇/融合篇-6.png")) center center / cover no-repeat !important;
+}
+
+#fusion-motion-heading {
+    display: block !important;
+}
+
+#fusion-motion-copy {
+    display: block !important;
+    margin: 0 !important;
+}
+
+
+
+
+
+
+

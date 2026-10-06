@@ -1,0 +1,155 @@
+.profile-logoloop-shell {
+    position: absolute;
+    right: 218px;
+    bottom: 91px;
+    z-index: 260;
+    width: min(680px, 36vw);
+    height: 108px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateZ(130px) translateY(24px);
+    transition:
+        opacity 0.58s ease-out 0.18s,
+        transform 0.62s cubic-bezier(0.2, 1, 0.3, 1) 0.18s;
+    pointer-events: none;
+    transform-style: preserve-3d;
+}
+
+.profile-logoloop-shell.visible {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateZ(190px) translateY(0);
+    pointer-events: auto !important;
+}
+
+#bg-3d-wrapper:not(.expanded-bg13) #imagesDiv.profile-logoloop-shell,
+#bg-3d-wrapper:not(.expanded-bg13) #imagesDiv.profile-logoloop-shell.visible {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    transform: translateZ(0) translateY(20px) !important;
+    pointer-events: none !important;
+}
+
+#bg-3d-wrapper:not(.expanded-bg13) #imagesDiv.profile-logoloop-shell * {
+    pointer-events: none !important;
+}
+
+#imagesDiv.profile-logoloop-shell.visible {
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+#imagesDiv.profile-logoloop-shell.visible .profile-logoloop,
+#imagesDiv.profile-logoloop-shell.visible .logoloop__track,
+#imagesDiv.profile-logoloop-shell.visible .logoloop__list,
+#imagesDiv.profile-logoloop-shell.visible .logoloop__item,
+#imagesDiv.profile-logoloop-shell.visible .logoloop__link {
+    pointer-events: auto !important;
+}
+
+.profile-logoloop {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    --logoloop-gap: 24px;
+    --logoloop-logoHeight: 76px;
+    --logoloop-fadeColor: rgba(255, 255, 255, 0);
+    --logoloop-duration: 18s;
+    padding: 14px 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 13%, #000 87%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 13%, #000 87%, transparent 100%);
+}
+
+.profile-logoloop::before {
+    content: none;
+}
+
+.logoloop__track {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: max-content;
+    height: 100%;
+    align-items: center;
+    will-change: transform;
+    user-select: none;
+    animation: profileLogoLoopScroll var(--logoloop-duration) linear infinite;
+}
+
+.profile-logoloop:hover .logoloop__track {
+    animation-play-state: paused;
+}
+
+.logoloop__list {
+    display: flex;
+    align-items: center;
+    gap: var(--logoloop-gap);
+    flex: 0 0 auto;
+    padding: 0 var(--logoloop-gap) 0 0;
+    margin: 0;
+    list-style: none;
+}
+
+.logoloop__item {
+    flex: 0 0 auto;
+    width: var(--logoloop-logoHeight);
+    height: var(--logoloop-logoHeight);
+}
+
+.logoloop__link {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    text-decoration: none;
+    transform: scale(1);
+    transition:
+        transform 0.28s cubic-bezier(0.2, 1, 0.3, 1),
+        box-shadow 0.28s ease,
+        background 0.28s ease;
+}
+
+.logoloop__link:hover {
+    transform: scale(1.16);
+    background: transparent;
+    box-shadow: none;
+}
+
+.logoloop__link:focus-visible {
+    outline: 2px solid #e33b62;
+    outline-offset: 4px;
+}
+
+.logoloop__item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
+    pointer-events: none;
+}
+
+.logoloop--fade::before,
+.logoloop--fade::after {
+    content: none;
+}
+
+@keyframes profileLogoLoopScroll {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(calc(var(--logoloop-distance, 0px) * -1), 0, 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .logoloop__track {
+        animation: none !important;
+        transform: translate3d(0, 0, 0) !important;
+    }
+}

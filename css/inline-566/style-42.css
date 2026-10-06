@@ -1,0 +1,23 @@
+.process-fusion-title.process-fusion-title-image {
+    display: flex !important;
+    align-items: flex-start !important;
+    margin: 0 0 1.45rem !important;
+}
+
+#fusion-detail-title-img {
+    display: block !important;
+    width: min(100%, 25rem) !important;
+    height: auto !important;
+    object-fit: contain !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-user-drag: none !important;
+    pointer-events: none !important;
+}
+
+
+
+
+
+
+

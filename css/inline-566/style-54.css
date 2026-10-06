@@ -1,0 +1,111 @@
+/* 放大图不再显示右上角 x，关闭交给点击大图外部 */
+.fusion-image-lightbox-close {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+/* 未打开时彻底不参与显示和命中，避免隐形层吃掉外层 hover */
+.fusion-image-lightbox:not(.is-open),
+.fusion-image-lightbox:not(.is-open) * {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* 外层承载层只负责定位，不要任何浅色/深色高斯背景，不再挡视觉和 hover */
+.fusion-image-lightbox-card,
+.fusion-image-lightbox-media,
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-media {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 单张放大图：相对整个展开卡片组尽量接近等宽/等高 */
+.fusion-image-lightbox:not(.is-dual) .fusion-image-lightbox-img {
+    max-width: calc(var(--fusion-showcase-w, 760px) * 0.92) !important;
+    max-height: calc(var(--fusion-showcase-h, 410px) * 0.88) !important;
+    width: auto !important;
+    height: auto !important;
+
+    padding: 14px !important;
+    box-sizing: content-box !important;
+
+    background:
+        linear-gradient(180deg, rgba(24, 18, 9, 0.58), rgba(9, 7, 4, 0.64)) !important;
+
+    border: 2px solid rgba(255, 235, 196, 0.62) !important;
+    outline: none !important;
+    border-radius: 20px !important;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.28),
+        0 0 34px rgba(0, 0, 0, 0.20) !important;
+
+    backdrop-filter: blur(16px) saturate(0.9) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(0.9) !important;
+}
+
+/* 卡片堆叠：整体相对展开卡片组放大，接近该组宽高 */
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-media {
+    width: calc(var(--fusion-showcase-w, 760px) * 0.92) !important;
+    height: calc(var(--fusion-showcase-h, 410px) * 0.88) !important;
+    min-width: calc(var(--fusion-showcase-w, 760px) * 0.92) !important;
+    min-height: calc(var(--fusion-showcase-h, 410px) * 0.88) !important;
+    overflow: visible !important;
+}
+
+/* 堆叠中的每张图更大，但只保留图片自身深色底 + 浅色等宽边框 */
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-img,
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-img-extra {
+    position: absolute !important;
+    max-width: calc(var(--fusion-showcase-w, 760px) * 0.60) !important;
+    max-height: calc(var(--fusion-showcase-h, 410px) * 0.76) !important;
+    width: auto !important;
+    height: auto !important;
+
+    padding: 14px !important;
+    box-sizing: content-box !important;
+
+    background:
+        linear-gradient(180deg, rgba(24, 18, 9, 0.58), rgba(9, 7, 4, 0.64)) !important;
+
+    border: 2px solid rgba(255, 235, 196, 0.62) !important;
+    outline: none !important;
+    border-radius: 20px !important;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.28),
+        0 0 34px rgba(0, 0, 0, 0.20) !important;
+
+    backdrop-filter: blur(16px) saturate(0.9) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(0.9) !important;
+}
+
+/* 放大后的堆叠位置重排，避免太靠里导致读图困难 */
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-img {
+    z-index: 2 !important;
+    transform: translate(-78px, -28px) rotate(-5deg) !important;
+}
+
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-img-extra {
+    z-index: 1 !important;
+    transform: translate(78px, 28px) rotate(4deg) !important;
+}
+
+/* 再兜底一次：非打开弹层不该挡住任何卡片 hover */
+.process-inline-detail:not(.is-open) .fusion-image-lightbox,
+.process-inline-detail:not(.is-open) .fusion-image-lightbox * {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+
+
+
+
+
+

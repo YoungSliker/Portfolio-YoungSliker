@@ -1,0 +1,91 @@
+/* stage 底部对齐，让不同高度的主图向上拓展 */
+.wide-carousel-stage {
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+}
+
+/* 大图盒子真实尺寸由 JS 写入 CSS 变量：
+   宽度 = 缩略图卡片组背景宽度；
+   高度 = 按原图比例计算。 */
+.wide-carousel-main-wrap {
+    position: relative !important;
+    flex: 0 0 auto !important;
+    width: var(--wide-main-w, 100%) !important;
+    height: var(--wide-main-h, auto) !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    border-radius: clamp(20px, 2vw, 32px) !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow:
+        0 22px 48px rgba(0, 0, 0, 0.34),
+        inset 0 0 0 1px rgba(255, 238, 181, 0.035) !important;
+}
+
+/* 彻底删掉主图左右侧的高斯模糊兜底 */
+.wide-carousel-main-wrap::before,
+.wide-carousel-main-wrap::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* 主图按原比例完整填入由 JS 算好的同比例容器，因此不会变形，也不会留左右糊边 */
+.wide-carousel-main-img {
+    position: relative !important;
+    z-index: 1 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important;
+    object-position: center center !important;
+    border-radius: clamp(18px, 1.8vw, 30px) !important;
+    background: transparent !important;
+}
+
+/* 缩略图背景与大图对齐：两者使用同一套左右距离 */
+.wide-carousel-thumbs-shell {
+    margin-left: clamp(34px, 4vw, 72px) !important;
+    margin-right: clamp(34px, 4vw, 72px) !important;
+    padding-left: clamp(18px, 1.8vw, 32px) !important;
+    padding-right: clamp(18px, 1.8vw, 32px) !important;
+    overflow: visible !important;
+}
+
+/* 缩略图滚动内容取消人为大空白 */
+.wide-carousel-thumbs {
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    scroll-padding-left: 0 !important;
+    scroll-padding-right: 0 !important;
+    gap: clamp(14px, 1.35vw, 22px) !important;
+}
+
+.wide-carousel-thumbs::before,
+.wide-carousel-thumbs::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* 缩略图仍按真实比例显示 */
+.wide-carousel-thumb-img-inner img {
+    width: auto !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: contain !important;
+}
+
+
+
+
+
+
+

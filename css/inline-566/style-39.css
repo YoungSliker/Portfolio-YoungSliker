@@ -1,0 +1,32 @@
+/* v284：只加长「副场景·草原丝路鼎盛时期的运输场景」的标题外框 */
+#wide-carousel-overlay.is-transport-title .wide-carousel-titleplate {
+    width: max-content !important;
+    min-width: clamp(620px, 44vw, 980px) !important;
+    max-width: min(86vw, 1180px) !important;
+    padding-right: clamp(42px, 4.6vw, 92px) !important;
+}
+
+#wide-carousel-overlay.is-transport-title .wide-carousel-titleplate strong {
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+}
+
+@media (max-width: 900px) {
+    #wide-carousel-overlay.is-transport-title .wide-carousel-titleplate {
+        min-width: min(86vw, 720px) !important;
+        max-width: 90vw !important;
+        padding-right: 38px !important;
+    }
+
+    #wide-carousel-overlay.is-transport-title .wide-carousel-titleplate strong {
+        white-space: normal !important;
+    }
+}
+
+
+
+
+
+
+

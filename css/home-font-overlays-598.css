@@ -1,0 +1,1735 @@
+/* v218：首页覆盖层最终清理版
+   只保留当前实际生效的首页视频交互、白色长条、红色装饰、背景01/02 和入场动画。
+*/
+
+@font-face {
+    font-family: "ZiZhiQuXiMaiTi";
+    src: url("../Fonts/ZiZhiQuXiMaiTi-2.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+}
+
+:root {
+    --bg11-real-width: 520px;
+    --bg12-overlay-center-y: calc(73.5% + 20px);
+    --bg12-marker-gap: calc(0.18em + 5px);
+    --bg12-line-width: 150px;
+    --bg12-line-height: 13px;
+}
+
+/* 背景1.1 下移 */
+#bg11 {
+    transform: translateY(20px) !important;
+}
+
+/* 首页视觉组：视频、视频边框/高斯 居中 */
+#bg-3d-wrapper:not(.expanded-bg13) {
+    left: 50% !important;
+    top: 50% !important;
+    width: 83.33% !important;
+    height: 55.55% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+#bg-3d-wrapper.expanded-bg13 {
+    transform: none !important;
+}
+
+#bg12-content {
+    position: relative !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+    transform-style: preserve-3d;
+}
+
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content,
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover {
+    transform: none !important;
+    transform-origin: center center !important;
+}
+
+/* 视频区域现在负责点击和 hover */
+#bg12-video-mask {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    z-index: 1 !important;
+}
+
+#bg12-video {
+    pointer-events: none !important;
+}
+
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask:hover #bg12-video,
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover #bg12-video {
+    transform: scale(1.08) !important;
+}
+
+/* 背景01 / 背景02 */
+#bg12-img-02,
+.bg12-extra-img {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: auto !important;
+    inset: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    object-fit: contain !important;
+    border-radius: 0 !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+}
+
+#bg12-img-02 {
+    left: auto !important;
+    right: calc(5% - 75px) !important;
+    width: calc(var(--bg11-real-width) * 0.56) !important;
+    aspect-ratio: 220 / 240 !important;
+    transform-origin: top right !important;
+    z-index: 4 !important;
+    opacity: 0;
+    animation: bg12ExtraBg02In 1.05s cubic-bezier(.18, 1.05, .28, 1) 0.28s forwards !important;
+}
+
+#bg-3d-wrapper.expanded-bg13 #bg-3d-wrapper.expanded-bg13 #bg12-img-02,
+#bg-3d-wrapper.expanded-bg13 .bg12-extra-img {
+    display: none !important;
+}
+
+@keyframes bg12ExtraBg02In {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) translateX(34px) scale(0.985);
+        filter: blur(7px);
+    }
+    62% {
+        opacity: 1;
+        transform: translateY(40px) translateX(-5px) scale(1.006);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(40px) translateX(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* 白色长条 */
+#bg12-content > .bg12-white-strip,
+.bg12-white-strip {
+    position: absolute !important;
+    left: calc(1.8% + 30px) !important;
+    right: calc(1.8% + 30px) !important;
+    top: var(--bg12-overlay-center-y) !important;
+    height: 50px !important;
+    transform: translateY(-50%) !important;
+    z-index: 5 !important;
+    background: #ffffff !important;
+    border-radius: 0 !important;
+    pointer-events: none !important;
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.78),
+        0 0 24px rgba(255, 255, 255, 0.48),
+        0 0 52px rgba(255, 255, 255, 0.26) !important;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.48)) !important;
+}
+
+#bg-3d-wrapper.expanded-bg13 #bg12-content > .bg12-white-strip,
+#bg-3d-wrapper.expanded-bg13 .bg12-white-strip {
+    display: none !important;
+}
+
+/* 红色覆盖层 */
+.bg12-font-overlays {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 7 !important;
+    pointer-events: none !important;
+    font-family: "ZiZhiQuXiMaiTi", "Microsoft YaHei", sans-serif !important;
+    background: transparent !important;
+}
+
+#bg-3d-wrapper.expanded-bg13 .bg12-font-overlays {
+    display: none !important;
+}
+
+.bg12-square-cover,
+.bg12-art-cover {
+    display: none !important;
+    background: transparent !important;
+}
+
+/* 左侧 marker 组：旋转■ + 生长直线 + ■■■ */
+.bg12-marker-group {
+    position: absolute !important;
+    left: calc(11.2% - 77px) !important;
+    top: var(--bg12-overlay-center-y) !important;
+    transform: translateY(-50%) !important;
+    z-index: 7 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: var(--bg12-marker-gap) !important;
+    pointer-events: none !important;
+    line-height: 1 !important;
+    background: transparent !important;
+}
+
+.bg12-left-decor,
+.bg12-three-squares {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: var(--bg12-marker-gap) !important;
+    line-height: 1 !important;
+    background: transparent !important;
+    pointer-events: none !important;
+}
+
+.bg12-left-decor-square {
+    display: inline-block !important;
+    color: #e33b62 !important;
+    font-size: clamp(58px, calc(0.95vw + 44px), 70px) !important;
+    line-height: 1 !important;
+    font-weight: 400 !important;
+    text-shadow:
+        0 0 8px rgba(227, 59, 98, 0.18),
+        0 0 18px rgba(227, 59, 98, 0.12) !important;
+    opacity: 0;
+    animation: bg12RotateSquareInClean 0.82s cubic-bezier(.18, 1.2, .28, 1) 0.08s forwards !important;
+}
+
+.bg12-line-mask {
+    position: relative !important;
+    left: -10px !important;
+    top: 3px !important;
+    display: inline-block !important;
+    width: 0;
+    height: var(--bg12-line-height) !important;
+    overflow: hidden !important;
+    vertical-align: middle !important;
+    flex: 0 0 auto !important;
+    opacity: 1;
+    animation: bg12LineMaskGrowClean 0.9s cubic-bezier(.16, 1, .3, 1) 0.76s forwards !important;
+}
+
+.bg12-line-mask .bg12-left-decor-line {
+    position: absolute !important;
+    left: 0 !important;
+    top: 50% !important;
+    margin: 0 !important;
+    display: block !important;
+    width: var(--bg12-line-width) !important;
+    height: var(--bg12-line-height) !important;
+    background: #e33b62 !important;
+    border-radius: 0 !important;
+    box-shadow:
+        0 0 8px rgba(227, 59, 98, 0.18),
+        0 0 18px rgba(227, 59, 98, 0.12) !important;
+    transform: translateY(-50%) !important;
+    transform-origin: left center !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+    filter: none !important;
+    animation: none !important;
+}
+
+.bg12-three-squares {
+    color: #e33b62 !important;
+    font-size: clamp(24px, calc(1.55vw + 9px), 40px) !important;
+    white-space: nowrap !important;
+    font-weight: 400 !important;
+    text-shadow:
+        0 0 8px rgba(227, 59, 98, 0.18),
+        0 0 18px rgba(227, 59, 98, 0.12) !important;
+}
+
+.bg12-three-squares .bg12-square-unit {
+    display: inline-block !important;
+    opacity: 0;
+    transform-origin: center center;
+    filter: blur(6px);
+    animation: bg12SmallSquareAfterLineClean 0.66s cubic-bezier(.18, 1.12, .28, 1) forwards !important;
+}
+
+.bg12-three-squares .bg12-square-unit:nth-child(1) { animation-delay: 1.42s !important; }
+.bg12-three-squares .bg12-square-unit:nth-child(2) { animation-delay: 1.55s !important; }
+.bg12-three-squares .bg12-square-unit:nth-child(3) { animation-delay: 1.68s !important; }
+
+@keyframes bg12RotateSquareInClean {
+    0% {
+        opacity: 0;
+        transform: translateX(-14px) translateY(6px) rotate(15deg) scale(0.62);
+        filter: blur(7px);
+    }
+    62% {
+        opacity: 1;
+        transform: translateX(13px) translateY(-2px) rotate(53deg) scale(1.13);
+        filter: blur(0);
+    }
+    82% {
+        opacity: 1;
+        transform: translateX(8px) translateY(1px) rotate(42deg) scale(0.96);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(10px) translateY(0) rotate(45deg) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes bg12LineMaskGrowClean {
+    0% {
+        width: 0;
+        filter: blur(2px);
+    }
+    100% {
+        width: var(--bg12-line-width);
+        filter: blur(0);
+    }
+}
+
+@keyframes bg12SmallSquareAfterLineClean {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px) translateY(2px) scale(0.76);
+        filter: blur(6px);
+    }
+    64% {
+        opacity: 1;
+        transform: translateX(4px) translateY(-1px) scale(1.08);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* ART 打字机 */
+.bg12-art-text {
+    position: absolute !important;
+    left: calc(67.0% - 15px) !important;
+    top: var(--bg12-overlay-center-y) !important;
+    transform: translateY(-50%) !important;
+    display: inline-block !important;
+    color: #e33b62 !important;
+    font-size: clamp(22px, calc(1.8vw + 7px), 43px) !important;
+    line-height: 1 !important;
+    letter-spacing: 0.07em !important;
+    white-space: nowrap !important;
+    font-weight: 400 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    z-index: 7 !important;
+    overflow: hidden !important;
+    width: 0;
+    opacity: 1 !important;
+    border-right: 2px solid rgba(227, 59, 98, 0.9);
+    animation:
+        bg12ArtTypewriter 1.55s steps(16, end) 0.58s forwards,
+        bg12ArtCursorBlink 0.55s steps(1, end) 0s infinite;
+}
+
+@keyframes bg12ArtTypewriter {
+    from { width: 0; }
+    to { width: calc(18ch - 15px); }
+}
+
+@keyframes bg12ArtCursorBlink {
+    0%, 48% { border-right-color: rgba(227, 59, 98, 0.9); }
+    49%, 100% { border-right-color: transparent; }
+}
+
+@media (max-width: 1280px) {
+    .bg12-left-decor-square {
+        font-size: clamp(52px, calc(0.85vw + 42px), 62px) !important;
+    }
+
+    .bg12-three-squares {
+        font-size: clamp(22px, calc(1.5vw + 9px), 33px) !important;
+    }
+
+    .bg12-art-text {
+        left: calc(66.8% - 15px) !important;
+        font-size: clamp(20px, calc(1.7vw + 7px), 35px) !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+        #bg12-img-02,
+    .bg12-left-decor-square,
+    .bg12-three-squares .bg12-square-unit,
+    .bg12-art-text {
+        opacity: 1 !important;
+        animation: none !important;
+        filter: none !important;
+    }
+#bg12-img-02 { transform: translateY(40px) !important; }
+
+    .bg12-line-mask {
+        width: var(--bg12-line-width) !important;
+        animation: none !important;
+        filter: none !important;
+    }
+
+    .bg12-art-text {
+        width: calc(18ch - 15px) !important;
+        border-right-color: transparent !important;
+    }
+}
+
+
+/* v219：恢复进入作品集后的 背景1.3.png
+   原来 背景1.3.png 是通过 背景1.2.png 这个 img 切换 src 出来的；
+   清理后 背景1.2.png 被删除，所以这里单独新增 bg13-img 图层。
+*/
+#bg13-img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    display: none !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+    transform-origin: center center !important;
+}
+
+#bg-3d-wrapper.expanded-bg13 #bg13-img {
+    display: block !important;
+}
+
+/* 进入作品集后隐藏首页装饰层，避免盖住 背景1.3.png */
+#bg-3d-wrapper.expanded-bg13 #bg-3d-wrapper.expanded-bg13 #bg12-img-02,
+#bg-3d-wrapper.expanded-bg13 .bg12-extra-img,
+#bg-3d-wrapper.expanded-bg13 #bg12-content > .bg12-white-strip,
+#bg-3d-wrapper.expanded-bg13 .bg12-font-overlays {
+    display: none !important;
+}
+
+/* v220：背景02.png 入场动画加长并丰富层次 */
+#bg12-img-02 {
+    opacity: 0;
+    animation: bg12ExtraBg02InRicher 1.95s cubic-bezier(.16, 1, .28, 1) 0.42s forwards !important;
+}
+
+@keyframes bg12ExtraBg01InRicher {
+    0% {
+        opacity: 0;
+        transform: translateY(58px) translateX(-120px) scale(0.955) rotate(-1.2deg);
+        filter: blur(14px) brightness(1.16);
+    }
+    24% {
+        opacity: 0.55;
+        transform: translateY(48px) translateX(-58px) scale(0.982) rotate(-0.45deg);
+        filter: blur(8px) brightness(1.08);
+    }
+    52% {
+        opacity: 1;
+        transform: translateY(36px) translateX(18px) scale(1.018) rotate(0.22deg);
+        filter: blur(1.8px) brightness(1.02);
+    }
+    74% {
+        opacity: 1;
+        transform: translateY(42px) translateX(-7px) scale(0.996) rotate(-0.08deg);
+        filter: blur(0);
+    }
+    88% {
+        opacity: 1;
+        transform: translateY(39px) translateX(3px) scale(1.004) rotate(0.03deg);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(40px) translateX(0) scale(1) rotate(0deg);
+        filter: blur(0);
+    }
+}
+
+@keyframes bg12ExtraBg02InRicher {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) translateX(96px) scale(0.948) rotate(1.4deg);
+        filter: blur(14px) brightness(1.15);
+    }
+    24% {
+        opacity: 0.48;
+        transform: translateY(50px) translateX(48px) scale(0.976) rotate(0.55deg);
+        filter: blur(8px) brightness(1.08);
+    }
+    54% {
+        opacity: 1;
+        transform: translateY(36px) translateX(-16px) scale(1.02) rotate(-0.2deg);
+        filter: blur(1.6px) brightness(1.02);
+    }
+    76% {
+        opacity: 1;
+        transform: translateY(43px) translateX(6px) scale(0.996) rotate(0.06deg);
+        filter: blur(0);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(39px) translateX(-2px) scale(1.003) rotate(0deg);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(40px) translateX(0) scale(1) rotate(0deg);
+        filter: blur(0);
+    }
+}
+
+/* v229：主页文字组
+   组内包含：
+   - 背景02.png
+   - 白色长条
+   - 旋转■ + 直线 + ■■■ + ART #DESIGN#AIGC
+
+   注意：这版只分组并整体缩小到 0.85；
+   不改组内任何原来的 left / right / top / width 等位置参数。
+*/
+#主页文字组,
+.home-text-group {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 7 !important;
+    pointer-events: none !important;
+    transform: scale(0.85) !important;
+    transform-origin: center center !important;
+    will-change: transform, opacity;
+}
+
+/* 分组后，白色长条从原来的 #bg12-content 子元素变成组内子元素；
+   这里仅补回原 v220 的白色长条样式，不改它的坐标。 */
+#主页文字组 > .bg12-white-strip,
+.home-text-group > .bg12-white-strip {
+    position: absolute !important;
+    left: calc(1.8% + 30px) !important;
+    right: calc(1.8% + 30px) !important;
+    top: var(--bg12-overlay-center-y) !important;
+    height: 50px !important;
+    transform: translateY(-50%) !important;
+    z-index: 5 !important;
+    background: #ffffff !important;
+    border-radius: 0 !important;
+    pointer-events: none !important;
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.78),
+        0 0 24px rgba(255, 255, 255, 0.48),
+        0 0 52px rgba(255, 255, 255, 0.26) !important;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.48)) !important;
+}
+
+/* 红色覆盖层保持铺满原坐标系 */
+#主页文字组 .bg12-font-overlays,
+.home-text-group .bg12-font-overlays {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 7 !important;
+}
+
+/* 进入作品集后隐藏整组，bg13-img 保持组外不受影响 */
+#bg-3d-wrapper.expanded-bg13 #主页文字组,
+#bg-3d-wrapper.expanded-bg13 .home-text-group {
+    display: none !important;
+}
+
+/* v230：删除 背景01.png / 背景02.png 冗余入场动画
+   保留图片最终位置和「主页文字组」整体缩放，不再做滑入、模糊、回弹动画。
+*/
+#bg12-img-02 {
+    opacity: 1 !important;
+    animation: none !important;
+    filter: none !important;
+}
+
+/* 恢复两张图的最终静止状态 */
+#bg12-img-02 {
+    transform: translateY(40px) !important;
+}
+
+/* v234：在 背景_pingpong.mp4 图层后方新增点点矩阵图层
+   - 新图层：#bg12-dot-layer
+   - 放在 #bg12-video-mask 前面，z-index 比视频低；
+   - 不替换、不遮挡、不影响 video；
+   - 左上角和右下角各一坨点阵，参考高保真样式。
+*/
+#bg12-content {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* 新建的视频后方点阵图层 */
+#bg12-dot-layer.home-dot-layer {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    overflow: visible !important;
+}
+
+/* 视频层保持在点阵层上方 */
+#bg12-video-mask {
+    position: absolute !important;
+    z-index: 2 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+#bg12-video {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: none !important;
+}
+
+/* 点阵本体：CSS 生成，不增加图片资源 */
+.home-dot-matrix {
+    position: absolute !important;
+    pointer-events: none !important;
+    opacity: 0;
+    transform-origin: center center;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.13));
+    animation:
+        homeDotMatrixInV234 1.35s cubic-bezier(.18, 1, .28, 1) 0.14s forwards,
+        homeDotMatrixFloatV234 6.4s ease-in-out 1.6s infinite alternate;
+}
+
+/* 左上角点阵：露在视频卡片左上方后面 */
+.home-dot-matrix-lt {
+    width: clamp(220px, 18vw, 460px);
+    height: clamp(170px, 14vw, 340px);
+    left: clamp(-125px, -5.8vw, -58px);
+    top: clamp(-95px, -4.4vw, -40px);
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.38) 0 1.42px, transparent 1.78px);
+    background-size: clamp(14px, 0.85vw, 22px) clamp(14px, 0.85vw, 22px);
+    mask-image:
+        radial-gradient(ellipse at 42% 42%,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.9) 32%,
+            rgba(0, 0, 0, 0.52) 58%,
+            rgba(0, 0, 0, 0.14) 76%,
+            rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image:
+        radial-gradient(ellipse at 42% 42%,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.9) 32%,
+            rgba(0, 0, 0, 0.52) 58%,
+            rgba(0, 0, 0, 0.14) 76%,
+            rgba(0, 0, 0, 0) 100%);
+}
+
+/* 右下角点阵：露在视频卡片右下方后面 */
+.home-dot-matrix-rb {
+    width: clamp(240px, 19vw, 500px);
+    height: clamp(180px, 14.5vw, 360px);
+    right: clamp(-135px, -6vw, -64px);
+    bottom: clamp(-100px, -4.6vw, -42px);
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.34) 0 1.34px, transparent 1.72px);
+    background-size: clamp(14px, 0.84vw, 22px) clamp(14px, 0.84vw, 22px);
+    mask-image:
+        radial-gradient(ellipse at 58% 58%,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.84) 34%,
+            rgba(0, 0, 0, 0.48) 58%,
+            rgba(0, 0, 0, 0.12) 76%,
+            rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image:
+        radial-gradient(ellipse at 58% 58%,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.84) 34%,
+            rgba(0, 0, 0, 0.48) 58%,
+            rgba(0, 0, 0, 0.12) 76%,
+            rgba(0, 0, 0, 0) 100%);
+    animation-delay: 0.28s, 1.78s;
+}
+
+/* 主页文字组仍在最上层 */
+#主页文字组,
+.home-text-group {
+    z-index: 7 !important;
+}
+
+/* 进入作品集后隐藏点阵 */
+#bg-3d-wrapper.expanded-bg13 #bg12-dot-layer {
+    display: none !important;
+}
+
+@keyframes homeDotMatrixInV234 {
+    0% {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+        filter: blur(4px) drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+    }
+    62% {
+        opacity: 0.34;
+        transform: translateY(-3px) scale(1.015);
+        filter: blur(0) drop-shadow(0 0 10px rgba(255, 255, 255, 0.16));
+    }
+    100% {
+        opacity: 0.24;
+        transform: translateY(0) scale(1);
+        filter: blur(0) drop-shadow(0 0 8px rgba(255, 255, 255, 0.13));
+    }
+}
+
+@keyframes homeDotMatrixFloatV234 {
+    0% {
+        opacity: 0.18;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    100% {
+        opacity: 0.32;
+        transform: translate3d(7px, -6px, 0) scale(1.018);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-dot-matrix {
+        opacity: 0.24 !important;
+        animation: none !important;
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.13)) !important;
+    }
+}
+
+/* v238：保留 v234 点阵样式；删除视频边框 / 发光 / 高斯模糊 */
+#bg12-video-mask {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+#bg12-video-mask::before,
+#bg12-video-mask::after {
+    content: none !important;
+    display: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+#bg12-video {
+    box-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* v239：删除 1号 / 2号旧边框样式
+   1号：#bg12-video-mask 自身残留边缘 / 伪元素描边
+   2号：#bg12-content 的 ::before / ::after 高斯框 + box-shadow
+*/
+
+/* 删除 2号：外层高斯框、白雾框、发光阴影 */
+#bg12-content::before,
+#bg12-content::after {
+    content: none !important;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content,
+#bg12-content {
+    box-shadow: none !important;
+    background: transparent !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 删除 1号：视频遮罩层自身的边框/发光/伪元素描边 */
+#bg12-video-mask {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+#bg12-video-mask::before,
+#bg12-video-mask::after {
+    content: none !important;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 保留视频本身，不改视频内容、不影响点击 */
+#bg12-video {
+    box-shadow: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* v240：给视频「背景_pingpong.mp4」容器添加高保真边框 / 高斯 / 发光
+   只作用在 #bg12-video-mask 容器上，不改视频内容本身。
+*/
+#bg12-video-mask {
+    border: 1.5px solid rgba(255, 255, 255, 0.72) !important;
+    outline: none !important;
+    border-radius: 30px !important;
+    background: rgba(255, 255, 255, 0.035) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.18),
+        0 0 18px rgba(255, 255, 255, 0.52),
+        0 0 46px rgba(237, 218, 255, 0.38),
+        0 0 86px rgba(226, 76, 154, 0.16),
+        0 22px 48px rgba(0, 0, 0, 0.22) !important;
+    backdrop-filter: blur(2.2px) saturate(1.08) !important;
+    -webkit-backdrop-filter: blur(2.2px) saturate(1.08) !important;
+}
+
+/* 内侧柔光描边：只做视觉，不影响点击 */
+#bg12-video-mask::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 4 !important;
+    pointer-events: none !important;
+    border-radius: inherit !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: transparent !important;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.38),
+        inset 0 0 22px rgba(255, 255, 255, 0.15),
+        inset 0 -20px 36px rgba(255, 255, 255, 0.07) !important;
+    filter: none !important;
+}
+
+/* 外侧高斯光晕：模拟高保真图中视频卡片外缘发光 */
+#bg12-video-mask::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: -18px !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+    border-radius: calc(30px + 18px) !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 0.72 !important;
+    background:
+        radial-gradient(ellipse at center,
+            rgba(255, 255, 255, 0.26) 0%,
+            rgba(237, 218, 255, 0.18) 38%,
+            rgba(226, 76, 154, 0.08) 62%,
+            rgba(255, 255, 255, 0) 100%) !important;
+    filter: blur(18px) !important;
+}
+
+/* 视频保持原样在容器里显示 */
+#bg12-video {
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    border-radius: inherit !important;
+}
+
+/* hover 时轻微增强边框发光 */
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask:hover {
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.24),
+        0 0 24px rgba(255, 255, 255, 0.62),
+        0 0 62px rgba(237, 218, 255, 0.46),
+        0 0 108px rgba(226, 76, 154, 0.22),
+        0 24px 56px rgba(0, 0, 0, 0.24) !important;
+}
+
+/* v241：加强视频容器的高斯模糊边框和外发光
+   参考高保真效果：
+   - 新增更宽的高斯模糊边框层；
+   - 外发光范围更大；
+   - 保持视频本体不被模糊、不被遮挡。
+*/
+#bg12-video-mask {
+    border: 1.6px solid rgba(255, 255, 255, 0.78) !important;
+    border-radius: 30px !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.22),
+        0 0 20px rgba(255, 255, 255, 0.62),
+        0 0 52px rgba(238, 224, 255, 0.50),
+        0 0 96px rgba(228, 78, 158, 0.26),
+        0 0 150px rgba(160, 110, 255, 0.14),
+        0 24px 56px rgba(0, 0, 0, 0.24) !important;
+    background: rgba(255, 255, 255, 0.035) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 外层大面积高斯模糊光晕：像高保真图中卡片外侧那圈白紫雾光 */
+#bg12-video-mask::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: -34px !important;
+    z-index: -1 !important;
+    display: block !important;
+    pointer-events: none !important;
+    border-radius: calc(30px + 34px) !important;
+    opacity: 0.92 !important;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.18) 0%,
+            rgba(236, 220, 255, 0.32) 18%,
+            rgba(255, 255, 255, 0.28) 50%,
+            rgba(236, 220, 255, 0.30) 82%,
+            rgba(255, 255, 255, 0.18) 100%
+        ) !important;
+    filter: blur(24px) saturate(1.12) !important;
+}
+
+/* 第二层贴边高斯边框：更像“模糊边框”，不是单纯阴影 */
+#bg12-video-mask::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: -8px !important;
+    z-index: 4 !important;
+    display: block !important;
+    pointer-events: none !important;
+    border-radius: calc(30px + 8px) !important;
+    opacity: 1 !important;
+    background: transparent !important;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.52),
+        inset 0 0 18px rgba(255, 255, 255, 0.24),
+        0 0 16px rgba(255, 255, 255, 0.58),
+        0 0 36px rgba(238, 224, 255, 0.38),
+        0 0 72px rgba(228, 78, 158, 0.18) !important;
+    filter: blur(0.6px) !important;
+}
+
+/* 视频本体不模糊 */
+#bg12-video {
+    filter: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border-radius: inherit !important;
+}
+
+/* hover 时整体外发光再增强一点 */
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask:hover {
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.28),
+        0 0 26px rgba(255, 255, 255, 0.74),
+        0 0 68px rgba(238, 224, 255, 0.58),
+        0 0 122px rgba(228, 78, 158, 0.32),
+        0 0 180px rgba(160, 110, 255, 0.18),
+        0 26px 62px rgba(0, 0, 0, 0.26) !important;
+}
+
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask:hover::before {
+    opacity: 1 !important;
+    filter: blur(28px) saturate(1.18) !important;
+}
+
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask:hover::after {
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.60),
+        inset 0 0 22px rgba(255, 255, 255, 0.30),
+        0 0 20px rgba(255, 255, 255, 0.68),
+        0 0 46px rgba(238, 224, 255, 0.46),
+        0 0 88px rgba(228, 78, 158, 0.24) !important;
+}
+
+/* v245：基于 v241
+   - 给视频「背景_pingpong.mp4」容器增加 10px 宽的高斯模糊边框；
+   - 当前半透明白色边框加粗 1px：1.6px -> 2.6px；
+   - 半透明白色边框圆角与视频容器统一，更贴合视频裁切圆角。
+*/
+:root {
+    --bg12-video-radius: 30px;
+    --bg12-gaussian-border-width: 10px;
+}
+
+/* 新增独立高斯模糊边框层：和视频容器同位置，不会被 overflow 裁掉 */
+.bg12-video-gaussian-border {
+    position: absolute !important;
+    left: 20px !important;
+    right: 20px !important;
+    top: 17px !important;
+    bottom: 17px !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    border-radius: var(--bg12-video-radius) !important;
+    border: var(--bg12-gaussian-border-width) solid rgba(255, 255, 255, 0.36) !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+    filter: blur(7px) saturate(1.16) !important;
+    opacity: 0.92 !important;
+    box-shadow:
+        0 0 22px rgba(255, 255, 255, 0.68),
+        0 0 58px rgba(238, 224, 255, 0.52),
+        0 0 112px rgba(228, 78, 158, 0.26),
+        0 0 168px rgba(160, 110, 255, 0.16) !important;
+}
+
+/* 视频容器本体：半透明白色边框加粗 1px，圆角与视频一致 */
+#bg12-video-mask {
+    z-index: 2 !important;
+    border: 2.6px solid rgba(255, 255, 255, 0.78) !important;
+    border-radius: var(--bg12-video-radius) !important;
+    box-sizing: border-box !important;
+    background: rgba(255, 255, 255, 0.035) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.24),
+        0 0 20px rgba(255, 255, 255, 0.62),
+        0 0 52px rgba(238, 224, 255, 0.50),
+        0 0 96px rgba(228, 78, 158, 0.26),
+        0 0 150px rgba(160, 110, 255, 0.14),
+        0 24px 56px rgba(0, 0, 0, 0.24) !important;
+}
+
+/* 原 v241 的 ::before 外层高斯保留但改为同圆角，辅助发光 */
+#bg12-video-mask::before {
+    border-radius: var(--bg12-video-radius) !important;
+}
+
+/* 内侧柔光描边也同圆角，避免圆角不贴合 */
+#bg12-video-mask::after {
+    border-radius: var(--bg12-video-radius) !important;
+    box-shadow:
+        inset 0 0 0 1.2px rgba(255, 255, 255, 0.54),
+        inset 0 0 18px rgba(255, 255, 255, 0.24),
+        0 0 16px rgba(255, 255, 255, 0.50),
+        0 0 36px rgba(238, 224, 255, 0.34),
+        0 0 72px rgba(228, 78, 158, 0.16) !important;
+}
+
+#bg12-video {
+    border-radius: var(--bg12-video-radius) !important;
+}
+
+/* hover 时高斯边框也增强 */
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover .bg12-video-gaussian-border {
+    opacity: 1 !important;
+    filter: blur(8.5px) saturate(1.22) !important;
+    box-shadow:
+        0 0 28px rgba(255, 255, 255, 0.78),
+        0 0 76px rgba(238, 224, 255, 0.62),
+        0 0 132px rgba(228, 78, 158, 0.34),
+        0 0 200px rgba(160, 110, 255, 0.20) !important;
+}
+
+#bg-3d-wrapper.expanded-bg13 .bg12-video-gaussian-border {
+    display: none !important;
+}
+
+/* v248：使用「背景1.2.png」作为视频容器的高斯模糊底图
+   基于 v245。
+   视觉层级从内向外：
+   1. 视频 #bg12-video
+   2. 视频外半透明白色边框 #bg12-video-mask
+   3. 背景1.2.png 的高斯模糊底图 .bg12-video-blur-base
+   4. 外发光边框 .bg12-video-gaussian-border / ::before
+*/
+:root {
+    --bg12-video-radius: 30px;
+    --bg12-gaussian-border-width: 10px;
+}
+
+/* 真正的高斯模糊底图：用 背景1.2.png 做一层扩大的模糊副本 */
+.bg12-video-blur-base {
+    position: absolute !important;
+    left: 2px !important;
+    right: 2px !important;
+    top: -1px !important;
+    bottom: -1px !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+    border-radius: calc(var(--bg12-video-radius) + 8px) !important;
+    opacity: 0.68 !important;
+    filter: blur(18px) saturate(1.12) brightness(1.08) !important;
+    transform: scale(1.035) !important;
+    transform-origin: center center !important;
+    clip-path: inset(-26px round calc(var(--bg12-video-radius) + 8px)) !important;
+}
+
+/* 原 v245 的高斯边框层改成外发光边框，放在模糊底图后面一层辅助发光 */
+.bg12-video-gaussian-border {
+    position: absolute !important;
+    left: 10px !important;
+    right: 10px !important;
+    top: 7px !important;
+    bottom: 7px !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    border-radius: calc(var(--bg12-video-radius) + 8px) !important;
+    border: 10px solid rgba(255, 255, 255, 0.24) !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+    filter: blur(8px) saturate(1.16) !important;
+    opacity: 0.82 !important;
+    box-shadow:
+        0 0 28px rgba(255, 255, 255, 0.74),
+        0 0 74px rgba(238, 224, 255, 0.58),
+        0 0 138px rgba(228, 78, 158, 0.34),
+        0 0 210px rgba(160, 110, 255, 0.20) !important;
+}
+
+/* 外发光边框 */
+.bg12-video-gaussian-border::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: -14px !important;
+    display: block !important;
+    pointer-events: none !important;
+    border-radius: calc(var(--bg12-video-radius) + 14px) !important;
+    border: 8px solid rgba(255, 255, 255, 0.20) !important;
+    background: transparent !important;
+    filter: blur(14px) saturate(1.22) !important;
+    opacity: 0.92 !important;
+    box-shadow:
+        0 0 38px rgba(255, 255, 255, 0.72),
+        0 0 90px rgba(238, 224, 255, 0.58),
+        0 0 166px rgba(228, 78, 158, 0.36),
+        0 0 250px rgba(160, 110, 255, 0.22) !important;
+}
+
+.bg12-video-gaussian-border::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* 视频容器：半透明白色边框在最里面，贴合视频圆角 */
+#bg12-video-mask {
+    z-index: 3 !important;
+    border: 2.6px solid rgba(255, 255, 255, 0.84) !important;
+    border-radius: var(--bg12-video-radius) !important;
+    box-sizing: border-box !important;
+    background: rgba(255, 255, 255, 0.025) !important;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.36),
+        0 0 16px rgba(255, 255, 255, 0.36) !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 清掉旧 mask 上的高斯，避免裁切和叠乱 */
+#bg12-video-mask::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* 内侧轻描边 */
+#bg12-video-mask::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 4 !important;
+    display: block !important;
+    pointer-events: none !important;
+    border-radius: var(--bg12-video-radius) !important;
+    background: transparent !important;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.42),
+        inset 0 0 14px rgba(255, 255, 255, 0.12) !important;
+    filter: none !important;
+}
+
+/* 视频本体保持清晰 */
+#bg12-video {
+    border-radius: var(--bg12-video-radius) !important;
+    filter: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* hover 时模糊底图和外发光稍微增强 */
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover .bg12-video-blur-base {
+    opacity: 0.78 !important;
+    filter: blur(21px) saturate(1.18) brightness(1.12) !important;
+    transform: scale(1.045) !important;
+}
+
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover .bg12-video-gaussian-border {
+    opacity: 0.95 !important;
+    border-color: rgba(255, 255, 255, 0.30) !important;
+    filter: blur(9.5px) saturate(1.22) !important;
+    box-shadow:
+        0 0 36px rgba(255, 255, 255, 0.86),
+        0 0 92px rgba(238, 224, 255, 0.70),
+        0 0 170px rgba(228, 78, 158, 0.44),
+        0 0 255px rgba(160, 110, 255, 0.28) !important;
+}
+
+#bg-3d-wrapper.expanded-bg13 .bg12-video-blur-base,
+#bg-3d-wrapper.expanded-bg13 .bg12-video-gaussian-border {
+    display: none !important;
+}
+
+/* v249：把“阴影感”的模糊底图改成真正的“高斯模糊边框”
+   做法：
+   - 不再用整张模糊图铺在视频后面当阴影；
+   - 新增 .bg12-video-blur-ring，使用 背景1.2.png 作为底图；
+   - 用 mask 抠出中间，只保留一圈边框形状；
+   - 这样看起来是边框，而不是一大片阴影。
+*/
+:root {
+    --bg12-video-radius: 30px;
+    --bg12-blur-ring-width: 14px;
+}
+
+/* 关闭 v248 的整张模糊底图，避免继续像阴影 */
+.bg12-video-blur-base {
+    display: none !important;
+}
+
+/* 真正的高斯模糊边框环：使用 背景1.2.png 作为底图 */
+.bg12-video-blur-ring {
+    position: absolute !important;
+
+    /* 比视频容器略大一圈，形成外侧边框 */
+    left: 6px !important;
+    right: 6px !important;
+    top: 3px !important;
+    bottom: 3px !important;
+
+    z-index: 1 !important;
+    pointer-events: none !important;
+    box-sizing: border-box !important;
+
+    padding: var(--bg12-blur-ring-width) !important;
+    border-radius: calc(var(--bg12-video-radius) + var(--bg12-blur-ring-width)) !important;
+
+    background-image: url("主界面/背景1.2.png") !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+
+    filter: blur(9px) saturate(1.18) brightness(1.12) !important;
+    opacity: 0.88 !important;
+
+    /* 关键：只保留边框环，中间挖空 */
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0) border-box !important;
+    -webkit-mask-composite: xor !important;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0) border-box !important;
+    mask-composite: exclude !important;
+
+    box-shadow:
+        0 0 18px rgba(255, 255, 255, 0.56),
+        0 0 46px rgba(238, 224, 255, 0.42),
+        0 0 92px rgba(228, 78, 158, 0.22) !important;
+}
+
+/* 外发光只作为边框外围辅助，不再抢成大阴影 */
+.bg12-video-gaussian-border {
+    left: 10px !important;
+    right: 10px !important;
+    top: 7px !important;
+    bottom: 7px !important;
+    z-index: 1 !important;
+    border-radius: calc(var(--bg12-video-radius) + 10px) !important;
+    border: 8px solid rgba(255, 255, 255, 0.16) !important;
+    filter: blur(7px) saturate(1.12) !important;
+    opacity: 0.72 !important;
+    box-shadow:
+        0 0 34px rgba(255, 255, 255, 0.50),
+        0 0 82px rgba(238, 224, 255, 0.38),
+        0 0 150px rgba(228, 78, 158, 0.24) !important;
+}
+
+.bg12-video-gaussian-border::before {
+    inset: -10px !important;
+    border-radius: calc(var(--bg12-video-radius) + 16px) !important;
+    border: 6px solid rgba(255, 255, 255, 0.14) !important;
+    filter: blur(12px) saturate(1.16) !important;
+    opacity: 0.72 !important;
+    box-shadow:
+        0 0 44px rgba(255, 255, 255, 0.46),
+        0 0 108px rgba(238, 224, 255, 0.34),
+        0 0 190px rgba(228, 78, 158, 0.22) !important;
+}
+
+/* 视频白边保持清晰，作为最内层边框 */
+#bg12-video-mask {
+    z-index: 3 !important;
+    border: 2.6px solid rgba(255, 255, 255, 0.84) !important;
+    border-radius: var(--bg12-video-radius) !important;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.36),
+        0 0 12px rgba(255, 255, 255, 0.34) !important;
+}
+
+/* hover 时边框环稍微亮一点 */
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover .bg12-video-blur-ring {
+    opacity: 0.98 !important;
+    filter: blur(10.5px) saturate(1.24) brightness(1.16) !important;
+}
+
+#bg-3d-wrapper.expanded-bg13 .bg12-video-blur-ring {
+    display: none !important;
+}
+
+/* v253：基于 v249，鼠标划到视频上方时外发光减弱一点点
+   只调整 hover 状态下的外发光强度，不改普通状态和其他结构。
+*/
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover .bg12-video-gaussian-border {
+    opacity: 0.82 !important;
+    border-color: rgba(255, 255, 255, 0.24) !important;
+    filter: blur(8.4px) saturate(1.16) !important;
+    box-shadow:
+        0 0 30px rgba(255, 255, 255, 0.70),
+        0 0 74px rgba(238, 224, 255, 0.54),
+        0 0 138px rgba(228, 78, 158, 0.32),
+        0 0 210px rgba(160, 110, 255, 0.20) !important;
+}
+
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover .bg12-video-gaussian-border::before {
+    opacity: 0.84 !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    filter: blur(12.2px) saturate(1.18) !important;
+    box-shadow:
+        0 0 34px rgba(255, 255, 255, 0.58),
+        0 0 82px rgba(238, 224, 255, 0.46),
+        0 0 150px rgba(228, 78, 158, 0.30),
+        0 0 220px rgba(160, 110, 255, 0.18) !important;
+}
+
+/* v254：将红框框住的首页主视觉整体上移 20px
+   移动对象：#bg-3d-wrapper
+   包含：视频、点阵、文字组、视频边框/高斯/外发光等同一组主视觉。
+   不移动底部 2026 和其他页面元素。
+*/
+#bg-3d-wrapper:not(.expanded-bg13) {
+    top: calc(50% - 20px) !important;
+}
+
+/* v255：在 v254 基础上，红框主视觉再上移 20px
+   总计相对原位置上移 40px。
+*/
+#bg-3d-wrapper:not(.expanded-bg13) {
+    top: calc(50% - 40px) !important;
+}
+
+/* v256：在 v255 基础上下移 15px
+   v255 是相对原位置上移 40px；
+   现在下移 15px 后，总计相对原位置上移 25px。
+*/
+#bg-3d-wrapper:not(.expanded-bg13) {
+    top: calc(50% - 25px) !important;
+}
+
+/* v257：加快「背景1.1.png」hover 放大特效
+   只改背景1.1.png 的 hover 过渡速度，不改放大比例和其他元素。
+*/
+#bg13-wrapper .hover-scale,
+#bg13-wrapper img.hover-scale,
+#bg13-wrapper img[src*="背景1.1.png"] {
+    transition:
+        transform 0.32s cubic-bezier(.18, .86, .26, 1),
+        filter 0.32s cubic-bezier(.18, .86, .26, 1),
+        opacity 0.24s ease-out !important;
+    will-change: transform, filter;
+}
+
+/* hover 放大保持原来的 scale，只把进入速度加快 */
+#bg13-wrapper:hover .hover-scale,
+#bg13-wrapper:hover img.hover-scale,
+#bg13-wrapper:hover img[src*="背景1.1.png"] {
+    transition-duration: 0.26s, 0.26s, 0.2s !important;
+}
+
+/* 鼠标离开时也比原来快一点，避免拖泥带水 */
+#bg13-wrapper:not(:hover) .hover-scale,
+#bg13-wrapper:not(:hover) img.hover-scale,
+#bg13-wrapper:not(:hover) img[src*="背景1.1.png"] {
+    transition-duration: 0.30s, 0.30s, 0.22s !important;
+}
+
+/* bg11 日期提示：鼠标划到「背景1.1.png」上方时显示日期和吉祥话 */
+#bg11-cursor-date {
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    z-index: 99999 !important;
+    pointer-events: none !important;
+    opacity: 0;
+    transform: translate3d(-9999px, -9999px, 0) scale(0.82);
+    padding: 8px 13px 9px;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.94);
+    font-family:
+        "ZiZhiQuXiMaiTi",
+        "Microsoft YaHei",
+        "PingFang SC",
+        sans-serif;
+    text-align: center !important;
+    line-height: 1.18 !important;
+    white-space: nowrap;
+    background: rgba(14, 15, 24, 0.58);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 0.20),
+        0 0 28px rgba(226, 76, 154, 0.20),
+        0 12px 28px rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(8px) saturate(1.2);
+    -webkit-backdrop-filter: blur(8px) saturate(1.2);
+    transition:
+        opacity 0.14s ease-out,
+        transform 0.26s cubic-bezier(.18, .86, .28, 1);
+}
+
+#bg11-cursor-date.is-visible {
+    opacity: 1;
+}
+
+#bg11-cursor-date.is-following {
+    transition:
+        opacity 0.14s ease-out,
+        transform 0.055s linear;
+}
+
+#bg11-cursor-date .bg11-date-main {
+    display: block !important;
+    font-size: 14px !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1 !important;
+}
+
+#bg11-cursor-date .bg11-date-blessing {
+    display: block !important;
+    margin-top: 5px !important;
+    font-size: 11px !important;
+    letter-spacing: 0.04em !important;
+    color: rgba(255, 255, 255, 0.78) !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+}
+
+
+
+/* v291：首页 1 号区域「设计作品集」文字 */
+.home-design-title {
+    position: absolute !important;
+    left: calc(50% - 135px) !important;
+    top: calc(50% - 145px) !important;
+    transform: translateX(-50%) !important;
+    z-index: 18 !important;
+    font-family: "ZiZhiQuXiMaiTi", "Microsoft YaHei", sans-serif !important;
+    font-size: 220px !important;
+    line-height: 1 !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+    letter-spacing: calc(0.20em - 41px)!important;
+    white-space: nowrap !important;
+    pointer-events: none !important;
+    text-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.52),
+        0 0 16px rgba(255, 255, 255, 0.42),
+        0 0 34px rgba(255, 255, 255, 0.22) !important;
+    opacity: 0;
+    filter: blur(7px);
+    animation: homeDesignTitleIn 0.9s cubic-bezier(.16, 1.08, .28, 1) 0.34s forwards !important;
+}
+
+.home-depth-text {
+    perspective: 1500px;
+    perspective-origin: 50% 48%;
+    isolation: isolate;
+}
+
+.home-depth-text__entrance {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(8px);
+    transform-origin: 50% 50%;
+    animation: homeDepthTextEntrance 0.95s cubic-bezier(.16, 1.08, .28, 1) 0.34s forwards;
+}
+
+.home-depth-text__stage {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    transform-style: preserve-3d;
+    transform: rotateX(-2.88deg) rotateY(3.78deg);
+    transform-origin: 50% 50%;
+    will-change: transform;
+}
+
+.home-depth-text__layer,
+.home-depth-text__face {
+    grid-area: 1 / 1;
+    display: inline-block;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 400;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: inherit;
+    letter-spacing: inherit;
+    white-space: nowrap;
+    user-select: none;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    font-kerning: normal;
+}
+
+.home-depth-text__layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    text-shadow: none;
+    pointer-events: none;
+}
+
+.home-depth-text__face {
+    position: relative;
+    z-index: 1;
+    color: #f8fafc;
+    text-shadow:
+        0 8px 16px rgba(217, 61, 96, 0.2),
+        0 2px 4px rgba(0, 0, 0, 0.16),
+        0 0 8px rgba(255, 255, 255, 0.12);
+    transform: translateZ(1px);
+}
+
+@keyframes homeDepthTextEntrance {
+    0% {
+        opacity: 0;
+        filter: blur(8px);
+        transform: translateY(24px) scale(0.94);
+    }
+    66% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(-4px) scale(1.018);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-depth-text__entrance {
+        opacity: 1;
+        filter: none;
+        transform: none;
+        animation: none;
+    }
+
+    .home-depth-text__stage {
+        will-change: auto;
+    }
+}
+@keyframes homeDesignTitleIn {
+
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(22px) scale(0.96);
+        filter: blur(7px);
+    }
+    66% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-4px) scale(1.025);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+#bg-3d-wrapper.expanded-bg13 .home-design-title {
+    display: none !important;
+}
+
+@media (max-width: 1280px) {
+    .home-design-title {
+        font-size: 180px !important;
+    }
+}
+
+
+/* v297：首页「设计作品集」字间距再缩减 5px */
+
+
+/* v298：首页「设计作品集」字间距再缩减 5px */
+
+
+/* v299：首页「设计作品集」字间距继续缩减 15px */
+
+
+/* v300：首页「设计作品集」字号加大 5px */
+
+
+/* v301：首页「设计作品集」字号再加大 5px */
+
+
+/* v302：首页「设计作品集」字间距再减少 5px */
+
+
+/* v303：首页「设计作品集」字间距再减少 1px */
+
+
+/* v311：首页标题相对屏幕中心定位
+   从 v303 干净基准重做，只改「设计作品集」本身，不动视频和其他元素。
+   2560×1440 基准计算：
+   - 屏幕中心：x=1280, y=720
+   - v303 标题视觉中心 x=1140，所以相对中心 x=-140px
+   - v303 标题 top≈420，所以相对中心 y=-300px
+   - 由于 bg12-content 的中心与屏幕中心重合，写为：
+     left: calc(50% - 135px);
+     top: calc(50% - 145px);
+*/
+
+
+/* v312：首页标题相对位置下移 100px
+   基于 v311：相对屏幕中心 y 从 -300px 调整为 -200px。
+*/
+
+
+/* v313：首页标题相对位置再下移 30px
+   基于 v312：相对屏幕中心 y 从 -200px 调整为 -170px。
+*/
+
+
+/* v314：首页标题相对位置再下移 20px
+   基于 v313：相对屏幕中心 y 从 -170px 调整为 -150px。
+*/
+
+
+/* v315：首页标题下移 5px 并右移 5px
+   基于 v314：x 从 -140px 调整为 -135px，y 从 -150px 调整为 -145px。
+*/
+
+
+/* v316：删除背景01相关代码
+   已删除背景01 HTML 节点、对应 CSS 规则和 bg12ExtraBg01In 动画；
+   「设计作品集」保留在「主页文字组」的 .bg12-font-overlays 内。
+*/
+
+
+/* v319：Anime.js 通用动效补充样式 */
+.home-design-title {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+.home-design-title-char {
+    display: inline-block;
+    will-change: transform, opacity, filter;
+}
+
+.home-design-title.is-anime-ready .home-design-title-char {
+    opacity: 1;
+}
+
+.card-base,
+.process-stage-card,
+.process-fusion-img-card {
+    will-change: transform, opacity;
+}
+
+.process-timeline-svg path,
+.process-timeline-svg line,
+.process-timeline-svg polyline,
+#home svg path,
+#home svg line,
+#home svg polyline,
+.num-line {
+    will-change: stroke-dashoffset;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-design-title-char,
+    .card-base,
+    .process-stage-card,
+    .scheme-stack-card,
+    .process-fusion-img-card {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+
+/* v318：方案设计卡片不参与 Anime.js transform 动画
+   方案设计卡片本来依赖自身拖拽/堆叠定位逻辑；
+   不再让 Anime.js 改它的 transform / y / scale，避免卡片乱位。
+*/
+.scheme-stack-card {
+    will-change: auto !important;
+}
+
+
+/* v319：红色横线保留原有动画
+   .bg12-line-mask 不再由 Anime.js 额外控制宽度，避免和原先效果重叠导致看不出区别。
+*/
+
+
+/* v319：增强设计过程时间轴 SVG 生长可见性 */
+.process-timeline-svg path,
+.process-timeline-svg line,
+.process-timeline-svg polyline {
+    vector-effect: non-scaling-stroke;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* 596: enlarge and align only the home Design Portfolio title to the marked top/left guides. */
+#bg-3d-wrapper:not(.expanded-bg13) .home-design-title {
+    left: calc(50% - 170px) !important;
+    top: calc(50% - 165px) !important;
+    font-size: 245px !important;
+}
+
+@media (max-width: 1280px) {
+    #bg-3d-wrapper:not(.expanded-bg13) .home-design-title {
+        left: calc(50% - 145px) !important;
+        top: calc(50% - 150px) !important;
+        font-size: 200px !important;
+    }
+}
+
+/* 598: slightly reduce the #AIGC 2021-26 badge to restore its gap above the white strip. */
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-img-02 {
+    width: calc(var(--bg11-real-width) * 0.65) !important;
+    transform-origin: top right !important;
+}

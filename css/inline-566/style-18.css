@@ -1,0 +1,204 @@
+:root {
+    --wide-thumb-h: clamp(88px, 10.5vh, 126px);
+    --wide-thumb-gap: clamp(22px, 2vw, 34px);
+}
+
+/* 弹层给内容更多纵向空间 */
+.wide-carousel-panel {
+    width: min(95vw, 1580px) !important;
+    height: min(92vh, 1060px) !important;
+}
+
+/* 3号：大图区域使用4号框宽度，并允许高度向上拓展 */
+.wide-carousel-stage {
+    height: calc(100% - clamp(250px, 29vh, 330px)) !important;
+    padding: clamp(12px, 1.6vw, 24px) clamp(24px, 2.4vw, 38px) 0 !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+}
+
+.wide-carousel-main-wrap {
+    width: var(--wide-main-w, 100%) !important;
+    height: var(--wide-main-h, auto) !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    flex: 0 0 auto !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    border-radius: clamp(22px, 2vw, 34px) !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 容器比例已经由 JS 算好，所以图片直接铺满这个同比例盒子，不变形 */
+.wide-carousel-main-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important;
+    object-position: center center !important;
+    display: block !important;
+}
+
+/* 2号框：缩略图背景区域变高，容纳更大的缩略图和文字 */
+.wide-carousel-thumbs-shell {
+    height: clamp(218px, 25vh, 292px) !important;
+    margin: clamp(12px, 1.2vh, 18px) clamp(24px, 2.4vw, 38px) 0 !important;
+    padding: clamp(22px, 2vh, 30px) clamp(34px, 3vw, 52px) clamp(44px, 4vh, 62px) !important;
+    border-radius: 28px !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+}
+
+/* 去掉缩略图卡片组内多余横向空白 */
+.wide-carousel-thumbs {
+    height: 100% !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: var(--wide-thumb-gap) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+}
+
+.wide-carousel-thumbs::-webkit-scrollbar {
+    display: none !important;
+}
+
+.wide-carousel-thumbs::before,
+.wide-carousel-thumbs::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* 2号：缩略图按钮本身不再吃固定大宽度，避免图左右空白 */
+.wide-carousel-thumb {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    text-align: center !important;
+}
+
+/* 缩略图放大：统一高度，宽度按图片原比例 */
+.wide-carousel-thumb-img,
+.wide-carousel-thumb-img-inner {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: var(--wide-thumb-h) !important;
+    overflow: visible !important;
+    border-radius: 14px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transform-origin: center center !important;
+}
+
+.wide-carousel-thumb-img img,
+.wide-carousel-thumb-img-inner img,
+.wide-carousel-thumb img {
+    display: block !important;
+    width: auto !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    border-radius: 14px !important;
+    background: transparent !important;
+}
+
+/* 选中态跟缩略图一起变大 */
+.wide-carousel-thumb:hover .wide-carousel-thumb-img,
+.wide-carousel-thumb:hover .wide-carousel-thumb-img-inner {
+    transform: translateY(-2px) scale(1.03) !important;
+}
+
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img,
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img-inner,
+.wide-carousel-thumb.active .wide-carousel-thumb-img,
+.wide-carousel-thumb.active .wide-carousel-thumb-img-inner {
+    transform: translateY(-3px) scale(1.075) !important;
+    z-index: 9999 !important;
+}
+
+/* 选中框：只比真实缩略图大2px，层级最前 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::after,
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::after,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img::after,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img-inner::after,
+.wide-carousel-thumb.active .wide-carousel-thumb-img::after,
+.wide-carousel-thumb.active .wide-carousel-thumb-img-inner::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: -2px !important;
+    z-index: 10001 !important;
+    border: 1.6px solid rgba(250, 220, 148, 0.98) !important;
+    border-radius: 16px !important;
+    pointer-events: none !important;
+}
+
+/* 顶部三角别被遮 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::before,
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::before,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img::before,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img-inner::before,
+.wide-carousel-thumb.active .wide-carousel-thumb-img::before,
+.wide-carousel-thumb.active .wide-carousel-thumb-img-inner::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: -8px !important;
+    width: 12px !important;
+    height: 12px !important;
+    transform: translateX(-50%) rotate(45deg) !important;
+    background: rgba(250, 220, 148, 0.98) !important;
+    z-index: 10002 !important;
+    pointer-events: none !important;
+}
+
+/* 1号：文字不被下边缘遮挡 */
+.wide-carousel-thumb-title,
+.wide-carousel-thumb-label,
+.wide-carousel-thumb-caption,
+.wide-carousel-thumb-name,
+.wide-carousel-thumb-text,
+.wide-carousel-thumb .thumb-title,
+.wide-carousel-thumb .thumb-caption,
+.wide-carousel-thumb span:last-child {
+    display: block !important;
+    margin-top: 16px !important;
+    padding-bottom: 18px !important;
+    font-size: clamp(14px, 1.02vw, 18px) !important;
+    line-height: 1.45 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    color: rgba(249, 224, 165, 0.9) !important;
+}
+
+/* 底部信息压低一点，避免和放大的缩略图区打架 */
+.wide-carousel-footer {
+    bottom: clamp(8px, 1.1vh, 16px) !important;
+}
+
+
+
+
+
+
+

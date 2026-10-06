@@ -1,0 +1,111 @@
+/* 让缩略图条有足够高度，避免顶部三角被裁 */
+.wide-carousel-thumbs-shell {
+    height: calc(var(--wide-thumb-h) + 78px) !important;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
+.wide-carousel-thumbs {
+    height: calc(var(--wide-thumb-h) + 54px) !important;
+    padding: 14px 16px 20px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    align-items: center !important;
+}
+
+/* 缩略图按钮高度同步，给下方标题留安全距离 */
+.wide-carousel-thumb {
+    height: calc(var(--wide-thumb-h) + 46px) !important;
+    padding: 10px 0 0 !important;
+    overflow: visible !important;
+}
+
+/* 图片容器保持真实缩略图尺寸，选中框以它为基准 */
+.wide-carousel-thumb-img {
+    position: relative !important;
+    height: var(--wide-thumb-h) !important;
+    overflow: visible !important;
+}
+
+/* 选中框只比缩略图外围大 2px：inset -2px，不能再大 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: -2px !important;
+    z-index: 12 !important;
+    display: block !important;
+
+    border-radius: 10px !important;
+    border: 1.4px solid rgba(250, 220, 148, 0.98) !important;
+    box-shadow:
+        0 0 0 1px rgba(42, 28, 9, 0.20),
+        0 0 12px rgba(238, 187, 85, 0.18) !important;
+    pointer-events: none !important;
+    transform-origin: center center !important;
+    animation: wideThumbActivePop 0.28s cubic-bezier(0.16, 1, 0.28, 1) both !important;
+}
+
+/* 顶部三角往下放一点，并提高层级，避免被缩略图条上边缘遮掉 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: -6px !important;
+    z-index: 13 !important;
+    display: block !important;
+
+    width: 10px !important;
+    height: 10px !important;
+    transform: translateX(-50%) rotate(45deg) !important;
+    background: rgba(250, 220, 148, 0.98) !important;
+    box-shadow: 0 0 8px rgba(238, 187, 85, 0.20) !important;
+    pointer-events: none !important;
+}
+
+/* 缩略图标题再往下留一点空间，别贴近下边框 */
+.wide-carousel-thumb-title {
+    margin-top: 11px !important;
+    line-height: 1.25 !important;
+    padding-bottom: 8px !important;
+}
+
+/* 底部“绥远方志｜建成篇｜07/10”压回弹层内部，避免左下出血 */
+.wide-carousel-footer {
+    position: absolute !important;
+    left: clamp(54px, 5.8vw, 92px) !important;
+    right: clamp(54px, 5.8vw, 92px) !important;
+    bottom: clamp(14px, 1.6vh, 22px) !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+
+    font-size: clamp(12px, 0.78vw, 14px) !important;
+    line-height: 1 !important;
+    letter-spacing: 0.14em !important;
+    color: rgba(252, 222, 153, 0.82) !important;
+
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    pointer-events: none !important;
+    z-index: 7 !important;
+}
+
+/* 弹层底部给 footer 留空间 */
+.wide-carousel-panel {
+    padding-bottom: 46px !important;
+    box-sizing: border-box !important;
+}
+
+
+
+
+
+
+

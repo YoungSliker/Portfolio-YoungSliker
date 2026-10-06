@@ -1,0 +1,89 @@
+/* 缩略图条加高一点：给“05 织布车间内部”这类文字留出下边距 */
+.wide-carousel-thumbs-shell {
+    height: calc(var(--wide-thumb-h) + 66px) !important;
+    padding-top: 18px !important;
+    padding-bottom: 22px !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
+.wide-carousel-thumbs {
+    height: calc(var(--wide-thumb-h) + 48px) !important;
+    padding: 10px 16px 18px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    align-items: center !important;
+}
+
+/* 缩略图按钮高度同步加一点，避免文字贴底 */
+.wide-carousel-thumb {
+    height: calc(var(--wide-thumb-h) + 40px) !important;
+    padding: 8px 0 0 !important;
+}
+
+/* 缩略图标题离下边框更远 */
+.wide-carousel-thumb-title {
+    margin-top: 10px !important;
+    line-height: 1.25 !important;
+    padding-bottom: 6px !important;
+}
+
+/* 选中框：只比缩略图外围大 2px；因为框挂在缩略图图片容器上，会随着 active 的 scale 一起放大 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::after {
+    inset: -2px !important;
+    border-radius: 10px !important;
+    border: 1.5px solid rgba(250, 220, 148, 0.98) !important;
+    box-shadow:
+        0 0 0 1px rgba(42, 28, 9, 0.22),
+        0 0 14px rgba(238, 187, 85, 0.20) !important;
+    transform-origin: center center !important;
+}
+
+/* 小三角跟随选中框，位置稍微贴近一些，避免看起来悬空 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::before {
+    top: -8px !important;
+}
+
+/* 底部“绥远方志 | 建成篇 · 05/10”防止超出出血边界：
+   改成绝对定位在弹层内部底部，并缩小高度/字号，不再挤到外面。 */
+.wide-carousel-footer {
+    position: absolute !important;
+    left: clamp(44px, 5vw, 78px) !important;
+    right: clamp(44px, 5vw, 78px) !important;
+    bottom: clamp(8px, 1.1vh, 14px) !important;
+    height: auto !important;
+    min-height: 24px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+
+    font-size: clamp(12px, 0.82vw, 15px) !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.14em !important;
+    color: rgba(252, 222, 153, 0.82) !important;
+
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    pointer-events: none !important;
+}
+
+/* 给缩略图条和底部信息之间留出安全距离 */
+.wide-carousel-panel {
+    padding-bottom: 34px !important;
+    box-sizing: border-box !important;
+}
+
+/* 避免绝对定位 footer 被主内容盖住 */
+.wide-carousel-footer {
+    z-index: 7 !important;
+}
+
+
+
+
+
+
+

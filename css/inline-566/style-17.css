@@ -1,0 +1,101 @@
+.wide-carousel-panel {
+    width: min(94vw, 1520px) !important;
+    height: min(88vh, 980px) !important;
+}
+
+/* 4号框：主图区域尽量扩到整块内容区宽度 */
+.wide-carousel-stage {
+    height: calc(100% - clamp(230px, 26vh, 300px)) !important;
+    padding: clamp(18px, 2.1vw, 30px) clamp(28px, 2.8vw, 42px) 0 !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    overflow: visible !important;
+}
+
+.wide-carousel-main-wrap {
+    width: var(--wide-main-w, 100%) !important;
+    height: var(--wide-main-h, auto) !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin: 0 auto !important;
+    border-radius: clamp(22px, 2vw, 34px) !important;
+    overflow: hidden !important;
+}
+
+.wide-carousel-main-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important;
+    object-position: center center !important;
+}
+
+/* 2号框：缩略图卡片组整体放大 */
+.wide-carousel-thumbs-shell {
+    height: clamp(210px, 24vh, 272px) !important;
+    margin: clamp(10px, 1.2vh, 16px) clamp(28px, 2.8vw, 42px) 0 !important;
+    padding: 22px clamp(34px, 3vw, 48px) 46px !important;
+    border-radius: 26px !important;
+    overflow: visible !important;
+}
+
+.wide-carousel-thumbs {
+    height: 100% !important;
+    align-items: flex-start !important;
+    gap: clamp(18px, 1.5vw, 28px) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.wide-carousel-thumb {
+    flex: 0 0 clamp(188px, 15.8vw, 248px) !important;
+    height: auto !important;
+}
+
+.wide-carousel-thumb-img {
+    height: clamp(108px, 10vh, 136px) !important;
+    border-radius: 15px !important;
+}
+
+.wide-carousel-thumb img {
+    width: auto !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+}
+
+/* 让选中框跟着变大 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img,
+.wide-carousel-thumb.active .wide-carousel-thumb-img {
+    transform: scale(1.065) !important;
+}
+
+.wide-carousel-thumb-title,
+.wide-carousel-thumb-label,
+.wide-carousel-thumb-caption,
+.wide-carousel-thumb-name,
+.wide-carousel-thumb-text,
+.wide-carousel-thumb .thumb-title,
+.wide-carousel-thumb .thumb-caption {
+    margin-top: 14px !important;
+    font-size: clamp(13px, 0.98vw, 17px) !important;
+    line-height: 1.42 !important;
+    white-space: normal !important;
+}
+
+/* 底部信息整体下移一点，给更大的缩略图区让位 */
+.wide-carousel-meta,
+.wide-carousel-footer,
+.wide-carousel-info,
+.wide-carousel-bottom-info {
+    margin-top: 14px !important;
+}
+
+
+
+
+
+
+

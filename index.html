@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>翟杨阳 | 作品集设计</title>
+    <link rel="stylesheet" href="css/local-tailwind-566.css?v=20260818-externalized">
+    <link rel="stylesheet" href="css/hardware-system-566.css?v=20260818-externalized">
+    <link rel="stylesheet" href="css/research-chain-580.css?v=20260825-video-poster-state">
+    <link rel="stylesheet" href="css/page-core-812.css?v=20260818-externalized">
+
+<!-- Wide Carousel Modal Style: 方案3 横向缩略图条 -->
+<link rel="stylesheet" href="css/inline-566/style-02.css?v=20260818-externalized">
+
+
+<!-- Fix: 防止点击后几张缩略图时 scrollIntoView 造成弹层整体左移 -->
+<link rel="stylesheet" href="css/inline-566/style-03.css?v=20260818-externalized">
+
+
+<!-- Fix: 删除方案3二级页最外层背景高斯模糊遮罩，只保留内层展示容器 -->
+<link rel="stylesheet" href="css/inline-566/style-04.css?v=20260818-externalized">
+
+
+<!-- Fix: 方案3二级页按高保真参考重修标题牌、箭头、选中缩略图 -->
+<link rel="stylesheet" href="css/inline-566/style-05.css?v=20260818-externalized">
+
+
+<!-- Fix: 方案3二级页 v4-newfile：修复缩略图选中框裁切、标题牌圆角、删除外层高斯背景框 -->
+<link rel="stylesheet" href="css/inline-566/style-06.css?v=20260818-externalized">
+
+
+<!-- Fix: 方案3最终修复：隐藏旧堆叠弹层、恢复薄外层高斯框、缩略图原比例、选中框放大动画 -->
+<link rel="stylesheet" href="css/inline-566/style-07.css?v=20260818-externalized">
+
+
+<!-- Fix: 缩略图禁止上下滚动、去黑边、统一高度并按原比例宽度 -->
+<link rel="stylesheet" href="css/inline-566/style-08.css?v=20260818-externalized">
+
+
+<!-- Fix: 缩略图选中框2px、底部信息防出血、缩略图文字下边距 -->
+<link rel="stylesheet" href="css/inline-566/style-09.css?v=20260818-externalized">
+
+
+<!-- Fix: 缩略图选中框精确2px、三角不遮挡、底部信息与标题留白 -->
+<link rel="stylesheet" href="css/inline-566/style-10.css?v=20260818-externalized">
+
+
+<!-- Fix: 缩略图选中框改为内容自适应，不再用固定外扩宽度 -->
+<link rel="stylesheet" href="css/inline-566/style-11.css?v=20260818-externalized">
+
+
+<!-- thumb-triangle-visibility-fix -->
+<link rel="stylesheet" href="css/inline-566/style-12.css?v=20260818-externalized">
+
+
+<!-- thumb-active-front-ratio-fix -->
+<link rel="stylesheet" href="css/inline-566/style-13.css?v=20260818-externalized">
+
+
+<!-- Fix: 缩略图边缘裁切修复、选中框最前、主图按原比例显示 -->
+<link rel="stylesheet" href="css/inline-566/style-14.css?v=20260818-externalized">
+
+
+<!-- Final fix: 主图原比例、缩略图自适应、三角不被遮挡、缩略图组减少两侧空白 -->
+<link id="industry-scheme3-final-fix" rel="stylesheet" href="css/inline-566/style-15.css?v=20260818-externalized">
+
+
+<!-- Fix: 大图真实等宽缩略图背景、按原比例向上拓展、彻底删除主图侧边模糊 -->
+<link id="industry-scheme3-main-width-ratio-actual-fix" rel="stylesheet" href="css/inline-566/style-16.css?v=20260818-externalized">
+
+
+<!-- Fix: 布局放大：缩略图卡片组放大到 2 号框、大图放大到 4 号框 -->
+<link id="industry-scheme3-resize-2to4-fix" rel="stylesheet" href="css/inline-566/style-17.css?v=20260818-externalized">
+
+
+<!-- Fix: 3号主图扩到4号宽度、2号缩略图增大、1号文字不遮挡 -->
+<link id="industry-scheme3-resize-v2-fix" rel="stylesheet" href="css/inline-566/style-18.css?v=20260818-externalized">
+
+
+<!-- Fix: 缩略图选中框自适应、主图/背景同宽放大、恢复滚动 -->
+<link id="industry-scheme3-final-size-scroll-fix" rel="stylesheet" href="css/inline-566/style-19.css?v=20260818-externalized">
+<!-- Fix: 底部文字不遮挡、选中三角恢复、隐藏页面滚动条 -->
+<link id="industry-scheme3-footer-triangle-scrollbar-fix" rel="stylesheet" href="css/inline-566/style-20.css?v=20260818-externalized">
+
+
+<!-- Fix: 缩略图内框删除、边界裁切、箭头可点击、footer居中与等距留白 -->
+<!-- Fix: 关闭方案3后回到建成篇二级卡片组，不回旧层叠样式 -->
+<link id="industry-scheme3-close-back-cardgroup-style-fix" rel="stylesheet" href="css/inline-566/style-21.css?v=20260818-externalized">
+
+
+<!-- Fix v92: shrink thumbnail shell + restore v81 adaptive active frame -->
+<!-- Fix v94: recover stable layout + rewrite active frame without JS overlay -->
+<!-- Fix v97: 取消选中框，改为光效+放大；修复关闭状态错乱 -->
+<!-- Fix v98: 彻底取消缩略图选中框，只保留光效和放大 -->
+<!-- Fix v99: 彻底删除缩略图选中描边，只保留无边线柔光 -->
+
+<link id="industry-scheme3-v103-footer-center-compact" rel="stylesheet" href="css/inline-566/style-22.css?v=20260818-externalized">
+
+
+<link id="industry-scheme3-v105-restore-secondary-lightbox" rel="stylesheet" href="css/inline-566/style-23.css?v=20260818-externalized">
+
+<link id="home-bg12-video-fix" rel="stylesheet" href="css/inline-566/style-24.css?v=20260818-externalized">
+
+<link id="home-bg12-video-inner-mask-v119" rel="stylesheet" href="css/inline-566/style-25.css?v=20260818-externalized">
+<link id="home-bg12-visible-blur-frame" rel="stylesheet" href="css/inline-566/style-26.css?v=20260818-externalized">
+
+<link id="home-bg12-blur-frame-14-radius-fix" rel="stylesheet" href="css/inline-566/style-27.css?v=20260818-externalized">
+
+<link id="home-intro-110-logic-keep-video-final" rel="stylesheet" href="css/inline-566/style-28.css?v=20260818-externalized">
+<link id="home-bg12-video-inner-scale-v141" rel="stylesheet" href="css/inline-566/style-29.css?v=20260818-externalized">
+
+
+<link id="home-bg12-blur-edge-whiter-v149" rel="stylesheet" href="css/inline-566/style-30.css?v=20260818-externalized">
+
+
+<link id="home-bg12-video-glow-scale-v154" rel="stylesheet" href="css/inline-566/style-31.css?v=20260818-externalized">
+
+    <link rel="stylesheet" href="css/home-font-overlays-598.css?v=20260825-aigc-badge-gap">
+    <link rel="stylesheet" href="css/home-fold-text-602.css?v=20260826-fold-text-no-panels">
+    <link rel="stylesheet" href="css/home-2026.css">
+    <link rel="stylesheet" href="js/gridscan-home/gridscan-home.css">
+    <link id="home-gridscan-layer-353" rel="stylesheet" href="css/inline-566/style-32.css?v=20260818-externalized">
+
+
+<link rel="stylesheet" href="css/inline-566/style-33.css?v=20260818-externalized">
+
+
+    <link id="scheme-design-v347-compact-guide" rel="stylesheet" href="css/inline-566/style-34.css?v=20260818-externalized">
+    <link rel="stylesheet" href="css/hybrid-navigation-589.css?v=20260825-rounded-card-no-elastic-boundary">
+
+<link rel="stylesheet" href="css/weiyuan-react-708.css">
+<link rel="stylesheet" href="css/weiyuan-735.css">
+<link rel="stylesheet" href="css/suiyuan-year-689.css">
+<link rel="stylesheet" href="css/drift-735.css">
+<link rel="stylesheet" href="css/category-stack-706.css">
+<link rel="stylesheet" href="css/gallery-751.css"><link rel="stylesheet" href="css/depth-carousel-751.css"><link rel="stylesheet" href="css/media-card-752.css"><link rel="stylesheet" href="css/cubes-753.css">
+<link rel="stylesheet" href="css/app-card-790.css">
+<!-- 禁止右键：全站屏蔽右键菜单 -->
+<script src="js/no-context-menu.js?v=20261005-restore"></script>
+</head>
+<body>
+
+    <div id="main-wrapper">
+        <!-- 579：导航微动效 + CardNav 整卡可点击 -->
+        <nav id="nav" class="young-nav577" style="display: none;" aria-label="作品集主导航">
+            <button id="youngNavHome" class="young-nav577__brand cursor-target" type="button" onclick="resetHome()" aria-label="返回上层">
+                <span id="youngNavEmoji" class="young-nav577__emoji" aria-hidden="true">📎</span>
+                <span class="young-nav577__brand-copy">
+                    <span class="young-nav577__particle-text" data-brand-particle-text aria-hidden="true">
+                        <canvas class="young-nav577__particle-canvas"></canvas>
+                        <strong class="young-nav577__particle-fallback">YoungSliker</strong>
+                    </span>
+                </span>
+            </button>
+            <button id="youngNavToggle" class="young-nav577__toggle cursor-target" type="button" aria-label="展开作品导航" aria-controls="youngNavPanel" aria-expanded="false">
+                <span class="young-nav577__toggle-line" aria-hidden="true"></span>
+                <span class="young-nav577__toggle-line" aria-hidden="true"></span>
+            </button>
+        </nav>
+
+        <div id="youngNavPanel" class="young-nav577__overlay" aria-hidden="true">
+            <div class="young-nav577__panel" role="dialog" aria-modal="true" aria-labelledby="youngNavTitle">
+                <header class="young-nav577__intro">
+                    <div>
+                        <p class="young-nav577__eyebrow">SELECTED WORK / 2026</p>
+                        <h2 id="youngNavTitle">我主要的一些作品</h2>
+                    </div>
+                    <p class="young-nav577__hint">点击卡片标题进入分类 · 点击项目名称定位作品</p>
+                </header>
+
+                <div class="young-nav577__cards">
+                    <section class="young-nav577__card cursor-target" aria-labelledby="nav-aigc">
+                        <span class="young-nav577__card-surface" aria-hidden="true"></span>
+                        <button class="young-nav577__card-hit cursor-target" type="button" data-nav-page="aigc" data-nav-label="AIGC设计" aria-label="进入AIGC设计"></button>
+                        <canvas class="young-nav577__elastic-mesh" aria-hidden="true"></canvas>
+                        <div class="young-nav577__card-top">
+                            <button id="nav-aigc" class="young-nav577__title nav-btn cursor-target" type="button" data-nav-page="aigc">AIGC设计</button>
+                            <span class="young-nav577__index" aria-hidden="true">01</span>
+                        </div>
+                        <ul class="young-nav577__links">
+                            <li><button class="young-nav577__link cursor-target" type="button" data-nav-page="aigc" data-nav-card="0" data-nav-project="suiyuan"><span class="young-nav577__link-arrow" aria-hidden="true">↗</span>绥远方志</button></li>
+                            <li><button class="young-nav577__link cursor-target" type="button" data-nav-page="aigc" data-nav-card="1" data-nav-project="mine-eco"><span class="young-nav577__link-arrow" aria-hidden="true">↗</span>矿山*生态</button></li>
+                            <li><button class="young-nav577__link cursor-target" type="button" data-nav-page="aigc" data-nav-card="2" data-nav-project="weiyuan"><span class="young-nav577__link-arrow" aria-hidden="true">↗</span>微元灵溯</button></li>
+                        </ul>
+                    </section>
+
+                    <section class="young-nav577__card cursor-target" aria-labelledby="nav-creative">
+                        <span class="young-nav577__card-surface" aria-hidden="true"></span>
+                        <button class="young-nav577__card-hit cursor-target" type="button" data-nav-page="creative" data-nav-label="数字体验设计" aria-label="进入数字体验设计"></button>
+                        <canvas class="young-nav577__elastic-mesh" aria-hidden="true"></canvas>
+                        <div class="young-nav577__card-top">
+                            <button id="nav-creative" class="young-nav577__title nav-btn cursor-target" type="button" data-nav-page="creative">数字体验设计</button>
+                            <span class="young-nav577__index" aria-hidden="true">02</span>
+                        </div>
+                        <ul class="young-nav577__links">
+                            <li><button class="young-nav577__link cursor-target" type="button" data-nav-page="creative" data-nav-card="0" data-nav-project="new-media"><span class="young-nav577__link-arrow" aria-hidden="true">↗</span>新媒体艺术设计</button></li>
+                            <li><button class="young-nav577__link cursor-target" type="button" data-nav-page="creative" data-nav-card="1"><span class="young-nav577__link-arrow" aria-hidden="true">↗</span>APP设计</button></li>
+                        </ul>
+                    </section>
+
+                    <section class="young-nav577__card cursor-target" aria-labelledby="nav-ui">
+                        <span class="young-nav577__card-surface" aria-hidden="true"></span>
+                        <button class="young-nav577__card-hit cursor-target" type="button" data-nav-page="ui" data-nav-label="视觉传达设计" aria-label="进入视觉传达设计"></button>
+                        <canvas class="young-nav577__elastic-mesh" aria-hidden="true"></canvas>
+                        <div class="young-nav577__card-top">
+                            <button id="nav-ui" class="young-nav577__title nav-btn cursor-target" type="button" data-nav-page="ui">视觉传达设计</button>
+                            <span class="young-nav577__index" aria-hidden="true">03</span>
+                        </div>
+                        <ul class="young-nav577__links">
+                            <li><button class="young-nav577__link cursor-target" type="button" data-nav-page="ui" data-nav-card="0"><span class="young-nav577__link-arrow" aria-hidden="true">↗</span>品牌设计</button></li>
+                            <li><button class="young-nav577__link cursor-target" type="button" data-nav-page="ui" data-nav-card="1"><span class="young-nav577__link-arrow" aria-hidden="true">↗</span>版面设计</button></li>
+                            <li><button class="young-nav577__link cursor-target" type="button" data-nav-page="ui" data-nav-card="2"><span class="young-nav577__link-arrow" aria-hidden="true">↗</span>LOGO设计</button></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <section id="home" class="page-content active overflow-hidden">
+            <div class="absolute inset-0 z-0 bg-black overflow-hidden">
+                <img draggable="false" id="bg1" src="主界面/背景1.png" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                <div id="home-gridscan-root" aria-hidden="true"></div>
+                <div id="bg11" style="position: absolute; left: 2.13%; top: 59.49%; width: 34.37%; height: 35%; z-index: 10;">
+                    <div id="bg11-2026-layer" aria-hidden="true">
+                        <svg class="poster-svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet" aria-label="2026 outline line animation">
+        <defs>
+            <filter id="pinkGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="6" result="blur"/>
+                <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+
+        <!-- 参考图风格：黑底 + 粉色空心数字 2026 -->
+        <g id="numbers" class="numbers">
+            <!-- 2 -->
+            <path class="num-line"
+                d="M 22 382
+                   L 22 322
+                   C 22 185, 112 118, 236 118
+                   C 366 118, 442 195, 442 312
+                   C 442 398, 397 456, 326 528
+                   L 124 735
+                   L 435 735
+                   L 435 825
+                   L 24 825
+                   L 24 748
+                   L 270 489
+                   C 328 428, 354 382, 354 318
+                   C 354 238, 310 188, 236 188
+                   C 160 188, 112 231, 112 326
+                   L 112 382
+                   Z" />
+
+            <!-- 0 -->
+            <g class="digit-zero-shift">
+            <path class="num-line"
+                d="M 645 118
+                   C 775 118, 850 205, 850 365
+                   L 850 578
+                   C 850 738, 775 825, 645 825
+                   C 515 825, 440 738, 440 578
+                   L 440 365
+                   C 440 205, 515 118, 645 118
+                   Z
+                   M 645 200
+                   C 575 200, 535 252, 535 366
+                   L 535 577
+                   C 535 692, 575 744, 645 744
+                   C 715 744, 755 692, 755 577
+                   L 755 366
+                   C 755 252, 715 200, 645 200
+                   Z" />
+            </g>
+
+            <!-- 2 -->
+            <path class="num-line"
+                d="M 874 382
+                   L 874 322
+                   C 874 185, 964 118, 1088 118
+                   C 1218 118, 1294 195, 1294 312
+                   C 1294 398, 1249 456, 1178 528
+                   L 976 735
+                   L 1287 735
+                   L 1287 825
+                   L 876 825
+                   L 876 748
+                   L 1122 489
+                   C 1180 428, 1206 382, 1206 318
+                   C 1206 238, 1162 188, 1088 188
+                   C 1012 188, 964 231, 964 326
+                   L 964 382
+                   Z" />
+
+            <!-- 6 -->
+            <g class="digit-six-shift">
+            <path class="num-line"
+                d="M 1512 300
+                   C 1500 222, 1454 185, 1385 185
+                   C 1288 185, 1248 260, 1248 390
+                   L 1248 445
+                   C 1277 394, 1330 366, 1402 366
+                   C 1526 366, 1590 454, 1590 591
+                   C 1590 738, 1512 825, 1382 825
+                   C 1243 825, 1158 725, 1158 566
+                   L 1158 398
+                   C 1158 220, 1235 118, 1386 118
+                   C 1512 118, 1582 182, 1590 300
+                   Z
+                   M 1382 445
+                   C 1304 445, 1252 501, 1252 591
+                   C 1252 684, 1304 745, 1382 745
+                   C 1460 745, 1508 686, 1508 592
+                   C 1508 500, 1460 445, 1382 445
+                   Z" />
+            </g>
+        </g>
+    </svg>
+                    </div>
+</div>
+                <div id="bg-3d-wrapper">
+                    <div id="bg12-content">
+                        <div id="bg12-dot-layer" class="home-dot-layer" aria-hidden="true">
+                            <div class="home-dot-matrix home-dot-matrix-lt"></div>
+                            <div class="home-dot-matrix home-dot-matrix-rb"></div>
+                        </div>
+                        <div class="bg12-video-gaussian-border" aria-hidden="true"></div>
+                        <div id="bg12-video-mask" onclick="handleBg12Click()">
+                            <div class="border-glow-inner">
+                                <video id="bg12-video" autoplay muted loop playsinline preload="auto">
+                                    <source src="主界面/背景_pingpong.mp4?v=150" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                        <div id="bg13-img" class="profile-bg13-layers" aria-hidden="true">
+                            <img class="profile-bg13-layer profile-bg13-layer--frame" draggable="false" src="主界面/背景1.3/矩形 3.png" alt="">
+                            <div class="profile-bg13-layer profile-bg13-layer--left"></div>
+                            <div class="profile-bg13-layer profile-bg13-layer--right"></div>
+                            <img class="profile-bg13-layer profile-bg13-layer--avatar" draggable="false" src="主界面/背景1.3/头像.png" alt="">
+                            <div class="profile-info-title">我的信息</div>
+                        </div>
+                        <section class="profile-info-html" style="visibility:hidden;opacity:0;pointer-events:none;" aria-label="我的信息">
+                            <div class="profile-info-html__columns">
+                                <div class="profile-info-html__col profile-info-html__col--left">
+                                    <p><span>姓名：</span><strong>翟杨阳</strong></p>
+                                    <p><span>年龄：</span><strong>22岁</strong></p>
+                                    <p><span>专业：</span><strong>数字媒体艺术</strong></p>
+                                    <p><span>学校：</span><strong>内蒙古师范大学</strong></p>
+                                    <p><span>兴趣：</span><strong>AIGC、新媒体艺术、Ue5</strong></p>
+                                    <p><span>常用工具：</span></p>
+                                </div>
+                                <div class="profile-info-html__col profile-info-html__col--right">
+                                    <p><span>MAIL：</span><strong>zyg203320@163.com</strong></p>
+                                    <p><span>TEL：</span><strong>15248120655</strong></p>
+                                    <p><span>WX：</span><strong>YoungSlikera</strong></p>
+                                    <p><span>QQ：</span><strong>3187134482</strong></p>
+                                    <p><span>求职意向：</span><strong>AIGC相关岗位</strong></p>
+                                </div>
+                            </div>
+                        </section>
+                        <div id="主页文字组" class="home-text-group" aria-hidden="true">
+                            <span class="bg12-white-strip" aria-hidden="true"></span>
+<img draggable="false" id="bg12-img-02" class="bg12-extra-img" src="主界面/背景02.png" alt="">
+                            <div class="bg12-font-overlays" aria-hidden="true">
+                            <div class="home-design-title home-depth-text" data-home-depth-text data-anime-split="true" aria-hidden="true">
+                                <span class="home-depth-text__entrance">
+                                    <span class="home-depth-text__stage" data-home-depth-stage>
+                                        <span class="home-depth-text__face">设计作品集</span>
+                                    </span>
+                                </span>
+                            </div>
+
+<span class="bg12-square-cover"></span>
+                            <span class="bg12-marker-group" aria-hidden="true">
+                            <span class="bg12-left-decor" aria-hidden="true">
+                                <span class="bg12-left-decor-square">■</span>
+                                <span class="bg12-line-mask"><span class="bg12-left-decor-line"></span></span>
+                            </span>
+                            <span class="bg12-three-squares" aria-hidden="true">
+                                <span class="bg12-square-unit">■</span>
+                                <span class="bg12-square-unit">■</span>
+                                <span class="bg12-square-unit">■</span>
+                            </span>
+                            </span>
+                            <span class="bg12-art-cover"></span>
+                            <span class="bg12-art-text">ART #DESIGN#AIGC</span>
+                            </div>
+                        </div>
+                        
+                        <div id="imagesDiv" class="profile-logoloop-shell" style="visibility:hidden;opacity:0;pointer-events:none;" aria-label="常用工具循环展示">
+                            <div class="profile-logoloop logoloop logoloop--horizontal logoloop--fade logoloop--scale-hover" data-logo-loop data-speed="66">
+                                <div class="logoloop__track">
+                                    <ul class="logoloop__list">
+                                        <li class="logoloop__item"><a class="logoloop__link cursor-target" href="https://nanobanana.co/zh" target="_blank" rel="noreferrer noopener" aria-label="Nano Banana"><img draggable="false" src="主界面/nanobanana.png" alt="Nano Banana"></a></li>
+                                        <li class="logoloop__item"><a class="logoloop__link cursor-target" href="https://openclaw.ai/" target="_blank" rel="noreferrer noopener" aria-label="OpenClaw"><img draggable="false" src="主界面/OpenClaw.png" alt="OpenClaw"></a></li>
+                                        <li class="logoloop__item"><a class="logoloop__link cursor-target" href="https://www.midjourney.com/" target="_blank" rel="noreferrer noopener" aria-label="Midjourney"><img draggable="false" src="主界面/mj.png" alt="Midjourney"></a></li>
+                                        <li class="logoloop__item"><a class="logoloop__link cursor-target" href="https://www.suno.ai" target="_blank" rel="noreferrer noopener" aria-label="Suno"><img draggable="false" src="主界面/suno.png" alt="Suno"></a></li>
+                                        <li class="logoloop__item"><a class="logoloop__link cursor-target" href="https://chatgpt.com/" target="_blank" rel="noreferrer noopener" aria-label="ChatGPT"><img draggable="false" src="主界面/gpt.png" alt="ChatGPT"></a></li>
+                                        <li class="logoloop__item"><a class="logoloop__link cursor-target" href="https://jimeng.jianying.com/" target="_blank" rel="noreferrer noopener" aria-label="即梦 AI"><img draggable="false" src="主界面/即梦.png" alt="即梦 AI"></a></li>
+                                        <li class="logoloop__item"><a class="logoloop__link cursor-target" href="https://app.runwayml.com/home" target="_blank" rel="noreferrer noopener" aria-label="Runway"><img draggable="false" src="主界面/runway.png" alt="Runway"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-10 left-0 w-full z-40 flex flex-col items-center text-center">
+                <div id="textDiv" class="hidden font-light-sans"><p id="mainText" class="text-gray-200 text-lg tracking-[0.2em]"><span class="profile-particle-text" data-particle-text="探索AI、创意与交互的边界"><span class="profile-particle-text__fallback">探索AI、创意与交互的边界</span><canvas class="profile-particle-text__canvas" aria-hidden="true"></canvas></span><span class="profile-identity-text">；我是 <span class="text-white font-medium">[翟杨阳]</span></span></p></div>
+                <div class="animate-pulse opacity-40 text-xs tracking-[0.5em] text-white mt-4">PORTFOLIO 2026</div>
+            </div>
+        </section>
+
+        <!-- AIGC 设计 -->
+        <section id="aigc" class="page-content"><div id="aigc-drift-root"></div>
+            
+            <div class="foreground-layer relative z-10 w-full h-full overflow-y-auto pt-32 px-10 pb-20 pointer-events-none">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-6xl font-black mb-16 italic border-l-8 border-[#E33B62] pl-6 pointer-events-auto uppercase">AIGC设计</h2>
+                    <div class="space-y-12 pointer-events-auto pb-10">
+                        <div class="card-base aspect-video" onclick="openProject('suiyuan')">
+    <img draggable="false" src="AIGC/绥远方志.jpg">
+    <div class="absolute bottom-0 p-8 bg-gradient-to-t from-black/90 to-transparent w-full">
+        <h3 class="text-3xl font-bold">绥远方志</h3>
+        <p class="text-gray-300 mt-2">基于人智混合的呼和浩特史体验场景设计</p>
+    </div>
+</div>
+                        <div class="card-base aspect-video aigc-glint aigc-glint--green" onclick="openProject('mine-eco')">
+    <img draggable="false" src="AIGC/矿山生态.jpg">
+    <div class="absolute bottom-0 p-8 bg-gradient-to-t from-black/90 to-transparent w-full">
+        <h3 class="text-3xl font-bold">矿山*生态</h3>
+        <p class="text-gray-300 mt-2">基于Depth Ai场景建模的Ue5实机演示</p>
+    </div>
+</div>
+                        <div class="card-base aspect-video aigc-glint aigc-glint--pink cursor-target" role="button" tabindex="0" aria-label="查看微元灵溯" onclick="openProject('weiyuan')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProject('weiyuan')}">
+    <img draggable="false" src="AIGC/微元灵溯.jpg">
+    <div class="absolute bottom-0 p-8 bg-gradient-to-t from-black/90 to-transparent w-full">
+        <h3 class="text-3xl font-bold">微元灵溯</h3>
+        <p class="text-gray-300 mt-2">基于“隐性饥饿”的AI艺术可视化交互设计</p>
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 其他页面略... -->
+        <section id="creative" class="page-content"><div class="foreground-layer relative z-10 w-full h-full overflow-y-auto pt-32 px-10 pb-20 pointer-events-none"><div class="max-w-7xl mx-auto"><h2 class="category704-heading text-6xl font-black mb-16 italic border-l-8 border-[#E33B62] pl-6 pointer-events-auto">数字体验设计</h2><div class="category704-grid category704-grid--2 pointer-events-auto"><div class="card-base category704-card"><img draggable="false" src="AIGC/绥远方志.jpg" alt=""><div class="absolute bottom-0 p-6 bg-gradient-to-t from-black/90 to-transparent w-full"><h3 class="text-xl font-bold">新媒体艺术设计</h3></div></div>
+                        <div class="card-base category704-card"><img draggable="false" src="AIGC/矿山生态.jpg" alt=""><div class="absolute bottom-0 p-6 bg-gradient-to-t from-black/90 to-transparent w-full"><h3 class="text-xl font-bold">APP设计</h3></div></div></div></div></div></section>
+
+        <section id="ui" class="page-content"><div class="foreground-layer relative z-10 w-full h-full overflow-y-auto pt-32 px-10 pb-20 pointer-events-none"><div class="max-w-7xl mx-auto"><h2 class="category704-heading text-6xl font-black mb-16 italic border-l-8 border-[#E33B62] pl-6 pointer-events-auto">视觉传达设计</h2><div class="category704-grid category704-grid--3 pointer-events-auto"><div class="card-base category704-card"><img draggable="false" src="AIGC/绥远方志.jpg" alt=""><div class="absolute bottom-0 p-6 bg-gradient-to-t from-black/90 to-transparent w-full"><h3 class="text-xl font-bold">品牌设计</h3></div></div>
+                        <div class="card-base category704-card"><img draggable="false" src="AIGC/矿山生态.jpg" alt=""><div class="absolute bottom-0 p-6 bg-gradient-to-t from-black/90 to-transparent w-full"><h3 class="text-xl font-bold">版面设计</h3></div></div>
+                        <div class="card-base category704-card"><img draggable="false" src="主界面/mj.png" alt=""><div class="absolute bottom-0 p-6 bg-gradient-to-t from-black/90 to-transparent w-full"><h3 class="text-xl font-bold">LOGO设计</h3></div></div></div></div></div></section>
+    </div>
+    <!-- 绥远方志子界面 -->
+    <div id="project-detail">
+        <div class="v-bg-canvas">
+            <div class="v-bg-sun"></div>
+
+
+            <!-- 云层：更不对称，避免整齐模板感 -->
+            <div class="v-bg-layer v-clouds-top">
+                <svg viewBox="0 0 1440 260" preserveAspectRatio="none">
+                    <path fill="#cb872b" d="M0,64C76,18,152,20,230,48C302,74,360,112,434,112C520,112,576,60,656,50C744,40,810,82,886,102C970,124,1042,114,1126,72C1210,30,1294,16,1378,36C1400,42,1420,50,1440,62V0H0Z" opacity="0.26"></path>
+                    <path fill="#d89739" d="M0,108C92,78,162,130,248,132C322,134,388,100,456,88C539,74,606,88,676,118C744,146,808,156,886,146C958,136,1022,104,1092,96C1178,86,1258,104,1332,126C1374,138,1408,144,1440,144V0H0Z" opacity="0.28"></path>
+                    <path fill="#e4ac50" d="M0,146C80,130,152,152,236,174C314,194,390,198,466,184C543,170,606,140,682,138C770,136,834,166,910,186C994,208,1078,206,1162,182C1248,158,1332,130,1440,138V0H0Z" opacity="0.16"></path>
+                </svg>
+            </div>
+
+            <div class="v-bg-layer v-clouds-mid">
+                <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
+                    <path fill="#e4af55" d="M0,98C94,76,172,126,256,128C336,130,406,100,486,92C568,84,636,100,708,126C784,152,860,156,938,138C1014,120,1084,94,1162,96C1260,98,1348,126,1440,148V180H0Z" opacity="0.15"></path>
+                </svg>
+            </div>
+
+            <!-- 山体：每一排峰体数量都不同，按 1-6 的随机感重新打散 -->
+            <!-- 第1排：2组主峰 -->
+            <div class="v-bg-layer v-mountain-far-1">
+                <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path fill="#9a9050" d="M0,296C62,286,118,250,176,232C252,208,322,222,392,252C454,278,516,286,590,266C666,246,728,210,794,196C862,182,930,188,1000,214C1076,242,1146,258,1222,246C1306,232,1378,202,1440,188V320H0Z"></path>
+                </svg>
+            </div>
+
+            <!-- 第2排：5组高低不一的峰体 -->
+            <div class="v-bg-layer v-mountain-far-2">
+                <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path fill="#8a8147" d="M0,304C46,308,82,298,120,276C166,248,200,198,242,172C286,144,330,142,370,166C408,188,438,222,472,250C510,280,566,292,602,282C650,272,688,240,724,206C762,170,802,140,846,134C892,128,928,148,960,180C992,212,1020,248,1056,272C1098,300,1144,304,1194,286C1242,268,1280,236,1318,206C1352,178,1390,162,1440,158V320H0Z"></path>
+                </svg>
+            </div>
+
+            <!-- 第3排：3组更明显的山脊 -->
+            <div class="v-bg-layer v-mountain-ridge">
+                <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path fill="#7a7441" d="M0,316C38,320,72,318,108,302C146,286,176,254,208,212C240,170,272,126,316,112C356,100,392,120,420,162C448,204,470,248,500,278C534,312,578,320,620,304C660,288,690,252,722,206C756,156,792,110,836,100C882,90,920,114,950,160C978,204,1000,248,1030,280C1062,314,1104,324,1148,308C1192,292,1226,254,1260,206C1294,158,1332,114,1380,104C1404,100,1424,102,1440,108V320H0Z"></path>
+                </svg>
+            </div>
+
+            <!-- 第4排：4组中景峰体，错落更明显 -->
+            <div class="v-bg-layer v-mountain-mid-1">
+                <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path fill="#6a6939" d="M0,320C32,324,62,326,94,320C134,312,166,286,194,242C220,202,242,148,272,112C300,78,334,62,370,70C402,76,426,102,446,144C466,186,484,234,508,278C536,328,578,344,618,326C656,308,682,268,706,222C730,176,752,128,782,96C814,62,850,54,886,66C918,76,942,104,962,146C982,188,1000,236,1024,280C1052,332,1094,346,1134,328C1174,310,1200,270,1222,226C1246,180,1268,138,1296,108C1328,74,1368,64,1408,78C1420,82,1430,88,1440,96V320H0Z"></path>
+                </svg>
+            </div>
+
+            <!-- 第5排：6组近景峰体，打散公式感 -->
+            <div class="v-bg-layer v-mountain-mid-2">
+                <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path fill="#606438" d="M0,320C28,322,56,324,86,322C122,318,152,296,178,258C204,220,226,170,250,128C274,86,302,58,336,54C370,50,398,72,420,112C442,152,460,202,482,250C506,302,540,340,580,342C618,344,646,316,668,276C690,236,708,188,730,146C754,100,782,68,816,62C848,56,874,76,894,114C914,152,930,200,952,250C976,304,1012,344,1052,346C1090,348,1120,318,1144,276C1168,234,1188,184,1210,142C1232,100,1258,72,1290,66C1324,60,1352,82,1374,120C1396,158,1416,204,1440,250V320H0Z"></path>
+                </svg>
+            </div>
+
+            <!-- 第6排：1整组前景大山，做压场与生气 -->
+            <div class="v-bg-layer v-mountain-near">
+                <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path fill="#566d35" d="M0,320C34,322,72,324,112,322C162,320,208,304,248,276C286,250,316,212,344,168C372,124,404,88,444,78C484,68,516,90,540,132C566,174,582,224,604,274C628,330,664,364,706,360C748,356,780,322,806,276C832,230,852,180,876,134C902,84,934,54,974,50C1014,46,1046,74,1070,118C1094,162,1112,214,1136,266C1160,318,1196,348,1238,344C1282,340,1316,304,1344,260C1372,216,1398,168,1426,132C1430,126,1434,122,1440,118V320H0Z"></path>
+                </svg>
+            </div>
+
+            <!-- 近地滚丘：不对称起伏，作为山与草的自然过渡 -->
+            <div class="v-bg-layer v-hills-rolling">
+                <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
+                    <path fill="#6c7d2d" d="M0,156C82,126,146,144,214,168C278,190,334,196,392,184C446,172,492,146,546,132C606,116,660,118,714,138C770,158,816,180,874,188C944,198,1002,188,1060,166C1112,146,1160,122,1216,120C1300,116,1374,142,1440,166V200H0Z"></path>
+                    <path fill="#7d8f35" opacity="0.26" d="M0,170C70,152,128,166,188,186C256,208,312,210,374,198C438,186,490,158,548,148C604,138,660,142,718,160C778,178,830,198,892,204C958,210,1018,198,1082,176C1144,154,1200,136,1264,136C1330,136,1388,150,1440,164V200H0Z"></path>
+                </svg>
+            </div>
+
+            <div class="v-bg-layer v-shrub-line">
+                <svg viewBox="0 0 1440 140" preserveAspectRatio="none">
+                    <g fill="#597121" opacity="0.84">
+                        <path d="M26,96c12-12,36-14,52-4c8,6,14,10,26,10c-8,10-22,14-42,14c-18,0-30-4-36-20z"></path>
+                        <path d="M168,90c16-14,42-18,60-6c10,6,16,12,32,12c-10,12-28,18-50,18c-22,0-36-6-42-24z"></path>
+                        <path d="M362,98c10-10,30-14,48-8c12,4,20,10,34,8c-8,12-24,18-46,18c-20,0-30-4-36-18z"></path>
+                        <path d="M644,88c16-16,46-18,66-6c10,6,18,12,34,12c-12,14-32,20-56,20c-22,0-36-6-44-26z"></path>
+                        <path d="M892,96c12-10,34-14,52-8c10,4,16,10,28,10c-8,10-24,16-44,16c-18,0-30-4-36-18z"></path>
+                        <path d="M1138,92c14-14,40-18,60-8c12,6,20,12,34,10c-10,14-30,20-52,20c-22,0-34-6-42-22z"></path>
+                        <path d="M1312,100c10-10,30-12,44-4c8,4,14,8,24,8c-8,10-22,14-40,14c-14,0-24-4-28-18z"></path>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- 草地：参考案例改为不均匀散布，并叠加阴影制造体积 -->
+            <div class="v-bg-layer v-grassland-back">
+                <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
+                    <rect x="0" y="106" width="1440" height="74" fill="#728930" opacity="0.34"></rect>
+                    <g fill="#56661d" opacity="0.22">
+                        <path d="M40,150l20-10 16,16 18-20 20,18 18-16 24,18 12,10H40Z"></path>
+                        <path d="M210,146l24-12 18,18 20-20 24,18 24-16 24,18 14,12H210Z"></path>
+                        <path d="M438,154l18-10 14,14 18-18 18,16 20-14 22,16 10,10H438Z"></path>
+                        <path d="M660,144l22-12 16,18 18-18 22,18 20-16 24,18 12,12H660Z"></path>
+                        <path d="M930,152l18-10 16,16 18-18 20,18 22-16 22,18 10,10H930Z"></path>
+                        <path d="M1210,148l22-12 18,18 22-20 24,18 20-16 24,18 12,12H1210Z"></path>
+                    </g>
+                    <g fill="#6c842b">
+                        <path d="M26,142l24-14 18,20 22-24 24,20 20-18 26,20 14,16H26Z"></path>
+                        <path d="M172,156l16-10 12,14 14-16 18,14 18-14 22,16 12,10H172Z"></path>
+                        <path d="M286,148l30-16 22,22 26-24 28,22 26-20 30,22 16,14H286Z"></path>
+                        <path d="M496,158l18-10 14,14 16-18 20,16 20-14 22,18 12,10H496Z"></path>
+                        <path d="M622,146l26-14 20,20 22-22 28,22 24-20 28,22 16,14H622Z"></path>
+                        <path d="M834,154l18-10 14,14 16-18 22,18 22-16 22,18 10,10H834Z"></path>
+                        <path d="M980,144l28-16 22,22 24-24 30,22 26-20 28,24 16,14H980Z"></path>
+                        <path d="M1192,156l16-10 12,14 16-18 20,16 20-14 20,16 10,10H1192Z"></path>
+                        <path d="M1288,146l22-12 18,18 22-20 26,20 20-18 24,18 12,12H1288Z"></path>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="v-bg-layer v-grassland-mid">
+                <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
+                    <rect x="0" y="102" width="1440" height="78" fill="#648129" opacity="0.36"></rect>
+                    <g fill="#50611a" opacity="0.26">
+                        <path d="M56,160l28-16 22,22 26-24 30,24 24-22 30,22 14,16H56Z"></path>
+                        <path d="M350,150l24-14 18,18 22-20 26,20 24-18 26,20 12,12H350Z"></path>
+                        <path d="M718,158l26-16 20,20 24-22 28,22 26-20 30,22 14,16H718Z"></path>
+                        <path d="M1088,152l24-14 18,18 24-20 28,22 24-20 28,22 14,14H1088Z"></path>
+                    </g>
+                    <g fill="#5f7b24">
+                        <path d="M0,152l30-18 24,24 28-26 32,26 30-26 34,26 16,18H0Z"></path>
+                        <path d="M208,166l18-12 14,16 18-18 20,18 18-16 22,18 12,12H208Z"></path>
+                        <path d="M394,150l34-18 24,24 28-26 34,28 28-24 34,28 16,16H394Z"></path>
+                        <path d="M656,164l20-12 16,16 18-18 22,18 20-16 24,18 12,12H656Z"></path>
+                        <path d="M826,148l32-18 24,24 28-26 34,28 30-24 34,28 16,16H826Z"></path>
+                        <path d="M1116,162l18-12 14,16 18-18 22,18 18-16 24,18 12,12H1116Z"></path>
+                        <path d="M1258,150l30-18 24,22 26-24 32,24 26-22 30,24 14,16H1258Z"></path>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="v-bg-layer v-grassland-front">
+                <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
+                    <rect x="0" y="94" width="1440" height="86" fill="#5a7422" opacity="0.42"></rect>
+                    <g fill="#456616" opacity="0.30">
+                        <path d="M24,172l34-20 28,30 32-30 36,32 34-30 38,32 18,20H24Z"></path>
+                        <path d="M446,164l30-18 24,24 28-26 34,28 28-24 34,28 16,18H446Z"></path>
+                        <path d="M916,170l34-20 28,30 32-30 38,32 32-30 36,30 18,20H916Z"></path>
+                    </g>
+                    <g fill="#4f6a1d">
+                        <path d="M0,162l38-22 30,32 36-32 40,34 36-32 42,34 18,20H0Z"></path>
+                        <path d="M238,150l24-14 18,18 22-20 28,22 24-20 28,22 14,14H238Z"></path>
+                        <path d="M500,168l20-12 16,18 20-20 24,20 24-18 28,20 14,12H500Z"></path>
+                        <path d="M690,152l38-22 30,30 34-30 40,34 34-30 40,32 18,18H690Z"></path>
+                        <path d="M1018,164l18-12 16,16 18-18 24,18 20-16 26,18 12,12H1018Z"></path>
+                        <path d="M1156,154l34-20 28,28 30-28 38,30 32-28 36,30 18,18H1156Z"></path>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="v-bg-layer v-meadow-sparks">
+                <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
+                    <g fill="#86ae39" opacity="0.34">
+                        <ellipse cx="126" cy="136" rx="9" ry="3"></ellipse><ellipse cx="302" cy="128" rx="8" ry="3"></ellipse><ellipse cx="336" cy="138" rx="6" ry="2.5"></ellipse>
+                        <ellipse cx="574" cy="134" rx="10" ry="3"></ellipse><ellipse cx="748" cy="126" rx="8" ry="3"></ellipse><ellipse cx="824" cy="138" rx="7" ry="2.5"></ellipse>
+                        <ellipse cx="1068" cy="132" rx="10" ry="3"></ellipse><ellipse cx="1186" cy="138" rx="8" ry="3"></ellipse><ellipse cx="1328" cy="130" rx="9" ry="3"></ellipse>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="v-atmosphere-band"></div>
+
+            <!-- 左前景城墙残影：屋顶改成梯形，不再是三角小房子 -->
+            <div class="v-bg-layer v-fort-left">
+                <svg viewBox="0 0 720 760" preserveAspectRatio="none">
+                    <path fill="#956629" d="M0,760L0,92L112,58L112,20L236,20L276,88L276,516L720,516L720,760Z"></path>
+                    <rect x="88" y="536" width="566" height="20" fill="#d4a14b" opacity="0.22"></rect>
+                    <rect x="154" y="250" width="82" height="266" fill="#c98f3d" opacity="0.12"></rect>
+                    <rect x="0" y="188" width="130" height="328" fill="#b67d32" opacity="0.11"></rect>
+                    <g fill="#ce9d49" opacity="0.65">
+                        <rect x="282" y="490" width="34" height="26"></rect>
+                        <rect x="328" y="476" width="34" height="40"></rect>
+                        <rect x="374" y="490" width="34" height="26"></rect>
+                        <rect x="420" y="476" width="34" height="40"></rect>
+                        <rect x="466" y="490" width="34" height="26"></rect>
+                    </g>
+                    <rect x="520" y="390" width="74" height="126" fill="#9f6f2d" opacity="0.54"></rect>
+                    <path fill="#845431" d="M496,412L618,412L592,384L524,384Z" opacity="0.76"></path>
+                </svg>
+            </div>
+
+            <!-- 中央主城墙：提取城楼/城墙，但更写意 -->
+            <div class="v-bg-layer v-fort-main">
+                <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path fill="#a5722e" d="M0,208L1440,208L1440,244L0,244Z"></path>
+                    <path fill="#956627" d="M0,244L1440,244L1440,266L0,266Z"></path>
+
+                    <g fill="#cf9d49" opacity="0.88">
+                        <rect x="28" y="192" width="16" height="16"></rect><rect x="60" y="180" width="16" height="28"></rect><rect x="92" y="192" width="16" height="16"></rect><rect x="124" y="180" width="16" height="28"></rect><rect x="156" y="192" width="16" height="16"></rect><rect x="188" y="180" width="16" height="28"></rect><rect x="220" y="192" width="16" height="16"></rect><rect x="252" y="180" width="16" height="28"></rect><rect x="284" y="192" width="16" height="16"></rect><rect x="316" y="180" width="16" height="28"></rect><rect x="348" y="192" width="16" height="16"></rect><rect x="380" y="180" width="16" height="28"></rect><rect x="412" y="192" width="16" height="16"></rect><rect x="444" y="180" width="16" height="28"></rect><rect x="476" y="192" width="16" height="16"></rect><rect x="508" y="180" width="16" height="28"></rect><rect x="540" y="192" width="16" height="16"></rect><rect x="572" y="180" width="16" height="28"></rect><rect x="604" y="192" width="16" height="16"></rect><rect x="636" y="180" width="16" height="28"></rect>
+                        <rect x="792" y="192" width="16" height="16"></rect><rect x="824" y="180" width="16" height="28"></rect><rect x="856" y="192" width="16" height="16"></rect><rect x="888" y="180" width="16" height="28"></rect><rect x="920" y="192" width="16" height="16"></rect><rect x="952" y="180" width="16" height="28"></rect><rect x="984" y="192" width="16" height="16"></rect><rect x="1016" y="180" width="16" height="28"></rect><rect x="1048" y="192" width="16" height="16"></rect><rect x="1080" y="180" width="16" height="28"></rect><rect x="1112" y="192" width="16" height="16"></rect><rect x="1144" y="180" width="16" height="28"></rect><rect x="1176" y="192" width="16" height="16"></rect><rect x="1208" y="180" width="16" height="28"></rect><rect x="1240" y="192" width="16" height="16"></rect><rect x="1272" y="180" width="16" height="28"></rect><rect x="1304" y="192" width="16" height="16"></rect><rect x="1336" y="180" width="16" height="28"></rect>
+                    </g>
+
+                    <g opacity="0.92">
+                        <rect x="650" y="134" width="140" height="74" fill="#b27933"></rect>
+                        <path fill="#8b5824" d="M622,154L818,154L786,122L654,122Z"></path>
+                        <path fill="#74471c" d="M640,144L800,144L776,116L664,116Z"></path>
+                        <path fill="#80501f" d="M696,166L744,166L744,208L696,208Z"></path>
+                        <path fill="#ab7230" d="M704,208L704,180Q720,156 736,180L736,208Z"></path>
+                    </g>
+
+                    <g opacity="0.54">
+                        <rect x="258" y="156" width="48" height="52" fill="#b6803b"></rect>
+                        <path fill="#865522" d="M246,172L318,172L304,146L260,146Z"></path>
+                        <rect x="1134" y="156" width="48" height="52" fill="#b6803b"></rect>
+                        <path fill="#865522" d="M1122,172L1194,172L1180,146L1136,146Z"></path>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- 右侧角楼与转角城墙：屋顶同样改成梯形 -->
+            <div class="v-bg-layer v-fort-right">
+                <svg viewBox="0 0 580 460" preserveAspectRatio="none">
+                    <path fill="#9a6529" d="M72,218L340,218L340,436L72,436Z"></path>
+                    <g fill="#cf9d49" opacity="0.84">
+                        <rect x="72" y="198" width="22" height="20"></rect>
+                        <rect x="106" y="184" width="22" height="34"></rect>
+                        <rect x="140" y="198" width="22" height="20"></rect>
+                        <rect x="174" y="184" width="22" height="34"></rect>
+                        <rect x="208" y="198" width="22" height="20"></rect>
+                        <rect x="242" y="184" width="22" height="34"></rect>
+                        <rect x="276" y="198" width="22" height="20"></rect>
+                    </g>
+                    <rect x="166" y="108" width="104" height="110" fill="#a76d2c"></rect>
+                    <path fill="#885431" d="M144,132L292,132L272,102L164,102Z"></path>
+                    <path fill="#70431b" d="M154,122L282,122L266,96L170,96Z"></path>
+                    <rect x="206" y="148" width="20" height="70" fill="#7c4c1e"></rect>
+                    <path fill="#8d5923" d="M340,218L580,158L580,190L340,248Z"></path>
+                    <g fill="#cd9c48" opacity="0.76">
+                        <rect x="368" y="148" width="20" height="16"></rect>
+                        <rect x="400" y="136" width="20" height="28"></rect>
+                        <rect x="432" y="148" width="20" height="16"></rect>
+                        <rect x="464" y="136" width="20" height="28"></rect>
+                        <rect x="496" y="148" width="20" height="16"></rect>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="v-atmosphere-band"></div>
+
+            <div class="v-perspective-grid"></div>
+        </div>
+
+        <canvas id="dust-canvas"></canvas>
+
+        <div class="detail-close-wrap">
+            <button onclick="closeProject()" class="detail-close-btn" aria-label="退出绥远方志详情页">
+                <span class="detail-close-icon">×</span>
+                <span class="detail-close-text">
+                    <strong>退出</strong>
+                    <span>BACK</span>
+                </span>
+            </button>
+        </div>
+        
+        <header class="detail-header">
+            <div class="text-center">
+                <p class="detail-light tracking-[2em] text-amber-200/40 mb-6 uppercase ml-8">Project Record</p>
+                <h1 class="text-9xl detail-song text-white/90">绥远方志</h1>
+                <div class="w-64 h-1 bg-amber-500 mx-auto mt-12 opacity-30 shadow-[0_0_20px_#f2b705]"></div>
+            </div>
+
+            <div class="detail-scroll-hint detail-light">
+                <div class="scroll-text-cn">向下滑动继续浏览</div>
+                <div class="detail-scroll-arrow"></div>
+                <div class="scroll-text-en">SCROLL TO EXPLORE</div>
+            </div>
+        </header>
+        
+        <!-- 1. 设计说明 -->
+        <section class="detail-section description-anime-section" style="background: transparent;">
+            <div class="elegant-description-box description-anime-box">
+                <h2 class="section-title-gold detail-song text-center mb-16">设计说明 <span>| DESCRIPTION</span></h2>
+                <p class="detail-light text-xl description-typewriter-text">《绥远方志：基于人智混合的呼和浩特史体验场景设计》以历史变迁与文化传承为核心，分筹备、驻军、融合、建成四篇章，串联绥远城政治、军事、文化、经济脉络。依托VR、AIGC及Agent技术，构建沉浸式交互场景：用户以第一人称视角探索城墙、接官厅等地标，动态壁画演绎历史事件，智能Agent实时答疑解惑。作品致力于打破文献壁垒，让观众在科技与历史的碰撞中，深度感知呼和浩特的地域文脉，唤醒文化保护意识，为边疆城市史志的数字化活化提供创新范本。</p>
+            </div>
+        </section>
+
+        <div class="max-w-[1360px] mx-auto px-10 pb-40">
+            <!-- 2. 方案设计 -->
+            <section class="detail-section scheme-design-section" style="padding-left: 0; padding-right: 0;">
+                <h2 class="section-title-gold detail-song text-3xl">方案设计 <span>| SCHEMATIC DESIGN</span></h2>
+                <div class="scheme-image-card">
+                    <div class="scheme-stack-viewer" id="schemeStackViewer">
+<div class="scheme-deck" id="schemeDeck" aria-label="绥远方志方案设计卡片组">
+                            <!-- 图片按原图比例显示，外层卡片只外扩固定边框；02 为文字排版图，单独加深底色保障可读性。 -->
+                            <div class="scheme-stack-card scheme-card--solid scheme-card--img-02">
+                                <img draggable="false" src="AIGC/绥远方志/绥远方志_02.png" alt="绥远方志方案设计图 1">
+                            </div>
+                            <div class="scheme-stack-card scheme-card--solid scheme-card--img-03">
+                                <img draggable="false" src="AIGC/绥远方志/绥远方志_04.png" alt="绥远方志方案设计图 2">
+                            </div>
+                            <div class="scheme-stack-card scheme-card--solid scheme-card--img-02">
+                            <img draggable="false" src="AIGC/绥远方志/研究链路/关于地方志的用户群体及其需求的比较.png" alt="地方志用户群体及需求比较图">
+                            </div>
+                            <div class="scheme-stack-card scheme-card--solid scheme-card--img-03">
+                                <img draggable="false" src="AIGC/绥远方志/绥远方志_06.png" alt="绥远方志方案设计图 4">
+                            </div>
+                            <div class="scheme-stack-card scheme-card--solid scheme-card--img-02">
+                                <img draggable="false" src="AIGC/绥远方志/绥远方志_07.png" alt="绥远方志方案设计图 5">
+                            </div>
+                        </div>
+</div>
+                    <div class="scheme-stack-status detail-light">
+                        <span id="schemeStackCurrent">01</span>
+                        <span>/</span>
+                        <span id="schemeStackTotal">05</span>
+                    </div>
+                    <div class="scheme-stack-hint scheme-stack-hint-under detail-light">左右拖动卡片浏览 · Drag to browse</div>
+                </div>
+            </section>
+            
+            <!-- 3. 研究链路 -->
+            <section class="detail-section research-route-496" data-route496-section style="padding-left: 0; padding-right: 0;">
+                <div class="route496-shell">
+                    <header class="route496-heading">
+                        <h2 class="section-title-gold detail-song text-3xl">研究链路 <span>| RESEARCH ROUTE</span></h2>
+                    </header>
+
+                    <div class="route496-layout">
+                        <aside class="route496-stepper" aria-label="研究链路流程">
+                            <div class="route496-step" data-route-card="data">
+                                <div class="route496-step-hit" role="button" tabindex="0" aria-label="资料采集">
+                                    <span class="route496-step-circle">01</span>
+                                    <span class="route496-step-content">
+                                        <span class="route496-step-kicker">01 / DATA</span>
+                                        <span class="route496-step-title hover-scale">资料采集</span>
+                                        <span class="route496-step-status">Completed</span>
+                                        <span class="route496-step-desc">收集地方志、文献资料、历史照片与用户需求</span>
+                                    </span>
+                                </div>
+                                <span class="route496-step-line" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="route496-step" data-route-card="translate">
+                                <div class="route496-step-hit" role="button" tabindex="0" aria-label="转译建模">
+                                    <span class="route496-step-circle">02</span>
+                                    <span class="route496-step-content">
+                                        <span class="route496-step-kicker">02 / TRANSLATE</span>
+                                        <span class="route496-step-title hover-scale">转译建模</span>
+                                        <span class="route496-step-status">Completed</span>
+                                        <span class="route496-step-desc">将各类资料进行低模的3D转译</span>
+                                    </span>
+                                </div>
+                                <span class="route496-step-line" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="route496-step" data-route-card="scene">
+                                <div class="route496-step-hit" role="button" tabindex="0" aria-label="场景复原">
+                                    <span class="route496-step-circle">03</span>
+                                    <span class="route496-step-content">
+                                        <span class="route496-step-kicker">03 / SCENE</span>
+                                        <span class="route496-step-title hover-scale">场景复原</span>
+                                        <span class="route496-step-status">In Progress</span>
+                                        <span class="route496-step-desc">角色、建筑、资产和路线的动态组织</span>
+                                    </span>
+                                </div>
+                                <span class="route496-step-line" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="route496-step" data-route-card="storyboard">
+                                <div class="route496-step-hit" role="button" tabindex="0" aria-label="分镜设计">
+                                    <span class="route496-step-circle">04</span>
+                                    <span class="route496-step-content">
+                                        <span class="route496-step-kicker">04 / STORYBOARD</span>
+                                        <span class="route496-step-title hover-scale">分镜设计</span>
+                                        <span class="route496-step-status">Pending</span>
+                                        <span class="route496-step-desc">视听语言与体验节奏的设计整理</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </aside>
+
+                        <div class="route496-wallet-stage" aria-label="研究链路卡包">
+                            <div class="route496-wallet" data-route496-wallet>
+                                <div class="route496-wallet-back" aria-hidden="true"></div>
+
+                                <article class="route496-card route496-card--storyboard" data-route-card="storyboard">
+                                    <div class="route496-card-head hover-scale" role="button" tabindex="0" aria-label="分镜设计">
+                                        <span>04 / STORYBOARD</span>
+                                        <h3>分镜设计</h3>
+                                        <i aria-hidden="true"></i>
+                                    </div>
+                                    <div class="route496-card-body route496-card-body--storyboard">
+                                        <div class="route496-media route496-media--storyboard">
+                                            <img draggable="false" src="AIGC/绥远方志/研究链路/分镜头设计.png" alt="分镜头设计">
+                                        </div>
+                                        <p>将四个篇章拆解为镜头、交互、音效与画面目标，明确体验者进入场景后的节奏。</p>
+                                        <div class="route496-tags"><span>镜头脚本</span><span>交互触发</span><span>体验节奏</span></div>
+                                    </div>
+                                </article>
+
+                                <article class="route496-card route496-card--scene" data-route-card="scene">
+                                    <div class="route496-card-head hover-scale" role="button" tabindex="0" aria-label="场景复原">
+                                        <span>03 / SCENE</span>
+                                        <h3>场景复原</h3>
+                                        <i aria-hidden="true"></i>
+                                    </div>
+                                    <div class="route496-card-body route496-card-body--scene">
+                                        <div class="route496-scene-grid">
+                                            <img class="route496-scene-asset" draggable="false" src="AIGC/绥远方志/研究链路/三维资产部分展示.png" alt="三维资产部分展示">
+                                            <img class="route496-scene-history" draggable="false" src="AIGC/绥远方志/研究链路/历史场景复原部分展示.png" alt="历史场景复原部分展示">
+                                        </div>
+                                        <p>围绕绥远城政治、军事、文化、经济四条脉络，动态组织角色、建筑、资产和路线。</p>
+                                        <div class="route496-tags"><span>三维资产</span><span>历史场景</span><span>VR 漫游</span></div>
+                                    </div>
+                                </article>
+
+                                <article class="route496-card route496-card--translate" data-route-card="translate">
+                                    <div class="route496-card-head hover-scale" role="button" tabindex="0" aria-label="转译建模">
+                                        <span>02 / TRANSLATE</span>
+                                        <h3>转译建模</h3>
+                                        <i aria-hidden="true"></i>
+                                    </div>
+                                    <div class="route496-card-body route496-card-body--translate">
+                                        <div class="route496-media route496-media--translate-main">
+                                            <img draggable="false" src="AIGC/绥远方志/研究链路/城墙城门转绘.png" alt="城墙城门转绘">
+                                        </div>
+                                        <div class="route496-media route496-media--translate-steps">
+                                            <img draggable="false" src="AIGC/绥远方志/研究链路/历史场景复原步骤.png" alt="历史场景复原步骤">
+                                        </div>
+                                        <p>将地方志、文献资料、历史照片与历史文物进行低模的3D转译，形成绥远方志的3D素材资源。</p>
+                                        <div class="route496-tags"><span>低模转译</span><span>结构推导</span><span>复原步骤</span></div>
+                                    </div>
+                                </article>
+
+                                <article class="route496-card route496-card--data" data-route-card="data">
+                                    <div class="route496-card-head hover-scale" role="button" tabindex="0" aria-label="资料采集">
+                                        <span>01 / DATA</span>
+                                        <h3>资料采集</h3>
+                                        <i aria-hidden="true"></i>
+                                    </div>
+                                    <div class="route496-card-body route496-card-body--data">
+                                        <div class="route496-media route496-media--data-main">
+                                            <img draggable="false" src="AIGC/绥远方志/研究链路/图像素材整理.png" alt="图像素材整理">
+                                        </div>
+                                        <div class="route496-media route496-media--data-doc">
+                                            <img draggable="false" src="AIGC/绥远方志/绥远方志_05.png" alt="绥远方志早期方案设计图">
+                                        </div>
+                                        <p>汇总收集地方志、文献资料、历史照片与用户需求，为后续空间叙事和场景复原建立依据。</p>
+                                        <div class="route496-tags"><span>地方志</span><span>图像素材</span><span>用户需求</span></div>
+                                    </div>
+                                </article>
+
+                                <div class="route496-pocket" data-route496-pocket>
+                                    <svg class="route496-pocket-svg" viewBox="0 0 566 320" fill="none" aria-hidden="true">
+                                        <path class="route496-pocket-outer" d="M0 40C0 20 10 20 20 20C40 20 50 50 80 50H480C510 50 520 20 540 20C566 20 566 20 566 40V240C566 310 520 320 480 320H80C40 320 0 310 0 240Z"/>
+                                        <path class="route496-pocket-stitch" d="M16 44C16 32 24 32 30 32C46 32 54 58 80 58H480C506 58 514 32 530 32C536 32 544 32 544 44V240C544 300 510 304 480 304H80C50 304 16 304 16 240Z"/>
+                                    </svg>
+                                    <div class="route496-pocket-copy">
+                                        <strong>研究链路</strong>
+                                        <span>RESEARCH ARCHIVE</span>
+                                        <em>方志</em>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. 设计内容 -->
+            <section class="detail-section design-process-section" style="padding-left: 0; padding-right: 0;">
+                <h2 class="section-title-gold detail-song text-3xl">设计内容 <span>| DESIGN PROCESS</span></h2>
+
+                <div class="process-timeline-divider" aria-label="设计内容四节点分割线">
+                    <svg class="process-timeline-svg" viewBox="0 0 1600 86" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="四节点横向分割线">
+                        <defs>
+                            <linearGradient id="processTimelineFadeLine" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#7b5727" stop-opacity="0"/>
+                                <stop offset="5%" stop-color="#7b5727" stop-opacity="0.42"/>
+                                <stop offset="12%" stop-color="#8a642f" stop-opacity="0.66"/>
+                                <stop offset="88%" stop-color="#8a642f" stop-opacity="0.66"/>
+                                <stop offset="95%" stop-color="#7b5727" stop-opacity="0.42"/>
+                                <stop offset="100%" stop-color="#7b5727" stop-opacity="0"/>
+                            </linearGradient>
+                            <radialGradient id="processTimelineNodeOuter" cx="35%" cy="35%" r="72%">
+                                <stop offset="0%" stop-color="#f0dfb9"/>
+                                <stop offset="48%" stop-color="#d5b678"/>
+                                <stop offset="100%" stop-color="#9f7437"/>
+                            </radialGradient>
+                            <radialGradient id="processTimelineNodeInner" cx="38%" cy="34%" r="76%">
+                                <stop offset="0%" stop-color="#9d6d2c"/>
+                                <stop offset="100%" stop-color="#6d4619"/>
+                            </radialGradient>
+                        </defs>
+
+                        <!-- 先画一条连续的实体深色线，保证四个节点一定被串起来；两端通过渐变自然淡出。 -->
+                        <rect x="40" y="41" width="1520" height="4" rx="2" fill="url(#processTimelineFadeLine)" opacity="0.78"/>
+                        <rect x="40" y="42.35" width="1520" height="1.2" rx="0.6" fill="#f1d896" opacity="0.18"/>
+
+                        <g class="process-timeline-node process-node-1" transform="translate(191 43)">
+                            <circle r="14.5" fill="url(#processTimelineNodeOuter)" opacity="0.98"/>
+                            <circle r="9.2" fill="url(#processTimelineNodeInner)" opacity="0.98"/>
+                            <circle r="3.4" fill="#b98d49" opacity="0.92"/>
+                        </g>
+                        <g class="process-timeline-node process-node-2" transform="translate(597 43)">
+                            <circle r="14.5" fill="url(#processTimelineNodeOuter)" opacity="0.98"/>
+                            <circle r="9.2" fill="url(#processTimelineNodeInner)" opacity="0.98"/>
+                            <circle r="3.4" fill="#b98d49" opacity="0.92"/>
+                        </g>
+                        <g class="process-timeline-node process-node-3" transform="translate(1003 43)">
+                            <circle r="14.5" fill="url(#processTimelineNodeOuter)" opacity="0.98"/>
+                            <circle r="9.2" fill="url(#processTimelineNodeInner)" opacity="0.98"/>
+                            <circle r="3.4" fill="#b98d49" opacity="0.92"/>
+                        </g>
+                        <g class="process-timeline-node process-node-4" transform="translate(1409 43)">
+                            <circle r="14.5" fill="url(#processTimelineNodeOuter)" opacity="0.98"/>
+                            <circle r="9.2" fill="url(#processTimelineNodeInner)" opacity="0.98"/>
+                            <circle r="3.4" fill="#b98d49" opacity="0.92"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="process-card-gallery" aria-label="绥远方志设计内容四篇章">
+                    <article class="process-stage-card" data-process-title="筹备篇" data-process-role="阿拉坦汗" data-process-copy="AIGC/绥远方志/筹备篇/筹备篇-1.png">
+                        <div class="process-stage-inner">
+<img draggable="false" class="process-stage-img" src="AIGC/绥远方志/筹备篇/筹备篇.png" alt="筹备篇">
+                        <div class="process-stage-index">壹</div>
+                        <div class="process-stage-open-hint">点击查看流程</div>
+                        <div class="process-stage-content">
+                            <div class="process-stage-title-row">
+                                <h3 class="process-stage-title detail-song">筹备篇</h3>
+                                <span class="process-stage-arrow">→</span>
+                            </div>
+                            <p class="process-stage-desc detail-light">探讨为什么建城，涵盖疆域变化、政权归属以及草原丝路雏形的发展。</p>
+                            <div class="process-stage-keywords detail-light">关键词：起源 · 计划 · 资源 · 筹备</div>
+                        </div>
+                        </div>
+                    </article>
+
+                    <article class="process-stage-card" data-process-title="驻军篇" data-process-role="王昌" data-process-copy="AIGC/绥远方志/驻军篇/驻军篇-1.png">
+                        <div class="process-stage-inner">
+<img draggable="false" class="process-stage-img" src="AIGC/绥远方志/驻军篇/驻军篇.png" alt="驻军篇">
+                        <div class="process-stage-index">贰</div>
+                        <div class="process-stage-open-hint">点击查看流程</div>
+                        <div class="process-stage-content">
+                            <div class="process-stage-title-row">
+                                <h3 class="process-stage-title detail-song">驻军篇</h3>
+                                <span class="process-stage-arrow">→</span>
+                            </div>
+                            <p class="process-stage-desc detail-light">探讨如何通过加强管理与巩固统治来管理绥远，着重表现王昌在管理和防卫方面的军事策略。</p>
+                            <div class="process-stage-keywords detail-light">关键词：驻扎 · 防御 · 治理 · 秩序</div>
+                        </div>
+                        </div>
+                    </article>
+
+                    <article class="process-stage-card" data-process-title="融合篇" data-process-role="王昭君" data-process-copy="AIGC/绥远方志/融合篇/融合篇-1.png">
+                        <div class="process-stage-inner">
+<img draggable="false" class="process-stage-img" src="AIGC/绥远方志/融合篇/融合篇.png" alt="融合篇">
+                        <div class="process-stage-index">叁</div>
+                        <div class="process-stage-open-hint">点击查看流程</div>
+                        <div class="process-stage-content">
+                            <div class="process-stage-title-row">
+                                <h3 class="process-stage-title detail-song">融合篇</h3>
+                                <span class="process-stage-arrow">→</span>
+                            </div>
+                            <p class="process-stage-desc detail-light">走西口这一过程带来的南北人口流动和文化融合，促进草原与中原文化的深度交融。
+</p>
+                            <div class="process-stage-keywords detail-light">关键词：交流 · 融合 · 民俗 · 繁荣</div>
+                        </div>
+                        </div>
+                    </article>
+
+                    <article class="process-stage-card" data-process-title="建成篇" data-process-role="段履庄" data-process-copy="AIGC/绥远方志/建成篇/建成篇-1.png">
+                        <div class="process-stage-inner">
+<img draggable="false" class="process-stage-img" src="AIGC/绥远方志/建成篇/建成篇.png" alt="建成篇">
+                        <div class="process-stage-index">肆</div>
+                        <div class="process-stage-open-hint">点击查看流程</div>
+                        <div class="process-stage-content">
+                            <div class="process-stage-title-row">
+                                <h3 class="process-stage-title detail-song">建成篇</h3>
+                                <span class="process-stage-arrow">→</span>
+                            </div>
+                            <p class="process-stage-desc detail-light">探索国内经济转型及其对大盛魁的影响，描绘大盛魁的落幕与实业厂的兴办。</p>
+                            <div class="process-stage-keywords detail-light">关键词：建设 · 制度 · 成果 · 传承</div>
+                        </div>
+                        </div>
+                    </article>
+                </div>
+
+                <p id="process-summary-text" class="process-summary-text detail-light is-default-summary">
+                    <span class="process-summary-line">
+                        <span class="process-summary-mark" aria-hidden="true"></span>
+                        <span class="process-summary-line-text">本设计围绕四个篇章、一个展馆、四个角色及四个故事线展开，涵盖历史、文化与经济转型的深刻叙述。</span>
+                        <span class="process-summary-mark" aria-hidden="true"></span>
+                    </span>
+                    <span class="process-summary-line">
+                        <span class="process-summary-mark" aria-hidden="true"></span>
+                        <span class="process-summary-line-text">每个篇章通过场景展示角色的故事线，反映了草原丝路、军事、文化融合和经济变革的过程。</span>
+                        <span class="process-summary-mark" aria-hidden="true"></span>
+                    </span>
+                </p>
+
+                
+
+
+                <div id="process-inline-detail" class="process-inline-detail" aria-hidden="true">
+    <div class="process-inline-stack">
+        <div class="process-fusion-showcase process-inline-copy" id="process-inline-copy-card">
+            <button id="process-inline-close" class="process-inline-close" type="button" aria-label="关闭">×</button>
+
+            <!-- 其他篇章兜底用：只显示原来的 -1 大图 -->
+            <img draggable="false" id="process-inline-copy-img" class="process-fusion-simple-img" src="" alt="">
+
+            <!-- 左侧：融合篇介绍（整张文字层替换为图片） -->
+            <aside class="process-fusion-panel process-fusion-intro">
+                <div class="process-fusion-text-image-wrap" id="fusion-detail-text-card" aria-label="融合篇：王昭君文字卡片">
+                    <img draggable="false" id="fusion-detail-text-card-img" src="AIGC/绥远方志/融合篇/融合篇-7.png" alt="融合篇：王昭君文字卡片">
+                </div>
+
+                <!-- 已移除原「融合篇-6.png」前景图层，改为整张背景高斯模糊 -->
+            </aside>
+
+            <!-- 右上：场景详情图 -->
+            <section class="process-fusion-main">
+                <article class="process-fusion-panel process-fusion-img-card process-fusion-hero process-fusion-clickable" data-fusion-full-target="fusion-hero-img" data-fusion-full-title="主场景 · 走西口驼队">
+                    <div class="process-fusion-img-wrap">
+                        <img draggable="false" id="fusion-hero-img" src="" alt="">
+                    </div>
+                    <div class="process-fusion-caption">
+                        <strong id="fusion-hero-title">主场景 · 走西口驼队</strong>
+                        <span id="fusion-hero-desc">描绘迁徙队伍行进于黄土与山峦之间的历史场景。</span>
+                    </div>
+                </article>
+
+                <article class="process-fusion-panel process-fusion-img-card process-fusion-town process-fusion-clickable" data-fusion-full-target="fusion-town-img" data-fusion-full-title="副场景 · 城市集市">
+                    <div class="process-fusion-img-wrap">
+                        <img draggable="false" id="fusion-town-img" src="" alt="">
+                    </div>
+                    <div class="process-fusion-caption">
+                        <strong id="fusion-town-title">副场景 · 城市集市</strong>
+                        <span id="fusion-town-desc">丝路鼎盛，商贸集市，文化交流频繁。</span>
+                    </div>
+                </article>
+
+                <article class="process-fusion-panel process-fusion-img-card process-fusion-market process-fusion-clickable" data-fusion-full-target="fusion-market-img" data-fusion-full-title="副场景 · 市井聚落">
+                    <div class="process-fusion-img-wrap">
+                        <img draggable="false" id="fusion-market-img" src="" alt="">
+                    </div>
+                    <div class="process-fusion-caption">
+                        <strong id="fusion-market-title">副场景 · 市井聚落</strong>
+                        <span id="fusion-market-desc">市井繁荣，驿站林立，往来商旅络绎不绝。</span>
+                    </div>
+                </article>
+
+                <article class="process-fusion-panel process-fusion-img-card process-fusion-closeup process-fusion-clickable" data-fusion-full-target="fusion-closeup-img" data-fusion-full-title="细节展示 · 人物与驼运">
+                    <div class="process-fusion-img-wrap">
+                        <img draggable="false" id="fusion-closeup-img" src="" alt="">
+                    </div>
+                    <div class="process-fusion-caption">
+                        <strong id="fusion-closeup-title">细节展示 · 人物与驼运</strong>
+                        <span id="fusion-closeup-desc">人物服饰与驼运细节刻画，增强历史代入感。</span>
+                    </div>
+                </article>
+            </section>
+
+            <!-- 底部：角色设定 + 动作合成 -->
+            <section class="process-fusion-bottom">
+                <article class="process-fusion-panel process-fusion-img-card process-fusion-character process-fusion-clickable" data-fusion-full-target="fusion-character-img" data-fusion-full-title="角色设定 · 王昭君">
+                    <div class="process-fusion-img-wrap">
+                        <img draggable="false" id="fusion-character-img" src="" alt="">
+                    </div>
+                    <div class="process-fusion-caption">
+                        <strong id="fusion-character-title">角色设定 · 王昭君</strong>
+                        <span id="fusion-character-desc">从史料参考、生成过程到最终角色设定。</span>
+                    </div>
+                </article>
+
+                <article class="process-fusion-panel process-motion-card process-fusion-motion process-fusion-clickable" data-fusion-full-target="fusion-motion-img" data-fusion-full-title="动作设计与合成展示">
+                    <div class="process-motion-text detail-light">
+                        <h4 id="fusion-motion-heading">动作设计与合成展示</h4>
+                        <p id="fusion-motion-copy">
+                            结合角色设定进行动作设计，并通过 Viggle 合成动态效果。
+                        </p>
+                    </div>
+                    <div class="process-motion-preview">
+                        <img draggable="false" id="fusion-motion-img" src="" alt="">
+                    </div>
+                </article>
+            </section>
+        </div>
+    </div>
+</div>
+
+                <div id="fusion-image-lightbox" class="fusion-image-lightbox" aria-hidden="true">
+                    <div class="fusion-image-lightbox-card">
+                        <button id="fusion-image-lightbox-close" class="fusion-image-lightbox-close" type="button" aria-label="关闭">×</button>
+                        <div class="fusion-image-lightbox-media">
+                            <img draggable="false" id="fusion-image-lightbox-img" class="fusion-image-lightbox-img" src="" alt="">
+                            <img draggable="false" id="fusion-image-lightbox-img-extra" class="fusion-image-lightbox-img fusion-image-lightbox-img-extra" src="" alt="">
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+
+            <!-- 4. 硬件开发 -->
+            <section class="detail-section hardware328-section" style="padding-left: 0; padding-right: 0; border:none;">
+                <h2 class="section-title-gold detail-song text-3xl">硬件开发 <span>| HARDWARE DEVELOPMENT</span></h2>
+                <div class="hardware328">
+                    <section class="hardware328-poster">
+                        <article class="hardware328-copy">
+                            <p class="hardware328-kicker">WEARABLE ARCHIVE / 01</p>
+                            <h3 class="detail-song hardware332-title">
+                                <span class="hardware332-title-main">让绥远方志</span>
+                                <span class="hardware332-title-flow"><i>随身可戴</i><i>入耳可听</i><i>即时回应</i></span>
+                            </h3>
+                            <p class="detail-light">可穿戴设备不只是便携硬件，而是借由软件支持、数据交互与实时反馈改变观众的感知方式。本方案以 <span class="hardware328-em">Pico Neo 3</span> 为头显原型，将 <span class="hardware328-em">Qwen 2.5</span> 史志智能体、<span class="hardware328-em">ESP32-C3</span> 语音控制板与 <span class="hardware328-em">3D 打印</span> 外设整合为沉浸式导览终端。</p>
+                            <div class="hardware328-tags">
+                                <span>沉浸视听</span>
+                                <span>实时反馈</span>
+                                <span>Agent 记忆</span>
+                                <span>PCB 外设</span>
+                            </div>
+                        </article>
+                        <figure class="hardware328-photo hardware328-main">
+                            <img draggable="false" src="AIGC/绥远方志/硬件开发/final-prototype.jpeg" alt="Pico Neo 3 定制外设最终原型">
+                            <figcaption><span>FINAL PROTOTYPE</span><b>PICO NEO 3 × CUSTOM PERIPHERAL</b></figcaption>
+                        </figure>
+                    </section>
+
+                    
+
+                    <section class="hardware347-chain-line" aria-label="从语义到外设的导览链路">
+                        <div class="hardware347-chain-head">
+                            <p>DEVICE FLOW</p>
+                            <h4 class="detail-song">从语义到外设的导览链路</h4>
+                        </div>
+                        <ol>
+                            <li><span>01</span><b>方志记忆</b><em>Qwen 2.5 承接绥远方志语义与讲解策略，为导览问答提供语料根据。</em></li>
+                            <li><span>02</span><b>语音交互</b><em>用户提问被转成可处理的导览指令，回答再转为可听见的讲解声音。</em></li>
+                            <li><span>03</span><b>PCB 控制</b><em>ESP32-C3 连接按键、音频与外设反馈，把软件指令落到硬件行为。</em></li>
+                            <li><span>04</span><b>佩戴反馈</b><em>3D 打印外壳将内容带到观众身体侧，形成随身可听、即时回应的导览终端。</em></li>
+                        </ol>
+                    </section>
+
+                    <section class="hardware328-proof" data-dev417-block-switch data-dev417-active="hardware">
+                        <div class="dev417-card-stage" data-dev417-card-stage>
+                            <div class="dev417-card-panel is-active" data-dev417-card-panel="hardware">
+                        <figure class="hardware328-photo hardware328-circuit">
+                            <div class="hardware328-pair">
+                                <img draggable="false" src="AIGC/绥远方志/硬件开发/pcb-eda.png" alt="嘉立创 EDA 原理图">
+                                <div class="hardware328-pcb-stack" aria-label="PCB 正反面拼接">
+                                    <img draggable="false" src="AIGC/绥远方志/硬件开发/pcb-front.png" alt="PCB 正面布局">
+                                    <img draggable="false" src="AIGC/绥远方志/硬件开发/pcb-back.png" alt="PCB 背面布局">
+                                </div>
+                            </div>
+                            <figcaption><span>CIRCUIT</span><b>嘉立创 EDA 与 PCB 制作</b></figcaption>
+                        </figure>
+                        <figure class="hardware328-photo hardware328-shell">
+                            <div class="hardware328-shell-card" data-hardware328-shell>
+                                <article class="hardware328-shell-note">
+                                    <p class="hardware328-shell-kicker" data-shell-kicker>SKETCH</p>
+                                    <h4 class="detail-song" data-shell-title>草图先确定外设方向</h4>
+                                    <p data-shell-desc>以 Pico Neo 3 为头显原型，先在草图中推敲佩戴位置、导线走向与功能模块分布。</p>
+                                </article>
+                                <div class="hardware328-shell-stage">
+                                    <img class="is-active" data-shell-panel="sketch" draggable="false" src="AIGC/绥远方志/硬件开发/sketch.png" alt="头显外设草图">
+                                    <img data-shell-panel="industrial" data-shell-magnify draggable="false" src="AIGC/绥远方志/硬件开发/industrial-design.png" alt="头显外设工业设计图纸">
+                                    <div class="hardware328-model-carousel" data-shell-panel="model" aria-label="外壳建模轮播">
+                                        <img class="is-current" draggable="false" src="AIGC/绥远方志/硬件开发/modeling.png" alt="外壳结构建模一">
+                                        <img draggable="false" src="AIGC/绥远方志/硬件开发/modeling-02.png" alt="外壳结构建模二">
+                                        <img draggable="false" src="AIGC/绥远方志/硬件开发/modeling-03.png" alt="外壳结构建模三">
+                                    </div>
+                                </div>
+                                <div class="hardware328-magnifier" aria-hidden="true">
+                                    <img draggable="false" src="AIGC/绥远方志/硬件开发/industrial-design.png" alt="">
+                                </div>
+                                <div class="hardware328-shell-tabs" role="tablist" aria-label="外壳设计阶段切换">
+                                    <button class="is-active" type="button" role="tab" aria-selected="true" data-shell-tab="sketch" data-kicker="SKETCH" data-title="草图先确定外设方向" data-desc="以 Pico Neo 3 为头显原型，先在草图中推敲佩戴位置、导线走向与功能模块分布。">
+                                        <span>草图</span><small>形态推演</small>
+                                    </button>
+                                    <button type="button" role="tab" aria-selected="false" data-shell-tab="industrial" data-kicker="INDUSTRIAL" data-title="设计图纸确认佩戴结构" data-desc="将草图里的外设位置转译成可制造的尺寸关系，确认扬声器、电池、接口与固定结构。">
+                                        <span>设计图纸</span><small>尺寸确认</small>
+                                    </button>
+                                    <button type="button" role="tab" aria-selected="false" data-shell-tab="model" data-kicker="MODEL" data-title="建模验证外壳包覆" data-desc="根据工业图纸进入 3D 建模，进一步检查包覆厚度、卡扣位置与打印后的装配空间。">
+                                        <span>建模</span><small>结构验证</small>
+                                    </button>
+                                </div>
+                            </div>
+                            <figcaption><span>SHELL</span><b>草图、设计图纸与建模</b></figcaption>
+                        </figure>
+                        <figure class="hardware328-photo hardware328-build">
+                            <div class="hardware328-build-single">
+                                <img class="is-base" draggable="false" src="AIGC/绥远方志/硬件开发/soldering-01.jpeg" alt="电路焊接与测试一">
+                                <img class="is-hover" draggable="false" src="AIGC/绥远方志/硬件开发/soldering-02.jpeg" alt="电路焊接与测试二">
+                            </div>
+                            <figcaption><span>BUILD</span><b>3D 打印、焊接与组装</b></figcaption>
+                        </figure>
+                            </div>
+                            <div class="dev417-card-panel" data-dev417-card-panel="software">
+                                <div class="software347-card">
+                                    <div class="software347-media software347-media-plan">
+                                        <img draggable="false" src="AIGC/绥远方志/硬件开发/agent-plan.png" alt="Agent 方案规划与模型选型">
+                                    </div>
+                                    <div class="software347-caption">
+                                        <span>AGENT PLAN</span>
+                                        <b>语义规划与模型选型</b>
+                                    </div>
+                                </div>
+                                <div class="software347-card">
+                                    <div class="software347-media software347-media-arch">
+                                        <img draggable="false" src="AIGC/绥远方志/硬件开发/agent-architecture.png" alt="Agent 能力架构">
+                                    </div>
+                                    <div class="software347-caption">
+                                        <span>MEMORY + TOOLS</span>
+                                        <b>Agent 能力架构</b>
+                                    </div>
+                                </div>
+                                <div class="software347-card">
+                                    <div class="software347-media software347-media-duo">
+                                        <img draggable="false" src="AIGC/绥远方志/硬件开发/agent-role-config.png" alt="角色配置">
+                                        <img draggable="false" src="AIGC/绥远方志/硬件开发/agent-dialogue.png" alt="对话测试">
+                                    </div>
+                                    <div class="software347-caption">
+                                        <span>ROLE + DIALOGUE</span>
+                                        <b>角色配置与对话测试</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    
+
+                    <section class="hardware347-process-line dev417-flow-switch is-hardware" data-dev417-flow-switch data-dev417-active="hardware" aria-label="软硬件开发顺序切换">
+                        <div class="hardware347-process-head dev417-flow-head">
+                            <p data-dev417-kicker>HARDWARE FLOW</p>
+                            <h4 class="detail-song" data-dev417-title>硬件开发顺序</h4>
+                            <div class="dev417-flow-tabs" role="tablist" aria-label="开发顺序切换">
+                                <button class="is-active" type="button" role="tab" aria-selected="true" data-dev417-tab="hardware">硬件顺序</button>
+                                <button type="button" role="tab" aria-selected="false" data-dev417-tab="software">软件顺序</button>
+                            </div>
+                        </div>
+                        <div class="dev417-flow-stage">
+                            <ol class="dev417-flow-panel is-active" data-dev417-panel="hardware">
+                                <li><span>01</span><b>电路与 PCB</b><em>先用嘉立创 EDA 梳理 ESP32-C3、音频、按键与供电关系，再检查 PCB 正反面布局，为语音控制板下单打样。</em></li>
+                                <li><span>02</span><b>草图到结构</b><em>以 Pico Neo 3 为头显原型，先推敲外设位置与导线走向，再用工业图纸校准尺寸、接口与佩戴结构。</em></li>
+                                <li><span>03</span><b>打印与组装</b><em>元件到货后完成焊接测试，并通过 3D 打印外壳把控制板、导线与头显整合成可穿戴原型。</em></li>
+                            </ol>
+                            <ol class="dev417-flow-panel" data-dev417-panel="software">
+                                <li><span>01</span><b>语料整理</b><em>将方志文本、角色设定与讲解目标整理成可检索的史志素材。</em></li>
+                                <li><span>02</span><b>模型接入</b><em>以 Qwen 2.5 为主，对比多模型响应延迟、回答稳定性与讲解效果。</em></li>
+                                <li><span>03</span><b>角色测试</b><em>配置记忆、语气、音色与对话样本，让导览回答更贴近现场。</em></li>
+                            </ol>
+                        </div>
+                    </section>
+
+                    
+                    </section>
+                </div>
+            </section>
+
+            <!-- 5. 方案展示 -->
+            <section class="detail-section presentation-showcase-566" style="padding-left: 0; padding-right: 0; border:none;">
+                <h2 class="section-title-gold detail-song text-3xl">方案展示 <span>| PRESENTATION</span></h2>
+                <p class="presentation-showcase-566__intro">
+                    方案最终形成一个面向展览场景的沉浸式史志导览系统，观众通过可穿戴设备进入绥远城，在四个历史篇章中触发场景、角色与 Agent 讲解，从文献阅读转化为可感知、可交互的地方记忆体验。
+                </p>
+
+                <div class="presentation-showcase-566__grid">
+                    <article class="presentation-showcase-566__card presentation-showcase-566__card--space">
+                        <div class="presentation-showcase-566__eyebrow">EXHIBITION BOOTH</div>
+                        <h3>展览展位</h3>
+                        <figure class="presentation-showcase-566__media">
+                            <img src="AIGC/绥远方志/研究链路/展览展示空间示意图.png" alt="绥远方志展览展示空间示意图">
+                        </figure>
+                        <p>展览动线 · 场景触发 · Agent 导览</p>
+                    </article>
+
+                    <article class="presentation-showcase-566__card presentation-showcase-566__card--exhibition" role="button" tabindex="0" aria-expanded="false">
+                        <div class="presentation-showcase-566__eyebrow">GRADUATION EXHIBITION</div>
+                        <h3>线下展览</h3>
+                        <figure class="presentation-showcase-566__media">
+                            <img class="presentation-showcase-566__default-photo" src="AIGC/创意内蒙古-古田路9号-2025年毕业设计展览/线下展示.jpg" alt="创意内蒙古古田路9号毕业设计展览现场">
+                            <div class="presentation-showcase-566__hover-collage" data-target-cursor-scope aria-hidden="true">
+                                <div class="presentation-showcase-566__collage-stack">
+                                    <img src="AIGC/创意内蒙古-古田路9号-2025年毕业设计展览/裁剪1.jpg" alt="">
+                                    <img src="AIGC/创意内蒙古-古田路9号-2025年毕业设计展览/裁剪2.jpg" alt="">
+                                    <img src="AIGC/绥远方志/研究链路/mmexport1749268508432.jpg" alt="">
+                                </div>
+
+                                <div class="presentation-showcase-566__collage-preview" aria-hidden="true">
+                                    <img class="presentation-showcase-566__collage-preview-img" src="" alt="">
+                                    <video class="presentation-showcase-566__collage-preview-video" muted loop playsinline preload="metadata" hidden></video>
+                                </div>
+
+                                <div class="presentation-showcase-566__collage-fill">
+                                    <img class="presentation-showcase-566__collage-thumb" src="AIGC/绥远方志/研究链路/retouch_2025060700322678.jpg" data-preview-src="AIGC/绥远方志/研究链路/retouch_2025060700322678.jpg" alt="">
+                                    <img class="presentation-showcase-566__collage-thumb" src="AIGC/绥远方志/研究链路/MVIMG_20250607_115354.jpg" data-preview-src="AIGC/绥远方志/研究链路/wx_camera_1749268391992.mp4" data-preview-layout="portrait" alt="">
+                                    <img class="presentation-showcase-566__collage-thumb" src="AIGC/绥远方志/研究链路/wx_camera_1749142108662.jpg" data-preview-src="AIGC/绥远方志/研究链路/wx_camera_1749142108662.jpg" alt="">
+                                    <img class="presentation-showcase-566__collage-thumb" src="AIGC/绥远方志/研究链路/wx_camera_1749286618645.jpg" data-preview-src="AIGC/绥远方志/研究链路/wx_camera_1749285861913.mp4" alt="">
+                                    <img class="presentation-showcase-566__collage-thumb" src="AIGC/绥远方志/研究链路/MVIMG_20250607_115336.jpg" data-preview-src="AIGC/绥远方志/研究链路/MVIMG_20250607_115336.jpg" alt="">
+                                    <img class="presentation-showcase-566__collage-thumb" src="AIGC/绥远方志/研究链路/wx_camera_1749872805918.jpg" data-preview-src="AIGC/绥远方志/研究链路/wx_camera_1749872805918.jpg" alt="">
+                                </div>
+                            </div>
+                        </figure>
+                        <p>创意内蒙古 · 古田路9号 · 2025毕业设计展览</p>
+                    </article>
+
+                    <article class="presentation-showcase-566__card presentation-showcase-566__card--video">
+                        <div class="presentation-showcase-566__eyebrow">VIDEO DEMO</div>
+                        <h3>视频演示</h3>
+                        <figure class="presentation-showcase-566__media">
+                            <button class="presentation-showcase-566__video-poster" type="button" aria-label="播放《绥远方志：呼和浩特史体验设计》">
+                                <img src="AIGC/绥远方志/研究链路/bilibili-video-cover.jpg" alt="《绥远方志：呼和浩特史体验设计》视频封面">
+                                <span class="presentation-showcase-566__video-play" aria-hidden="true"></span>
+                            </button>
+                            <iframe data-src="https://player.bilibili.com/player.html?isOutside=true&amp;bvid=BV1VduYz4ES2&amp;page=1&amp;autoplay=1" title="绥远方志视频演示" allow="autoplay; fullscreen" allowfullscreen hidden></iframe>
+                        </figure>
+                        <p>站内播放 · BILIBILI DEMO</p>
+                    </article>
+                </div>
+
+                <div class="presentation-showcase-566__loop">
+                    体验闭环：资料采集 / 场景复原 / 分镜设计 / Agent导览 / 可穿戴反馈
+                </div>
+                <div class="presentation-showcase-566__registration">登记号：黔作登字-2025-F-01903638</div>
+            </section>
+        </div>
+    </div>
+
+    <!-- AIGC 矿山*生态子界面 -->
+    <div id="mine-eco-detail" class="mine-eco" aria-label="矿山*生态设计项目详情">
+        <nav class="mine-eco__nav" aria-label="项目详情导航">
+            <button class="mine-eco__back cursor-target" type="button" onclick="closeMineProject()">← 返回 AIGC</button>
+            <span class="mine-eco__index">AIGC / 02</span>
+        </nav>
+        <header class="mine-eco__hero">
+            <div class="mine-eco__hero-media"><img src="AIGC/矿山生态.jpg" alt="矿山*生态项目主视觉"><div class="mine-eco__contours" aria-hidden="true"></div></div>
+            <div class="mine-eco__hero-copy mine-eco__reveal">
+                <div class="mine-eco__kicker">Ecological reconstruction · UE5</div>
+                <h1 class="mine-eco__title"><span id="mine-metal-root" aria-label="矿山*生态"><span class="mine-title-fallback">矿山*生态</span></span><span id="mine-stroke-root" aria-label="MINING ECOLOGY RESTORATION"></span></h1>
+                <p class="mine-eco__lede">该作品旨在使用多种 Ai 工具搭建便捷的场景演示，例如其中使用到了 AI 图像生成工具，语言大模型生成关键词，ShaderMap 生成相关着色器素材，SUNO 生成背景音乐，以及模型搭建工具和游戏引擎进行整合输出。</p>
+                <div class="mine-eco__meta"><div><b>TYPE</b><span>生态#场景设计</span></div><div><b>PIPELINE</b><span>Depth AI → UE5</span></div><div><b>OUTPUT</b><span>矿山场景实机</span></div><div class="mine-eco__year"><b>YEAR</b><span>2023</span></div></div>
+            </div>
+        </header>
+        <main>
+            <section class="mine-eco__section mine-eco__workflow-section mine-eco__reveal">
+                <div class="mine-eco__section-head"><span class="mine-eco__num">01 / WORKFLOW</span><h2>多工具协同的<br>场景制作流程</h2><p class="mine-eco__section-copy">先用文本与参考图确定矿山场景方向，通过 AI 生成场景图，再由 Depth AI 提取深度并生成基础模型；随后在 Blender、ShaderMap 与 UE5 中完成资产整理、材质、灯光、蓝图和声音整合，输出可运行的实机演示。</p></div>
+                <div class="mine-eco__workflow">
+                    <div class="mine-eco__workflow-step"><b>01</b><span>TEXT / IMG</span><strong>关键词与参考图</strong></div>
+                    <div class="mine-eco__workflow-step"><b>02</b><span>DEPTH AI</span><strong>深度采样与建模</strong></div>
+                    <div class="mine-eco__workflow-step"><b>03</b><span>ASSET</span><strong>模型与着色器整理</strong></div>
+                    <div class="mine-eco__workflow-step"><b>04</b><span>UE5</span><strong>场景整合与实机输出</strong></div>
+                </div>
+                <div class="mine-eco__tool-strip" aria-label="项目使用工具"><div class="mine-tools-track"><ul class="mine-tools-list"><li class="mine-tools-item"><a class="cursor-target" href="https://www.blender.org/" target="_blank" rel="noopener noreferrer" aria-label="Blender" title="Blender"><img src="AIGC/矿山生态/ui/Blender.png" alt="Blender" draggable="false"></a></li><li class="mine-tools-item"><a class="cursor-target" href="https://shadermap.com/home/" target="_blank" rel="noopener noreferrer" aria-label="ShaderMap" title="ShaderMap"><img src="AIGC/矿山生态/ui/ShaderMap.png" alt="ShaderMap" draggable="false"></a></li><li class="mine-tools-item"><a class="cursor-target" href="https://www.unrealengine.com/unreal-engine-5?lang=zh-CN" target="_blank" rel="noopener noreferrer" aria-label="Ue5" title="Ue5"><img src="AIGC/矿山生态/ui/Ue5.png" alt="Ue5" draggable="false"></a></li><li class="mine-tools-item"><a class="cursor-target" href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" target="_blank" rel="noopener noreferrer" aria-label="Stable Diffusior" title="Stable Diffusior"><img src="AIGC/矿山生态/ui/Stable Diffusior.png" alt="Stable Diffusior" draggable="false"></a></li><li class="mine-tools-item"><a class="cursor-target" href="https://upscayl.org/" target="_blank" rel="noopener noreferrer" aria-label="Upscayl" title="Upscayl"><img src="AIGC/矿山生态/ui/Upscayl.png" alt="Upscayl" draggable="false"></a></li><li class="mine-tools-item"><a class="cursor-target" href="https://www.suno.ai" target="_blank" rel="noopener noreferrer" aria-label="SUNO" title="SUNO"><img src="AIGC/矿山生态/ui/SUNO.png" alt="SUNO" draggable="false"></a></li></ul></div></div>
+            </section>          <section class="mine-eco__section mine-eco__realtime-section mine-eco__reveal">
+                <div class="mine-eco__section-head"><span class="mine-eco__num">02 / REALTIME</span><h2>实机场景展示</h2></div>
+                <div class="mine-eco__artwork-board">
+                    <div class="mine-eco__mine-gallery" aria-label="矿山生态数字场景展示">
+                        <figure class="mine-eco__mine-shot mine-eco__mine-shot--hero"><img src="AIGC/矿山生态/矿山/bg.png" alt="矿山生态 UE5 场景主视图"></figure>
+                        <figure class="mine-eco__mine-shot mine-eco__mine-shot--side"><img src="AIGC/矿山生态/矿山/3.png" alt="矿山生态 UE5 场景视图二"></figure>
+                        <figure class="mine-eco__mine-shot"><img src="AIGC/矿山生态/矿山/1.png" alt="矿山生态 UE5 场景视图三"></figure>
+                        <figure class="mine-eco__mine-shot"><img src="AIGC/矿山生态/矿山/2.png" alt="矿山生态 UE5 场景视图四"></figure>
+                        <figure class="mine-eco__mine-shot"><img src="AIGC/矿山生态/矿山/bgg.png" alt="矿山生态 UE5 场景视图五"></figure>
+                    </div>
+                </div>
+            </section>
+                        <section class="mine-eco__section mine-eco__process-section mine-eco__reveal">
+                <div class="mine-eco__section-head"><span class="mine-eco__num">03 / PROCESS</span><h2>创作步骤</h2></div>
+                <div id="mine-bounce-root" aria-label="矿山生态创作过程"></div>
+            </section>
+            <section class="mine-eco__section mine-eco__tutorial mine-eco__reveal">
+                <div class="mine-eco__section-head"><span class="mine-eco__num">04 / TUTORIAL</span><h2>实机演示与教程</h2><p class="mine-eco__section-copy">从场景图和深度信息出发，演示资产处理、模型搭建与 UE5 场景整合的具体步骤。</p></div>
+                <div class="mine-eco__video-shell">
+                    <button type="button" class="mine-video-cover" aria-label="播放实机演示与教程"><img src="AIGC/矿山生态/矿山/bg.png" alt="矿山场景教程封面"><span class="mine-video-cover__copy"><b>▶</b><strong>实机演示与教程</strong><span>点击播放 · UE5 场景制作</span></span></button>
+                    <iframe hidden data-src="https://player.bilibili.com/player.html?isOutside=true&amp;bvid=BV1gf8TerEUc&amp;page=1&amp;autoplay=1&amp;poster=1" title="基于AI深度图像生成的场景建模的UE5实机演示教程" allow="fullscreen; autoplay" allowfullscreen loading="lazy"></iframe>
+                    <a href="https://www.bilibili.com/video/BV1gf8TerEUc/" target="_blank" rel="noopener noreferrer">在 Bilibili 打开 ↗</a>
+                </div>
+                <div class="mine-video-links"><button type="button" data-mine-video-reset hidden>返回视频封面</button></div>
+            </section>
+         <section class="mine-eco__outro mine-eco__reveal"><small>FROM IMAGE TO REALTIME</small><h2><span>从一张生成图，</span><span>到可运行的 <i>UE5 实机演示。</i></span></h2><button type="button" onclick="closeMineProject()">返回作品列表</button></section>
+        </main>
+        <div class="mine-eco__lightbox" role="dialog" aria-modal="true" aria-label="场景大图预览"><img alt=""></div>
+    </div>
+
+    <!-- Tooltip 容器 -->
+    <div id="tooltip">VIEW</div>
+
+    <script src="js/page-core-692.js?v=20260818-externalized"></script>
+
+<!-- Fix: 隐藏绥远方志详情页右侧滚动条/滚动槽，保留竖向滚轮滚动 -->
+<link rel="stylesheet" href="css/inline-566/style-35.css?v=20260818-externalized">
+
+
+<!-- Fix: 放大图卡片 x 使用外层卡片组 x 的 hover 状态作为默认，外层默认状态作为 hover -->
+<link rel="stylesheet" href="css/inline-566/style-36.css?v=20260818-externalized">
+
+
+<!-- Fix: 融合篇合并「城市集市」与「人物与驼运」为「草原丝路鼎盛时期的运输场景」卡 -->
+<link rel="stylesheet" href="css/inline-566/style-37.css?v=20260818-externalized">
+
+
+<!-- Fix: 建成篇图片组更新，合并「实业厂群」卡并隐藏原细节展示卡 -->
+<link rel="stylesheet" href="css/inline-566/style-38.css?v=20260818-externalized">
+
+
+<!-- Wide Carousel Modal: 方案3 横向缩略图条 -->
+<div id="wide-carousel-overlay" class="wide-carousel-overlay" aria-hidden="true">
+    <div class="wide-carousel-backdrop" data-wide-close></div>
+
+    <section class="wide-carousel-panel" role="dialog" aria-modal="true" aria-label="实业厂群图片展示">
+        <button class="wide-carousel-close" type="button" aria-label="关闭" data-wide-close>×</button>
+        <div class="wide-carousel-bg" id="wide-carousel-bg"></div>
+
+        <div class="wide-carousel-stage">
+            <div class="wide-carousel-titleplate">
+                <span class="wide-carousel-chapter" id="wide-carousel-chapter">建成篇</span>
+                <strong id="wide-carousel-title">副场景 · 实业厂群</strong>
+                <small id="wide-carousel-desc">展示草原丝路的影响力以及实业厂的兴办。</small>
+            </div>
+
+            <button class="wide-carousel-nav wide-carousel-prev" type="button" aria-label="上一张">‹</button>
+            <div class="wide-carousel-main-wrap">
+                <img id="wide-carousel-main-img" class="wide-carousel-main-img" src="" alt="">
+            </div>
+            <button class="wide-carousel-nav wide-carousel-next" type="button" aria-label="下一张">›</button>
+        </div>
+
+        <div class="wide-carousel-thumbs-shell">
+            <button class="wide-carousel-thumb-arrow wide-carousel-thumb-prev" type="button" aria-label="缩略图向左">‹</button>
+            <div class="wide-carousel-thumbs" id="wide-carousel-thumbs"></div>
+            <button class="wide-carousel-thumb-arrow wide-carousel-thumb-next" type="button" aria-label="缩略图向右">›</button>
+        </div>
+
+        <div class="wide-carousel-footer">
+            <span class="wide-carousel-brand">绥远方志</span>
+            <span class="wide-carousel-dot">|</span>
+            <span>建成篇</span>
+            <span class="wide-carousel-dot">·</span>
+            <span id="wide-carousel-counter">01 / 10</span>
+        </div>
+    </section>
+</div>
+
+
+<!-- Wide Carousel Modal Script: 方案3 横向缩略图条 -->
+<script src="js/inline-566/script-02.js?v=20260818-externalized"></script>
+
+<script id="industry-scheme3-v103-footer-center-compact-logic" src="js/inline-566/script-03.js?v=20260818-externalized"></script>
+
+
+<script id="industry-scheme3-v104-restore-stage-card-clicks" src="js/inline-566/script-04.js?v=20260818-externalized"></script>
+
+<script id="home-bg12-video-real-pingpong-file-v150" src="js/inline-566/script-05.js?v=20260818-externalized"></script>
+
+    <script src="js/anime.umd.min.js"></script>
+    <script src="js/inline-566/script-06.js?v=20260818-externalized"></script>
+    <script src="js/inline-566/script-07.js?v=20260818-externalized"></script>
+    <link rel="stylesheet" href="css/hardware-system-566.css?v=20260818-externalized-final">
+    <link rel="stylesheet" href="css/home-video-fit-396.css?v=20260616-mask-minus-10px">
+    <link rel="stylesheet" href="css/home-border-glow-595.css?v=20260825-stronger-idle-gaussian-frame">
+    <link rel="stylesheet" href="css/target-cursor-576.css?v=20260824-visible-blurred-fill">
+    <link rel="stylesheet" href="css/profile-logo-loop-415.css?v=20260619-profile-logoloop-no-home-flash">
+    <link rel="stylesheet" href="css/profile-info-html-415.css?v=20260620-profile-text-no-home-flash">
+    <link rel="stylesheet" href="css/profile-depth-684.css?v=20260829-profile-ready-gate">
+    <link rel="stylesheet" href="css/mine-react-bits-735.css">
+    <link rel="stylesheet" href="css/mine-eco-685.css?v=20260905-react-bits-effects">
+    <script src="js/home-font-overlays-599.js?v=20260825-home-entry-no-forced-layout" defer></script>
+    <script src="js/home-fold-text-602.js?v=20260826-fold-text-no-panels" defer></script>
+    <script src="js/anime-effects-601.js?v=20260826-fold-text-delegate" defer></script>
+    <script src="js/suiyuan-352.js" defer></script>
+    <script src="js/dev-flow-switcher-420.js?v=20260621-flow-switcher" defer></script>
+    <script src="js/target-cursor-730.js?v=20260824-card-scope" defer></script>
+    <script src="js/profile-logo-loop-415.js?v=20260619-profile-logoloop-no-home-flash" defer></script>
+    <script src="js/profile-depth-698.js?v=20260914-particle-palettes" defer></script>
+    <script src="js/mine-eco-683.js?v=20260905-react-bits-effects" defer></script>
+    <script src="js/home-2026.js" defer></script>
+    <script src="js/inline-566/script-08.js?v=20260818-externalized"></script>
+    <script src="js/gridscan-home/gridscan-loader-599.js?v=20260825-idle-load" defer></script>
+    <script src="js/home-border-glow-356.js" defer></script>
+
+<script id="restore-bg13-img-after-clean" src="js/inline-566/script-09.js?v=20260818-externalized"></script>
+
+    <div id="bg11-cursor-date" aria-hidden="true"></div>
+
+<script src="js/inline-566/script-10.js?v=20260818-externalized"></script>
+
+
+
+<script src="js/inline-566/script-11.js?v=20260818-externalized"></script>
+
+
+<script src="js/inline-566/script-12.js?v=20260818-externalized"></script>
+
+
+<script src="js/inline-566/script-13.js?v=20260818-externalized"></script>
+
+
+<link rel="stylesheet" href="css/inline-566/style-39.css?v=20260818-externalized">
+
+<script src="js/inline-566/script-14.js?v=20260818-externalized"></script>
+
+
+<script src="js/inline-566/script-15.js?v=20260818-externalized"></script>
+
+<script src="js/research-chain-580.js?v=20260825-video-poster-state" defer></script>
+<script src="js/hybrid-navigation-705.js?v=20260825-rounded-card-no-elastic-boundary" defer></script>
+<link rel="stylesheet" href="css/inline-566/style-40.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-41.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-42.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-43.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-44.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-45.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-46.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-47.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-48.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-49.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-50.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-51.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-52.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-53.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-54.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-55.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-56.css?v=20260818-externalized">
+<link rel="stylesheet" href="css/inline-566/style-57.css?v=20260818-externalized">
+<div id="mine-react-bits-root"></div>
+<script src="js/mine-react-bits-683.js" defer></script>
+<section id="weiyuan-detail" class="weiyuan" role="dialog" aria-modal="true" aria-label="微元灵溯作品详情" hidden>
+<div class="wy-back-control"><button data-wy-close>← 返回 AIGC</button></div><div id="wy-glitch-root" aria-hidden="true"></div><div class="wy-background-spirits" aria-hidden="true"><img src="AIGC/微元灵溯/1/1.png" alt=""></div><div class="wy-year-watermark" aria-hidden="true">2024</div>
+<div class="wy-hero"><div class="wy-hero-copy"><p class="wy-eyebrow">UNITY · VR · INTERACTIVE STORYTELLING</p><h1 class="wy-accessible-title">微元灵溯</h1><h2 class="wy-hero-tagline">与精灵相遇，<br>在探索中<br>认识维生素。</h2><p class="wy-intro">走进营养元素的奇幻森林，与六位维生素精灵相遇。<br>让看不见的知识，成为可探索、可互动的体验。</p><a class="wy-pill" href="#wy-spirits">认识森林里的精灵 <span>↗</span></a><div class="wy-meta"><span>PROJECT TYPE<b>交互游戏 · 艺术可视化</b></span><span>ENGINE<b>Unity</b></span><span>THEME<b><button class="wy-term" type="button" data-wy-hunger aria-haspopup="dialog">隐性饥饿<span aria-hidden="true">↗</span></button> · 营养认知</b></span><span class="wy-year-meta">DESIGNED IN<b>2024</b></span></div></div><div class="wy-hero-art"><img class="wy-hero-emblem" src="AIGC/微元灵溯/素材/微元灵溯LOGO.png" alt="微元灵溯"><div class="wy-orbit"></div><div class="wy-forest-frame"><img class="wy-forest" src="AIGC/微元灵溯/1/2.png" alt="微元灵溯的森林与石板小径"></div><span class="wy-stamp">A LITTLE WORLD<br>OF VITAMINS ✳</span></div><div class="wy-scroll">SCROLL TO EXPLORE ↓</div></div>
+<main class="wy-main"><section id="wy-concept" class="wy-section"><div class="wy-section-head"><p class="wy-eyebrow">01 / CONCEPT</p><h2>从看不见的需求，<br>走向可感知的世界。</h2></div><div class="wy-concept"><p>本项目旨在利用虚拟现实（VR）技术，构建一个包含丰富微量元素的虚拟世界，让用户通过游戏的方式进行探索，直观感受微量元素在人体内的存在与价值，从而提高大众对微量元素重要性的认识。</p><p>要解决“<button class="wy-term" type="button" data-wy-hunger aria-haspopup="dialog">隐性饥饿<span aria-hidden="true">↗</span></button>”，主要在于解决好膳食平衡，养成良好的健康饮食习惯；以广泛的社会关注，促进知识普及和行为改变。</p></div>
+<div class="wy-brainstorm"><div class="wy-brain-title"><p class="wy-eyebrow">THE STARTING POINT</p><h3>从一个问题，<br>延伸出整个世界。</h3><p>关于隐性饥饿的头脑风暴</p></div><div class="wy-wordcloud" aria-label="选题头脑风暴"><span class="wy-word-small">微量元素</span><span>营养平衡</span><span class="wy-word-small">身体的微小需求</span><strong>零饥饿</strong><span class="wy-word-large">维生素</span><button class="wy-term" type="button" data-wy-hunger aria-haspopup="dialog">隐性饥饿<span aria-hidden="true">↗</span></button><span>膳食多样</span><span class="wy-word-small">健康认知</span><span class="wy-word-large">探索与发现</span><span>知识可视化</span><span class="wy-word-small">让科普更有趣</span><span>游戏化体验</span></div></div>
+<div class="wy-research"><div><p class="wy-eyebrow">RESEARCH → DESIGN</p><h3>从资料调研，<br>到游戏化表达。</h3><p>将营养认知、用户调研与设计目标连接起来，让角色陪伴、场景探索和卡片收集成为知识的入口。</p></div><button class="wy-picture wy-contain" data-wy-image="AIGC/微元灵溯/素材/资料调研.jpg" data-caption="资料调研与设计方向" aria-label="放大：资料调研与设计方向"><img src="AIGC/微元灵溯/素材/资料调研.jpg" alt="资料调研与设计方向" loading="lazy"><span>资料调研与设计方向<b>↗</b></span></button></div></section>
+<section id="wy-spirits" class="wy-section"><div class="wy-section-head"><p class="wy-eyebrow">02 / CHARACTERS</p><h2>轻轻靠近，<br>听一位精灵的自我介绍。</h2><p>六种色彩，六种个性。悬浮或点击精灵，了解维生素的作用、缺乏影响与日常食物来源。</p></div><div id="wy-accordion-root"></div></section>
+<section class="wy-section" id="wy-journey"><div class="wy-section-head"><p class="wy-eyebrow">03 / EXPERIENCE</p><h2>每一次互动，<br>都是一次新的发现。</h2><p>进入森林、寻找精灵、完成任务，再将探索化成一张张可收藏的知识卡片。</p></div><div class="wy-stage-list"><span>01 进入世界</span><i>→</i><span>02 相遇与对话</span><i>→</i><span>03 任务与收集</span><i>→</i><span>04 探索与回顾</span></div><details class="wy-flow-details"><summary class="cursor-target" aria-controls="wy-expanded-flow">查看详细交互流程 <span>＋</span></summary><div><div class="wy-subhead" id="wy-expanded-flow"><p class="wy-eyebrow">INTERACTION LOGIC</p><h3>把探索串成完整的体验。</h3></div><button class="wy-picture wy-contain" data-wy-image="AIGC/微元灵溯/素材/交互流程.png" data-caption="交互流程 · 从场景进入到任务收集" aria-label="放大：交互流程 · 从场景进入到任务收集"><img src="AIGC/微元灵溯/素材/交互流程.png" alt="交互流程 · 从场景进入到任务收集" loading="lazy"><span>交互流程 · 从场景进入到任务收集<b>↗</b></span></button></div></details><div class="wy-story"><div class="wy-story-main"><img src="AIGC/微元灵溯/素材/交互展示1.png" alt="场景导览" loading="lazy"></div><div class="wy-story-caption"><div><p class="wy-eyebrow" id="wy-story-count">01 / 13</p><h3 id="wy-story-title">场景导览</h3></div><div class="wy-story-controls"><button data-story-prev aria-label="上一张交互展示">←</button><button data-story-next aria-label="下一张交互展示">→</button></div></div><div class="wy-story-thumbs" aria-label="选择交互展示"><button data-story-index="0" data-title="场景导览" aria-label="01 场景导览" aria-pressed="true"><img src="AIGC/微元灵溯/素材/交互展示1.png" alt="场景导览" loading="lazy"><span>01</span></button><button data-story-index="1" data-title="与维生素 A 精灵相遇" aria-label="02 与维生素 A 精灵相遇" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示2.png" alt="与维生素 A 精灵相遇" loading="lazy"><span>02</span></button><button data-story-index="2" data-title="能量任务中的维生素 B 精灵" aria-label="03 能量任务中的维生素 B 精灵" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示3.png" alt="能量任务中的维生素 B 精灵" loading="lazy"><span>03</span></button><button data-story-index="3" data-title="解锁维生素 A 卡片" aria-label="04 解锁维生素 A 卡片" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示4.png" alt="解锁维生素 A 卡片" loading="lazy"><span>04</span></button><button data-story-index="4" data-title="解锁维生素 C 卡片" aria-label="05 解锁维生素 C 卡片" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示5.png" alt="解锁维生素 C 卡片" loading="lazy"><span>05</span></button><button data-story-index="5" data-title="解锁维生素 D 卡片" aria-label="06 解锁维生素 D 卡片" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示6.png" alt="解锁维生素 D 卡片" loading="lazy"><span>06</span></button><button data-story-index="6" data-title="解锁维生素 K 卡片" aria-label="07 解锁维生素 K 卡片" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示7.png" alt="解锁维生素 K 卡片" loading="lazy"><span>07</span></button><button data-story-index="7" data-title="解锁维生素 E 卡片" aria-label="08 解锁维生素 E 卡片" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示8.png" alt="解锁维生素 E 卡片" loading="lazy"><span>08</span></button><button data-story-index="8" data-title="完成任务的反馈" aria-label="09 完成任务的反馈" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示9.png" alt="完成任务的反馈" loading="lazy"><span>09</span></button><button data-story-index="9" data-title="选择继续探索" aria-label="10 选择继续探索" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示10.png" alt="选择继续探索" loading="lazy"><span>10</span></button><button data-story-index="10" data-title="回顾已收集的信息" aria-label="11 回顾已收集的信息" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示11.png" alt="回顾已收集的信息" loading="lazy"><span>11</span></button><button data-story-index="11" data-title="沿森林小径继续前行" aria-label="12 沿森林小径继续前行" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示12.png" alt="沿森林小径继续前行" loading="lazy"><span>12</span></button><button data-story-index="12" data-title="探索地图与世界全貌" aria-label="13 探索地图与世界全貌" aria-pressed="false"><img src="AIGC/微元灵溯/素材/交互展示13.png" alt="探索地图与世界全貌" loading="lazy"><span>13</span></button></div></div><div class="wy-making"><div class="wy-subhead"><p class="wy-eyebrow">BEHIND THE SCENES</p><h3>从二维形象，到三维互动。</h3></div><div class="wy-making-grid"><button class="wy-picture " data-wy-image="AIGC/微元灵溯/素材/建模资产1.png" data-caption="角色建模 · 从设定走向立体" aria-label="放大：角色建模 · 从设定走向立体"><img src="AIGC/微元灵溯/素材/建模资产1.png" alt="角色建模 · 从设定走向立体" loading="lazy"><span>角色建模 · 从设定走向立体<b>↗</b></span></button><button class="wy-picture " data-wy-image="AIGC/微元灵溯/素材/建模资产2.png" data-caption="造型推敲 · 轮廓与体积" aria-label="放大：造型推敲 · 轮廓与体积"><img src="AIGC/微元灵溯/素材/建模资产2.png" alt="造型推敲 · 轮廓与体积" loading="lazy"><span>造型推敲 · 轮廓与体积<b>↗</b></span></button><button class="wy-picture " data-wy-image="AIGC/微元灵溯/素材/Unity资产.png" data-caption="Unity 场景与交互搭建" aria-label="放大：Unity 场景与交互搭建"><img src="AIGC/微元灵溯/素材/Unity资产.png" alt="Unity 场景与交互搭建" loading="lazy"><span>Unity 场景与交互搭建<b>↗</b></span></button><button class="wy-picture " data-wy-image="AIGC/微元灵溯/素材/代码资产.png" data-caption="交互逻辑与代码实现" aria-label="放大：交互逻辑与代码实现"><img src="AIGC/微元灵溯/素材/代码资产.png" alt="交互逻辑与代码实现" loading="lazy"><span>交互逻辑与代码实现<b>↗</b></span></button></div></div></section>
+
+<section id="wy-video" class="wy-section wy-video-section"><div class="wy-section-head"><p class="wy-eyebrow">04 / FILM</p><h2>走进微元灵溯。</h2><p>微元灵溯——基于 Unity 的维生素交互科普游戏</p></div><div class="wy-video-shell"><button class="wy-video-cover" aria-label="播放微元灵溯展示视频"><img src="AIGC/微元灵溯/素材/微元灵溯首页.png" alt="微元灵溯展示视频封面" loading="lazy"><span class="wy-video-play">▶</span><span class="wy-video-label">PLAY THE FILM · 点击播放</span></button></div><div class="wy-video-links"><button data-wy-video-reset hidden>返回视频封面 ↶</button><a href="https://www.bilibili.com/video/BV1DC8geEE1f/" target="_blank" rel="noopener">在哔哩哔哩观看 ↗</a></div></section></main>
+<footer class="wy-footer"><p class="wy-eyebrow">UNITY · VITAMIN EDUCATION · INTERACTIVE PLAY</p><h2>在游戏中认识维生素，<br>让营养知识走进生活。</h2><button class="wy-pill" data-wy-close>返回作品列表 ↗</button></footer>
+<div class="wy-lightbox" hidden role="dialog" aria-modal="true" aria-label="图片预览"><button aria-label="关闭图片预览">关闭 ×</button><img alt=""><p></p></div>
+<dialog class="wy-hunger-dialog" aria-labelledby="wy-hunger-title"><button class="wy-hunger-close" aria-label="关闭隐性饥饿介绍">×</button><p class="wy-eyebrow">HIDDEN HUNGER</p><h2 id="wy-hunger-title">隐性饥饿</h2><p>隐性饥饿（Hidden Hunger）是指机体由于营养不平衡或者缺乏某种维生素及人体必需的矿物质，同时又存在其他营养成分过度摄入，从而产生隐蔽性营养需求的饥饿症状。</p><div>关注营养平衡，也关注那些不易被察觉的需求。</div></dialog></section>
+<script src="js/weiyuan-708.js" defer></script>
+<script src="js/weiyuan-react-708.js" defer></script>
+<script src="js/mine-neural-687.js" defer></script>
+<script src="js/suiyuan-year-689.js" defer></script>
+<script src="js/drift-735.js" defer></script><script src="js/drift-enhance-703.js"></script><script src="js/category-stack-706.js" defer></script><script src="js/gallery-data-742.js" defer></script><script src="js/gallery-751.js" defer></script><script src="js/media-card-752.js" defer></script><script src="js/backdrop-close-732.js" defer></script><script src="js/cubes-753.js" defer></script><script src="js/app-card-790.js" defer></script><link rel="stylesheet" href="css/visual-menu-813.css"><script src="js/visual-menu-813.js"></script><link rel="stylesheet" href="css/responsive-812.css">
+<script src="js/responsive-812.js"></script>
+</body>
+</html>
+<!-- Fix: 文字卡片高斯背景在“浅一些”基础上略微压深 -->
+<!-- Fix: 整个文字卡片文字层改为图片「融合篇-7.png」 -->
+<!-- Fix: 文字卡片「融合篇：王昭君」标题改为图片「融合篇-7.png」 -->
+<!-- Fix: 文字卡片「融合篇：王昭君」改为使用「融合篇-6.png」高斯模糊背景，并移除原前景图层 -->
+<!-- Fix: 说明文本每一排两侧都显示矢量徽标，而不是只在整段首尾显示 -->
+<!-- Fix: 两组说明文本与上方卡片组的距离统一为 50px -->
+<!-- Fix: 融合篇说明文本对应展开后的「融合篇-2～融合篇-7」卡片组，距离该组底部 50px -->
+<!-- Fix: 两组说明文本切换加入淡入上浮过渡动画 -->
+<!-- Fix: 融合篇图片卡可点击、hover 仅放大图片；大图弹层复用建成篇单图质感 -->
+<!-- Fix: 筹备篇展开复用同款卡片组，并允许左侧文字卡背景按篇章切换 -->
+<!-- Fix: 双图弹层改为卡片堆叠样式，用于筹备篇与驻军篇的多图展示 -->
+<!-- Fix: 大图弹层打开时事件层级高于筹备/融合卡片组，避免点击大图误关外层卡片组 -->
+<!-- Fix: 恢复设计内容卡片组与展开子界面卡片的完整 hover 命中区域 -->
+<!-- Fix: 彻底移除未打开弹层的隐形命中区域，避免遮挡外层伪 3D 和图片 hover -->
+<!-- Fix: 放大图改为更大的相对尺寸，隐藏 x，并清理外围残留高斯背景层 -->
+<!-- Fix: 驻军篇各卡片改为多图卡片堆叠，点击后层图会放大切到前层 -->
+<!-- Fix: 扩大卡片堆叠弹层命中范围，并修正多图堆叠轮转后的点击区域 -->
+<!-- Fix: 放大图 x 动态跟随当前最前方图片右上角外侧 30px -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

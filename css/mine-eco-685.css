@@ -1,0 +1,111 @@
+/* AIGC 矿山生态修复项目子界面 */
+#mine-eco-detail{display:none;position:fixed;inset:0;z-index:1000;overflow-y:auto;overflow-x:hidden;background:#0b0f0d;color:#f2f6ef;scrollbar-width:none}
+#mine-eco-detail::-webkit-scrollbar{display:none}
+body.is-mine-eco-open{overflow:hidden}
+.mine-eco{--lime:#b8f24a;--mint:#64d89a;--stone:#171d19;--line:rgba(184,242,74,.22);font-family:"Microsoft YaHei",sans-serif;background:radial-gradient(circle at 75% 8%,rgba(91,150,75,.22),transparent 30%),#0b0f0d}
+.mine-eco__nav{position:fixed;top:24px;left:28px;right:28px;z-index:20;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+.mine-eco__back,.mine-eco__index{pointer-events:auto;border:1px solid rgba(255,255,255,.2);background:rgba(12,17,14,.72);backdrop-filter:blur(16px);color:#fff;border-radius:999px;padding:12px 18px;font:700 12px/1 sans-serif;letter-spacing:.12em;cursor:pointer}
+.mine-eco__index{color:var(--lime)}
+.mine-eco__hero{position:relative;min-height:100vh;display:grid;align-items:end;overflow:hidden}
+.mine-eco__hero-media{position:absolute;inset:0}.mine-eco__hero-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.08)}
+.mine-eco__hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,9,.08),rgba(8,12,9,.2) 44%,#0b0f0d 96%),linear-gradient(90deg,rgba(8,12,9,.84),transparent 62%)}
+.mine-eco__contours{position:absolute;inset:0;opacity:.22;background:repeating-radial-gradient(ellipse at 82% 20%,transparent 0 34px,rgba(184,242,74,.55) 35px 36px,transparent 37px 64px);mix-blend-mode:screen;transform:rotate(-8deg) scale(1.25)}
+.mine-eco__hero-copy{position:relative;z-index:2;width:min(1180px,calc(100% - 80px));margin:0 auto 8vh}
+.mine-eco__kicker{display:flex;align-items:center;gap:12px;color:var(--lime);font:800 12px/1 sans-serif;letter-spacing:.28em;text-transform:uppercase}.mine-eco__kicker:before{content:"";width:42px;height:2px;background:currentColor}
+.mine-eco__title{margin:22px 0 18px;font-size:clamp(64px,10vw,154px);line-height:.84;letter-spacing:-.07em;font-weight:900}.mine-eco__title > span{display:block;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.55);font-size:.45em;letter-spacing:.08em;margin-top:16px}
+.mine-eco__lede{max-width:650px;color:rgba(242,246,239,.74);font-size:clamp(16px,1.5vw,22px);line-height:1.8}
+.mine-eco__meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px;max-width:820px}.mine-eco__meta div{padding:16px 18px;background:rgba(11,15,13,.72)}.mine-eco__meta b{display:block;color:var(--lime);font-size:11px;letter-spacing:.14em}.mine-eco__meta span{display:block;margin-top:8px;font-size:14px}
+.mine-eco__section{width:min(1220px,calc(100% - 64px));margin:0 auto;padding:120px 0}.mine-eco__section-head{display:grid;grid-template-columns:180px 1fr;gap:40px;margin-bottom:54px;border-top:1px solid var(--line);padding-top:22px}.mine-eco__num{color:var(--lime);font:800 12px/1 sans-serif;letter-spacing:.2em}.mine-eco__section h2{font-size:clamp(38px,6vw,82px);line-height:1;letter-spacing:-.04em;margin:0}.mine-eco__section-copy{grid-column:2;max-width:760px;color:rgba(242,246,239,.65);font-size:18px;line-height:1.9}
+.mine-eco__strategy{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.mine-eco__strategy article{min-height:280px;padding:30px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(184,242,74,.08),rgba(255,255,255,.015));position:relative;overflow:hidden}.mine-eco__strategy article:before{content:attr(data-step);position:absolute;right:16px;bottom:-22px;color:rgba(184,242,74,.08);font:900 120px/1 sans-serif}.mine-eco__strategy h3{font-size:26px;margin:54px 0 14px}.mine-eco__strategy p{color:rgba(242,246,239,.62);line-height:1.75}.mine-eco__tag{color:var(--lime);font:700 11px/1 sans-serif;letter-spacing:.18em}
+.mine-eco__feature{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:16/9;background:#151b17}.mine-eco__feature img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}.mine-eco__feature:hover img{transform:scale(1.035)}.mine-eco__feature figcaption{position:absolute;left:0;right:0;bottom:0;padding:80px 34px 30px;background:linear-gradient(transparent,rgba(5,8,6,.88));display:flex;justify-content:space-between;align-items:end}.mine-eco__feature h3{font-size:30px;margin:0}.mine-eco__feature p{margin:8px 0 0;color:rgba(255,255,255,.68)}
+.mine-eco__gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.mine-eco__shot{grid-column:span 6;position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:20px;background:#151b17;cursor:zoom-in}.mine-eco__shot:nth-child(3n){grid-column:3/span 8}.mine-eco__shot img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease,filter .8s ease}.mine-eco__shot:hover img{transform:scale(1.04);filter:saturate(1.12)}.mine-eco__shot span{position:absolute;left:18px;bottom:16px;background:rgba(8,12,9,.74);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(10px);padding:9px 12px;border-radius:999px;font-size:11px;letter-spacing:.12em}
+.mine-eco__outro{padding:150px 32px;text-align:center;background:var(--lime);color:#10150f}.mine-eco__outro small{font-weight:900;letter-spacing:.24em}.mine-eco__outro h2{font-size:clamp(44px,8vw,108px);line-height:.95;max-width:1100px;margin:26px auto 34px;letter-spacing:-.06em}.mine-eco__outro button{border:2px solid #10150f;background:transparent;padding:14px 24px;border-radius:999px;font-weight:900;cursor:pointer}
+.mine-eco__reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.mine-eco__reveal.is-visible{opacity:1;transform:none}
+.mine-eco__lightbox{position:fixed;inset:0;z-index:50;display:none;place-items:center;padding:6vw;background:rgba(2,5,3,.92);cursor:zoom-out}.mine-eco__lightbox.is-open{display:grid}.mine-eco__lightbox img{max-width:100%;max-height:88vh;border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.5)}
+@media(max-width:760px){.mine-eco__hero-copy,.mine-eco__section{width:calc(100% - 36px)}.mine-eco__title{font-size:58px}.mine-eco__meta{grid-template-columns:repeat(2,1fr)}.mine-eco__section{padding:80px 0}.mine-eco__section-head{grid-template-columns:1fr}.mine-eco__section-copy{grid-column:1}.mine-eco__strategy{grid-template-columns:1fr}.mine-eco__shot,.mine-eco__shot:nth-child(3n){grid-column:span 12}.mine-eco__nav{top:14px;left:14px;right:14px}}
+@media(prefers-reduced-motion:reduce){.mine-eco__reveal{opacity:1;transform:none}.mine-eco *{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+/* 651: readability, 2023 metadata, dark process collage, tutorial */
+.mine-eco__hero-media img{filter:blur(6px) saturate(.68) contrast(1.08);transform:scale(1.045)}
+.mine-eco__hero-media:after{background:linear-gradient(180deg,rgba(8,12,9,.25),rgba(8,12,9,.42) 48%,#0b0f0d 96%),linear-gradient(90deg,rgba(8,12,9,.9),rgba(8,12,9,.22) 72%)}
+.mine-eco__lede{max-width:780px;text-shadow:0 2px 12px rgba(0,0,0,.72)}
+.mine-eco__year span{font-size:clamp(26px,2.5vw,38px);font-weight:900;line-height:1;color:var(--lime)}
+.mine-eco__process-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.mine-eco__process-card{grid-column:span 5;position:relative;min-height:300px;margin:0;overflow:hidden;border:1px solid rgba(184,242,74,.22);border-radius:22px;background:#101712;box-shadow:0 26px 70px rgba(0,0,0,.24)}
+.mine-eco__process-card:nth-child(even){grid-column:span 7}
+.mine-eco__process-card--wide{grid-column:span 7}
+.mine-eco__process-card--wide:nth-child(even){grid-column:span 5}
+.mine-eco__process-card img{width:100%;height:100%;min-height:300px;object-fit:cover;filter:brightness(.48) contrast(1.2) saturate(.35) sepia(.28) hue-rotate(48deg);opacity:.88;transition:filter .55s ease,transform .7s ease}
+.mine-eco__process-card:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,13,.04),rgba(7,13,9,.78));pointer-events:none}
+.mine-eco__process-card:hover img{filter:brightness(.72) contrast(1.12) saturate(.55) sepia(.18) hue-rotate(42deg);transform:scale(1.025)}
+.mine-eco__process-card figcaption{position:absolute;z-index:2;left:20px;right:20px;bottom:18px;display:flex;align-items:center;gap:14px;color:#edf5ea;font-size:14px;letter-spacing:.08em}
+.mine-eco__process-card figcaption b{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--lime);color:#111810;font-size:11px}
+.mine-eco__video-shell{position:relative;aspect-ratio:16/9;border:1px solid rgba(184,242,74,.28);border-radius:28px;overflow:hidden;background:#050806;box-shadow:0 34px 90px rgba(0,0,0,.38)}
+.mine-eco__video-shell iframe{width:100%;height:100%;border:0}
+.mine-eco__video-shell a{position:absolute;right:18px;top:18px;padding:10px 14px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(8,13,9,.78);backdrop-filter:blur(12px);color:var(--lime);font-size:12px;font-weight:800;text-decoration:none}
+@media(max-width:760px){.mine-eco__process-card,.mine-eco__process-card:nth-child(even),.mine-eco__process-card--wide,.mine-eco__process-card--wide:nth-child(even){grid-column:span 12;min-height:230px}.mine-eco__process-card img{min-height:230px}.mine-eco__year span{font-size:28px}}
+
+
+
+.mine-eco__workflow-section{padding-bottom:92px}
+.mine-eco__workflow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);background:rgba(184,242,74,.025)}
+.mine-eco__workflow-step{position:relative;min-height:180px;padding:24px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}.mine-eco__workflow-step:last-child{border-right:0}
+.mine-eco__workflow-step b{position:absolute;top:18px;right:18px;color:rgba(184,242,74,.16);font:900 58px/1 sans-serif}.mine-eco__workflow-step span{color:var(--lime);font:800 12px/1 sans-serif;letter-spacing:.17em}.mine-eco__workflow-step strong{margin-top:14px;font-size:18px}
+.mine-eco__workflow-step:not(:last-child):after{content:"→";position:absolute;right:-10px;top:50%;z-index:2;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--lime);color:#10170f;font:900 12px/1 sans-serif}
+
+
+.mine-eco__year-watermark{position:fixed;z-index:0;left:50%;top:52%;transform:translate(-50%,-42%) scale(.86);color:rgba(184,242,74,.09);font:900 clamp(150px,30vw,520px)/.8 Arial,sans-serif;letter-spacing:-.08em;opacity:0;pointer-events:none;mix-blend-mode:screen;transition:opacity .18s linear}
+.mine-eco main,.mine-eco__hero-copy{position:relative;z-index:2}
+.mine-eco__gradual-blur{position:fixed;z-index:18;left:0;right:0;bottom:0;height:10rem;pointer-events:none;opacity:0;transition:opacity .3s ease-out}.mine-eco__gradual-blur.is-visible{opacity:1}.mine-eco__gradual-blur i{position:absolute;inset:0;backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));mask-image:linear-gradient(to bottom,transparent var(--p1),#000 var(--p2),#000 100%);-webkit-mask-image:linear-gradient(to bottom,transparent var(--p1),#000 var(--p2),#000 100%)}/* 659: independent scene collage and the supplied React Bits components. */
+.mine-eco__artwork-board{padding:0;background:transparent;border:0;border-radius:0}
+.mine-eco__artwork-head{display:flex;align-items:baseline;gap:24px;padding:0 0 22px}.mine-eco__artwork-head strong{font-size:32px}.mine-eco__artwork-head span{font:700 12px Arial,sans-serif;letter-spacing:.1em}
+.mine-eco__mine-gallery{display:grid;grid-template-columns:repeat(30,minmax(0,1fr));grid-template-rows:1.1fr 1fr;aspect-ratio:2.23;gap:12px}
+.mine-eco__mine-shot{grid-column:span 10;position:relative;min-width:0;min-height:0;margin:0;overflow:hidden;background:#101712;border-radius:14px;cursor:zoom-in}
+.mine-eco__mine-shot--hero{grid-column:span 19}.mine-eco__mine-shot--side{grid-column:span 11}
+.mine-eco__mine-shot img{position:absolute;inset:-4%;display:block;width:108%;height:108%;max-width:none;min-height:108%;object-fit:cover;transition:transform .4s ease}
+.mine-eco__mine-shot:hover img{transform:scale(1.025)}
+#mine-metal-root{position:relative!important;width:min(100%,900px);height:auto;aspect-ratio:1576/260;margin:0!important;letter-spacing:normal!important;-webkit-text-stroke:0!important}
+#mine-metal-root .mine-title-fallback{display:block;color:#f2f6ef;font:900 clamp(32px,8.4vw,126px)/1.1 "Microsoft YaHei",sans-serif;letter-spacing:-.06em;white-space:nowrap}
+#mine-metal-root canvas{position:absolute;inset:0;display:block;width:100%;height:100%;opacity:0}
+#mine-metal-root canvas.is-ready{opacity:1}#mine-metal-root:has(canvas.is-ready) .mine-title-fallback{visibility:hidden}
+#mine-stroke-root{width:min(790px,100%);margin:2px 0 18px!important;-webkit-text-stroke:0!important;letter-spacing:normal!important;font-family:Arial,sans-serif}
+#mine-stroke-root .mine-stroke-lines{display:grid;gap:0}
+#mine-stroke-root .stroke-text{display:block;margin:0;font-family:Arial,sans-serif;line-height:0}
+#mine-stroke-root .stroke-text__svg{display:block;width:100%;height:auto;overflow:visible}
+#mine-stroke-root .stroke-text:nth-child(2){width:80%;margin-top:clamp(-28px,-1.5vw,-10px)}
+#mine-bounce-root{height:520px;position:relative;display:grid;place-items:center}
+#mine-bounce-root .bounceCardsContainer{flex-shrink:0}
+#mine-bounce-root .card{width:280px;cursor:zoom-in}
+.mine-eco__outro h2{max-width:1540px;font-size:clamp(36px,6.5vw,114px);line-height:1.16;letter-spacing:-.045em}
+.mine-eco__outro h2 span{display:block}.mine-eco__outro h2 i{font-style:normal;white-space:nowrap}
+@media(max-width:1050px){#mine-bounce-root .bounceCardsContainer{transform:scale(.75)}}
+@media(max-width:760px){#mine-bounce-root{height:340px}#mine-bounce-root .bounceCardsContainer{transform:scale(.36)}.mine-eco__artwork-head{gap:12px;padding-bottom:12px}.mine-eco__artwork-head strong{font-size:20px}.mine-eco__artwork-head span{font-size:9px}.mine-eco__artwork-board{padding:0;background:transparent;border:0;border-radius:0}.mine-eco__mine-gallery{gap:2px}.mine-eco__workflow{grid-template-columns:1fr 1fr}.mine-eco__workflow-step:nth-child(2){border-right:0}.mine-eco__outro{padding:100px 18px}.mine-eco__gradual-blur{height:8rem}}
+
+#mine-bounce-root .mine-process-label{position:absolute;inset:auto 0 0;padding:36px 14px 14px;background:linear-gradient(transparent,rgba(5,12,8,.92));color:#f2f6ef;display:flex;gap:10px;align-items:center;font:700 16px/1.3 "Microsoft YaHei",sans-serif;pointer-events:none}#mine-bounce-root .mine-process-label b{color:var(--lime);font-size:12px}
+.mine-video-cover{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:#0b0f0d;color:#fff;cursor:pointer}.mine-video-cover>img{width:100%;height:100%;object-fit:cover;filter:brightness(.65)}.mine-video-cover__copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:linear-gradient(transparent,rgba(0,0,0,.45))}.mine-video-cover__copy>b{display:grid;place-items:center;width:76px;height:76px;border:1px solid var(--lime);border-radius:50%;color:var(--lime);font-size:28px;background:#0b0f0dbb}.mine-video-cover__copy strong{font-size:clamp(22px,3vw,44px)}.mine-video-cover__copy>span{font-size:14px;color:#dce5d8}.mine-eco__video-shell [hidden]{display:none!important}.mine-video-links{display:flex;justify-content:flex-end;align-items:center;gap:24px;margin-top:18px}.mine-video-links a,.mine-video-links button{font:700 13px sans-serif;color:var(--lime);background:none;border:0;text-decoration:none;cursor:pointer}
+
+/* Subtle SVG rubble, kept behind project content. */
+.mine-eco__rubble{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none;opacity:.17;contain:layout paint}
+.mine-eco__stone{position:absolute;width:var(--size);height:var(--size);left:var(--left);top:var(--top);transform-origin:50% 65%;pointer-events:none}
+.mine-eco__stone svg{display:block;width:100%;height:100%;overflow:visible}
+@media(max-width:760px){.mine-eco__rubble{opacity:.14}.mine-eco__stone{width:calc(var(--size)*.6);height:calc(var(--size)*.6)}.mine-eco__stone:nth-child(n+13){display:none}}
+
+/* Borderless tool loop with position-based edge scaling. */
+.mine-eco__tool-strip{position:relative;width:min(760px,100%);height:116px;margin:22px auto 0;overflow:hidden;border:0;background:transparent;mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent)}
+.mine-tools-track{display:flex;width:max-content;height:100%;align-items:center;will-change:transform}
+.mine-tools-list{display:flex;flex:none;gap:28px;align-items:center;margin:0;padding:0 28px 0 0;list-style:none}
+.mine-tools-item{width:76px;height:76px;flex:none;transform:scale(var(--edge-scale,1));opacity:var(--edge-opacity,1);transform-origin:center}
+.mine-tools-item a{display:block;width:100%;height:100%;background:none;border:0;padding:0;box-shadow:none;transition:transform .22s ease}
+.mine-tools-item a:hover{transform:scale(1.1)}.mine-tools-item a:focus-visible{outline:2px solid var(--lime);outline-offset:5px;border-radius:10px}
+.mine-eco__tool-strip img{display:block;width:100%;height:100%;object-fit:contain;border:0;border-radius:0;background:none;padding:0;box-shadow:none;pointer-events:none}
+@media(max-width:760px){.mine-tools-item{width:60px;height:60px}.mine-tools-list{gap:22px;padding-right:22px}.mine-eco__tool-strip{height:96px}}
+@media(prefers-reduced-motion:reduce){.mine-eco__tool-strip{height:auto;overflow:visible;mask-image:none;-webkit-mask-image:none}.mine-tools-track{width:100%;transform:none!important}.mine-tools-list{width:100%;padding:16px 0;flex-wrap:wrap;justify-content:center}.mine-tools-list[aria-hidden]{display:none}.mine-tools-item{transform:none!important;opacity:1!important}}
+
+/* Match the Suiyuan diagonal hover sweep with per-project colors. */
+#aigc .aigc-glint{--glint-rgb:184,242,74;--glint-light:230,255,190;position:relative;overflow:hidden}
+#aigc .aigc-glint--pink{--glint-rgb:245,112,170;--glint-light:255,219,239}
+#aigc .aigc-glint::after{content:""!important;position:absolute;inset:0;z-index:8;pointer-events:none;background:linear-gradient(-30deg,transparent 48%,rgba(var(--glint-rgb),.18) 57%,rgba(var(--glint-rgb),.48) 65%,rgba(var(--glint-light),.62) 70%,rgba(var(--glint-rgb),.34) 76%,transparent 88%,transparent 100%);background-size:360% 360%;background-repeat:no-repeat;background-position:-145% -145%;opacity:0;mix-blend-mode:normal;transition:background-position 1450ms ease,opacity 260ms ease}
+#aigc .aigc-glint:hover::after{background-position:145% 145%;opacity:.92}
+#aigc .aigc-glint:hover{border-color:rgba(var(--glint-rgb),.86)!important;box-shadow:0 0 0 1px rgba(var(--glint-light),.28),0 22px 55px rgba(var(--glint-rgb),.18),0 0 38px rgba(var(--glint-rgb),.16)!important}
+@media(prefers-reduced-motion:reduce){#aigc .aigc-glint::after{transition:opacity .15s ease}#aigc .aigc-glint:hover::after{background-position:50% 50%;opacity:.22}}
+
+.mine-neural-field{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}#mine-eco-detail>main{position:relative;z-index:1}

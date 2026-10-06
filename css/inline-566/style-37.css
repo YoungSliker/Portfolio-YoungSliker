@@ -1,0 +1,23 @@
+.process-fusion-showcase.is-fusion-transport-merged-showcase .process-fusion-town {
+    grid-column: 2 !important;
+    grid-row: 1 / 3 !important;
+}
+
+.process-fusion-showcase.is-fusion-transport-merged-showcase .process-fusion-closeup {
+    display: none !important;
+}
+
+.process-fusion-showcase.is-fusion-transport-merged-showcase .process-fusion-town .process-fusion-img-wrap {
+    flex: 1 1 auto !important;
+}
+
+.process-fusion-showcase.is-fusion-transport-merged-showcase .process-fusion-town .process-fusion-caption {
+    flex: 0 0 auto !important;
+}
+
+
+
+
+
+
+

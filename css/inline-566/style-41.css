@@ -1,0 +1,39 @@
+.process-fusion-intro {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.process-fusion-text-image-wrap {
+    position: relative !important;
+    z-index: 6 !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+}
+
+#fusion-detail-text-card-img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: top center !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-user-drag: none !important;
+    pointer-events: none !important;
+}
+
+/* 旧文字层彻底不显示，防止残留 */
+#fusion-detail-title,
+.process-fusion-info {
+    display: none !important;
+}
+
+
+
+
+
+
+

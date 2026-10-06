@@ -1,0 +1,98 @@
+/* 主图也按原比例完整展示，避免大图被裁切；背景仍然保留当前图的氛围 */
+.wide-carousel-main-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    background: rgba(20, 15, 8, 0.22) !important;
+}
+
+.wide-carousel-main-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    background: transparent !important;
+}
+
+/* 缩略图条左右加安全留白，最后几张选中时不会贴到容器边缘 */
+.wide-carousel-thumbs {
+    position: relative !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    padding-left: clamp(72px, 7vw, 120px) !important;
+    padding-right: clamp(72px, 7vw, 120px) !important;
+    scroll-padding-left: clamp(72px, 7vw, 120px) !important;
+    scroll-padding-right: clamp(72px, 7vw, 120px) !important;
+}
+
+/* 给 flex 滚动列表补左右虚拟空位，解决最后一张无法真正居中的问题 */
+.wide-carousel-thumbs::before,
+.wide-carousel-thumbs::after {
+    content: "" !important;
+    flex: 0 0 clamp(48px, 5vw, 88px) !important;
+    height: 1px !important;
+}
+
+/* 缩略图、图片内容盒子、选中框全部提到前层 */
+.wide-carousel-thumb {
+    position: relative !important;
+    overflow: visible !important;
+    z-index: 10 !important;
+}
+
+.wide-carousel-thumb:hover,
+.wide-carousel-thumb:focus-visible {
+    z-index: 9990 !important;
+}
+
+.wide-carousel-thumb.is-active {
+    z-index: 99999 !important;
+}
+
+.wide-carousel-thumb-img,
+.wide-carousel-thumb-img-inner {
+    position: relative !important;
+    overflow: visible !important;
+    z-index: 99991 !important;
+}
+
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner {
+    z-index: 99992 !important;
+}
+
+/* 选中框跟随真实图片内容盒子，不再按按钮宽度走 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::after {
+    z-index: 99998 !important;
+    inset: -2px !important;
+    border-radius: 10px !important;
+}
+
+/* 顶部三角放到最前 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::before {
+    z-index: 99999 !important;
+    top: -7px !important;
+}
+
+/* 缩略图图片保持原比例：统一高度，宽度由图片真实比例撑开 */
+.wide-carousel-thumb-img-inner img {
+    width: auto !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+}
+
+/* 标题文字不要挤压缩略图真实宽度 */
+.wide-carousel-thumb-title {
+    width: max-content !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+}
+
+
+
+
+
+
+

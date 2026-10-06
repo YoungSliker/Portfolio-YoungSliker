@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "ProfileSourceHanSansBold";
+    src: url("../Fonts/SourceHanSansSC-Bold-2.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+.profile-info-html {
+    position: absolute;
+    left: 38.5%;
+    top: 40.45%;
+    width: 52%;
+    z-index: 245;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    color: rgba(255, 255, 255, 0.96);
+    font-family: "ProfileSourceHanSansBold", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0;
+    text-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.25),
+        0 0 12px rgba(255, 255, 255, 0.22);
+    transform: translateZ(188px);
+}
+
+
+
+
+#bg-3d-wrapper.expanded-bg13 .profile-info-html {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+    transition: opacity 0.28s ease-out 0.16s;
+}
+
+.profile-info-html__columns {
+    display: grid;
+    grid-template-columns: 40% 50%;
+    column-gap: 3%;
+    align-items: start;
+}
+
+.profile-info-html__col {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.profile-info-html__col--left {
+    text-align: left;
+}
+
+.profile-info-html__col--right {
+    text-align: right;
+}
+
+.profile-info-html p {
+    margin: 0;
+    height: 30px;
+    white-space: nowrap;
+}
+
+.profile-info-html span,
+.profile-info-html strong {
+    font: inherit;
+}
+
+.profile-info-html strong {
+    font-weight: 700;
+}
+
+@media (max-width: 1400px) {
+    .profile-info-html {
+        font-size: 30px;
+        line-height: 30px;
+    }
+
+    .profile-info-html p {
+        height: 30px;
+    }
+
+    .profile-info-html__col {
+        gap: 30px;
+    }
+}

@@ -1,0 +1,59 @@
+.process-stage-card {
+    pointer-events: auto !important;
+}
+
+.process-stage-inner,
+.process-stage-img,
+.process-stage-index,
+.process-stage-open-hint,
+.process-stage-content,
+.process-stage-content * {
+    pointer-events: none !important;
+}
+
+.process-fusion-clickable {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+.process-fusion-clickable .process-fusion-caption,
+.process-fusion-clickable .process-motion-text,
+.process-fusion-clickable .process-fusion-caption *,
+.process-fusion-clickable .process-motion-text * {
+    pointer-events: none !important;
+}
+
+.process-fusion-clickable .process-fusion-img-wrap img,
+.process-fusion-clickable .process-motion-preview img {
+    transition:
+        transform 0.62s cubic-bezier(0.18, 1, 0.28, 1),
+        filter 0.42s ease !important;
+    transform-origin: center center !important;
+    will-change: transform !important;
+}
+
+.process-fusion-clickable:hover .process-fusion-img-wrap img,
+.process-fusion-clickable:hover .process-motion-preview img,
+.process-fusion-clickable.is-fusion-card-hovering .process-fusion-img-wrap img,
+.process-fusion-clickable.is-fusion-card-hovering .process-motion-preview img {
+    transform: scale(1.095) !important;
+    filter: saturate(1.02) contrast(1.02) brightness(1.02) !important;
+}
+
+.fusion-image-lightbox:not(.is-open),
+.fusion-image-lightbox:not(.is-open) * {
+    pointer-events: none !important;
+}
+
+.process-inline-detail.is-open,
+.process-inline-detail.is-open .process-inline-stack,
+.process-inline-detail.is-open .process-fusion-showcase {
+    pointer-events: auto !important;
+}
+
+
+
+
+
+
+

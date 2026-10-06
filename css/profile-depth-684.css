@@ -1,0 +1,253 @@
+/* Profile card layered tilt + decrypted text entrance (618) */
+#bg-3d-wrapper {
+    perspective: 1050px;
+}
+
+#bg-3d-wrapper.expanded-bg13 #bg12-content {
+    --profile-tilt-x: 0deg;
+    --profile-tilt-y: 0deg;
+    --profile-tilt-scale: 1;
+    --profile-info-x: 0px;
+    --profile-info-y: 0px;
+    --profile-tools-x: 0px;
+    --profile-tools-y: 0px;
+    transform-style: preserve-3d;
+    transform: perspective(1050px) rotateX(var(--profile-tilt-x)) rotateY(var(--profile-tilt-y)) scale(var(--profile-tilt-scale)) !important;
+    will-change: transform;
+}
+
+#bg-3d-wrapper.expanded-bg13 #bg13-img {
+    transform: translateZ(0) !important;
+}
+
+
+#bg-3d-wrapper.expanded-bg13 .profile-info-html {
+    transform: translate3d(var(--profile-info-x), var(--profile-info-y), 92px) scale(1.012) !important;
+    filter: drop-shadow(0 13px 14px rgba(44, 17, 40, .16));
+}
+
+#bg-3d-wrapper.expanded-bg13 .profile-logoloop-shell.visible {
+    transform: translate3d(var(--profile-tools-x), var(--profile-tools-y), 220px) scale(1.04) !important;
+    filter: drop-shadow(0 22px 22px rgba(44, 17, 40, .3));
+    transform-origin: center center;
+    transition: opacity .24s ease-out, filter .18s ease-out !important;
+    will-change: transform;
+}
+
+.profile-info-html .decrypted-text-parent {
+    display: inline-block;
+    white-space: pre-wrap;
+}
+
+.profile-info-html .decrypted-text-visual {
+    display: inline;
+    white-space: pre-wrap;
+}
+
+.profile-info-html .decrypted-text-char {
+    display: inline-grid;
+    vertical-align: baseline;
+    white-space: pre;
+}
+
+.profile-info-html .decrypted-text-measure,
+.profile-info-html .decrypted-text-current {
+    grid-area: 1 / 1;
+    white-space: pre;
+}
+
+.profile-info-html .decrypted-text-measure {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.profile-info-html .decrypted-text-current {
+    text-align: center;
+}
+
+.profile-info-html .decrypted-text-char.is-encrypted .decrypted-text-current {
+    opacity: .76;
+    text-shadow: 0 0 7px rgba(255, 255, 255, .3);
+}
+
+.profile-info-html .decrypted-text-char.is-revealed .decrypted-text-current {
+    opacity: 1;
+    text-shadow: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #bg-3d-wrapper.expanded-bg13 #bg12-content {
+        transform: none !important;
+    }
+    #bg-3d-wrapper.expanded-bg13 .profile-info-html,
+    #bg-3d-wrapper.expanded-bg13 .profile-logoloop-shell.visible {
+        transform: none !important;
+    }
+}
+/* 606: align the complete tool LogoLoop to the annotated bounds. */
+#bg-3d-wrapper.expanded-bg13 #imagesDiv.profile-logoloop-shell {
+    right: 13% !important;
+    bottom: 13.4% !important;
+    width: 40% !important;
+}
+/* 609: replace the baked background with the exported 1856x988 layer set. */
+.profile-bg13-layers {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1856 / 988;
+    transform-style: preserve-3d;
+    pointer-events: none;
+}
+
+.profile-bg13-layer {
+    position: absolute;
+    display: block;
+    max-width: none;
+    pointer-events: none;
+    user-select: none;
+}
+
+.profile-bg13-layer--frame {
+    left: 0;
+    top: 23.988%;
+    width: 100%;
+    height: 76.012%;
+}
+
+.profile-bg13-layer--left {
+    left: 4.957%;
+    top: 34.008%;
+    width: 26.94%;
+    height: 55.769%;
+    background: #ffeb3b;
+    border-radius: clamp(0px, 2.5vw, 48px) 0 0 clamp(0px, 2.5vw, 48px);
+}
+
+.profile-bg13-layer--right {
+    left: 31.897%;
+    top: 34.008%;
+    width: 62.769%;
+    height: 55.972%;
+    background: rgba(228, 58, 98, 0.549);
+    border-radius: 0 clamp(0px, 2.0833vw, 40px) clamp(0px, 2.0833vw, 40px) 0;
+}
+
+.profile-bg13-layer--avatar {
+    left: 4.957%;
+    top: 0;
+    width: 26.94%;
+    height: 89.98%;
+}
+
+.profile-info-title {
+    position: absolute;
+    top: 20.3%;
+    right: 9.1%;
+    z-index: 4;
+    color: #ed3d64;
+    font-family: "ProfileSourceHanSansBold", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: clamp(50px, 3.45vw, 68px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
+    white-space: nowrap;
+    transform: translateZ(72px);
+    text-shadow: 0 12px 18px rgba(45, 21, 42, .18);
+    pointer-events: none;
+}
+/* 621: Falling Text + Particle Text */
+#bg-3d-wrapper.expanded-bg13 .profile-info-title,
+#bg-3d-wrapper.expanded-bg13 .profile-info-html{pointer-events:auto!important;cursor:pointer}
+.profile-bg13-layer--left,.profile-bg13-layer--right,.profile-bg13-layer--avatar,.profile-info-title,.profile-info-html,.profile-identity-text{transition:opacity .32s ease,width .52s cubic-bezier(.2,.75,.2,1),border-radius .52s cubic-bezier(.2,.75,.2,1)!important}
+#bg-3d-wrapper.profile-falling-active .profile-bg13-layer--right,
+#bg-3d-wrapper.profile-falling-active .profile-bg13-layer--avatar,
+#bg-3d-wrapper.profile-falling-active .profile-identity-text{opacity:0!important;visibility:hidden!important}
+#bg-3d-wrapper.profile-falling-active .profile-bg13-layer--left{width:89.709%;border-radius:clamp(0px,2.5vw,48px)}
+#bg-3d-wrapper.profile-falling-active .profile-info-title,
+#bg-3d-wrapper.profile-falling-active .profile-info-html{opacity:0!important;visibility:hidden!important}
+.profile-falling-overlay{position:absolute;inset:0;z-index:420;overflow:hidden;pointer-events:none;transform-style:preserve-3d}
+.profile-falling-word{position:absolute;left:0;top:0;display:inline-block;color:#fff;font-family:"ProfileSourceHanSansBold","Microsoft YaHei",sans-serif;font-weight:700;line-height:1;white-space:pre;will-change:transform;text-shadow:0 3px 8px rgba(74,22,53,.28)}
+.profile-falling-word--title{color:#ed3d64;text-shadow:0 10px 18px rgba(45,21,42,.18)}
+.profile-particle-text{position:relative;display:inline-block;width:20.5em;height:1.7em;vertical-align:middle}
+.profile-particle-text__fallback{opacity:0;white-space:nowrap}
+.profile-particle-text__canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:auto}
+@media(prefers-reduced-motion:reduce){
+#bg-3d-wrapper.profile-falling-active .profile-info-title,#bg-3d-wrapper.profile-falling-active .profile-info-html{opacity:1!important;visibility:visible!important}
+#bg-3d-wrapper.profile-falling-active .profile-bg13-layer--right,#bg-3d-wrapper.profile-falling-active .profile-bg13-layer--avatar,#bg-3d-wrapper.profile-falling-active .profile-identity-text{opacity:1!important;visibility:visible!important}
+#bg-3d-wrapper.profile-falling-active .profile-bg13-layer--left{width:26.94%;border-radius:clamp(0px,2.5vw,48px) 0 0 clamp(0px,2.5vw,48px)}
+}/* 622: grouped Falling Text and trigger-only expanded Particle Text */
+#bg-3d-wrapper.profile-falling-active #imagesDiv.profile-logoloop-shell{
+ opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+}
+.profile-particle-text{position:relative;display:inline;width:auto;height:auto;vertical-align:baseline}
+.profile-particle-text__fallback{opacity:1;white-space:nowrap}
+.profile-particle-text__canvas{display:none!important}
+.profile-particle-stage{position:absolute;left:4.957%;top:34.008%;width:89.709%;height:55.972%;z-index:410;pointer-events:none;overflow:hidden;border-radius:clamp(0px,2.5vw,48px);opacity:0;transition:opacity .28s ease}
+.profile-particle-stage.is-visible{opacity:1}
+.profile-particle-stage canvas{display:block;width:100%;height:100%}
+#bg-3d-wrapper.profile-falling-active .profile-particle-text{opacity:0}
+.profile-falling-word{padding:.04em .1em;border-radius:.18em;background:rgba(255,255,255,.06);backdrop-filter:blur(1px)}
+.profile-falling-word--title{background:transparent;padding:0}
+
+.profile-falling-word{background:transparent;backdrop-filter:none}
+/* 623: viewport floor, crisp finite particles, and sealed yellow corner */
+.profile-falling-overlay{
+ position:fixed!important;
+ inset:0!important;
+ z-index:999!important;
+ overflow:hidden!important;
+ transform:none!important;
+}
+#bg-3d-wrapper.profile-falling-active .profile-bg13-layer--left{
+ width:calc(89.709% + 1px);
+ height:calc(55.972% + 1px);
+ border-radius:clamp(0px,2.5vw,48px) clamp(0px,2.0833vw,40px) clamp(0px,2.0833vw,40px) clamp(0px,2.5vw,48px);
+}
+/* 624: interactive particles and draggable falling groups */
+.profile-falling-word{
+ pointer-events:auto;
+ touch-action:none;
+ cursor:grab;
+ user-select:none;
+}
+.profile-falling-word.is-dragging{
+ cursor:grabbing;
+ filter:drop-shadow(0 10px 12px rgba(64,20,46,.32));
+}
+.profile-particle-stage{
+ pointer-events:auto;
+ touch-action:none;
+ cursor:crosshair;
+}
+.profile-footer-hidden{
+ opacity:0!important;
+ visibility:hidden!important;
+ pointer-events:none!important;
+ transition:opacity .2s ease!important;
+}
+
+.profile-particle-stage{transform:translate3d(var(--profile-particle-x,0px),var(--profile-particle-y,0px),115px);transform-origin:center;will-change:transform;isolation:isolate}
+@media(prefers-reduced-motion:reduce),(pointer:coarse){.profile-particle-stage{transform:none;will-change:auto}}
+
+.profile-particle-stage canvas{filter:drop-shadow(0 0 3px rgba(255,255,255,.95)) drop-shadow(0 0 7px rgba(102,255,255,.62))}
+
+.profile-particle-stage canvas{filter:none!important}
+/* 647: return scattered text groups to their source positions before cleanup */
+.profile-falling-overlay.is-returning .profile-falling-word{
+ transition:transform .82s cubic-bezier(.22,.8,.2,1)!important;
+ pointer-events:none!important;
+}
+/* 648: synchronize yellow panel restoration with falling-text return */
+#bg-3d-wrapper.profile-falling-active.profile-returning .profile-bg13-layer--left{
+ width:26.94%!important;
+ height:55.972%!important;
+ border-radius:clamp(0px,2.5vw,48px) 0 0 clamp(0px,2.5vw,48px)!important;
+ transition:width .82s cubic-bezier(.22,.8,.2,1),border-radius .82s cubic-bezier(.22,.8,.2,1)!important;
+}
+/* 649: restore avatar in sync with panel and falling text */
+#bg-3d-wrapper.profile-falling-active.profile-returning .profile-bg13-layer--avatar{
+ opacity:1!important;
+ visibility:visible!important;
+ transition:opacity .82s cubic-bezier(.22,.8,.2,1)!important;
+}
+

@@ -1,0 +1,88 @@
+.process-fusion-intro.process-fusion-panel {
+    isolation: isolate !important;
+    background:
+        linear-gradient(180deg, rgba(46, 30, 10, 0.42) 0%, rgba(24, 15, 5, 0.58) 54%, rgba(16, 9, 3, 0.70) 100%) !important;
+    border-color: rgba(255, 226, 151, 0.14) !important;
+    border-top-color: rgba(255, 238, 188, 0.08) !important;
+    background-clip: padding-box !important;
+    box-shadow:
+        0 34px 74px rgba(22, 12, 3, 0.28),
+        inset 0 1px 0 rgba(255, 242, 198, 0.055),
+        inset 0 -1px 0 rgba(12, 7, 2, 0.16),
+        inset 0 0 0 1px rgba(255, 226, 151, 0.045) !important;
+    backdrop-filter: blur(18px) saturate(1.04) brightness(0.92) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(1.04) brightness(0.92) !important;
+}
+
+.process-fusion-intro.process-fusion-panel::before {
+    content: " !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    border-radius: inherit !important;
+    pointer-events: none !important;
+    background: var(--process-intro-bg, url( AIGC/绥远方志/融合篇/融合篇-6.png)) center center / cover no-repeat !important;
+    filter: blur(20px) saturate(0.92) brightness(0.66) contrast(1.02) !important;
+    transform: scale(1.10) !important;
+    opacity: 0.54 !important;
+}
+
+.process-fusion-intro.process-fusion-panel::after {
+    content: " !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+    border-radius: inherit !important;
+    pointer-events: none !important;
+    background:
+        linear-gradient(180deg, rgba(255, 229, 154, 0.055) 0%, rgba(27, 17, 6, 0.24) 52%, rgba(12, 7, 2, 0.36) 100%),
+        radial-gradient(circle at 50% 10%, rgba(255, 230, 156, 0.12), transparent 56%) !important;
+}
+
+.process-fusion-text-image-wrap {
+    position: relative !important;
+    z-index: 6 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.process-fusion-text-image-wrap::before,
+.process-fusion-text-image-wrap::after {
+    display: none !important;
+}
+
+.process-fusion-text-image-wrap img {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.process-fusion-intro-strip {
+    display: none !important;
+}
+
+.process-fusion-showcase .process-fusion-img-card,
+.process-fusion-showcase .process-motion-card {
+    border-top-color: rgba(255, 238, 188, 0.08) !important;
+    background-clip: padding-box !important;
+    box-shadow:
+        0 28px 64px rgba(18, 10, 3, 0.26),
+        inset 0 1px 0 rgba(255, 242, 198, 0.05),
+        inset 0 -1px 0 rgba(12, 7, 2, 0.18) !important;
+}
+
+.process-fusion-showcase .process-fusion-img-wrap {
+    border-top: 0 !important;
+}
+
+.process-fusion-showcase .process-fusion-caption,
+.process-fusion-showcase .process-motion-text {
+    border-top-color: rgba(255, 226, 151, 0.06) !important;
+}
+
+
+
+
+
+

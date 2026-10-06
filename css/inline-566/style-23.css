@@ -1,0 +1,20 @@
+/* 修复二级页面图片无法点开放大：is-open 时强制恢复普通大图层显示 */
+#fusion-image-lightbox.is-open {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+#fusion-image-lightbox.is-open.is-force-hidden-after-wide {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+
+
+
+
+
+

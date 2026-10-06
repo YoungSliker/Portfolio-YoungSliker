@@ -1,0 +1,67 @@
+/* 未展开时，整个详情层不参与渲染和鼠标命中；不要只靠 opacity 隐藏 */
+.process-inline-detail:not(.is-open) {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+.process-inline-detail.is-open {
+    display: block !important;
+    pointer-events: auto !important;
+}
+
+/* 未打开大图时，大图弹层彻底不显示，避免“透明玻璃板”挡 hover */
+.fusion-image-lightbox:not(.is-open) {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+.fusion-image-lightbox.is-open {
+    display: block !important;
+    pointer-events: auto !important;
+}
+
+/* 双图/堆叠大图内部元素只在大图打开时参与显示 */
+.fusion-image-lightbox:not(.is-open) .fusion-image-lightbox-card,
+.fusion-image-lightbox:not(.is-open) .fusion-image-lightbox-media,
+.fusion-image-lightbox:not(.is-open) .fusion-image-lightbox-img,
+.fusion-image-lightbox:not(.is-open) .fusion-image-lightbox-img-extra {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+/* 兜底：外层四张过程卡整张都能收到 hover/mousemove */
+.process-card-gallery,
+.process-stage-card {
+    pointer-events: auto !important;
+}
+
+/* 外层过程卡内部图层不抢事件，保证伪 3D 按整张卡片触发 */
+.process-stage-inner,
+.process-stage-inner *,
+.process-stage-img,
+.process-stage-index,
+.process-stage-open-hint,
+.process-stage-content,
+.process-stage-content * {
+    pointer-events: none !important;
+}
+
+/* 展开后的图片卡片：整张卡触发，文字条也不抢事件 */
+.process-fusion-clickable,
+.process-fusion-clickable * {
+    pointer-events: auto !important;
+}
+
+.process-fusion-clickable .process-fusion-caption,
+.process-fusion-clickable .process-fusion-caption *,
+.process-fusion-clickable .process-motion-text,
+.process-fusion-clickable .process-motion-text * {
+    pointer-events: none !important;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+/* 隐藏右侧滚动条视觉，不禁用滚轮滚动 */
+html,
+body,
+#project-detail {
+    scrollbar-width: none !important;      /* Firefox */
+    -ms-overflow-style: none !important;   /* IE / old Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#project-detail::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+/* 继续禁止横向滚动，但不裁切内部视觉内容 */
+html,
+body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+#project-detail {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    max-width: 100vw !important;
+    scrollbar-gutter: auto !important;
+}
+
+/* 内部 section 不裁切，否则两边视觉内容会被砍掉 */
+#project-detail .detail-section,
+#project-detail .design-process-section,
+#project-detail .scheme-design-section,
+#project-detail .research-chain-section {
+    overflow-x: visible !important;
+}
+
+
+
+
+
+
+

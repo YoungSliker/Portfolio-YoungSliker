@@ -1,0 +1,61 @@
+/* 首页：背景.mp4 放在 背景1.2 后面；
+   相对于 背景1.2 同一容器居中；
+   可见区域为 背景1.2 的 90%；
+   上下各 17px 用 overflow:hidden 真实裁切，不加黑条；
+   视频和裁切容器都有圆角。
+*/
+#bg12-content {
+    position: relative;
+    overflow: visible;
+}
+
+/* 这个外层是真正的圆角遮罩容器 */
+#bg12-video-mask {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 90%;
+    height: 90%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 28px;
+    pointer-events: none;
+}
+
+/* 视频本体比遮罩容器上下各多 17px，再由外层裁掉 */
+#bg12-video {
+    position: absolute;
+    left: 0;
+    top: -17px;
+    width: 100%;
+    height: calc(100% + 34px);
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 28px;
+    pointer-events: none;
+}
+
+/* 背景1.2 仍然在视频前面，负责点击进入 */
+#bg12-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    z-index: 2;
+    border-radius: 28px;
+}
+
+/* 进入作品集后隐藏首页视频，避免压住 背景1.3 */
+#bg-3d-wrapper.expanded-bg13 #bg12-video-mask {
+    display: none !important;
+}
+
+
+
+
+
+
+

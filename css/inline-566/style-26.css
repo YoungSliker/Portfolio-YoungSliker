@@ -1,0 +1,63 @@
+/* v121：给 首页 背景1.2 / 视频 下面增加真正可见的高斯模糊背景框 */
+#bg12-content {
+    position: relative !important;
+    overflow: visible !important;
+    isolation: isolate !important;
+}
+
+/* 这个才是可见的高斯模糊背景框：比 背景1.2 大一圈，放在最底层 */
+#bg12-content::before {
+    content: "" !important;
+    position: absolute !important;
+    left: -34px !important;
+    right: -34px !important;
+    top: -26px !important;
+    bottom: -26px !important;
+    z-index: 0 !important;
+    border-radius: 34px !important;
+    background-image: url("主界面/背景1.2.png") !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    filter: blur(24px) saturate(1.12) brightness(0.82) !important;
+    opacity: 0.74 !important;
+    transform: scale(1.02) !important;
+    pointer-events: none !important;
+}
+
+/* 增加一层暗色柔化，避免模糊背景太花 */
+#bg12-content::after {
+    content: "" !important;
+    position: absolute !important;
+    left: -34px !important;
+    right: -34px !important;
+    top: -26px !important;
+    bottom: -26px !important;
+    z-index: 0 !important;
+    border-radius: 34px !important;
+    background: rgba(12, 10, 18, 0.20) !important;
+    pointer-events: none !important;
+}
+
+/* 视频遮罩和 背景1.2 必须压在模糊框上方 */
+#bg12-video-mask {
+    z-index: 1 !important;
+}
+
+#bg12-img {
+    z-index: 2 !important;
+}
+
+/* 全屏播放时，模糊背景框跟随全屏视频一起处理，不露出原小框 */
+body.bg12-video-fullscreen #bg12-content::before,
+body.bg12-video-fullscreen #bg12-content::after,
+#bg-3d-wrapper.expanded-bg13 #bg12-content::before,
+#bg-3d-wrapper.expanded-bg13 #bg12-content::after {
+    display: none !important;
+}
+
+
+
+
+
+
+

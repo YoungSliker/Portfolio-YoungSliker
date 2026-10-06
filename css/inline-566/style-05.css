@@ -1,0 +1,276 @@
+/* 1号：标题牌缩小，但别缩到局促；圆角改得更柔和 */
+.wide-carousel-titleplate {
+    left: clamp(44px, 4.1vw, 76px) !important;
+    top: clamp(38px, 3.4vw, 58px) !important;
+
+    width: fit-content !important;
+    min-width: clamp(320px, 25vw, 420px) !important;
+    max-width: min(470px, 36vw) !important;
+
+    padding: clamp(10px, 0.88vw, 14px) clamp(21px, 1.75vw, 30px) clamp(11px, 0.95vw, 15px) !important;
+
+    /* 之前太方了，像普通网页弹窗；这里改成更接近参考图的柔和牌匾圆角 */
+    border-radius: 9px !important;
+    border: 1px solid rgba(232, 202, 132, 0.46) !important;
+
+    background:
+        linear-gradient(180deg, rgba(50, 38, 20, 0.90), rgba(21, 16, 9, 0.86)) !important;
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.34),
+        inset 0 0 0 1px rgba(255, 239, 186, 0.055),
+        inset 0 0 24px rgba(250, 205, 112, 0.035) !important;
+
+    backdrop-filter: blur(13px) saturate(0.92) !important;
+    -webkit-backdrop-filter: blur(13px) saturate(0.92) !important;
+}
+
+/* 牌匾内部上下细线，跟随圆角，别再做割裂的断框 */
+.wide-carousel-titleplate::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 14px !important;
+    right: 14px !important;
+    top: 8px !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, rgba(249, 224, 158, 0.50), transparent) !important;
+    pointer-events: none !important;
+}
+
+.wide-carousel-titleplate::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 14px !important;
+    right: 14px !important;
+    bottom: 8px !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, rgba(249, 224, 158, 0.34), transparent) !important;
+    pointer-events: none !important;
+}
+
+/* 清掉之前挂在 chapter 上的角标，避免标题牌外框看起来残缺 */
+.wide-carousel-titleplate .wide-carousel-chapter::before,
+.wide-carousel-titleplate .wide-carousel-chapter::after {
+    display: none !important;
+    content: none !important;
+}
+
+.wide-carousel-chapter {
+    display: block !important;
+    margin: 0 0 5px !important;
+    font-size: clamp(11px, 0.72vw, 13px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0.16em !important;
+    color: rgba(246, 220, 156, 0.72) !important;
+}
+
+.wide-carousel-titleplate strong {
+    display: block !important;
+    white-space: nowrap !important;
+    font-family: "STSong", "SimSun", serif !important;
+    font-size: clamp(24px, 1.9vw, 34px) !important;
+    font-weight: 500 !important;
+    line-height: 1.08 !important;
+    letter-spacing: 0.075em !important;
+    color: rgba(255, 229, 165, 0.96) !important;
+    text-shadow: 0 2px 13px rgba(0, 0, 0, 0.38) !important;
+}
+
+.wide-carousel-titleplate small {
+    display: block !important;
+    margin-top: clamp(8px, 0.7vw, 11px) !important;
+    white-space: nowrap !important;
+    font-size: clamp(12px, 0.78vw, 14px) !important;
+    line-height: 1.42 !important;
+    letter-spacing: 0.065em !important;
+    color: rgba(255, 238, 190, 0.80) !important;
+}
+
+/* 2、3号：主图左右箭头，参考图那种圆形半透明按钮；伪元素严格居中 */
+.wide-carousel-nav {
+    width: clamp(48px, 3.75vw, 60px) !important;
+    height: clamp(48px, 3.75vw, 60px) !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 999px !important;
+    border: 1px solid rgba(240, 209, 138, 0.34) !important;
+    background: rgba(30, 22, 12, 0.58) !important;
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.30),
+        inset 0 0 0 1px rgba(255, 238, 181, 0.04) !important;
+
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+
+    color: transparent !important;
+    font-size: 0 !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+}
+
+.wide-carousel-nav::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+
+    width: clamp(13px, 0.9vw, 16px) !important;
+    height: clamp(13px, 0.9vw, 16px) !important;
+
+    border-top: 2px solid rgba(250, 222, 156, 0.92) !important;
+    border-right: 2px solid rgba(250, 222, 156, 0.92) !important;
+
+    transform-origin: center center !important;
+    pointer-events: none !important;
+}
+
+.wide-carousel-prev::before {
+    transform: translate(-35%, -50%) rotate(-135deg) !important;
+}
+
+.wide-carousel-next::before {
+    transform: translate(-65%, -50%) rotate(45deg) !important;
+}
+
+.wide-carousel-nav:hover {
+    background: rgba(52, 38, 17, 0.72) !important;
+    border-color: rgba(245, 218, 150, 0.58) !important;
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.34),
+        0 0 22px rgba(238, 187, 85, 0.16),
+        inset 0 0 0 1px rgba(255, 238, 181, 0.06) !important;
+}
+
+/* 缩略图条左右小箭头也统一成细箭头 */
+.wide-carousel-thumb-arrow {
+    width: 34px !important;
+    height: 54px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+}
+
+.wide-carousel-thumb-arrow::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+
+    width: 12px !important;
+    height: 12px !important;
+
+    border-top: 2px solid rgba(250, 222, 156, 0.88) !important;
+    border-right: 2px solid rgba(250, 222, 156, 0.88) !important;
+
+    transform-origin: center center !important;
+    pointer-events: none !important;
+}
+
+.wide-carousel-thumb-prev::before {
+    transform: translate(-35%, -50%) rotate(-135deg) !important;
+}
+
+.wide-carousel-thumb-next::before {
+    transform: translate(-65%, -50%) rotate(45deg) !important;
+}
+
+/* 选中框被遮挡的根源：外层高度和 overflow 裁掉了顶部小三角/边框。
+   这里给缩略图条和滚动容器放开纵向裁切，并把选中框改成 inset 边框，不再靠外阴影撑出来。 */
+.wide-carousel-thumbs-shell {
+    padding-top: 18px !important;
+    border-radius: 20px !important;
+    background: rgba(24, 18, 10, 0.52) !important;
+    overflow: visible !important;
+}
+
+.wide-carousel-thumbs {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    padding-top: 6px !important;
+}
+
+.wide-carousel-thumb {
+    position: relative !important;
+    padding-top: 10px !important;
+    height: calc(100% - 8px) !important;
+    overflow: visible !important;
+}
+
+.wide-carousel-thumb-img {
+    position: relative !important;
+    height: calc(100% - 42px) !important;
+    border-radius: 8px !important;
+    overflow: visible !important;
+    background: rgba(20, 15, 8, 0.46) !important;
+    box-shadow: none !important;
+}
+
+.wide-carousel-thumb-img img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 8px !important;
+    object-fit: cover !important;
+    overflow: hidden !important;
+}
+
+/* 细金选中框：用 after 盖在图上，确保不会被图片遮住 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 5 !important;
+    border-radius: 8px !important;
+    border: 1.5px solid rgba(250, 220, 148, 0.98) !important;
+    box-shadow:
+        0 0 0 1px rgba(42, 28, 9, 0.28),
+        0 0 16px rgba(238, 187, 85, 0.22) !important;
+    pointer-events: none !important;
+}
+
+/* 顶部小三角：提高 z-index，并保留在缩略图条内部可见区域 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::before {
+    content: "" !important;
+    position: absolute !important;
+    top: -7px !important;
+    left: 50% !important;
+    z-index: 6 !important;
+
+    width: 12px !important;
+    height: 12px !important;
+
+    transform: translateX(-50%) rotate(45deg) !important;
+    background: rgba(250, 220, 148, 0.98) !important;
+    box-shadow: 0 0 10px rgba(238, 187, 85, 0.24) !important;
+    pointer-events: none !important;
+}
+
+.wide-carousel-thumb-title {
+    margin-top: 9px !important;
+    font-size: clamp(13px, 0.88vw, 15px) !important;
+    color: rgba(249, 224, 165, 0.86) !important;
+}
+
+/* 主图和缩略图区域保持软边界 */
+.wide-carousel-main-wrap {
+    border-radius: clamp(18px, 1.8vw, 28px) !important;
+    box-shadow:
+        0 26px 60px rgba(0, 0, 0, 0.38),
+        inset 0 0 0 1px rgba(255, 238, 181, 0.045) !important;
+}
+
+
+
+
+
+
+

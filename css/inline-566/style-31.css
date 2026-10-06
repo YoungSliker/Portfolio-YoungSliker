@@ -1,0 +1,67 @@
+/* v154：视频放大时，白色发光外框也跟着放大；视频容器 / 高斯背景框 / 背景1.2 不放大 */
+
+/* 整个卡片容器不放大 */
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover {
+    transform: none !important;
+}
+
+/* 背景1.2.png 不放大 */
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-img.hover-scale:hover,
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-img:hover {
+    transform: none !important;
+}
+
+/* 外层高斯模糊背景框不放大 */
+#bg12-content::before,
+#bg12-content::after {
+    transform: none !important;
+}
+
+/* 视频容器不放大，只负责裁切 */
+#bg12-video-mask {
+    transform: none !important;
+    overflow: hidden !important;
+}
+
+/* 视频本体放大 */
+#bg12-video {
+    transform: scale(1) !important;
+    transform-origin: center center !important;
+    transition: transform 0.32s cubic-bezier(.16, 1, .3, 1) !important;
+}
+
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover #bg12-video {
+    transform: scale(1.08) !important;
+}
+
+/* 白色发光外框单独画在视频容器上：默认不放大 */
+#bg12-video-mask::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: -1px !important;
+    z-index: 4 !important;
+    border-radius: inherit !important;
+    pointer-events: none !important;
+    box-shadow:
+        0 0 18px rgba(255, 255, 255, 0.52),
+        0 0 40px rgba(255, 255, 255, 0.28),
+        inset 0 0 16px rgba(255, 255, 255, 0.30) !important;
+    opacity: 0.92 !important;
+    transform: scale(1) !important;
+    transform-origin: center center !important;
+    transition: transform 0.32s cubic-bezier(.16, 1, .3, 1),
+                opacity 0.32s cubic-bezier(.16, 1, .3, 1) !important;
+}
+
+/* hover 时只放大发光外框，不放大视频容器 */
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover #bg12-video-mask::after {
+    transform: scale(1.08) !important;
+    opacity: 1 !important;
+}
+
+
+
+
+
+
+

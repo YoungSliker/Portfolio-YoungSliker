@@ -1,0 +1,47 @@
+.fusion-image-lightbox-media {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: calc(var(--fusion-showcase-w, 760px) * 0.44) !important;
+    min-height: calc(var(--fusion-showcase-h, 410px) * 0.66) !important;
+}
+
+.fusion-image-lightbox-img-extra {
+    display: none !important;
+}
+
+.fusion-image-lightbox-img-extra.is-visible {
+    display: block !important;
+}
+
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-media {
+    width: calc(var(--fusion-showcase-w, 760px) * 0.46) !important;
+    height: calc(var(--fusion-showcase-h, 410px) * 0.68) !important;
+}
+
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-img,
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-img-extra {
+    position: absolute !important;
+    max-width: calc(var(--fusion-showcase-w, 760px) * 0.34) !important;
+    max-height: calc(var(--fusion-showcase-h, 410px) * 0.58) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28) !important;
+}
+
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-img {
+    z-index: 2 !important;
+    transform: translate(-34px, -10px) rotate(-5deg) !important;
+}
+
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-img-extra {
+    z-index: 1 !important;
+    transform: translate(34px, 10px) rotate(4.5deg) !important;
+}
+
+
+
+
+
+
+

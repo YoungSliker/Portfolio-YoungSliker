@@ -1,0 +1,79 @@
+/* v119：首页 背景.mp4 真正缩进到 背景1.2 内部
+   这版不再用 90% 再 calc 的写法，直接用 inset：
+   - 距离 背景1.2 上下各 17px；
+   - 距离 背景1.2 左右各 20px；
+   - 外层 overflow:hidden + border-radius 做真实圆角遮罩；
+   - hover 时整体 #bg12-content 放大，所以视频和 背景1.2 同步。
+*/
+#bg12-content {
+    position: relative !important;
+    overflow: visible !important;
+    transform-origin: center center !important;
+    transition: transform 0.3s ease !important;
+}
+
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content:hover {
+    transform: scale(1.3) !important;
+}
+
+/* 禁止图片自身单独 hover 放大，避免和视频错位 */
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-img.hover-scale:hover,
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-video.hover-scale:hover {
+    transform: none !important;
+}
+
+/* 视频可见窗口：相对 背景1.2 内缩，形成四边透明遮罩 */
+#bg12-video-mask {
+    position: absolute !important;
+    left: 20px !important;
+    right: 20px !important;
+    top: 17px !important;
+    bottom: 17px !important;
+    width: auto !important;
+    height: auto !important;
+    transform: none !important;
+    z-index: 1 !important;
+    overflow: hidden !important;
+    border-radius: 30px !important;
+    pointer-events: none !important;
+}
+
+/* 视频填满这个被内缩后的圆角窗口 */
+#bg12-video {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    border-radius: inherit !important;
+    pointer-events: none !important;
+    transform: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+}
+
+/* 背景1.2 仍然覆盖在视频上方，保留边框和点击 */
+#bg12-img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    z-index: 2 !important;
+    transform: none !important;
+}
+
+/* 展开后隐藏视频层 */
+
+#bg-3d-wrapper.expanded-bg13 #bg12-video-mask {
+    display: none !important;
+}
+
+
+
+
+
+
+

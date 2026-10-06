@@ -1,0 +1,2 @@
+#project-detail .suiyuan-year-background{position:fixed;left:50%;top:50%;z-index:2;pointer-events:none;user-select:none;white-space:nowrap;font:900 clamp(160px,40vw,760px)/.8 Arial,sans-serif;letter-spacing:-.08em;color:rgba(116, 70,20,.24);text-shadow:0 1px 0 rgba(255,225,133,.10);opacity:0;transform:translate(-50%,-50%) scale(.88);will-change:transform,opacity}
+@media(prefers-reduced-motion:reduce){#project-detail .suiyuan-year-background{will-change:auto}}

@@ -1,0 +1,154 @@
+/* 彻底取消缩略图选中框，只保留放大/提亮 */
+.wide-carousel-active-frame,
+.wide-carousel-thumb::before,
+.wide-carousel-thumb::after,
+.wide-carousel-thumb-img::before,
+.wide-carousel-thumb-img::after,
+.wide-carousel-thumb-img-inner::before,
+.wide-carousel-thumb-img-inner::after,
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::before,
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::after,
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::before,
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::after,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img::before,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img::after,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img-inner::before,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img-inner::after,
+.wide-carousel-thumb.active .wide-carousel-thumb-img::before,
+.wide-carousel-thumb.active .wide-carousel-thumb-img::after,
+.wide-carousel-thumb.active .wide-carousel-thumb-img-inner::before,
+.wide-carousel-thumb.active .wide-carousel-thumb-img-inner::after {
+    content: none !important;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+.wide-carousel-thumb,
+.wide-carousel-thumb *,
+.wide-carousel-thumb.is-active,
+.wide-carousel-thumb.is-active *,
+.wide-carousel-thumb[aria-current="true"],
+.wide-carousel-thumb[aria-current="true"] *,
+.wide-carousel-thumb.active,
+.wide-carousel-thumb.active * {
+    border: 0 !important;
+    outline: 0 !important;
+    outline-offset: 0 !important;
+    box-shadow: none !important;
+}
+
+/* 缩略图背景框：减少 2 号下方留白，同时保留文字区域 */
+.wide-carousel-thumbs-shell {
+    min-height: clamp(166px, 17.5vh, 208px) !important;
+    height: clamp(166px, 17.5vh, 208px) !important;
+    margin-top: clamp(8px, 1vh, 14px) !important;
+    margin-bottom: 0 !important;
+    padding:
+        clamp(16px, 1.6vh, 22px)
+        clamp(58px, 4.8vw, 82px)
+        clamp(16px, 1.6vh, 22px) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+.wide-carousel-thumbs {
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+}
+.wide-carousel-thumbs::-webkit-scrollbar {
+    display: none !important;
+}
+
+.wide-carousel-thumb {
+    flex: 0 0 auto !important;
+    overflow: visible !important;
+}
+
+.wide-carousel-thumb-img,
+.wide-carousel-thumb-img-inner {
+    position: relative !important;
+    overflow: visible !important;
+    background: transparent !important;
+    transform-origin: center center !important;
+    transition: transform .28s cubic-bezier(.16, 1, .28, 1), filter .28s ease !important;
+}
+
+/* active：只放大和提亮，不再发出会像边框的阴影 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img,
+.wide-carousel-thumb[aria-current="true"] .wide-carousel-thumb-img,
+.wide-carousel-thumb.active .wide-carousel-thumb-img {
+    transform: translateY(-3px) scale(1.09) !important;
+    filter: brightness(1.13) saturate(1.08) !important;
+    z-index: 10000 !important;
+}
+
+.wide-carousel-thumb:not(.is-active):not([aria-current="true"]):not(.active):hover .wide-carousel-thumb-img {
+    transform: translateY(-2px) scale(1.03) !important;
+    filter: brightness(1.06) !important;
+}
+
+/* 缩略图文字不被裁，且紧一点 */
+.wide-carousel-thumb-title,
+.wide-carousel-thumb-label,
+.wide-carousel-thumb-caption,
+.wide-carousel-thumb-name,
+.wide-carousel-thumb-text,
+.wide-carousel-thumb .thumb-title,
+.wide-carousel-thumb .thumb-caption,
+.wide-carousel-thumb span:last-child {
+    margin-top: 10px !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 1.28 !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    overflow: visible !important;
+}
+
+/* 1 号：底部信息居中 */
+.wide-carousel-footer {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin: clamp(8px, 0.9vh, 12px) auto 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 14px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    line-height: 1.35 !important;
+    pointer-events: none !important;
+}
+
+.wide-carousel-footer > *,
+.wide-carousel-footer span,
+.wide-carousel-footer div {
+    text-align: center !important;
+}
+
+/* 整个模糊底下方空间收一点 */
+.wide-carousel-panel {
+    padding-bottom: clamp(18px, 2vh, 30px) !important;
+}
+
+
+
+
+
+
+

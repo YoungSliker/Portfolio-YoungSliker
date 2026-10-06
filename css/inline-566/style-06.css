@@ -1,0 +1,116 @@
+/* 1号：删除外层大高斯模糊背景边框，只保留内部主图+缩略图容器 */
+.wide-carousel-panel {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.wide-carousel-panel::after,
+.wide-carousel-bg {
+    display: none !important;
+    content: none !important;
+}
+
+/* 标题牌：当前新文件原始 R 角是 9px。
+   之前硬翻倍会显得突兀，这里改成 16px，并让内部细线跟着圆角内收。 */
+.wide-carousel-titleplate {
+    border-radius: 16px !important;
+}
+
+.wide-carousel-titleplate::before {
+    left: 20px !important;
+    right: 20px !important;
+    top: 10px !important;
+}
+
+.wide-carousel-titleplate::after {
+    left: 20px !important;
+    right: 20px !important;
+    bottom: 10px !important;
+}
+
+/* 缩略图选中框：不要再向外扩，因为在左右边缘会被滚动容器裁掉。
+   改成贴在图片内部的完整细金框，覆盖整张图，不会只盖上半部分，也不会在边缘被切。 */
+.wide-carousel-thumbs-shell {
+    overflow: hidden !important;
+}
+
+.wide-carousel-thumbs {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding-top: 8px !important;
+}
+
+.wide-carousel-thumb,
+.wide-carousel-thumb-img {
+    overflow: visible !important;
+}
+
+.wide-carousel-thumb {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+.wide-carousel-thumb.is-active {
+    z-index: 5 !important;
+}
+
+/* 清掉旧的小三角和旧的外扩框，避免叠出半截框 */
+.wide-carousel-thumb.is-active::before,
+.wide-carousel-thumb.is-active::after,
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::before {
+    display: none !important;
+    content: none !important;
+}
+
+.wide-carousel-thumb-img {
+    position: relative !important;
+    border-radius: 8px !important;
+}
+
+.wide-carousel-thumb-img img {
+    position: relative !important;
+    z-index: 1 !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+/* 完整选中框：挂回图片容器内部，但用 ::after 覆盖整块图片区域 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 10 !important;
+    display: block !important;
+
+    border-radius: 8px !important;
+    border: 2px solid rgba(250, 220, 148, 0.98) !important;
+    box-shadow:
+        inset 0 0 0 1px rgba(35, 24, 9, 0.28),
+        0 0 14px rgba(238, 187, 85, 0.20) !important;
+    pointer-events: none !important;
+}
+
+/* 选中小三角放在缩略图条内部，避免被上边缘裁掉 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: -6px !important;
+    z-index: 11 !important;
+    display: block !important;
+
+    width: 11px !important;
+    height: 11px !important;
+    transform: translateX(-50%) rotate(45deg) !important;
+    background: rgba(250, 220, 148, 0.98) !important;
+    box-shadow: 0 0 9px rgba(238, 187, 85, 0.20) !important;
+    pointer-events: none !important;
+}
+
+
+
+
+
+
+

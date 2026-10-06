@@ -1,0 +1,150 @@
+        #project-detail .scheme-card-nav {
+            display: none !important;
+        }
+
+        /* v344: keep the 337 layout rhythm, then shrink the scheme cards to 0.7x. */
+        #project-detail .scheme-stack-viewer {
+            display: block;
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        #project-detail .scheme-image-card {
+            max-width: 1320px;
+            margin: 1.15rem auto 0;
+            transform: scale(0.7);
+            transform-origin: center top;
+            overflow: visible;
+        }
+
+        #project-detail .scheme-deck {
+            width: 100%;
+            height: clamp(563px, 54vw, 780px);
+            max-height: none;
+            min-height: 0;
+        }
+
+        #project-detail .scheme-stack-card {
+            top: 46%;
+        }
+
+        #project-detail .scheme-card--img-02 {
+            --scheme-card-w: min(98%, 1420px);
+            --scheme-card-radius: 1.45rem;
+            --scheme-frame-pad: 20px;
+        }
+
+        #project-detail .scheme-card--img-03 {
+            --scheme-card-w: min(94%, 1160px);
+            --scheme-card-radius: 1.4rem;
+            --scheme-frame-pad: 20px;
+        }
+
+        #project-detail .scheme-stack-card img {
+            max-height: min(82vh, 840px);
+        }
+
+        #project-detail .scheme-card--img-02 img {
+            max-height: min(76vh, 760px);
+        }
+
+        #project-detail .scheme-stack-card.is-active {
+            transform: translate3d(-50%, -50%, 170px) rotateZ(0deg) scale(1.06);
+        }
+
+        #project-detail .scheme-stack-status {
+            width: fit-content;
+            margin: 1.25rem auto 0;
+            transform: translateY(4px);
+            padding: 0;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+            color: rgba(255, 238, 181, 0.58);
+            font-size: 0.78rem;
+            letter-spacing: 0.32em;
+            opacity: 1;
+        }
+
+        #project-detail .scheme-stack-hint-under {
+            position: relative;
+            box-sizing: border-box;
+            width: min(33rem, calc(100% - 2.4rem));
+            max-width: 100%;
+            margin: 1.3rem auto 0;
+            padding: 0.62rem 1.35rem 0.58rem 3.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            overflow: hidden;
+            border: 1px solid rgba(255, 229, 157, 0.24);
+            border-radius: 999px;
+            background:
+                linear-gradient(90deg, rgba(255, 224, 137, 0.1), transparent 38%, rgba(255, 224, 137, 0.08)),
+                rgba(28, 20, 8, 0.76);
+            box-shadow: 0 16px 36px rgba(30, 20, 6, 0.24), inset 0 1px 0 rgba(255, 246, 209, 0.18);
+            color: rgba(255, 245, 213, 0.94);
+            font-size: clamp(0.78rem, 0.78vw, 0.94rem);
+            font-weight: 700;
+            letter-spacing: 0.075em;
+            line-height: 1.2;
+            white-space: normal;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        #project-detail .scheme-stack-hint-under::before,
+        #project-detail .scheme-stack-hint-under::after {
+            content: "";
+            flex: 0 0 auto;
+            margin: 0;
+        }
+
+        #project-detail .scheme-stack-hint-under::before {
+            position: absolute;
+            left: 1.05rem;
+            top: 50%;
+            width: 1.95rem;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(255, 226, 151, 0.15), rgba(255, 238, 187, 0.9), rgba(255, 226, 151, 0.15));
+            box-shadow: 0 0 16px rgba(255, 211, 118, 0.28);
+            transform: translateY(-50%);
+        }
+
+        #project-detail .scheme-stack-hint-under::after {
+            position: absolute;
+            left: 1.1rem;
+            top: 50%;
+            width: 0.42rem;
+            height: 0.42rem;
+            border-radius: 50%;
+            background: rgba(255, 244, 205, 0.96);
+            box-shadow: 0 0 16px rgba(255, 218, 124, 0.6);
+            animation: schemeDragCue347 1.85s ease-in-out infinite;
+        }
+
+        @keyframes schemeDragCue347 {
+            0%, 100% { transform: translate(0, -50%); opacity: 0.42; }
+            45% { transform: translate(1.45rem, -50%); opacity: 1; }
+        }
+
+        @media (max-width: 1200px) {
+            #project-detail .scheme-image-card {
+                transform: scale(0.64);
+            }
+
+            #project-detail .scheme-stack-hint-under {
+                width: min(27rem, calc(100% - 1.4rem));
+                padding-left: 3.5rem;
+                letter-spacing: 0.045em;
+            }
+        }
+    
+
+
+
+
+
+
+

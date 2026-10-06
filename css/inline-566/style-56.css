@@ -1,0 +1,54 @@
+/* 大图弹层打开后成为完整透明遮罩层：点击堆叠周围空白只关闭大图，不再漏到外层把卡片组关掉 */
+.fusion-image-lightbox.is-open {
+    position: fixed !important;
+    inset: 0 !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    transform: none !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+}
+
+/* 把真正的堆叠卡片组放回屏幕中心 */
+.fusion-image-lightbox.is-open .fusion-image-lightbox-card {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    pointer-events: auto !important;
+}
+
+/* 堆叠媒体区给足命中面积：点在两张/多张卡之间的透明区域也算在大图弹层内 */
+.fusion-image-lightbox.is-dual .fusion-image-lightbox-media {
+    pointer-events: auto !important;
+}
+
+/* 堆叠图自身永远可点，避免旧规则把后层卡 pointer-events 干掉 */
+.fusion-image-lightbox.is-open .fusion-image-stack-img,
+.fusion-image-lightbox.is-open .fusion-image-stack-img.is-front,
+.fusion-image-lightbox.is-open .fusion-image-stack-img.is-back {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* 轮转后按 DOM 顺序重新分层：第一张永远前层，第二张之后依次后退 */
+.fusion-image-lightbox.is-dual .fusion-image-stack-img:nth-child(1) {
+    --stack-order: 0;
+}
+
+.fusion-image-lightbox.is-dual .fusion-image-stack-img:nth-child(2) { --stack-order: 1; }
+.fusion-image-lightbox.is-dual .fusion-image-stack-img:nth-child(3) { --stack-order: 2; }
+.fusion-image-lightbox.is-dual .fusion-image-stack-img:nth-child(4) { --stack-order: 3; }
+.fusion-image-lightbox.is-dual .fusion-image-stack-img:nth-child(5) { --stack-order: 4; }
+.fusion-image-lightbox.is-dual .fusion-image-stack-img:nth-child(6) { --stack-order: 5; }
+.fusion-image-lightbox.is-dual .fusion-image-stack-img:nth-child(7) { --stack-order: 6; }
+.fusion-image-lightbox.is-dual .fusion-image-stack-img:nth-child(8) { --stack-order: 7; }
+
+
+
+
+
+
+

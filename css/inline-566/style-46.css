@@ -1,0 +1,23 @@
+.process-summary-text.is-default-summary {
+    position: relative !important;
+    margin-top: 50px !important;
+    transform: none !important;
+}
+
+.process-summary-text.is-fusion-summary {
+    position: absolute !important;
+    left: 50% !important;
+    top: var(--fusion-summary-y, auto) !important;
+    transform: translate(-50%, -45px) !important;
+    margin-top: 0 !important;
+    z-index: 270 !important;
+    width: min(103.2%, 1280px) !important;
+    pointer-events: none !important;
+}
+
+
+
+
+
+
+

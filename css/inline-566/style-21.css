@@ -1,0 +1,23 @@
+/* 方案3关闭后，确保旧层叠大图不被重新打开 */
+.fusion-image-lightbox.is-force-hidden-after-wide,
+.fusion-image-lightbox.is-force-hidden-after-wide.is-open {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* 建成篇二级卡片组恢复可点击状态 */
+body.returned-to-jiancheng-cardgroup .process-fusion-clickable,
+body.returned-to-jiancheng-cardgroup .fusion-sub-card,
+body.returned-to-jiancheng-cardgroup .fusion-card,
+body.returned-to-jiancheng-cardgroup .process-detail-card {
+    pointer-events: auto !important;
+}
+
+
+
+
+
+
+

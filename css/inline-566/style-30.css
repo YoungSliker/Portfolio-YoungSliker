@@ -1,0 +1,29 @@
+/* v149：高斯框修正为“边缘偏白”，避免整块变成大白板 */
+
+/* 外圈高斯层：稍微提亮，但不要把整块糊白 */
+#bg12-content::before {
+    filter: blur(22px) saturate(0.98) brightness(1.08) !important;
+    opacity: 0.72 !important;
+    transform: none !important;
+}
+
+/* 原来的白色覆盖层太强，会变成一整块白雾；这里改成很轻的柔光 */
+#bg12-content::after {
+    background: rgba(255, 255, 255, 0.055) !important;
+    transform: none !important;
+}
+
+/* 增加一圈真正的浅色边缘，不压住中间画面 */
+#bg-3d-wrapper:not(.expanded-bg13) #bg12-content {
+    box-shadow:
+        0 0 22px rgba(255, 255, 255, 0.38),
+        0 0 46px rgba(255, 255, 255, 0.20) !important;
+    border-radius: calc(var(--bg12-outer-radius, 42px)) !important;
+}
+
+
+
+
+
+
+

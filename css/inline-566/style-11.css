@@ -1,0 +1,127 @@
+/* 缩略图只横向滚动，不允许上下滚动 */
+.wide-carousel-thumbs-shell {
+    overflow: hidden !important;
+}
+
+.wide-carousel-thumbs {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    align-items: center !important;
+    scrollbar-width: none !important;
+}
+
+.wide-carousel-thumbs::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* 旧的固定尺寸/固定外扩选中框全部关掉 */
+.wide-carousel-thumb.is-active::before,
+.wide-carousel-thumb.is-active::after,
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::before,
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* 外层只负责给横向列表占位；不要用它来画选中框 */
+.wide-carousel-thumb-img {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* 新增的 inner 才是真实图片内容盒子：
+   宽度由图片撑开，高度统一，选中框跟着它走。 */
+.wide-carousel-thumb-img-inner {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: var(--wide-thumb-h) !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    border-radius: 8px !important;
+    transform-origin: center center !important;
+}
+
+.wide-carousel-thumb-img-inner img {
+    display: block !important;
+    width: auto !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: initial !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+}
+
+/* hover / active 放大交给真实内容盒子，不再把整个按钮宽度也放大到奇怪 */
+.wide-carousel-thumb:hover {
+    transform: none !important;
+}
+
+.wide-carousel-thumb:hover .wide-carousel-thumb-img-inner {
+    transform: translateY(-2px) scale(1.025) !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.28, 1) !important;
+}
+
+.wide-carousel-thumb.is-active {
+    z-index: 30 !important;
+    transform: none !important;
+}
+
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner {
+    transform: translateY(-2px) scale(1.055) !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.28, 1) !important;
+}
+
+/* 自适应选中框：
+   只比真实图片内容盒子大 2px，不再按按钮宽度或固定宽度画框。 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: -2px !important;
+    z-index: 12 !important;
+    display: block !important;
+    border-radius: 10px !important;
+    border: 1.4px solid rgba(250, 220, 148, 0.98) !important;
+    box-shadow:
+        0 0 0 1px rgba(42, 28, 9, 0.20),
+        0 0 12px rgba(238, 187, 85, 0.18) !important;
+    pointer-events: none !important;
+    animation: wideThumbActivePop 0.28s cubic-bezier(0.16, 1, 0.28, 1) both !important;
+}
+
+/* 三角也挂在真实图片内容盒子上，天然居中于实际缩略图 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: -6px !important;
+    z-index: 13 !important;
+    display: block !important;
+    width: 10px !important;
+    height: 10px !important;
+    transform: translateX(-50%) rotate(45deg) !important;
+    background: rgba(250, 220, 148, 0.98) !important;
+    box-shadow: 0 0 8px rgba(238, 187, 85, 0.20) !important;
+    pointer-events: none !important;
+}
+
+/* 缩略图文字留白保持 */
+.wide-carousel-thumb-title {
+    margin-top: 11px !important;
+    line-height: 1.25 !important;
+    padding-bottom: 8px !important;
+}
+
+
+
+
+
+
+

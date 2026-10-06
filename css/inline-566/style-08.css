@@ -1,0 +1,104 @@
+:root {
+    --wide-thumb-h: clamp(58px, 7vh, 86px);
+}
+
+/* 缩略图区域只允许横向滚，不允许上下滚 */
+.wide-carousel-thumbs-shell {
+    overflow: hidden !important;
+    height: calc(var(--wide-thumb-h) + 54px) !important;
+    padding-top: 18px !important;
+    padding-bottom: 10px !important;
+}
+
+.wide-carousel-thumbs {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    align-items: center !important;
+    height: calc(var(--wide-thumb-h) + 36px) !important;
+    padding: 10px 16px 8px !important;
+    scrollbar-width: none !important;
+    overscroll-behavior-y: none !important;
+}
+
+.wide-carousel-thumbs::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* 同一高度，不同宽度：宽度由 JS 按 naturalWidth/naturalHeight 计算 */
+.wide-carousel-thumb {
+    flex: 0 0 var(--thumb-w, auto) !important;
+    width: var(--thumb-w, auto) !important;
+    min-width: 92px !important;
+    max-width: 280px !important;
+    height: calc(var(--wide-thumb-h) + 28px) !important;
+    padding: 8px 0 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+}
+
+/* 删除黑底盒子，避免图片左右出现黑边 */
+.wide-carousel-thumb-img {
+    width: var(--thumb-w, auto) !important;
+    height: var(--wide-thumb-h) !important;
+    min-width: 92px !important;
+    max-width: 280px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* 图片按原比例显示：统一高度，宽度自适应，不再塞进黑色背景框 */
+.wide-carousel-thumb-img img {
+    width: auto !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: initial !important;
+    display: block !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+}
+
+/* 保留放大动画，但不制造上下滚动 */
+.wide-carousel-thumb:hover {
+    transform: translateY(-2px) scale(1.025) !important;
+}
+
+.wide-carousel-thumb.is-active {
+    transform: translateY(-2px) scale(1.055) !important;
+    z-index: 30 !important;
+}
+
+/* 选中框按真实缩略图尺寸外扩覆盖 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: -5px !important;
+    display: block !important;
+    z-index: 12 !important;
+    border-radius: 12px !important;
+    border: 1.6px solid rgba(250, 220, 148, 0.98) !important;
+    box-shadow:
+        0 0 0 1px rgba(42, 28, 9, 0.28),
+        0 0 18px rgba(238, 187, 85, 0.24) !important;
+    pointer-events: none !important;
+    animation: wideThumbActivePop 0.28s cubic-bezier(0.16, 1, 0.28, 1) both !important;
+}
+
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img::before {
+    top: -7px !important;
+}
+
+.wide-carousel-thumb-title {
+    margin-top: 8px !important;
+    line-height: 1.2 !important;
+}
+
+
+
+
+
+
+

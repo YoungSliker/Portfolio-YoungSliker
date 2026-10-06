@@ -1,0 +1,82 @@
+/* 601: static-site adaptation of React Bits FoldText for the home title. */
+.home-design-title .home-depth-text__entrance {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+}
+
+.home-design-title .home-depth-text__layer {
+    transition: opacity 0.24s ease-out;
+}
+
+.home-design-title.is-folding .home-depth-text__layer {
+    opacity: 0 !important;
+}
+
+.home-design-title .fold-text-segment {
+    display: inline-block;
+    line-height: inherit;
+    perspective: 700px;
+    transform-style: preserve-3d;
+    vertical-align: baseline;
+}
+
+.home-design-title .fold-text-piece {
+    position: relative;
+    display: inline-block;
+    color: inherit;
+    line-height: inherit;
+    transform-origin: 50% 0%;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+}
+
+.home-design-title .fold-text-piece::after {
+    content: "";
+    position: absolute;
+    inset: -0.08em -0.02em;
+    pointer-events: none;
+    opacity: 0;
+    mix-blend-mode: multiply;
+    border-radius: 0.08em;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.22) 42%, rgba(255, 255, 255, 0.26) 100%);
+}
+
+.home-design-title.fold-run-a .fold-text-piece::after {
+    animation: homeFoldCreaseA 0.65s cubic-bezier(.22, 1, .36, 1) var(--fold-delay, 0ms) both;
+}
+
+.home-design-title.fold-run-b .fold-text-piece::after {
+    animation: homeFoldCreaseB 0.65s cubic-bezier(.22, 1, .36, 1) var(--fold-delay, 0ms) both;
+}
+
+@keyframes homeFoldCreaseA {
+    0% { opacity: 0.55; }
+    68% { opacity: 0.18; }
+    100% { opacity: 0; }
+}
+
+@keyframes homeFoldCreaseB {
+    0% { opacity: 0.55; }
+    68% { opacity: 0.18; }
+    100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-design-title .fold-text-piece {
+        transform: none !important;
+    }
+
+    .home-design-title .fold-text-piece::after {
+        animation: none !important;
+        opacity: 0 !important;
+    }
+}
+/* 602: Chinese glyphs use direct brightness shading; remove rectangular crease panels. */
+.home-design-title .fold-text-piece::after {
+    content: none !important;
+    display: none !important;
+    animation: none !important;
+}

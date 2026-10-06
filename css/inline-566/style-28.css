@@ -1,0 +1,25 @@
+/* v137：保留首页视频/高斯/遮罩，但自我介绍进入逻辑恢复为 v110 直接进入 */
+#bg-3d-wrapper.expanded-bg13 #bg12-content {
+    transform-style: preserve-3d !important;
+    will-change: transform !important;
+    transition: none !important;
+}
+
+#bg-3d-wrapper.expanded-bg13 #bg12-video,
+#bg-3d-wrapper.expanded-bg13 #bg12-video-mask {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+#bg-3d-wrapper.expanded-bg13 #bg12-img {
+    opacity: 1 !important;
+    display: block !important;
+    pointer-events: none !important;
+}
+
+
+
+
+
+
+

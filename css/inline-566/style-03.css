@@ -1,0 +1,28 @@
+.wide-carousel-overlay,
+.wide-carousel-panel,
+.wide-carousel-stage,
+.wide-carousel-thumbs-shell {
+    overscroll-behavior: contain;
+}
+
+.wide-carousel-overlay.is-open {
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+}
+
+.wide-carousel-panel {
+    flex: 0 0 auto;
+    transform: none !important;
+}
+
+.wide-carousel-thumbs {
+    overscroll-behavior-x: contain;
+}
+
+
+
+
+
+
+

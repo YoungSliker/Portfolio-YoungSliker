@@ -1,0 +1,48 @@
+/* 让选中框顶部小三角出现在最前面，不再被缩略图条上边缘裁掉 */
+.wide-carousel-thumbs-shell {
+    position: relative !important;
+    overflow: visible !important;
+    z-index: 80 !important;
+    padding-top: 8px !important;
+}
+
+.wide-carousel-thumbs {
+    position: relative !important;
+    z-index: 81 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding-top: 10px !important;
+}
+
+.wide-carousel-thumb {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+.wide-carousel-thumb.is-active {
+    z-index: 120 !important;
+}
+
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img,
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner {
+    position: relative !important;
+    overflow: visible !important;
+    z-index: 121 !important;
+    isolation: isolate !important;
+}
+
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::after {
+    z-index: 122 !important;
+}
+
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::before {
+    top: -7px !important;
+    z-index: 123 !important;
+}
+
+
+
+
+
+
+

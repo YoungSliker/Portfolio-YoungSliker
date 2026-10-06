@@ -1,0 +1,43 @@
+.fusion-image-lightbox-close {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    position: absolute !important;
+    z-index: 99999 !important;
+
+    width: 2.45rem !important;
+    height: 2.45rem !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(255, 226, 151, 0.42) !important;
+    background: rgba(11, 7, 3, 0.78) !important;
+    color: rgba(255, 238, 181, 0.92) !important;
+    font-size: 1.35rem !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.32),
+        0 0 22px rgba(255, 194, 92, 0.16) !important;
+
+    transition: transform 0.25s ease, background 0.25s ease !important;
+}
+
+.fusion-image-lightbox-close:hover {
+    transform: translate(-50%, -50%) rotate(90deg) scale(1.08) !important;
+    background: rgba(104, 64, 19, 0.62) !important;
+}
+
+
+
+
+
+
+

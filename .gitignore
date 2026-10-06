@@ -1,0 +1,12 @@
+# 归档与开发产物，不入库
+Del/
+node_modules/
+src/
+.vite-gridscan-cache/
+
+# 系统与临时文件
+Thumbs.db
+desktop.ini
+*.tmp
+*.log
+.DS_Store

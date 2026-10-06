@@ -1,0 +1,107 @@
+/* 选中缩略图整体抬到最前，避免任何相邻元素、遮罩或箭头压住选中框 */
+.wide-carousel-thumbs-shell,
+.wide-carousel-thumbs {
+    overflow: visible !important;
+}
+
+.wide-carousel-thumb {
+    position: relative !important;
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    overflow: visible !important;
+    z-index: 1 !important;
+}
+
+.wide-carousel-thumb:hover,
+.wide-carousel-thumb:focus-visible {
+    z-index: 900 !important;
+}
+
+.wide-carousel-thumb.is-active {
+    z-index: 9999 !important;
+}
+
+/* 缩略图外层只负责布局，真正尺寸由图片原比例决定 */
+.wide-carousel-thumb-img {
+    position: relative !important;
+    display: inline-flex !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: var(--wide-thumb-h) !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+    z-index: 2 !important;
+}
+
+.wide-carousel-thumb-img-inner {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: max-content !important;
+    height: var(--wide-thumb-h) !important;
+    max-width: none !important;
+    overflow: visible !important;
+    z-index: 3 !important;
+    transform-origin: center center !important;
+    will-change: transform !important;
+}
+
+.wide-carousel-thumb-img-inner img {
+    display: block !important;
+    width: auto !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    aspect-ratio: auto !important;
+    background: transparent !important;
+}
+
+/* 放大动画仍然保留，但放大对象是按原比例显示的图片内容盒子 */
+.wide-carousel-thumb:hover .wide-carousel-thumb-img-inner,
+.wide-carousel-thumb:focus-visible .wide-carousel-thumb-img-inner {
+    transform: translateY(-2px) scale(1.03) !important;
+}
+
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner {
+    transform: translateY(-2px) scale(1.055) !important;
+}
+
+/* 选中框和小三角都绑定在真实图片盒子上，外框会随放大同步自适应 */
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: -2px !important;
+    border-radius: 10px !important;
+    border: 1.4px solid rgba(250, 220, 148, 0.98) !important;
+    box-shadow:
+        0 0 0 1px rgba(42, 28, 9, 0.20),
+        0 0 12px rgba(238, 187, 85, 0.18) !important;
+    pointer-events: none !important;
+    z-index: 10001 !important;
+}
+
+.wide-carousel-thumb.is-active .wide-carousel-thumb-img-inner::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: -7px !important;
+    width: 10px !important;
+    height: 10px !important;
+    transform: translateX(-50%) rotate(45deg) !important;
+    background: rgba(250, 220, 148, 0.98) !important;
+    box-shadow: 0 0 8px rgba(238, 187, 85, 0.20) !important;
+    pointer-events: none !important;
+    z-index: 10002 !important;
+}
+
+
+
+
+
+
+
