@@ -8,15 +8,9 @@
  resize();window.addEventListener('resize',resize,{passive:true});window.visualViewport?.addEventListener('resize',resize,{passive:true});
 })();
 
-/* Mobile browsers require a user gesture before granting sensor access.
-   The same normalized tilt powers the home title and the profile-card depth. */
+/* The same normalized tilt powers the home title and the profile-card depth.
+   Android starts immediately; iOS asks through its native prompt on first touch. */
 (()=>{
- const button=document.createElement('button');
- button.id='portfolio-motion-toggle';
- button.type='button';
- button.textContent='开启体感';
- button.setAttribute('aria-label','开启陀螺仪体感效果');
- document.body.append(button);
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  let enabled=false,frame=0,tiltX=0,tiltY=0;
  const clamp=(value,limit=1)=>Math.max(-limit,Math.min(limit,value));
@@ -46,20 +40,23 @@
  };
  const start=()=>{
   if(enabled||reduced.matches)return;
-  enabled=true;button.textContent='体感已开启';button.classList.add('is-enabled');
+  enabled=true;
   window.addEventListener('deviceorientation',onOrientation,{passive:true});
   frame=requestAnimationFrame(render);
  };
- button.addEventListener('click',async()=>{
+ const requestIOSPermission=async()=>{
   try{
    if(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function'){
     const permission=await DeviceOrientationEvent.requestPermission();
     if(permission!=='granted')throw new Error('denied');
    }
    start();
-  }catch(error){button.textContent='体感未授权';}
- });
- if(typeof DeviceOrientationEvent==='undefined')button.hidden=true;
+  }catch(error){}
+ };
+ if(typeof DeviceOrientationEvent==='undefined')return;
+ if(typeof DeviceOrientationEvent.requestPermission==='function'){
+  window.addEventListener('pointerdown',requestIOSPermission,{once:true,passive:true});
+ }else start();
 })();
 
 (()=>{
