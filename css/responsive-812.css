@@ -10,7 +10,10 @@ html,body{width:100%;height:100%;min-width:0}
 #home #bg-3d-wrapper:not(.expanded-bg13) .bg12-art-text{font-size:40.7px!important}
 #home #bg11{left:max(12px,calc(50% - var(--home-poster-scale,1)*897.1px))!important;top:calc(47.42% + var(--home-poster-scale,1)*137px)!important;width:calc(var(--home-poster-scale,1)*644.1px)!important;height:calc(var(--home-poster-scale,1)*339.14px)!important;transform:none!important}
 #nav.young-nav577{width:auto!important;max-width:calc(100% - 28px)}
-.aigc-stack-host .scroll-stack-scroller{pointer-events:auto!important;touch-action:pan-y!important}
+/* The scroll stack covers the whole AIGC page.  On desktop it must let the
+   interactive drifting-wall underneath receive hover and click events. */
+@media (hover:hover) and (pointer:fine){.aigc-stack-host .scroll-stack-scroller{pointer-events:none!important}}
+@media (hover:none), (pointer:coarse){.aigc-stack-host .scroll-stack-scroller{pointer-events:auto!important;touch-action:pan-y!important}}
 @media(max-height:500px){#nav.young-nav577{top:12px!important;height:44px!important}.young-nav577__brand{height:44px}.young-nav577__toggle{width:44px;height:44px}.category-stack-host .scroll-stack-inner{padding-top:90px}.category-stack-heading{margin-bottom:32px}}
 @media(max-width:480px){.vm797-kpage{padding:18px}.vm797-brand{gap:12px}.vm797-brand h1{font-size:27px}.vm797-brand img{width:110px;height:60px;flex-shrink:0}.vm797-brand span{font-size:11px}.vm797-light-head{gap:12px}.vm797-light-head>span{min-width:0;overflow-wrap:anywhere}}
 
@@ -38,7 +41,8 @@ html,body{width:100%;height:100%;min-width:0}
 @media screen and (max-height:500px) and (orientation:landscape){
  #nav.young-nav577{top:max(10px,env(safe-area-inset-top))!important}
  .page-content:not(#home) .foreground-layer{height:100%!important;overflow-y:auto!important;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch}
- .category-stack-host .scroll-stack-scroller,.aigc-stack-host .scroll-stack-scroller{height:100%!important;overflow-y:auto!important;pointer-events:auto!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch}
+ .category-stack-host .scroll-stack-scroller{height:100%!important;overflow-y:auto!important;pointer-events:auto!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch}
+ @media (hover:none), (pointer:coarse){.aigc-stack-host .scroll-stack-scroller{height:100%!important;overflow-y:auto!important;pointer-events:auto!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch}}
  #project-detail{height:100dvh!important;overflow-y:auto!important;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch}
  #bg-3d-wrapper.expanded-bg13 .profile-info-title{top:18%!important;right:9%!important;font-size:34px!important}
  #bg-3d-wrapper.expanded-bg13 .profile-info-html{left:37%!important;top:42%!important;width:55%!important;font-size:14px!important;line-height:1.2!important;letter-spacing:0!important}
