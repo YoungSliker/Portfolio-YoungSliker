@@ -45,4 +45,25 @@ html,body{width:100%;height:100%;min-width:0}
  #bg-3d-wrapper.expanded-bg13 .profile-info-html__columns{grid-template-columns:1fr 1.3fr!important;column-gap:8px!important}.profile-info-html__col{gap:8px!important}.profile-info-html p{height:auto!important;white-space:nowrap!important}
  #bg-3d-wrapper.expanded-bg13 .profile-identity-text,#bg-3d-wrapper.expanded-bg13 .profile-logoloop-shell{display:none!important}
  #home:has(#bg-3d-wrapper.expanded-bg13) #textDiv,#home:has(#bg-3d-wrapper.expanded-bg13) #mainText,#home:has(#bg-3d-wrapper.expanded-bg13) #textDiv+div{display:none!important}
+
+ /* Keep the three work categories as complete cards in the short landscape canvas. */
+ .young-nav577__overlay{display:grid!important;place-items:center;padding:72px 28px 16px!important;overflow:hidden!important}
+ .young-nav577__panel{width:min(1180px,100%)!important}
+ .young-nav577__intro{margin-bottom:10px!important}
+ .young-nav577__cards{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
+ .young-nav577__card{min-height:clamp(158px,46vh,210px)!important;padding:18px!important;--card-radius:24px}
+ .young-nav577__links{display:none!important}
+ .young-nav577__card-surface,.young-nav577__elastic-mesh{border-radius:var(--card-radius)!important;clip-path:inset(0 round var(--card-radius))!important}
+
+ /* Native video dimensions and clipping must follow their rounded stage on touch devices. */
+ .vm798-video-shell,.vm797-kulun .vm798-video-shell,.mine-eco__video-shell,.wy-video-shell,.presentation-showcase-566__media{overflow:hidden!important;border-radius:18px!important}
+ .vm798-video-shell>video,.vm798-video-shell>iframe,.vm798-large-video,.mine-eco__video-shell>iframe,.mine-eco__video-shell video,.wy-video-shell video,.presentation-showcase-566__media video,.presentation-showcase-566__media iframe{display:block!important;width:100%!important;height:100%!important;border:0!important;border-radius:inherit!important;overflow:hidden!important}
+ .vm798-large-video,.vm798-video-shell>video{object-fit:contain!important;background:#000!important}
+ .vm798-video-controls{opacity:1!important;transform:none!important}
+ .vm797-dialog{max-width:calc(100vw - 28px)!important;max-height:calc(100dvh - 20px)!important}
+ .vm797-kulun{width:min(1400px,calc(100vw - 28px))!important;max-height:calc(100dvh - 20px)!important;overflow:auto!important}
+ .vm797-kpage{padding:18px 24px 22px!important}
+ .vm797-columns{grid-template-columns:minmax(0,1.7fr) minmax(190px,1fr)!important;gap:24px!important}
+ .vm797-app{border-top:0!important;border-left:1px solid #263b2926!important;padding:0 0 0 24px!important}
+ .vm797-device{width:min(190px,24vw)!important}
 }
