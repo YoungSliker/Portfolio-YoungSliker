@@ -57,7 +57,9 @@ html,body{width:100%;height:100%;min-width:0}
  .young-nav577__intro{margin-bottom:calc(var(--nav-card-gap) * .7)!important}
  .young-nav577__cards{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:var(--nav-card-gap)!important}
  .young-nav577__card{min-height:var(--nav-card-height)!important;padding:var(--nav-card-padding)!important;--card-radius:var(--nav-card-radius)}
- .young-nav577__links{display:none!important}
+ .young-nav577__links{display:block!important;margin-top:calc(12 * var(--desktop-scale))!important;padding:0!important}
+ .young-nav577__links li{margin:0 0 calc(8 * var(--desktop-scale))!important;line-height:1!important}
+ .young-nav577__link{font-size:calc(16 * var(--desktop-scale))!important;line-height:1.2!important}
  .young-nav577__card-surface,.young-nav577__elastic-mesh{border-radius:var(--card-radius)!important;clip-path:inset(0 round var(--card-radius))!important}
  .young-nav577__card .young-nav577__title.nav-btn{font-size:var(--nav-title-size)!important}
  .young-nav577__index{width:var(--nav-index-size)!important;height:var(--nav-index-size)!important;font-size:var(--nav-index-font-size)!important}
@@ -123,6 +125,30 @@ html,body{width:100%;height:100%;min-width:0}
 
  /* The visual-communication carousel is deliberately framed as one main view
     on phones; adjacent views stay outside the crop. */
- #ui .vm792-stage{overflow:hidden!important}
- #ui #infinite-grid-menu-canvas{transform:scale(1.22)!important;transform-origin:50% 50%!important}
+ #ui .vm792-stage{overflow:visible!important}
+ #ui #infinite-grid-menu-canvas{transform:none!important}
+}
+
+@media screen and (max-height:500px) and (orientation:landscape){
+ /* Keep the home background alive while its image/video compositing settles on
+    mobile Chromium; the fallback matches the authored blue–pink ambience. */
+ #home>.absolute.inset-0.z-0{background:radial-gradient(ellipse at 76% 20%,#6c617070 0,transparent 45%),radial-gradient(ellipse at 12% 76%,#9d0b565c 0,transparent 42%),linear-gradient(135deg,#172235 0%,#4a3942 50%,#172335 100%)!important}
+ #home #bg1{background:#26232f!important}
+
+ /* The profile's icon conveyor is a decorative accent, not its largest focal point. */
+ #bg-3d-wrapper.expanded-bg13 #imagesDiv.profile-logoloop-shell{width:30%!important;right:12%!important;bottom:12%!important;height:calc(108 * var(--desktop-scale))!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-logoloop-shell.visible{transform:translate3d(var(--profile-tools-x),var(--profile-tools-y),150px) scale(.72)!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-identity-text{font-size:calc(30 * var(--desktop-scale))!important;line-height:1.2!important}
+
+ /* The hero hint is secondary to the project title, while the exit remains a
+    comfortably tappable control. */
+ #project-detail .detail-scroll-hint{bottom:calc(34 * var(--desktop-scale))!important;gap:calc(8 * var(--desktop-scale))!important}
+ #project-detail .detail-scroll-hint .scroll-text-cn{font-size:calc(14 * var(--desktop-scale))!important}
+ #project-detail .detail-scroll-hint .scroll-text-en{font-size:calc(10 * var(--desktop-scale))!important}
+ #project-detail .detail-scroll-arrow{width:calc(38 * var(--desktop-scale))!important;height:calc(52 * var(--desktop-scale))!important}
+ #project-detail .detail-close-wrap{top:calc(28 * var(--desktop-scale))!important;right:calc(30 * var(--desktop-scale))!important;transform:none!important}
+ #project-detail .detail-close-btn{gap:calc(12 * var(--desktop-scale))!important;padding:calc(13 * var(--desktop-scale)) calc(18 * var(--desktop-scale))!important}
+ #project-detail .detail-close-icon{font-size:calc(34 * var(--desktop-scale))!important}
+ #project-detail .detail-close-text strong{font-size:calc(22 * var(--desktop-scale))!important}
+ #project-detail .detail-close-text span{font-size:calc(11 * var(--desktop-scale))!important}
 }
