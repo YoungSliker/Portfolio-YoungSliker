@@ -138,6 +138,7 @@
 
     // 旧页面会把普通按钮的鼠标尾巴统一写成“关闭”，这里按新导航语义覆盖。
     window.addEventListener('mousemove', event => {
+        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
         const tooltip = document.getElementById('tooltip');
         if (!tooltip) return;
 

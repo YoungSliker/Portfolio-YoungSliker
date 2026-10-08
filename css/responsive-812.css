@@ -77,4 +77,52 @@ html,body{width:100%;height:100%;min-width:0}
  .vm797-columns{grid-template-columns:minmax(0,1.7fr) minmax(190px,1fr)!important;gap:24px!important}
  .vm797-app{border-top:0!important;border-left:1px solid #263b2926!important;padding:0 0 0 24px!important}
  .vm797-device{width:min(190px,24vw)!important}
+
+ /* Touch browsers can retain a synthetic :hover state after tapping.  Keep
+    desktop-only cursor tails and hover enlargement out of the phone UI. */
+ #tooltip,.cursor-tooltip,.target-cursor-wrapper{display:none!important}
+ .young-nav577__card:hover,.category-stack-card:hover{transform:none!important}
+
+ /* The navigation intro belongs to the same 1920px safe canvas as its cards. */
+ .young-nav577__intro{gap:calc(var(--nav-card-gap) * .45)!important}
+ .young-nav577__intro .young-nav577__eyebrow{font-size:var(--nav-eyebrow-size)!important;letter-spacing:.18em!important}
+ .young-nav577__intro h2{font-size:var(--nav-heading-size)!important;line-height:1.06!important;white-space:nowrap!important}
+ .young-nav577__intro .young-nav577__hint{max-width:100%!important;font-size:var(--nav-hint-size)!important;line-height:1.35!important;white-space:nowrap!important}
+
+ /* AIGC's moving work wall remains a dense background layer; only the selected
+    card is foreground-sized. */
+ #aigc .drift-wall{--dw-tile-w:var(--drift-tile-w);--dw-tile-h:var(--drift-tile-h);--dw-gap:var(--drift-gap);--dw-radius:var(--drift-radius)}
+ .category-stack-heading p,.category-stack-heading span{font-size:var(--stack-heading-copy-size)!important;line-height:1.35!important}
+ .category-stack-label p{font-size:var(--stack-label-copy-size)!important;line-height:1.35!important}
+
+ /* Preserve the compact desktop hierarchy inside the digital-experience cards. */
+ #creative .ap-layout{gap:calc(34 * var(--desktop-scale))!important;padding:calc(55 * var(--desktop-scale)) 7%!important}
+ #creative .ap-folder-zone{width:calc(190 * var(--desktop-scale))!important;height:calc(154 * var(--desktop-scale))!important}
+ #creative .ap-folder-front{padding:calc(24 * var(--desktop-scale)) calc(18 * var(--desktop-scale))!important}
+ #creative .ap-folder-front b{font-size:calc(36 * var(--desktop-scale))!important}
+ #creative .ap-folder-front small{font-size:calc(11 * var(--desktop-scale))!important}
+ #creative .ap-copy h3{font-size:calc(56 * var(--desktop-scale))!important;line-height:1.12!important}
+ #creative .ap-copy h3 span{font-size:calc(34 * var(--desktop-scale))!important}
+ #creative .ap-copy>p{margin-bottom:calc(26 * var(--desktop-scale))!important;font-size:calc(16 * var(--desktop-scale))!important;line-height:1.45!important}
+ #creative .ap-copy>div{font-size:calc(14 * var(--desktop-scale))!important;line-height:1.55!important}
+ #creative .ap-enter{margin-top:calc(30 * var(--desktop-scale))!important;padding:calc(12 * var(--desktop-scale)) calc(22 * var(--desktop-scale))!important;font-size:calc(16 * var(--desktop-scale))!important}
+ #creative .ap-index{font-size:calc(13 * var(--desktop-scale))!important}
+
+ /* The project hero uses the authored desktop type scale instead of Tailwind's
+    fixed 9xl text size, which otherwise overwhelms a 360px-high viewport. */
+ #project-detail .detail-header h1{font-size:var(--detail-title-size)!important;line-height:1!important}
+ #project-detail .detail-header>p,#project-detail .detail-scroll-hint{font-size:var(--detail-kicker-size)!important}
+ #project-detail .detail-scroll-hint{letter-spacing:.32em!important}
+ #project-detail .detail-close-wrap{transform:scale(var(--desktop-scale))!important;transform-origin:top right!important}
+
+ /* Keep every video control surface inside its rounded media stage. */
+ .vm798-video-shell{isolation:isolate!important}
+ .vm798-video-controls{box-sizing:border-box!important;grid-template-columns:calc(42 * var(--desktop-scale)) minmax(0,1fr) calc(42 * var(--desktop-scale))!important;gap:calc(10 * var(--desktop-scale))!important;max-width:calc(100% - 16px)!important;padding:calc(9 * var(--desktop-scale))!important;right:8px!important;bottom:8px!important;left:8px!important;overflow:hidden!important}
+ .vm798-video-controls button{width:calc(42 * var(--desktop-scale))!important;height:calc(34 * var(--desktop-scale))!important;font-size:calc(15 * var(--desktop-scale))!important}
+ .vm798-video-time{display:none!important}
+
+ /* The visual-communication carousel is deliberately framed as one main view
+    on phones; adjacent views stay outside the crop. */
+ #ui .vm792-stage{overflow:hidden!important}
+ #ui #infinite-grid-menu-canvas{transform:scale(1.22)!important;transform-origin:50% 50%!important}
 }

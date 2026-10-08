@@ -31,19 +31,30 @@
    document.documentElement.style.setProperty('--nav-title-size',(34*scale)+'px');
    document.documentElement.style.setProperty('--nav-index-size',(34*scale)+'px');
    document.documentElement.style.setProperty('--nav-index-font-size',(10*scale)+'px');
+   document.documentElement.style.setProperty('--nav-eyebrow-size',(16*scale)+'px');
+   document.documentElement.style.setProperty('--nav-heading-size',(64*scale)+'px');
+   document.documentElement.style.setProperty('--nav-hint-size',(21*scale)+'px');
    document.documentElement.style.setProperty('--stack-card-height',(560*scale)+'px');
    document.documentElement.style.setProperty('--stack-card-radius',(32*scale)+'px');
    document.documentElement.style.setProperty('--stack-heading-gap',(70*scale)+'px');
-   document.documentElement.style.setProperty('--stack-heading-size',(62*scale)+'px');
+   document.documentElement.style.setProperty('--stack-heading-size',(78*scale)+'px');
+   document.documentElement.style.setProperty('--stack-heading-copy-size',(22*scale)+'px');
    document.documentElement.style.setProperty('--stack-label-bottom',(34*scale)+'px');
    document.documentElement.style.setProperty('--stack-label-left',(38*scale)+'px');
-   document.documentElement.style.setProperty('--stack-label-size',(46*scale)+'px');
+   document.documentElement.style.setProperty('--stack-label-size',(38*scale)+'px');
+   document.documentElement.style.setProperty('--stack-label-copy-size',(17*scale)+'px');
    document.documentElement.style.setProperty('--stack-number-top',(28*scale)+'px');
    document.documentElement.style.setProperty('--stack-number-right',(34*scale)+'px');
    document.documentElement.style.setProperty('--stack-number-size',(78*scale)+'px');
+   document.documentElement.style.setProperty('--drift-tile-w',(200*scale)+'px');
+   document.documentElement.style.setProperty('--drift-tile-h',(132*scale)+'px');
+   document.documentElement.style.setProperty('--drift-gap',(18*scale)+'px');
+   document.documentElement.style.setProperty('--drift-radius',(14*scale)+'px');
+   document.documentElement.style.setProperty('--detail-title-size',(160*scale)+'px');
+   document.documentElement.style.setProperty('--detail-kicker-size',(18*scale)+'px');
    home.style.setProperty('--home-poster-scale',String(scale*1.024));
   }else{
-   ['--desktop-safe-width','--desktop-safe-left','--desktop-scale','--profile-left','--profile-top','--profile-width','--profile-height','--profile-title-size','--profile-info-size','--profile-info-gap','--stack-top','--stack-side','--stack-content-width','--nav-card-height','--nav-card-gap','--nav-panel-width','--nav-overlay-top','--nav-overlay-side','--nav-overlay-bottom','--nav-card-padding','--nav-card-radius','--nav-title-size','--nav-index-size','--nav-index-font-size','--stack-card-height','--stack-card-radius','--stack-heading-gap','--stack-heading-size','--stack-label-bottom','--stack-label-left','--stack-label-size','--stack-number-top','--stack-number-right','--stack-number-size'].forEach(name=>document.documentElement.style.removeProperty(name));
+   ['--desktop-safe-width','--desktop-safe-left','--desktop-scale','--profile-left','--profile-top','--profile-width','--profile-height','--profile-title-size','--profile-info-size','--profile-info-gap','--stack-top','--stack-side','--stack-content-width','--nav-card-height','--nav-card-gap','--nav-panel-width','--nav-overlay-top','--nav-overlay-side','--nav-overlay-bottom','--nav-card-padding','--nav-card-radius','--nav-title-size','--nav-index-size','--nav-index-font-size','--nav-eyebrow-size','--nav-heading-size','--nav-hint-size','--stack-card-height','--stack-card-radius','--stack-heading-gap','--stack-heading-size','--stack-heading-copy-size','--stack-label-bottom','--stack-label-left','--stack-label-size','--stack-label-copy-size','--stack-number-top','--stack-number-right','--stack-number-size','--drift-tile-w','--drift-tile-h','--drift-gap','--drift-radius','--detail-title-size','--detail-kicker-size'].forEach(name=>document.documentElement.style.removeProperty(name));
    const scale=Math.min(width*(width<700?.92:.8333)/1561.6,height*.5555/538.27);
    home.style.setProperty('--home-poster-scale',String(scale));
   }
