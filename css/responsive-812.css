@@ -93,12 +93,13 @@ html,body{width:100%;height:100%;min-width:0}
 
  /* AIGC's moving work wall remains a dense background layer; only the selected
     card is foreground-sized. */
- #aigc .drift-wall{--dw-tile-w:var(--drift-tile-w);--dw-tile-h:var(--drift-tile-h);--dw-gap:var(--drift-gap);--dw-radius:var(--drift-radius)}
+ #aigc .drift-wall,#aigc-drift-root .drift-wall{--dw-tile-w:var(--drift-tile-w)!important;--dw-tile-h:calc(var(--drift-tile-h) * .55)!important;--dw-gap:calc(var(--drift-gap) * .6)!important;--dw-radius:var(--drift-radius)!important}
  .category-stack-heading p,.category-stack-heading span{font-size:var(--stack-heading-copy-size)!important;line-height:1.35!important}
  .category-stack-label p{font-size:var(--stack-label-copy-size)!important;line-height:1.35!important}
+ #aigc .category-stack-label,#aigc .category-stack-number{transform:scale(.72)!important;transform-origin:bottom left!important}
 
  /* Preserve the compact desktop hierarchy inside the digital-experience cards. */
- #creative .ap-layout{gap:calc(34 * var(--desktop-scale))!important;padding:calc(55 * var(--desktop-scale)) 7%!important}
+ #creative .ap-layout{gap:calc(34 * var(--desktop-scale))!important;padding:calc(55 * var(--desktop-scale)) 7%!important;transform:scale(.63)!important;transform-origin:center!important;width:158.74%!important;margin-left:-29.37%!important}
  #creative .ap-folder-zone{width:calc(190 * var(--desktop-scale))!important;height:calc(154 * var(--desktop-scale))!important}
  #creative .ap-folder-front{padding:calc(24 * var(--desktop-scale)) calc(18 * var(--desktop-scale))!important}
  #creative .ap-folder-front b{font-size:calc(36 * var(--desktop-scale))!important}
@@ -127,6 +128,9 @@ html,body{width:100%;height:100%;min-width:0}
     on phones; adjacent views stay outside the crop. */
  #ui .vm792-stage{overflow:visible!important}
  #ui #infinite-grid-menu-canvas{transform:none!important}
+ .young-nav577__elastic-mesh{display:none!important}
+ #bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask{overflow:visible!important}
+ #bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask>.border-glow-inner{overflow:hidden!important}
 }
 
 @media screen and (max-height:500px) and (orientation:landscape){
@@ -139,6 +143,7 @@ html,body{width:100%;height:100%;min-width:0}
  #bg-3d-wrapper.expanded-bg13 #imagesDiv.profile-logoloop-shell{width:30%!important;right:12%!important;bottom:12%!important;height:calc(108 * var(--desktop-scale))!important}
  #bg-3d-wrapper.expanded-bg13 .profile-logoloop-shell.visible{transform:translate3d(var(--profile-tools-x),var(--profile-tools-y),150px) scale(.72)!important}
  #bg-3d-wrapper.expanded-bg13 .profile-identity-text{font-size:calc(30 * var(--desktop-scale))!important;line-height:1.2!important}
+ #bg-3d-wrapper.expanded-bg13 #mainText{font-size:calc(30 * var(--desktop-scale))!important;line-height:1.2!important}
 
  /* The hero hint is secondary to the project title, while the exit remains a
     comfortably tappable control. */
@@ -151,4 +156,13 @@ html,body{width:100%;height:100%;min-width:0}
  #project-detail .detail-close-icon{font-size:calc(34 * var(--desktop-scale))!important}
  #project-detail .detail-close-text strong{font-size:calc(22 * var(--desktop-scale))!important}
  #project-detail .detail-close-text span{font-size:calc(11 * var(--desktop-scale))!important}
+
+ /* Visual communication: retain the desktop side labels and use a temporary
+    centre-window mask.  The menu's own .vm791-moving state removes it while
+    the user drags, revealing neighbouring works only during navigation. */
+ #ui .vm791-title{width:22%!important;left:3%!important;top:50%!important;bottom:auto!important;text-align:left!important;font-size:calc(38 * var(--desktop-scale))!important;transform:translateY(-50%)!important}
+ #ui .vm808-info{width:18%!important;right:3%!important;top:50%!important;bottom:auto!important;text-align:right!important;transform:translateY(-50%)!important}
+ #ui .vm808-info .vm791-count{font-size:calc(16 * var(--desktop-scale))!important}
+ #ui .vm792-stage::after{content:"";pointer-events:none;z-index:2;background:#000;position:absolute;inset:0;mask-image:radial-gradient(ellipse 32% 68% at 50% 50%,transparent 0 96%,#000 100%);-webkit-mask-image:radial-gradient(ellipse 32% 68% at 50% 50%,transparent 0 96%,#000 100%)}
+ #ui .vm791-moving .vm792-stage::after{display:none!important}
 }
