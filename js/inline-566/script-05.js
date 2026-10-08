@@ -6,6 +6,7 @@
 (function () {
     const video = document.getElementById('bg12-video');
     if (!video) return;
+    const videoMask = document.getElementById('bg12-video-mask');
 
     video.loop = true;
     video.muted = true;
@@ -31,8 +32,14 @@
         }
     }
 
-    video.addEventListener('canplay', syncVideo);
-    video.addEventListener('loadeddata', syncVideo);
+    function revealVideo() {
+        if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+            videoMask?.classList.add('is-video-ready');
+        }
+    }
+
+    video.addEventListener('canplay', function () { revealVideo(); syncVideo(); });
+    video.addEventListener('loadeddata', function () { revealVideo(); syncVideo(); });
     video.addEventListener('error', function () {
         console.warn('没有找到 主界面/背景_pingpong.mp4。这个文件必须先由 背景.mp4 正放+倒放 合成出来。');
     });
@@ -40,6 +47,7 @@
     setInterval(syncVideo, 1000);
 
     if (video.readyState >= 2) {
+        revealVideo();
         syncVideo();
     }
 })();
