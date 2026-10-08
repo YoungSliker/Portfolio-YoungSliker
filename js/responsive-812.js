@@ -2,8 +2,51 @@
  const home=document.getElementById('home');
  function resize(){
   const width=document.documentElement.clientWidth,height=window.visualViewport?.height||window.innerHeight;
-  const scale=Math.min(width*(width<700?.92:.8333)/1561.6,height*.5555/538.27);
-  home.style.setProperty('--home-poster-scale',String(scale));
+  const isPhoneLandscape=width>height&&height<=500;
+  if(isPhoneLandscape){
+   const scale=height/1080;
+   const safeWidth=height*16/9;
+   const safeLeft=(width-safeWidth)/2;
+   document.documentElement.style.setProperty('--desktop-safe-width',safeWidth+'px');
+   document.documentElement.style.setProperty('--desktop-safe-left',safeLeft+'px');
+   document.documentElement.style.setProperty('--desktop-scale',String(scale));
+   document.documentElement.style.setProperty('--profile-left',(safeLeft+safeWidth*.00706+20*scale)+'px');
+   document.documentElement.style.setProperty('--profile-top',(-height*.06801+50*scale)+'px');
+   document.documentElement.style.setProperty('--profile-width',(safeWidth*.9562)+'px');
+   document.documentElement.style.setProperty('--profile-height',(height*.90547)+'px');
+   document.documentElement.style.setProperty('--profile-title-size',(68*scale)+'px');
+   document.documentElement.style.setProperty('--profile-info-size',(30*scale)+'px');
+   document.documentElement.style.setProperty('--profile-info-gap',(30*scale)+'px');
+   document.documentElement.style.setProperty('--stack-top',(130*scale)+'px');
+   document.documentElement.style.setProperty('--stack-side',(48*scale)+'px');
+   document.documentElement.style.setProperty('--stack-content-width',Math.min(safeWidth,1240*scale)+'px');
+   document.documentElement.style.setProperty('--nav-card-height',(292*scale)+'px');
+   document.documentElement.style.setProperty('--nav-card-gap',(14*scale)+'px');
+   document.documentElement.style.setProperty('--nav-panel-width',Math.min(safeWidth,1180*scale)+'px');
+   document.documentElement.style.setProperty('--nav-overlay-top',(112*scale)+'px');
+   document.documentElement.style.setProperty('--nav-overlay-side',(28*scale)+'px');
+   document.documentElement.style.setProperty('--nav-overlay-bottom',(34*scale)+'px');
+   document.documentElement.style.setProperty('--nav-card-padding',(22*scale)+'px');
+   document.documentElement.style.setProperty('--nav-card-radius',(28*scale)+'px');
+   document.documentElement.style.setProperty('--nav-title-size',(34*scale)+'px');
+   document.documentElement.style.setProperty('--nav-index-size',(34*scale)+'px');
+   document.documentElement.style.setProperty('--nav-index-font-size',(10*scale)+'px');
+   document.documentElement.style.setProperty('--stack-card-height',(560*scale)+'px');
+   document.documentElement.style.setProperty('--stack-card-radius',(32*scale)+'px');
+   document.documentElement.style.setProperty('--stack-heading-gap',(70*scale)+'px');
+   document.documentElement.style.setProperty('--stack-heading-size',(62*scale)+'px');
+   document.documentElement.style.setProperty('--stack-label-bottom',(34*scale)+'px');
+   document.documentElement.style.setProperty('--stack-label-left',(38*scale)+'px');
+   document.documentElement.style.setProperty('--stack-label-size',(46*scale)+'px');
+   document.documentElement.style.setProperty('--stack-number-top',(28*scale)+'px');
+   document.documentElement.style.setProperty('--stack-number-right',(34*scale)+'px');
+   document.documentElement.style.setProperty('--stack-number-size',(78*scale)+'px');
+   home.style.setProperty('--home-poster-scale',String(scale*1.024));
+  }else{
+   ['--desktop-safe-width','--desktop-safe-left','--desktop-scale','--profile-left','--profile-top','--profile-width','--profile-height','--profile-title-size','--profile-info-size','--profile-info-gap','--stack-top','--stack-side','--stack-content-width','--nav-card-height','--nav-card-gap','--nav-panel-width','--nav-overlay-top','--nav-overlay-side','--nav-overlay-bottom','--nav-card-padding','--nav-card-radius','--nav-title-size','--nav-index-size','--nav-index-font-size','--stack-card-height','--stack-card-radius','--stack-heading-gap','--stack-heading-size','--stack-label-bottom','--stack-label-left','--stack-label-size','--stack-number-top','--stack-number-right','--stack-number-size'].forEach(name=>document.documentElement.style.removeProperty(name));
+   const scale=Math.min(width*(width<700?.92:.8333)/1561.6,height*.5555/538.27);
+   home.style.setProperty('--home-poster-scale',String(scale));
+  }
  }
  resize();window.addEventListener('resize',resize,{passive:true});window.visualViewport?.addEventListener('resize',resize,{passive:true});
 })();

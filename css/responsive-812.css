@@ -44,20 +44,27 @@ html,body{width:100%;height:100%;min-width:0}
  .category-stack-host .scroll-stack-scroller{height:100%!important;overflow-y:auto!important;pointer-events:auto!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch}
  @media (hover:none), (pointer:coarse){.aigc-stack-host .scroll-stack-scroller{height:100%!important;overflow-y:auto!important;pointer-events:auto!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch}}
  #project-detail{height:100dvh!important;overflow-y:auto!important;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch}
- #bg-3d-wrapper.expanded-bg13 .profile-info-title{top:18%!important;right:9%!important;font-size:34px!important}
- #bg-3d-wrapper.expanded-bg13 .profile-info-html{left:37%!important;top:42%!important;width:55%!important;font-size:14px!important;line-height:1.2!important;letter-spacing:0!important}
- #bg-3d-wrapper.expanded-bg13 .profile-info-html__columns{grid-template-columns:1fr 1.3fr!important;column-gap:8px!important}.profile-info-html__col{gap:8px!important}.profile-info-html p{height:auto!important;white-space:nowrap!important}
- #bg-3d-wrapper.expanded-bg13 .profile-identity-text,#bg-3d-wrapper.expanded-bg13 .profile-logoloop-shell{display:none!important}
- #home:has(#bg-3d-wrapper.expanded-bg13) #textDiv,#home:has(#bg-3d-wrapper.expanded-bg13) #mainText,#home:has(#bg-3d-wrapper.expanded-bg13) #textDiv+div{display:none!important}
+ /* A phone's extra width is background only.  The foreground stays on a centered 16:9 desktop canvas. */
+ #home .absolute.inset-0,.page-content{overflow:hidden}
+ #bg-3d-wrapper.expanded-bg13{left:var(--profile-left)!important;top:var(--profile-top)!important;width:var(--profile-width)!important;height:var(--profile-height)!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-info-title{top:20.3%!important;right:9.1%!important;font-size:var(--profile-title-size)!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-info-html{left:38.5%!important;top:40.45%!important;width:52%!important;font-size:var(--profile-info-size)!important;line-height:var(--profile-info-size)!important;letter-spacing:0!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-info-html__columns{grid-template-columns:40% 50%!important;column-gap:3%!important}.profile-info-html__col{gap:var(--profile-info-gap)!important}.profile-info-html p{height:var(--profile-info-size)!important;white-space:nowrap!important}
 
- /* Keep the three work categories as complete cards in the short landscape canvas. */
- .young-nav577__overlay{display:grid!important;place-items:center;padding:72px 28px 16px!important;overflow:hidden!important}
- .young-nav577__panel{width:min(1180px,100%)!important}
- .young-nav577__intro{margin-bottom:10px!important}
- .young-nav577__cards{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
- .young-nav577__card{min-height:clamp(158px,46vh,210px)!important;padding:18px!important;--card-radius:24px}
+ /* The overlay panel and all scroll-stack cards use that same desktop canvas. */
+ .young-nav577__overlay{display:grid!important;place-items:center;padding:var(--nav-overlay-top) var(--nav-overlay-side) var(--nav-overlay-bottom)!important;overflow:hidden!important}
+ .young-nav577__panel{width:var(--nav-panel-width)!important}
+ .young-nav577__intro{margin-bottom:calc(var(--nav-card-gap) * .7)!important}
+ .young-nav577__cards{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:var(--nav-card-gap)!important}
+ .young-nav577__card{min-height:var(--nav-card-height)!important;padding:var(--nav-card-padding)!important;--card-radius:var(--nav-card-radius)}
  .young-nav577__links{display:none!important}
  .young-nav577__card-surface,.young-nav577__elastic-mesh{border-radius:var(--card-radius)!important;clip-path:inset(0 round var(--card-radius))!important}
+ .young-nav577__card .young-nav577__title.nav-btn{font-size:var(--nav-title-size)!important}
+ .young-nav577__index{width:var(--nav-index-size)!important;height:var(--nav-index-size)!important;font-size:var(--nav-index-font-size)!important}
+ .category-stack-host .scroll-stack-inner{box-sizing:border-box;width:var(--stack-content-width)!important;max-width:none!important;padding:var(--stack-top) var(--stack-side) 55vh!important}
+ .category-stack-host .scroll-stack-card{height:var(--stack-card-height)!important;border-radius:var(--stack-card-radius)!important}
+ .category-stack-host .category-stack-art{border-radius:var(--stack-card-radius)!important}
+ .category-stack-heading{margin-bottom:var(--stack-heading-gap)!important}.category-stack-heading h2{font-size:var(--stack-heading-size)!important}.category-stack-label{bottom:var(--stack-label-bottom)!important;left:var(--stack-label-left)!important}.category-stack-label h3{font-size:var(--stack-label-size)!important}.category-stack-number{top:var(--stack-number-top)!important;right:var(--stack-number-right)!important;font-size:var(--stack-number-size)!important}
 
  /* Native video dimensions and clipping must follow their rounded stage on touch devices. */
  .vm798-video-shell,.vm797-kulun .vm798-video-shell,.mine-eco__video-shell,.wy-video-shell,.presentation-showcase-566__media{overflow:hidden!important;border-radius:18px!important}
