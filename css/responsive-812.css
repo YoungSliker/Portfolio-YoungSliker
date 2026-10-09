@@ -163,6 +163,52 @@ html,body{width:100%;height:100%;min-width:0}
  #ui .vm791-title{width:22%!important;left:3%!important;top:50%!important;bottom:auto!important;text-align:left!important;font-size:calc(38 * var(--desktop-scale))!important;transform:translateY(-50%)!important}
  #ui .vm808-info{width:18%!important;right:3%!important;top:50%!important;bottom:auto!important;text-align:right!important;transform:translateY(-50%)!important}
  #ui .vm808-info .vm791-count{font-size:calc(16 * var(--desktop-scale))!important}
- #ui .vm792-stage::after{content:"";pointer-events:none;z-index:2;background:#000;position:absolute;inset:0;mask-image:radial-gradient(ellipse 32% 68% at 50% 50%,transparent 0 96%,#000 100%);-webkit-mask-image:radial-gradient(ellipse 32% 68% at 50% 50%,transparent 0 96%,#000 100%)}
+ #ui .vm792-stage::after{content:"";pointer-events:none;z-index:2;background:rgb(2 5 10 / .20);position:absolute;inset:0;backdrop-filter:blur(7px) brightness(.62);-webkit-backdrop-filter:blur(7px) brightness(.62);mask-image:radial-gradient(ellipse 32% 68% at 50% 50%,transparent 0 94%,#000 100%);-webkit-mask-image:radial-gradient(ellipse 32% 68% at 50% 50%,transparent 0 94%,#000 100%)}
  #ui .vm791-moving .vm792-stage::after{display:none!important}
+}
+
+/* Phone landscape: use stable, authored layers instead of canvas/track motion.
+   This retains the information hierarchy at 360px high without hiding the page
+   background or letting a delayed animation split the composition. */
+@media screen and (max-height:500px) and (orientation:landscape){
+ /* Home: keep the complete video frame outside the clipped video itself. */
+ #bg-3d-wrapper:not(.expanded-bg13) .bg12-video-gaussian-border{display:block!important;visibility:visible!important;opacity:.72!important;left:16px!important;right:16px!important;top:13px!important;bottom:13px!important;z-index:1!important}
+ #bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask{z-index:2!important;overflow:visible!important}
+ #bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask>.border-glow-inner{overflow:hidden!important;border-radius:var(--bg12-video-radius,30px)!important}
+
+ /* Profile: decorative tool marks and the signature remain subordinate. */
+ #bg-3d-wrapper.expanded-bg13 #imagesDiv.profile-logoloop-shell{width:26%!important;height:calc(94 * var(--desktop-scale))!important;right:14%!important;bottom:15%!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-logoloop-shell.visible{transform:translate3d(var(--profile-tools-x),var(--profile-tools-y),150px) scale(.58)!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-identity-text,#bg-3d-wrapper.expanded-bg13 #mainText{font-size:calc(22 * var(--desktop-scale))!important;line-height:1.25!important}
+ #bg-3d-wrapper.expanded-bg13 #bg12-content{overflow:hidden!important;border-radius:calc(32 * var(--desktop-scale))!important}
+
+ /* Navigation cards: a static CSS grid cannot shake and remains visible on touch. */
+ .young-nav577__elastic-mesh{display:none!important}
+ .young-nav577__card-surface{background-color:var(--card-bg)!important;background-image:linear-gradient(rgba(var(--mesh-line,255,255,255),.24) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--mesh-line,255,255,255),.24) 1px,transparent 1px)!important;background-size:calc(24 * var(--desktop-scale)) calc(24 * var(--desktop-scale))!important}
+ .young-nav577__link{font-size:calc(13 * var(--desktop-scale))!important;line-height:1.18!important}
+ .young-nav577__links li{margin-bottom:calc(7 * var(--desktop-scale))!important}
+ .young-nav577__card .young-nav577__title.nav-btn{font-size:calc(30 * var(--desktop-scale))!important}
+
+ /* AIGC: every column starts from one aligned frame on phone, avoiding the
+    staggered/fragmented wall while still retaining a dense work-wall texture. */
+ #aigc .drift-wall,#aigc-drift-root .drift-wall{--dw-tile-w:calc(var(--drift-tile-w) * .68)!important;--dw-tile-h:calc(var(--drift-tile-h) * .42)!important;--dw-gap:calc(var(--drift-gap) * .5)!important;--dw-edge:74%!important}
+ #aigc .drift-wall__track,#aigc-drift-root .drift-wall__track{transform:translate3d(0,0,0)!important;transition:none!important;will-change:auto!important}
+ #aigc .drift-wall__plane,#aigc-drift-root .drift-wall__plane{transition:none!important;will-change:auto!important}
+ #aigc .category-stack-label,#aigc .category-stack-number{transform:scale(.62)!important}
+ .category-stack-heading p,.category-stack-heading span{font-size:calc(var(--stack-heading-copy-size) * .86)!important}
+ .category-stack-label p{font-size:calc(var(--stack-label-copy-size) * .82)!important}
+
+ /* Digital experience: do not scale a whole card twice.  Size its components
+    once so both cards keep their own icon, copy and background in one layout. */
+ #creative .ap-layout{width:auto!important;height:100%!important;margin-left:0!important;transform:none!important;gap:calc(26 * var(--desktop-scale))!important;padding:calc(38 * var(--desktop-scale)) 7%!important}
+ #creative .ap-folder-zone{width:calc(150 * var(--desktop-scale))!important;height:calc(122 * var(--desktop-scale))!important}
+ #creative .ap-folder-front{padding:calc(17 * var(--desktop-scale)) calc(13 * var(--desktop-scale))!important}
+ #creative .ap-folder-front b{font-size:calc(27 * var(--desktop-scale))!important}
+ #creative .ap-folder-front small{font-size:calc(9 * var(--desktop-scale))!important}
+ #creative .ap-copy h3{font-size:calc(42 * var(--desktop-scale))!important;line-height:1.08!important}
+ #creative .ap-copy h3 span{margin-top:calc(8 * var(--desktop-scale))!important;font-size:calc(25 * var(--desktop-scale))!important}
+ #creative .ap-copy>p{margin-bottom:calc(15 * var(--desktop-scale))!important;font-size:calc(13 * var(--desktop-scale))!important;line-height:1.35!important}
+ #creative .ap-copy>div{margin-top:calc(13 * var(--desktop-scale))!important;font-size:calc(11 * var(--desktop-scale))!important;line-height:1.42!important}
+ #creative .ap-enter{margin-top:calc(18 * var(--desktop-scale))!important;padding-bottom:calc(7 * var(--desktop-scale))!important;font-size:calc(12 * var(--desktop-scale))!important}
+ #creative .ap-index{bottom:calc(15 * var(--desktop-scale))!important;font-size:calc(9 * var(--desktop-scale))!important}
 }
