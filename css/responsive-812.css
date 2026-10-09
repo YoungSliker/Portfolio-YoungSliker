@@ -57,9 +57,9 @@ html,body{width:100%;height:100%;min-width:0}
  .young-nav577__intro{margin-bottom:calc(var(--nav-card-gap) * .7)!important}
  .young-nav577__cards{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:var(--nav-card-gap)!important}
  .young-nav577__card{min-height:var(--nav-card-height)!important;padding:var(--nav-card-padding)!important;--card-radius:var(--nav-card-radius)}
- .young-nav577__links{display:block!important;margin-top:calc(12 * var(--desktop-scale))!important;padding:0!important}
- .young-nav577__links li{margin:0 0 calc(8 * var(--desktop-scale))!important;line-height:1!important}
- .young-nav577__link{font-size:calc(16 * var(--desktop-scale))!important;line-height:1.2!important}
+ .young-nav577__links{display:block!important;margin-top:calc(12px * var(--desktop-scale))!important;padding:0!important}
+ .young-nav577__links li{margin:0 0 calc(8px * var(--desktop-scale))!important;line-height:1!important}
+ .young-nav577__link{font-size:calc(16px * var(--desktop-scale))!important;line-height:1.2!important}
  .young-nav577__card-surface,.young-nav577__elastic-mesh{border-radius:var(--card-radius)!important;clip-path:inset(0 round var(--card-radius))!important}
  .young-nav577__card .young-nav577__title.nav-btn{font-size:var(--nav-title-size)!important}
  .young-nav577__index{width:var(--nav-index-size)!important;height:var(--nav-index-size)!important;font-size:var(--nav-index-font-size)!important}
@@ -99,17 +99,17 @@ html,body{width:100%;height:100%;min-width:0}
  #aigc .category-stack-label,#aigc .category-stack-number{transform:scale(.72)!important;transform-origin:bottom left!important}
 
  /* Preserve the compact desktop hierarchy inside the digital-experience cards. */
- #creative .ap-layout{gap:calc(34 * var(--desktop-scale))!important;padding:calc(55 * var(--desktop-scale)) 7%!important;transform:scale(.63)!important;transform-origin:center!important;width:158.74%!important;margin-left:-29.37%!important}
- #creative .ap-folder-zone{width:calc(190 * var(--desktop-scale))!important;height:calc(154 * var(--desktop-scale))!important}
- #creative .ap-folder-front{padding:calc(24 * var(--desktop-scale)) calc(18 * var(--desktop-scale))!important}
- #creative .ap-folder-front b{font-size:calc(36 * var(--desktop-scale))!important}
- #creative .ap-folder-front small{font-size:calc(11 * var(--desktop-scale))!important}
- #creative .ap-copy h3{font-size:calc(56 * var(--desktop-scale))!important;line-height:1.12!important}
- #creative .ap-copy h3 span{font-size:calc(34 * var(--desktop-scale))!important}
- #creative .ap-copy>p{margin-bottom:calc(26 * var(--desktop-scale))!important;font-size:calc(16 * var(--desktop-scale))!important;line-height:1.45!important}
- #creative .ap-copy>div{font-size:calc(14 * var(--desktop-scale))!important;line-height:1.55!important}
- #creative .ap-enter{margin-top:calc(30 * var(--desktop-scale))!important;padding:calc(12 * var(--desktop-scale)) calc(22 * var(--desktop-scale))!important;font-size:calc(16 * var(--desktop-scale))!important}
- #creative .ap-index{font-size:calc(13 * var(--desktop-scale))!important}
+ #creative .ap-layout{gap:calc(34px * var(--desktop-scale))!important;padding:calc(55px * var(--desktop-scale)) 7%!important;transform:scale(.63)!important;transform-origin:center!important;width:158.74%!important;margin-left:-29.37%!important}
+ #creative .ap-folder-zone{width:calc(190px * var(--desktop-scale))!important;height:calc(154px * var(--desktop-scale))!important}
+ #creative .ap-folder-front{padding:calc(24px * var(--desktop-scale)) calc(18px * var(--desktop-scale))!important}
+ #creative .ap-folder-front b{font-size:calc(36px * var(--desktop-scale))!important}
+ #creative .ap-folder-front small{font-size:calc(11px * var(--desktop-scale))!important}
+ #creative .ap-copy h3{font-size:calc(56px * var(--desktop-scale))!important;line-height:1.12!important}
+ #creative .ap-copy h3 span{font-size:calc(34px * var(--desktop-scale))!important}
+ #creative .ap-copy>p{margin-bottom:calc(26px * var(--desktop-scale))!important;font-size:calc(16px * var(--desktop-scale))!important;line-height:1.45!important}
+ #creative .ap-copy>div{font-size:calc(14px * var(--desktop-scale))!important;line-height:1.55!important}
+ #creative .ap-enter{margin-top:calc(30px * var(--desktop-scale))!important;padding:calc(12px * var(--desktop-scale)) calc(22px * var(--desktop-scale))!important;font-size:calc(16px * var(--desktop-scale))!important}
+ #creative .ap-index{font-size:calc(13px * var(--desktop-scale))!important}
 
  /* The project hero uses the authored desktop type scale instead of Tailwind's
     fixed 9xl text size, which otherwise overwhelms a 360px-high viewport. */
@@ -120,8 +120,8 @@ html,body{width:100%;height:100%;min-width:0}
 
  /* Keep every video control surface inside its rounded media stage. */
  .vm798-video-shell{isolation:isolate!important}
- .vm798-video-controls{box-sizing:border-box!important;grid-template-columns:calc(42 * var(--desktop-scale)) minmax(0,1fr) calc(42 * var(--desktop-scale))!important;gap:calc(10 * var(--desktop-scale))!important;max-width:calc(100% - 16px)!important;padding:calc(9 * var(--desktop-scale))!important;right:8px!important;bottom:8px!important;left:8px!important;overflow:hidden!important}
- .vm798-video-controls button{width:calc(42 * var(--desktop-scale))!important;height:calc(34 * var(--desktop-scale))!important;font-size:calc(15 * var(--desktop-scale))!important}
+ .vm798-video-controls{box-sizing:border-box!important;grid-template-columns:calc(42px * var(--desktop-scale)) minmax(0,1fr) calc(42px * var(--desktop-scale))!important;gap:calc(10px * var(--desktop-scale))!important;max-width:calc(100% - 16px)!important;padding:calc(9px * var(--desktop-scale))!important;right:8px!important;bottom:8px!important;left:8px!important;overflow:hidden!important}
+ .vm798-video-controls button{width:calc(42px * var(--desktop-scale))!important;height:calc(34px * var(--desktop-scale))!important;font-size:calc(15px * var(--desktop-scale))!important}
  .vm798-video-time{display:none!important}
 
  /* The visual-communication carousel is deliberately framed as one main view
@@ -140,29 +140,29 @@ html,body{width:100%;height:100%;min-width:0}
  #home #bg1{background:#26232f!important}
 
  /* The profile's icon conveyor is a decorative accent, not its largest focal point. */
- #bg-3d-wrapper.expanded-bg13 #imagesDiv.profile-logoloop-shell{width:30%!important;right:12%!important;bottom:12%!important;height:calc(108 * var(--desktop-scale))!important}
+ #bg-3d-wrapper.expanded-bg13 #imagesDiv.profile-logoloop-shell{width:30%!important;right:12%!important;bottom:12%!important;height:calc(108px * var(--desktop-scale))!important}
  #bg-3d-wrapper.expanded-bg13 .profile-logoloop-shell.visible{transform:translate3d(var(--profile-tools-x),var(--profile-tools-y),150px) scale(.72)!important}
- #bg-3d-wrapper.expanded-bg13 .profile-identity-text{font-size:calc(30 * var(--desktop-scale))!important;line-height:1.2!important}
- #bg-3d-wrapper.expanded-bg13 #mainText{font-size:calc(30 * var(--desktop-scale))!important;line-height:1.2!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-identity-text{font-size:calc(30px * var(--desktop-scale))!important;line-height:1.2!important}
+ #bg-3d-wrapper.expanded-bg13 #mainText{font-size:calc(30px * var(--desktop-scale))!important;line-height:1.2!important}
 
  /* The hero hint is secondary to the project title, while the exit remains a
     comfortably tappable control. */
- #project-detail .detail-scroll-hint{bottom:calc(34 * var(--desktop-scale))!important;gap:calc(8 * var(--desktop-scale))!important}
- #project-detail .detail-scroll-hint .scroll-text-cn{font-size:calc(14 * var(--desktop-scale))!important}
- #project-detail .detail-scroll-hint .scroll-text-en{font-size:calc(10 * var(--desktop-scale))!important}
- #project-detail .detail-scroll-arrow{width:calc(38 * var(--desktop-scale))!important;height:calc(52 * var(--desktop-scale))!important}
- #project-detail .detail-close-wrap{top:calc(28 * var(--desktop-scale))!important;right:calc(30 * var(--desktop-scale))!important;transform:none!important}
- #project-detail .detail-close-btn{gap:calc(12 * var(--desktop-scale))!important;padding:calc(13 * var(--desktop-scale)) calc(18 * var(--desktop-scale))!important}
- #project-detail .detail-close-icon{font-size:calc(34 * var(--desktop-scale))!important}
- #project-detail .detail-close-text strong{font-size:calc(22 * var(--desktop-scale))!important}
- #project-detail .detail-close-text span{font-size:calc(11 * var(--desktop-scale))!important}
+ #project-detail .detail-scroll-hint{bottom:calc(34px * var(--desktop-scale))!important;gap:calc(8px * var(--desktop-scale))!important}
+ #project-detail .detail-scroll-hint .scroll-text-cn{font-size:calc(14px * var(--desktop-scale))!important}
+ #project-detail .detail-scroll-hint .scroll-text-en{font-size:calc(10px * var(--desktop-scale))!important}
+ #project-detail .detail-scroll-arrow{width:calc(38px * var(--desktop-scale))!important;height:calc(52px * var(--desktop-scale))!important}
+ #project-detail .detail-close-wrap{top:calc(28px * var(--desktop-scale))!important;right:calc(30px * var(--desktop-scale))!important;transform:none!important}
+ #project-detail .detail-close-btn{gap:calc(12px * var(--desktop-scale))!important;padding:calc(13px * var(--desktop-scale)) calc(18px * var(--desktop-scale))!important}
+ #project-detail .detail-close-icon{font-size:calc(34px * var(--desktop-scale))!important}
+ #project-detail .detail-close-text strong{font-size:calc(22px * var(--desktop-scale))!important}
+ #project-detail .detail-close-text span{font-size:calc(11px * var(--desktop-scale))!important}
 
  /* Visual communication: retain the desktop side labels and use a temporary
     centre-window mask.  The menu's own .vm791-moving state removes it while
     the user drags, revealing neighbouring works only during navigation. */
- #ui .vm791-title{width:22%!important;left:3%!important;top:50%!important;bottom:auto!important;text-align:left!important;font-size:calc(38 * var(--desktop-scale))!important;transform:translateY(-50%)!important}
+ #ui .vm791-title{width:22%!important;left:3%!important;top:50%!important;bottom:auto!important;text-align:left!important;font-size:calc(38px * var(--desktop-scale))!important;transform:translateY(-50%)!important}
  #ui .vm808-info{width:18%!important;right:3%!important;top:50%!important;bottom:auto!important;text-align:right!important;transform:translateY(-50%)!important}
- #ui .vm808-info .vm791-count{font-size:calc(16 * var(--desktop-scale))!important}
+ #ui .vm808-info .vm791-count{font-size:calc(16px * var(--desktop-scale))!important}
  #ui .vm792-stage::after{content:"";pointer-events:none;z-index:2;background:rgb(2 5 10 / .20);position:absolute;inset:0;backdrop-filter:blur(7px) brightness(.62);-webkit-backdrop-filter:blur(7px) brightness(.62);mask-image:radial-gradient(ellipse 32% 68% at 50% 50%,transparent 0 94%,#000 100%);-webkit-mask-image:radial-gradient(ellipse 32% 68% at 50% 50%,transparent 0 94%,#000 100%)}
  #ui .vm791-moving .vm792-stage::after{display:none!important}
 }
@@ -177,17 +177,17 @@ html,body{width:100%;height:100%;min-width:0}
  #bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask>.border-glow-inner{overflow:hidden!important;border-radius:var(--bg12-video-radius,30px)!important}
 
  /* Profile: decorative tool marks and the signature remain subordinate. */
- #bg-3d-wrapper.expanded-bg13 #imagesDiv.profile-logoloop-shell{width:26%!important;height:calc(94 * var(--desktop-scale))!important;right:14%!important;bottom:15%!important}
+ #bg-3d-wrapper.expanded-bg13 #imagesDiv.profile-logoloop-shell{width:26%!important;height:calc(94px * var(--desktop-scale))!important;right:14%!important;bottom:15%!important}
  #bg-3d-wrapper.expanded-bg13 .profile-logoloop-shell.visible{transform:translate3d(var(--profile-tools-x),var(--profile-tools-y),150px) scale(.58)!important}
- #bg-3d-wrapper.expanded-bg13 .profile-identity-text,#bg-3d-wrapper.expanded-bg13 #mainText{font-size:calc(22 * var(--desktop-scale))!important;line-height:1.25!important}
- #bg-3d-wrapper.expanded-bg13 #bg12-content{overflow:hidden!important;border-radius:calc(32 * var(--desktop-scale))!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-identity-text,#bg-3d-wrapper.expanded-bg13 #mainText{font-size:calc(22px * var(--desktop-scale))!important;line-height:1.25!important}
+ #bg-3d-wrapper.expanded-bg13 #bg12-content{overflow:hidden!important;border-radius:calc(32px * var(--desktop-scale))!important}
 
  /* Navigation cards: a static CSS grid cannot shake and remains visible on touch. */
  .young-nav577__elastic-mesh{display:none!important}
- .young-nav577__card-surface{background-color:var(--card-bg)!important;background-image:linear-gradient(rgba(var(--mesh-line,255,255,255),.24) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--mesh-line,255,255,255),.24) 1px,transparent 1px)!important;background-size:calc(24 * var(--desktop-scale)) calc(24 * var(--desktop-scale))!important}
- .young-nav577__link{font-size:calc(13 * var(--desktop-scale))!important;line-height:1.18!important}
- .young-nav577__links li{margin-bottom:calc(7 * var(--desktop-scale))!important}
- .young-nav577__card .young-nav577__title.nav-btn{font-size:calc(30 * var(--desktop-scale))!important}
+ .young-nav577__card-surface{background-color:var(--card-bg)!important;background-image:linear-gradient(rgba(var(--mesh-line,255,255,255),.24) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--mesh-line,255,255,255),.24) 1px,transparent 1px)!important;background-size:calc(24px * var(--desktop-scale)) calc(24px * var(--desktop-scale))!important}
+ .young-nav577__link{font-size:calc(22px * var(--desktop-scale))!important;line-height:1.18!important}
+ .young-nav577__links li{margin-bottom:calc(7px * var(--desktop-scale))!important}
+ .young-nav577__card .young-nav577__title.nav-btn{font-size:calc(34px * var(--desktop-scale))!important}
 
  /* AIGC: every column starts from one aligned frame on phone, avoiding the
     staggered/fragmented wall while still retaining a dense work-wall texture. */
@@ -200,15 +200,15 @@ html,body{width:100%;height:100%;min-width:0}
 
  /* Digital experience: do not scale a whole card twice.  Size its components
     once so both cards keep their own icon, copy and background in one layout. */
- #creative .ap-layout{width:auto!important;height:100%!important;margin-left:0!important;transform:none!important;gap:calc(26 * var(--desktop-scale))!important;padding:calc(38 * var(--desktop-scale)) 7%!important}
- #creative .ap-folder-zone{width:calc(150 * var(--desktop-scale))!important;height:calc(122 * var(--desktop-scale))!important}
- #creative .ap-folder-front{padding:calc(17 * var(--desktop-scale)) calc(13 * var(--desktop-scale))!important}
- #creative .ap-folder-front b{font-size:calc(27 * var(--desktop-scale))!important}
- #creative .ap-folder-front small{font-size:calc(9 * var(--desktop-scale))!important}
- #creative .ap-copy h3{font-size:calc(42 * var(--desktop-scale))!important;line-height:1.08!important}
- #creative .ap-copy h3 span{margin-top:calc(8 * var(--desktop-scale))!important;font-size:calc(25 * var(--desktop-scale))!important}
- #creative .ap-copy>p{margin-bottom:calc(15 * var(--desktop-scale))!important;font-size:calc(13 * var(--desktop-scale))!important;line-height:1.35!important}
- #creative .ap-copy>div{margin-top:calc(13 * var(--desktop-scale))!important;font-size:calc(11 * var(--desktop-scale))!important;line-height:1.42!important}
- #creative .ap-enter{margin-top:calc(18 * var(--desktop-scale))!important;padding-bottom:calc(7 * var(--desktop-scale))!important;font-size:calc(12 * var(--desktop-scale))!important}
- #creative .ap-index{bottom:calc(15 * var(--desktop-scale))!important;font-size:calc(9 * var(--desktop-scale))!important}
+ #creative .ap-layout{width:auto!important;height:100%!important;margin-left:0!important;transform:none!important;gap:calc(26px * var(--desktop-scale))!important;padding:calc(38px * var(--desktop-scale)) 7%!important}
+ #creative .ap-folder-zone{width:calc(150px * var(--desktop-scale))!important;height:calc(122px * var(--desktop-scale))!important}
+ #creative .ap-folder-front{padding:calc(17px * var(--desktop-scale)) calc(13px * var(--desktop-scale))!important}
+ #creative .ap-folder-front b{font-size:calc(27px * var(--desktop-scale))!important}
+ #creative .ap-folder-front small{font-size:calc(9px * var(--desktop-scale))!important}
+ #creative .ap-copy h3{font-size:calc(42px * var(--desktop-scale))!important;line-height:1.08!important}
+ #creative .ap-copy h3 span{margin-top:calc(8px * var(--desktop-scale))!important;font-size:calc(25px * var(--desktop-scale))!important}
+ #creative .ap-copy>p{margin-bottom:calc(15px * var(--desktop-scale))!important;font-size:calc(13px * var(--desktop-scale))!important;line-height:1.35!important}
+ #creative .ap-copy>div{margin-top:calc(13px * var(--desktop-scale))!important;font-size:calc(11px * var(--desktop-scale))!important;line-height:1.42!important}
+ #creative .ap-enter{margin-top:calc(18px * var(--desktop-scale))!important;padding-bottom:calc(7px * var(--desktop-scale))!important;font-size:calc(12px * var(--desktop-scale))!important}
+ #creative .ap-index{bottom:calc(15px * var(--desktop-scale))!important;font-size:calc(9px * var(--desktop-scale))!important}
 }
