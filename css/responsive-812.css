@@ -32,6 +32,24 @@ html,body{width:100%;height:100%;min-width:0}
 @media screen and (max-width:767px) and (orientation:landscape){
  html,body,#main-wrapper,.page-content{width:100%;height:100dvh;min-height:0}
  #main-wrapper{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);box-sizing:border-box}
+
+ /* A portfolio is a viewing surface on touch devices.  Do not let a long
+    press select a caption, image, or decorative layer and leave a system
+    selection highlight over the work. */
+ #main-wrapper,#main-wrapper *,#project-detail,#project-detail *{
+  -webkit-touch-callout:none!important;
+  -webkit-user-select:none!important;
+  user-select:none!important;
+ }
+ #main-wrapper img,#main-wrapper video,#main-wrapper canvas{
+  -webkit-user-drag:none!important;
+  user-drag:none!important;
+ }
+ #main-wrapper input,#main-wrapper textarea,#main-wrapper select,#main-wrapper [contenteditable="true"]{
+  -webkit-touch-callout:default!important;
+  -webkit-user-select:text!important;
+  user-select:text!important;
+ }
 }
 @keyframes portfolio-rotate-phone{0%,100%{transform:rotate(90deg)}45%{transform:rotate(0deg)}55%{transform:rotate(0deg)}}
 
@@ -157,14 +175,12 @@ html,body{width:100%;height:100%;min-width:0}
  #project-detail .detail-close-text strong{font-size:calc(22px * var(--desktop-scale))!important}
  #project-detail .detail-close-text span{font-size:calc(11px * var(--desktop-scale))!important}
 
- /* Visual communication: retain the desktop side labels and use a temporary
-    centre-window mask.  The menu's own .vm791-moving state removes it while
-    the user drags, revealing neighbouring works only during navigation. */
+ /* Visual communication: retain the desktop side labels without obscuring the
+    artwork or its background with an extra mobile-only overlay. */
  #ui .vm791-title{width:22%!important;left:3%!important;top:50%!important;bottom:auto!important;text-align:left!important;font-size:calc(38px * var(--desktop-scale))!important;transform:translateY(-50%)!important}
  #ui .vm808-info{width:18%!important;right:3%!important;top:50%!important;bottom:auto!important;text-align:right!important;transform:translateY(-50%)!important}
  #ui .vm808-info .vm791-count{font-size:calc(16px * var(--desktop-scale))!important}
- #ui .vm792-stage::after{content:"";pointer-events:none;z-index:2;background:rgb(2 5 10 / .20);position:absolute;inset:0;backdrop-filter:blur(7px) brightness(.62);-webkit-backdrop-filter:blur(7px) brightness(.62);mask-image:radial-gradient(ellipse 32% 68% at 50% 50%,transparent 0 94%,#000 100%);-webkit-mask-image:radial-gradient(ellipse 32% 68% at 50% 50%,transparent 0 94%,#000 100%)}
- #ui .vm791-moving .vm792-stage::after{display:none!important}
+ #ui .vm792-stage::after{display:none!important;content:none!important}
 }
 
 /* Phone landscape: use stable, authored layers instead of canvas/track motion.
@@ -176,10 +192,14 @@ html,body{width:100%;height:100%;min-width:0}
  #bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask{z-index:2!important;overflow:visible!important}
  #bg-3d-wrapper:not(.expanded-bg13) #bg12-video-mask>.border-glow-inner{overflow:hidden!important;border-radius:var(--bg12-video-radius,30px)!important}
 
- /* Profile: decorative tool marks and the signature remain subordinate. */
- #bg-3d-wrapper.expanded-bg13 #imagesDiv.profile-logoloop-shell{width:26%!important;height:calc(94px * var(--desktop-scale))!important;right:14%!important;bottom:15%!important}
- #bg-3d-wrapper.expanded-bg13 .profile-logoloop-shell.visible{transform:translate3d(var(--profile-tools-x),var(--profile-tools-y),150px) scale(.58)!important}
- #bg-3d-wrapper.expanded-bg13 .profile-identity-text,#bg-3d-wrapper.expanded-bg13 #mainText{font-size:calc(22px * var(--desktop-scale))!important;line-height:1.25!important}
+ /* Profile: keep the tool strip small and clip every tile with one consistent
+    rounded corner.  The closing signature is intentionally secondary. */
+ #bg-3d-wrapper.expanded-bg13 #imagesDiv.profile-logoloop-shell{width:22%!important;height:calc(78px * var(--desktop-scale))!important;right:14%!important;bottom:16%!important;overflow:hidden!important;border-radius:calc(16px * var(--desktop-scale))!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-logoloop-shell.visible{transform:translate3d(var(--profile-tools-x),var(--profile-tools-y),150px) scale(.54)!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-logoloop{padding:0!important;overflow:hidden!important;border-radius:inherit!important;mask-image:none!important;-webkit-mask-image:none!important;--logoloop-gap:calc(10px * var(--desktop-scale))!important;--logoloop-logoHeight:calc(54px * var(--desktop-scale))!important}
+ #bg-3d-wrapper.expanded-bg13 .logoloop__track{height:100%!important;align-items:center!important}
+ #bg-3d-wrapper.expanded-bg13 .logoloop__item,#bg-3d-wrapper.expanded-bg13 .logoloop__link,#bg-3d-wrapper.expanded-bg13 .logoloop__item img{border-radius:calc(10px * var(--desktop-scale))!important;overflow:hidden!important}
+ #bg-3d-wrapper.expanded-bg13 .profile-identity-text,#bg-3d-wrapper.expanded-bg13 #mainText{font-size:calc(18px * var(--desktop-scale))!important;line-height:1.2!important}
  #bg-3d-wrapper.expanded-bg13 #bg12-content{overflow:hidden!important;border-radius:calc(32px * var(--desktop-scale))!important}
 
  /* Navigation cards: a static CSS grid cannot shake and remains visible on touch. */
@@ -189,26 +209,27 @@ html,body{width:100%;height:100%;min-width:0}
  .young-nav577__links li{margin-bottom:calc(7px * var(--desktop-scale))!important}
  .young-nav577__card .young-nav577__title.nav-btn{font-size:calc(34px * var(--desktop-scale))!important}
 
- /* AIGC: every column starts from one aligned frame on phone, avoiding the
-    staggered/fragmented wall while still retaining a dense work-wall texture. */
- #aigc .drift-wall,#aigc-drift-root .drift-wall{--dw-tile-w:calc(var(--drift-tile-w) * .68)!important;--dw-tile-h:calc(var(--drift-tile-h) * .42)!important;--dw-gap:calc(var(--drift-gap) * .5)!important;--dw-edge:74%!important}
- #aigc .drift-wall__track,#aigc-drift-root .drift-wall__track{transform:translate3d(0,0,0)!important;transition:none!important;will-change:auto!important}
- #aigc .drift-wall__plane,#aigc-drift-root .drift-wall__plane{transition:none!important;will-change:auto!important}
+ /* AIGC: restore the living work wall and give individual works room to
+    breathe.  Only its scale changes for the compact phone canvas. */
+ #aigc .drift-wall,#aigc-drift-root .drift-wall{--dw-tile-w:var(--drift-tile-w)!important;--dw-tile-h:calc(var(--drift-tile-h) * .78)!important;--dw-gap:var(--drift-gap)!important;--dw-edge:66%!important}
+ #aigc .drift-wall__track,#aigc-drift-root .drift-wall__track{will-change:transform!important}
+ #aigc .drift-wall__plane,#aigc-drift-root .drift-wall__plane{will-change:transform!important}
  #aigc .category-stack-label,#aigc .category-stack-number{transform:scale(.62)!important}
  .category-stack-heading p,.category-stack-heading span{font-size:calc(var(--stack-heading-copy-size) * .86)!important}
  .category-stack-label p{font-size:calc(var(--stack-label-copy-size) * .82)!important}
 
- /* Digital experience: do not scale a whole card twice.  Size its components
-    once so both cards keep their own icon, copy and background in one layout. */
- #creative .ap-layout{width:auto!important;height:100%!important;margin-left:0!important;transform:none!important;gap:calc(26px * var(--desktop-scale))!important;padding:calc(38px * var(--desktop-scale)) 7%!important}
- #creative .ap-folder-zone{width:calc(150px * var(--desktop-scale))!important;height:calc(122px * var(--desktop-scale))!important}
- #creative .ap-folder-front{padding:calc(17px * var(--desktop-scale)) calc(13px * var(--desktop-scale))!important}
- #creative .ap-folder-front b{font-size:calc(27px * var(--desktop-scale))!important}
- #creative .ap-folder-front small{font-size:calc(9px * var(--desktop-scale))!important}
- #creative .ap-copy h3{font-size:calc(42px * var(--desktop-scale))!important;line-height:1.08!important}
- #creative .ap-copy h3 span{margin-top:calc(8px * var(--desktop-scale))!important;font-size:calc(25px * var(--desktop-scale))!important}
- #creative .ap-copy>p{margin-bottom:calc(15px * var(--desktop-scale))!important;font-size:calc(13px * var(--desktop-scale))!important;line-height:1.35!important}
- #creative .ap-copy>div{margin-top:calc(13px * var(--desktop-scale))!important;font-size:calc(11px * var(--desktop-scale))!important;line-height:1.42!important}
- #creative .ap-enter{margin-top:calc(18px * var(--desktop-scale))!important;padding-bottom:calc(7px * var(--desktop-scale))!important;font-size:calc(12px * var(--desktop-scale))!important}
- #creative .ap-index{bottom:calc(15px * var(--desktop-scale))!important;font-size:calc(9px * var(--desktop-scale))!important}
+ /* Digital experience: establish one two-column card rhythm instead of
+    separately scaling the illustration and text. */
+ #creative .ap-layout{display:grid!important;grid-template-columns:34% minmax(0,1fr)!important;align-items:center!important;width:auto!important;height:100%!important;margin-left:0!important;transform:none!important;gap:6%!important;padding:8% 7%!important}
+ #creative .ap-folder-zone{width:100%!important;height:auto!important;aspect-ratio:1.23!important;min-width:0!important}
+ #creative .ap-folder-front{padding:12% 10%!important}
+ #creative .ap-folder-front b{font-size:clamp(13px,2.2vw,18px)!important}
+ #creative .ap-folder-front small{font-size:clamp(6px,1.05vw,8px)!important}
+ #creative .ap-copy{min-width:0!important}
+ #creative .ap-copy h3{font-size:clamp(16px,2.7vw,22px)!important;line-height:1.08!important}
+ #creative .ap-copy h3 span{margin-top:4%!important;font-size:clamp(10px,1.7vw,14px)!important;line-height:1.15!important}
+ #creative .ap-copy>p{margin:0 0 7%!important;font-size:clamp(7px,1.25vw,10px)!important;line-height:1.32!important;letter-spacing:.12em!important}
+ #creative .ap-copy>div{margin-top:7%!important;font-size:clamp(6px,1.05vw,8px)!important;line-height:1.35!important;letter-spacing:.08em!important}
+ #creative .ap-enter{gap:8%!important;margin-top:9%!important;padding-bottom:4%!important;font-size:clamp(7px,1.2vw,9px)!important}
+ #creative .ap-index{bottom:8%!important;font-size:clamp(6px,1vw,8px)!important}
 }
