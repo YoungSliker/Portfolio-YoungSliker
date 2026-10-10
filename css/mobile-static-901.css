@@ -1,0 +1,148 @@
+/* Transparent, per-component foregrounds. Never hide a page or its scene. */
+.static-ui-image, .static-ui-hotspot, #mobile-ui-gutters { display: none; }
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    html.mobile-ui-active [data-static-ready="true"] > .static-ui-image {
+        position: absolute;
+        z-index: 3;
+        display: block !important;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        object-fit: fill;
+        transform: none !important;
+        pointer-events: none;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+
+    html.mobile-ui-active [data-static-ready="true"] > .static-ui-hotspot {
+        position: absolute;
+        z-index: 5;
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: inherit;
+        background: transparent;
+        pointer-events: auto;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .static-ui-hotspot:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
+
+    /* The hero image contains the frame, title, badge and strip.
+       Its empty center lets the original video continue playing below. */
+    html.mobile-ui-active #bg12-content { position: relative; }
+    html.mobile-ui-active #bg-3d-wrapper:not(.expanded-bg13) #bg12-content[data-static-ready="true"] > #主页文字组 {
+        visibility: hidden !important;
+    }
+    html.mobile-ui-active #bg-3d-wrapper:not(.expanded-bg13) #bg12-content[data-static-ready="true"] #bg12-video-mask {
+        border-color: transparent !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+    html.mobile-ui-active #bg-3d-wrapper:not(.expanded-bg13) #bg12-content[data-static-ready="true"] .border-glow-inner {
+        border-color: transparent !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+    html.mobile-ui-active #bg-3d-wrapper:not(.expanded-bg13) #bg12-content[data-static-ready="true"] #bg12-video-mask::before,
+    html.mobile-ui-active #bg-3d-wrapper:not(.expanded-bg13) #bg12-content[data-static-ready="true"] #bg12-video-mask::after,
+    html.mobile-ui-active #bg-3d-wrapper:not(.expanded-bg13) #bg12-content[data-static-ready="true"] .edge-light {
+        display: none !important;
+    }
+    html.mobile-ui-active #bg12-content[data-static-ready="true"] > .static-ui-image { z-index: 240; }
+    html.mobile-ui-active #bg-3d-wrapper.expanded-bg13 #bg12-content > .static-ui-image { display: none !important; }
+
+    /* Keep profile headings and information as live HTML. */
+    html.mobile-ui-active #bg13-img[data-static-ready="true"] > .profile-bg13-layer { visibility: hidden !important; }
+    html.mobile-ui-active #bg13-img > .static-ui-image { z-index: 1; }
+    html.mobile-ui-active #bg-3d-wrapper.expanded-bg13 #bg12-content { transform: none !important; }
+    html.mobile-ui-active #bg-3d-wrapper.expanded-bg13 .profile-info-title,
+    html.mobile-ui-active #bg-3d-wrapper.expanded-bg13 .profile-info-html { transform: none !important; pointer-events: none !important; }
+    html.mobile-ui-active #bg-3d-wrapper.expanded-bg13 #imagesDiv {
+        left: 46.2% !important;
+        top: 75.3% !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: 40% !important;
+        height: calc(108px * var(--desktop-scale)) !important;
+        transform: none !important;
+        filter: none !important;
+    }
+    html.mobile-ui-active #imagesDiv[data-static-ready="true"] > .profile-logoloop { display: none !important; }
+    html.mobile-ui-active #imagesDiv[data-static-ready="true"] {
+        mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+    html.mobile-ui-active #imagesDiv[data-static-ready="true"]::before,
+    html.mobile-ui-active #imagesDiv[data-static-ready="true"]::after {
+        content: '';
+        position: absolute;
+        z-index: 4;
+        top: 0;
+        bottom: 0;
+        width: 12%;
+        pointer-events: none;
+        backdrop-filter: blur(1.3px);
+        -webkit-backdrop-filter: blur(1.3px);
+    }
+    html.mobile-ui-active #imagesDiv[data-static-ready="true"]::before { left: 0; mask-image: linear-gradient(90deg,#000,transparent); }
+    html.mobile-ui-active #imagesDiv[data-static-ready="true"]::after { right: 0; mask-image: linear-gradient(90deg,transparent,#000); }
+    html.mobile-ui-active #home > [data-static-ui="signature"][data-static-ready="true"] {
+        left: 50% !important;
+        bottom: calc(30px * var(--desktop-scale)) !important;
+        width: calc(800px * var(--desktop-scale)) !important;
+        height: calc(80px * var(--desktop-scale)) !important;
+        transform: translateX(-50%) !important;
+    }
+    html.mobile-ui-active #home:has(.expanded-bg13) > [data-static-ui="signature"][data-static-ready="true"] > :not(.static-ui-image) { visibility: hidden !important; }
+    html.mobile-ui-active #home:not(:has(.expanded-bg13)) > [data-static-ui="signature"] > .static-ui-image { display: none !important; }
+    html.mobile-ui-active #home:not(:has(.expanded-bg13)) > [data-static-ui="signature"] > .animate-pulse {
+        font-size: calc(12px * var(--desktop-scale)) !important;
+        letter-spacing: calc(6px * var(--desktop-scale)) !important;
+    }
+
+    /* Raster art and actual hit areas are separate in the work menu. */
+    html.mobile-ui-active [data-static-ui="heading"][data-static-ready="true"] {
+        position: relative;
+        height: calc(var(--static-ui-height) * var(--desktop-scale)) !important;
+        min-height: 0;
+    }
+    html.mobile-ui-active [data-static-ui="heading"][data-static-ready="true"] > :not(.static-ui-image),
+    html.mobile-ui-active [data-static-ui="menu-card"][data-static-ready="true"] > :not(.static-ui-image):not(.static-ui-hotspot) { visibility: hidden !important; position: absolute !important; }
+    html.mobile-ui-active [data-static-ui="menu-card"][data-static-ready="true"] {
+        background: transparent !important;
+        box-shadow: none !important;
+        height: calc(292px * var(--desktop-scale)) !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+    }
+    html.mobile-ui-active [data-static-ui="menu-card"][data-static-ready="true"]::before,
+    html.mobile-ui-active [data-static-ui="menu-card"][data-static-ready="true"]::after { display: none !important; }
+
+    /* Keep the existing scrolling stack and click handlers. */
+    html.mobile-ui-active .category-stack-host .scroll-stack-inner {
+        padding-top: max(70px, var(--stack-top)) !important;
+    }
+    html.mobile-ui-active .card-base[data-static-ready="true"] { transform: none !important; }
+    html.mobile-ui-active [data-static-ui="aigc-card"][data-static-ready="true"] { background: transparent !important; border-color: transparent !important; box-shadow: none !important; }
+    html.mobile-ui-active [data-static-ui="aigc-card"][data-static-ready="true"] > :not(.static-ui-image) { visibility: hidden !important; }
+    html.mobile-ui-active [data-static-ui="aigc-card"][data-static-ready="true"]::before,
+    html.mobile-ui-active [data-static-ui="aigc-card"][data-static-ready="true"]::after { display: none !important; }
+    html.mobile-ui-active [data-static-ui="creative-card"][data-static-ready="true"] .td-card-copy,
+    html.mobile-ui-active [data-static-ui="creative-card"][data-static-ready="true"] .td-card-index,
+    html.mobile-ui-active [data-static-ui="creative-card"][data-static-ready="true"] .ap-layout,
+    html.mobile-ui-active [data-static-ui="creative-card"][data-static-ready="true"] .ap-index { visibility: hidden !important; }
+    html.mobile-ui-active #creative [data-static-ui="creative-card"][data-static-ready="true"] { border-color: transparent !important; box-shadow: none !important; }
+    html.mobile-ui-active [data-static-ui="creative-card"][data-static-ready="true"] > .static-ui-image { border-radius: inherit; }
+
+    /* Blur only the extra side gutters over the live scene. */
+    html.mobile-ui-active #mobile-ui-gutters { position: fixed; display: block; inset: 0; z-index: 50; pointer-events: none; }
+    #mobile-ui-gutters i { position: absolute; top: 0; bottom: 0; width: max(0px, calc((100vw - 100dvh * 16 / 9) / 2)); backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px); }
+    #mobile-ui-gutters i:first-child { left: 0; mask-image: linear-gradient(90deg,#000 70%,transparent); }
+    #mobile-ui-gutters i:last-child { right: 0; mask-image: linear-gradient(90deg,transparent,#000 30%); }
+    body.is-project-open #mobile-ui-gutters { display: none !important; }
+}

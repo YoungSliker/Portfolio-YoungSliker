@@ -1,0 +1,474 @@
+{
+  "home-foreground": {
+    "file": "home-foreground.webp",
+    "clip": {
+      "x": 29,
+      "y": 60,
+      "width": 1862,
+      "height": 839
+    },
+    "box": {
+      "width": 1561.59375,
+      "height": 538.265625
+    },
+    "inset": {
+      "left": -0.09605571231314163,
+      "top": -0.27867282069145694,
+      "width": 1.192371575513798,
+      "height": 1.5587099770675492
+    },
+    "hits": []
+  },
+  "profile-art": {
+    "file": "profile-art.webp",
+    "clip": {
+      "x": 32,
+      "y": 40,
+      "width": 1856,
+      "height": 988
+    },
+    "box": {
+      "width": 1856,
+      "height": 988
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    "hits": []
+  },
+  "profile-signature": {
+    "file": "profile-signature.webp",
+    "clip": {
+      "x": 560,
+      "y": 960,
+      "width": 800,
+      "height": 80
+    },
+    "box": {
+      "width": 800,
+      "height": 80
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    "hits": []
+  },
+  "profile-tools": {
+    "file": "profile-tools.webp",
+    "clip": {
+      "x": 933,
+      "y": 696,
+      "width": 735,
+      "height": 108
+    },
+    "box": {
+      "width": 734.34375,
+      "height": 108
+    },
+    "inset": {
+      "left": -0.0007447125409591898,
+      "top": -0.005208333333333333,
+      "width": 1.000893655049151,
+      "height": 1
+    },
+    "hits": [
+      {
+        "index": 0,
+        "label": "Nano Banana",
+        "x": 0,
+        "y": 0.14814814814814814,
+        "width": 0.10349376569215711,
+        "height": 0.7037037037037037
+      },
+      {
+        "index": 1,
+        "label": "OpenClaw",
+        "x": 0.13617600748968042,
+        "y": 0.14814814814814814,
+        "width": 0.10349376569215711,
+        "height": 0.7037037037037037
+      },
+      {
+        "index": 2,
+        "label": "Midjourney",
+        "x": 0.27235201497936085,
+        "y": 0.14814814814814814,
+        "width": 0.10349376569215711,
+        "height": 0.7037037037037037
+      },
+      {
+        "index": 3,
+        "label": "Suno",
+        "x": 0.40852802246904124,
+        "y": 0.14814814814814814,
+        "width": 0.10349376569215711,
+        "height": 0.7037037037037037
+      },
+      {
+        "index": 4,
+        "label": "ChatGPT",
+        "x": 0.5447040299587217,
+        "y": 0.14814814814814814,
+        "width": 0.10349376569215711,
+        "height": 0.7037037037037037
+      },
+      {
+        "index": 5,
+        "label": "即梦 AI",
+        "x": 0.6808800374484021,
+        "y": 0.14814814814814814,
+        "width": 0.10349376569215711,
+        "height": 0.7037037037037037
+      },
+      {
+        "index": 6,
+        "label": "Runway",
+        "x": 0.8170560449380825,
+        "y": 0.14814814814814814,
+        "width": 0.10349376569215711,
+        "height": 0.7037037037037037
+      }
+    ]
+  },
+  "works-heading": {
+    "file": "works-heading.webp",
+    "clip": {
+      "x": 370,
+      "y": 536,
+      "width": 1180,
+      "height": 68
+    },
+    "box": {
+      "width": 1180,
+      "height": 68
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    "hits": []
+  },
+  "works-card-0": {
+    "file": "works-card-0.webp",
+    "clip": {
+      "x": 370,
+      "y": 433,
+      "width": 384,
+      "height": 292
+    },
+    "box": {
+      "width": 384,
+      "height": 292
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    "hits": [
+      {
+        "index": 0,
+        "label": "进入AIGC设计",
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1
+      },
+      {
+        "index": 1,
+        "label": "AIGC设计",
+        "x": 0.057291666666666664,
+        "y": 0.07534246575342465,
+        "width": 0.3741861979166667,
+        "height": 0.12574914383561644
+      },
+      {
+        "index": 2,
+        "label": "↗绥远方志",
+        "x": 0.057291666666666664,
+        "y": 0.5539383561643836,
+        "width": 0.8854166666666666,
+        "height": 0.1190068493150685
+      },
+      {
+        "index": 3,
+        "label": "↗矿山*生态",
+        "x": 0.057291666666666664,
+        "y": 0.6797945205479452,
+        "width": 0.8854166666666666,
+        "height": 0.1190068493150685
+      },
+      {
+        "index": 4,
+        "label": "↗微元灵溯",
+        "x": 0.057291666666666664,
+        "y": 0.8056506849315068,
+        "width": 0.8854166666666666,
+        "height": 0.1190068493150685
+      }
+    ]
+  },
+  "works-card-1": {
+    "file": "works-card-1.webp",
+    "clip": {
+      "x": 370,
+      "y": 433,
+      "width": 384,
+      "height": 292
+    },
+    "box": {
+      "width": 384,
+      "height": 292
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    "hits": [
+      {
+        "index": 0,
+        "label": "进入数字体验设计",
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1
+      },
+      {
+        "index": 1,
+        "label": "数字体验设计",
+        "x": 0.057291666666666664,
+        "y": 0.07534246575342465,
+        "width": 0.5047200520833334,
+        "height": 0.12574914383561644
+      },
+      {
+        "index": 2,
+        "label": "↗新媒体艺术设计",
+        "x": 0.057291666666666664,
+        "y": 0.6797945205479452,
+        "width": 0.8854166666666666,
+        "height": 0.1190068493150685
+      },
+      {
+        "index": 3,
+        "label": "↗APP设计",
+        "x": 0.057291666666666664,
+        "y": 0.8056506849315068,
+        "width": 0.8854166666666666,
+        "height": 0.1190068493150685
+      }
+    ]
+  },
+  "works-card-2": {
+    "file": "works-card-2.webp",
+    "clip": {
+      "x": 370,
+      "y": 433,
+      "width": 384,
+      "height": 292
+    },
+    "box": {
+      "width": 384,
+      "height": 292
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    "hits": [
+      {
+        "index": 0,
+        "label": "进入视觉传达设计",
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1
+      },
+      {
+        "index": 1,
+        "label": "视觉传达设计",
+        "x": 0.057291666666666664,
+        "y": 0.07534246575342465,
+        "width": 0.5047200520833334,
+        "height": 0.12574914383561644
+      },
+      {
+        "index": 2,
+        "label": "↗品牌设计",
+        "x": 0.057291666666666664,
+        "y": 0.5539383561643836,
+        "width": 0.8854166666666666,
+        "height": 0.1190068493150685
+      },
+      {
+        "index": 3,
+        "label": "↗版面设计",
+        "x": 0.057291666666666664,
+        "y": 0.6797945205479452,
+        "width": 0.8854166666666666,
+        "height": 0.1190068493150685
+      },
+      {
+        "index": 4,
+        "label": "↗LOGO设计",
+        "x": 0.057291666666666664,
+        "y": 0.8056506849315068,
+        "width": 0.8854166666666666,
+        "height": 0.1190068493150685
+      }
+    ]
+  },
+  "aigc-heading": {
+    "file": "aigc-heading.webp",
+    "clip": {
+      "x": 388,
+      "y": 130,
+      "width": 1144,
+      "height": 114
+    },
+    "box": {
+      "width": 1144,
+      "height": 113.390625
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1.0053741215378256
+    },
+    "hits": []
+  },
+  "aigc-card-0": {
+    "file": "aigc-card-0.webp",
+    "clip": {
+      "x": 388,
+      "y": 260,
+      "width": 1144,
+      "height": 560
+    },
+    "box": {
+      "width": 1144,
+      "height": 560
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    "hits": []
+  },
+  "aigc-card-1": {
+    "file": "aigc-card-1.webp",
+    "clip": {
+      "x": 388,
+      "y": 260,
+      "width": 1144,
+      "height": 560
+    },
+    "box": {
+      "width": 1144,
+      "height": 560
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    "hits": []
+  },
+  "aigc-card-2": {
+    "file": "aigc-card-2.webp",
+    "clip": {
+      "x": 388,
+      "y": 260,
+      "width": 1144,
+      "height": 560
+    },
+    "box": {
+      "width": 1144,
+      "height": 560
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    "hits": []
+  },
+  "creative-heading": {
+    "file": "creative-heading.webp",
+    "clip": {
+      "x": 388,
+      "y": 130,
+      "width": 1144,
+      "height": 145
+    },
+    "box": {
+      "width": 1144,
+      "height": 144.390625
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1.0042203224759225
+    },
+    "hits": []
+  },
+  "creative-card-0": {
+    "file": "creative-card-0.webp",
+    "clip": {
+      "x": 388,
+      "y": 260,
+      "width": 1144,
+      "height": 560
+    },
+    "box": {
+      "width": 1144,
+      "height": 560
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    "hits": []
+  },
+  "creative-card-1": {
+    "file": "creative-card-1.webp",
+    "clip": {
+      "x": 388,
+      "y": 260,
+      "width": 1144,
+      "height": 560
+    },
+    "box": {
+      "width": 1144,
+      "height": 560
+    },
+    "inset": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    "hits": []
+  }
+}
