@@ -1,0 +1,193 @@
+/* Mobile landscape static compositions (900)
+   The desktop artwork is exported once at 1920×1080.  On a short phone
+   viewport it sits inside the same 16:9 safe canvas, while a softened clone
+   fills the side gutters.  This avoids independently scaling every glyph,
+   card and decorative layer on a 360px-tall display. */
+
+#mobile-static-layer {
+    display: none;
+}
+
+html.mobile-static-capture *,
+html.mobile-static-capture *::before,
+html.mobile-static-capture *::after {
+    animation: none !important;
+    transition: none !important;
+}
+
+html.mobile-static-capture #nav {
+    display: none !important;
+}
+
+/* A captured composition must not contain the desktop's pointer-following
+   ornament: it becomes a distracting frozen crosshair on a phone. */
+html.mobile-static-capture .target-cursor-wrapper,
+html.mobile-static-capture #tooltip {
+    display: none !important;
+}
+
+html.mobile-static-capture .bg12-art-text {
+    width: calc(18ch - 15px) !important;
+    opacity: 1 !important;
+    border-right-color: transparent !important;
+}
+
+html.mobile-static-capture .bg12-three-squares .bg12-square-unit,
+html.mobile-static-capture .bg12-left-decor-square,
+html.mobile-static-capture .bg12-line-mask,
+html.mobile-static-capture #bg12-img-02 {
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+/* The profile's signature is normally animated in after the information
+   card settles.  Freeze its readable fallback into the export instead. */
+html.mobile-static-capture #textDiv {
+    display: block !important;
+    position: fixed !important;
+    z-index: 999999 !important;
+    right: 0 !important;
+    bottom: 92px !important;
+    left: 0 !important;
+    opacity: 1 !important;
+    text-align: center !important;
+    transform: none !important;
+}
+
+html.mobile-static-capture .mobile-static-capture-portfolio {
+    position: fixed !important;
+    z-index: 999999 !important;
+    right: 0 !important;
+    bottom: 50px !important;
+    left: 0 !important;
+    margin: 0 !important;
+    text-align: center !important;
+}
+
+html.mobile-static-capture #mainText {
+    color: rgba(255, 255, 255, .94) !important;
+    letter-spacing: .1em !important;
+    white-space: nowrap !important;
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+}
+
+html.mobile-static-capture .profile-particle-text__fallback {
+    opacity: 1 !important;
+}
+
+html.mobile-static-capture .profile-particle-text__canvas {
+    display: none !important;
+}
+
+/* Deterministic version of the delayed profile signature for the still
+   export.  The real page keeps its particle animation; only ?capture=profile
+   receives this fixed copy before the screenshot is encoded as WebP. */
+html.mobile-static-capture .mobile-static-export-signature {
+    position: fixed;
+    z-index: 1000000;
+    right: 0;
+    bottom: 48px;
+    left: 0;
+    color: rgba(255, 255, 255, .94);
+    font: 300 28px/1.2 system-ui, sans-serif;
+    letter-spacing: .08em;
+    text-align: center;
+    text-shadow: 0 1px 7px rgba(0, 0, 0, .32);
+    white-space: nowrap;
+}
+
+html.mobile-static-capture .mobile-static-export-signature b {
+    font-weight: 600;
+}
+
+html.mobile-static-capture .mobile-static-export-signature small {
+    display: block;
+    margin-top: 13px;
+    color: rgba(255, 255, 255, .58);
+    font-size: 14px;
+    letter-spacing: .5em;
+}
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    html.mobile-static-active #mobile-static-layer {
+        position: fixed;
+        z-index: 1001;
+        inset: 0;
+        display: block;
+        overflow: hidden;
+        background: #0c0b12;
+        isolation: isolate;
+    }
+
+    html.mobile-static-active #mobile-static-layer[hidden] {
+        display: none !important;
+    }
+
+    html.mobile-static-active .page-content.active {
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    /* The original overlay stays logically open for the existing navigation
+       script, but its fragile responsive artwork is replaced by the image. */
+    html.mobile-static-active #youngNavPanel {
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    .mobile-static-backdrop,
+    .mobile-static-stage,
+    .mobile-static-stage > img {
+        position: absolute;
+    }
+
+    .mobile-static-backdrop {
+        z-index: 0;
+        inset: -7%;
+        background: center / cover no-repeat var(--mobile-static-image);
+        filter: blur(26px) saturate(.88) brightness(.58);
+        opacity: .82;
+        transform: scale(1.08);
+    }
+
+    .mobile-static-stage {
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        width: auto;
+        height: 100dvh;
+        aspect-ratio: 16 / 9;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 42px rgba(0, 0, 0, .25);
+    }
+
+    .mobile-static-stage > img {
+        z-index: 0;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-select: none;
+    }
+
+    .mobile-static-hit {
+        position: absolute;
+        z-index: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-static-hit:focus-visible {
+        outline: 1px solid rgba(255, 255, 255, .75);
+        outline-offset: -1px;
+    }
+}
