@@ -167,6 +167,8 @@
         );
 
         paths.forEach(function (path) {
+            // The decorative grid must be visible immediately, outside line-reveal effects.
+            if (path.closest('#home-gridscan-root')) return;
             if (path.dataset.animeLinePrepared === 'true' && !forceReset) return;
             if (typeof path.getTotalLength !== 'function') return;
 
