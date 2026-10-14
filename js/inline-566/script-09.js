@@ -9,6 +9,7 @@
         if (!target || !target.closest) return;
 
         if (target.closest('#logo') || target.closest('[onclick*="resetHome"]')) {
+            if (document.body.classList.contains('home-flip-enabled')) return;
             setTimeout(hideBg13Img, 40);
         }
     }, true);

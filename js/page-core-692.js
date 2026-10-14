@@ -191,6 +191,25 @@
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
         }
 
+        // Restore the existing front face without reloading the whole portfolio.
+        function collapseHomeCard() {
+            isExpanded = false;
+            currentX = currentY = targetX = targetY = 0;
+            wrapper3D.classList.remove('expanded-bg13');
+            content3D.style.removeProperty('transform');
+            document.getElementById('bg1').src = '主界面/背景1.png';
+            document.getElementById('bg11').style.removeProperty('display');
+            document.getElementById('bg13-img')?.style.setProperty('display', 'none', 'important');
+            const video = document.getElementById('bg12-video');
+            video?.style.removeProperty('display');
+            document.getElementById('bg12-video-mask')?.style.removeProperty('display');
+            video?.play().catch(() => {});
+            document.getElementById('imagesDiv')?.classList.remove('visible');
+            document.getElementById('textDiv').classList.add('hidden');
+            document.getElementById('mainText').classList.remove('animate-text');
+            document.getElementById('nav').style.display = 'none';
+        }
+
                 function openProject(id) {
             if (id !== 'suiyuan') return;
 
