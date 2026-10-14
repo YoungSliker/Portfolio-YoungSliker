@@ -48,7 +48,7 @@
     };
 
     document.addEventListener('pointermove', (event) => {
-        if (!wrapper.classList.contains('expanded-bg13') || reducedMotion || document.body.classList.contains('home-flip-moving')) return;
+        if (!wrapper.classList.contains('expanded-bg13') || reducedMotion || (document.body.classList.contains('home-flip-moving') || document.body.classList.contains('home-flip-works'))) return;
         const rect = wrapper.getBoundingClientRect();
         const inside = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
         if (!inside) {
@@ -199,7 +199,7 @@ let interactionReady=false,preparing=false,readyToken=0,readyTimer=0;
 function waitForImage(img){if(img.complete&&img.naturalWidth>0)return Promise.resolve();return new Promise(resolve=>{let done=false;const finish=()=>{if(done)return;done=true;clearTimeout(timer);img.removeEventListener('load',finish);img.removeEventListener('error',finish);resolve()};const timer=setTimeout(finish,3500);img.addEventListener('load',finish,{once:true});img.addEventListener('error',finish,{once:true})})}
 async function prepareInteraction(token){const images=Array.from(wrapper.querySelectorAll('img'));const fontReady=document.fonts&&document.fonts.ready?document.fonts.ready.catch(()=>{}):Promise.resolve();await Promise.all([fontReady,...images.map(waitForImage)]);if(token!==readyToken||!wrapper.classList.contains('expanded-bg13'))return;await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));if(token!==readyToken||!wrapper.classList.contains('expanded-bg13'))return;clearTimeout(readyTimer);readyTimer=setTimeout(()=>{if(token!==readyToken||!wrapper.classList.contains('expanded-bg13'))return;readyTimer=0;interactionReady=true;wrapper.classList.add('profile-falling-ready')},900)}
 function startPreparing(){const token=++readyToken;preparing=true;prepareInteraction(token).finally(()=>{if(token===readyToken)preparing=false})}
-function syncInteractionReady(){if(wrapper.classList.contains('expanded-bg13')&&!document.body.classList.contains('home-flip-moving')){if(!interactionReady&&!preparing&&!readyTimer)startPreparing()}else{readyToken++;preparing=false;clearTimeout(readyTimer);readyTimer=0;interactionReady=false;if(wrapper.classList.contains('profile-falling-ready'))wrapper.classList.remove('profile-falling-ready')}}
+function syncInteractionReady(){if(wrapper.classList.contains('expanded-bg13')&&!document.body.classList.contains('home-flip-moving')&&!document.body.classList.contains('home-flip-works')){if(!interactionReady&&!preparing&&!readyTimer)startPreparing()}else{readyToken++;preparing=false;clearTimeout(readyTimer);readyTimer=0;interactionReady=false;if(wrapper.classList.contains('profile-falling-ready'))wrapper.classList.remove('profile-falling-ready')}}
 window.addEventListener('portfolio-home-flip-start',syncInteractionReady);window.addEventListener('portfolio-home-flip-settled',syncInteractionReady);
 new MutationObserver(syncInteractionReady).observe(wrapper,{attributes:true,attributeFilter:['class']});syncInteractionReady();
 function groupSources(){const list=[{node:title,text:(title.textContent||'').trim(),title:true}];info.querySelectorAll('p > span, p > strong').forEach(node=>{const text=(node.getAttribute('aria-label')||node.textContent||'').trim();if(text)list.push({node,text,title:false})});return list}
@@ -246,7 +246,7 @@ function makeParticleStage(){
  return host;
 }
 function trigger(event){
- if(running||reduced||!interactionReady||!wrapper.classList.contains('expanded-bg13')||document.body.classList.contains('home-flip-moving'))return;running=true;clearTimeout(resetTimer);
+ if(running||reduced||!interactionReady||!wrapper.classList.contains('expanded-bg13')||document.body.classList.contains('home-flip-moving')||document.body.classList.contains('home-flip-works'))return;running=true;clearTimeout(resetTimer);
  if(footer)footer.classList.add('profile-footer-hidden');
  const falling=makeFallingGroups();wrapper.classList.add('profile-falling-active');const particleStage=makeParticleStage();
  const initialRect=particleStage.getBoundingClientRect();let inside=!!event&&event.clientX>=initialRect.left&&event.clientX<=initialRect.right&&event.clientY>=initialRect.top&&event.clientY<=initialRect.bottom;let hasEntered=inside,finished=false,aborted=false;

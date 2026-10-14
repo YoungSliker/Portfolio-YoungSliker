@@ -109,6 +109,9 @@
         }, 180);
     }
 
+    // The home works screen shares category/project routing with the menu.
+    window.followPortfolioNavAction = followNavAction;
+
     toggle.addEventListener('click', () => setMenu(!isOpen, true));
 
     overlay.addEventListener('click', event => {

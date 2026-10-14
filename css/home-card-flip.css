@@ -3,7 +3,7 @@
 #home-year-orbit { position: absolute; inset: 0; z-index: 10; pointer-events: none; transform-origin: 0 100%; }
 body.home-flip-enabled #bg11 { display: block !important; }
 body.home-flip-profile #home-year-orbit { visibility: hidden; }
-body.home-flip-moving #home-year-orbit { visibility: visible; }
+body.home-flip-year-moving #home-year-orbit { visibility: visible; }
 body.home-flip-moving #bg11, body.home-flip-moving #bg11 * { pointer-events: none !important; }
 body.home-flip-moving #bg-3d-wrapper { transition: none !important; will-change: rotate; }
 body.home-flip-moving #bg-3d-wrapper * { pointer-events: none !important; }
@@ -22,8 +22,60 @@ body.home-flip-moving #textDiv { opacity: 0; }
 .home-scroll-cue:focus-visible { outline: 2px solid #ff769c; outline-offset: 5px; }
 .home-scroll-cue__mouse { width: 15px; height: 23px; border: 1px solid #ffffffa6; border-radius: 9px; position: relative; }
 .home-scroll-cue__mouse::after { content: ''; position: absolute; left: 6px; top: 5px; width: 2px; height: 5px; border-radius: 2px; background: #ff8aaa; animation: home-cue-scroll 1.8s ease-in-out infinite; }
-body.home-flip-moving .home-scroll-cue, body.home-flip-profile .home-scroll-cue { opacity: 0; visibility: hidden; pointer-events: none; }
+body.home-flip-moving .home-scroll-cue, .home-scroll-cue[hidden] { opacity: 0; visibility: hidden; pointer-events: none; }
 #home:not(.active) .home-scroll-cue__mouse::after { animation-play-state: paused; }
 @keyframes home-cue-scroll { 0%,100% { transform: translateY(0); opacity: .4; } 50% { transform: translateY(6px); opacity: 1; } }
 @media (max-height: 500px) { .home-scroll-cue { font-size: 10px; padding: 6px 13px; gap: 8px; } .home-scroll-cue__mouse { width: 13px; height: 19px; } .home-scroll-cue__mouse::after { left: 5px; } }
 @media (prefers-reduced-motion: reduce) { .home-scroll-cue__mouse::after { animation: none; } .home-scroll-cue { transition: none; } }
+
+/* Third face: the existing three category cards, over a softly blurred backdrop. */
+#home #bg1 { transition: filter .65s ease, transform .65s ease; }
+#home-gridscan-root { transition: opacity .5s ease; }
+body.home-flip-works #home #bg1 { filter: blur(34px) saturate(.75) brightness(.52) !important; transform: scale(1.12); }
+body.home-flip-works #home-gridscan-root { opacity: 0 !important; }
+body.home-flip-works .home-gridscan-lite__scan { animation-play-state: paused !important; }
+body.home-flip-works #bg-3d-wrapper { display: none !important; }
+body.home-flip-works #textDiv { visibility: hidden; pointer-events: none; }
+body.home-flip-work-moving #nav { opacity: 1 !important; }
+body.home-flip-moving #nav * { pointer-events: none !important; }
+.home-works-stage {
+    position: absolute; inset: 0; z-index: 45; display: grid; place-items: center;
+    padding: 112px 6vw 100px; perspective: 1600px;
+}
+.home-works-stage[hidden] { display: none !important; }
+.home-works-panel { width: min(1180px, 100%); }
+.home-works-stage .young-nav577__intro { opacity: 1; transform: none; margin-bottom: 28px; }
+.home-works-stage .young-nav577__cards { perspective: 1600px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.home-works-stage .young-nav577__card { opacity: 1; transform: none; min-height: clamp(250px, 34vh, 380px); }
+.home-works-stage .young-nav577__card:hover,
+.home-works-stage .young-nav577__card:focus-within { transform: translateY(-8px) rotate(var(--card-tilt)); }
+body.home-flip-moving .home-works-stage .young-nav577__card { transition: none; transform: none; pointer-events: none; }
+.home-works-return {
+    display: block; margin: 30px auto 0; padding: 9px 16px;
+    border: 1px solid #ffffff30; border-radius: 24px; color: #ffffffb8;
+    font: 12px/1.4 system-ui, sans-serif; letter-spacing: .1em; background: #ffffff08;
+    cursor: pointer; transition: color .2s, background .2s;
+}
+.home-works-return:hover { color: white; background: #ffffff18; }
+.home-works-return:focus-visible { outline: 2px solid #ff769c; outline-offset: 4px; }
+#homeWorksTitle:focus-visible { outline: 2px solid #ff769c; outline-offset: 8px; }
+@media (max-width: 900px) {
+    .home-works-stage { padding-inline: 4vw; }
+    .home-works-stage .young-nav577__hint { display: none; }
+    .home-works-stage .young-nav577__card { padding: 18px; }
+    #home .home-works-stage .young-nav577__card .young-nav577__title.nav-btn { font-size: clamp(18px, 2.5vw, 28px) !important; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+    body.home-flip-profile .home-scroll-cue { left: auto; right: 18px; top: auto; bottom: 16px; transform: none; z-index: 45; }
+    .home-works-stage { padding: 68px 5vw 35px; }
+    .home-works-stage .young-nav577__intro { margin-bottom: 12px; }
+    .home-works-stage .young-nav577__intro h2 { font-size: 25px !important; }
+    .home-works-stage .young-nav577__card { min-height: 150px !important; height: auto !important; padding: 15px !important; }
+    .home-works-stage .young-nav577__cards { gap: 12px !important; }
+    .home-works-stage .young-nav577__links { margin-top: 18px !important; gap: 7px !important; }
+    .home-works-stage .young-nav577__link { font-size: 12px !important; }
+    .home-works-return { margin-top: 12px; font-size: 10px; padding: 5px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    #home #bg1, #home-gridscan-root, .home-works-stage .young-nav577__card { transition: none; }
+}
