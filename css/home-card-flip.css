@@ -48,7 +48,7 @@ body.home-flip-moving #nav * { pointer-events: none !important; }
 .home-works-stage .young-nav577__cards { perspective: 1600px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .home-works-stage .young-nav577__card { opacity: 1; transform: none; min-height: clamp(250px, 34vh, 380px); }
 .home-works-stage .young-nav577__card:hover,
-.home-works-stage .young-nav577__card:focus-within { transform: translateY(-8px) rotate(var(--card-tilt)); }
+.home-works-stage .young-nav577__card:focus-within { transform: perspective(920px) translateY(-11px) rotateX(var(--mesh-rx, 0deg)) rotateY(var(--mesh-ry, 0deg)) rotate(var(--card-tilt)) scale(1.025); }
 body.home-flip-moving .home-works-stage .young-nav577__card { transition: none; transform: none; pointer-events: none; }
 .home-works-return {
     display: block; margin: 30px auto 0; padding: 9px 16px;

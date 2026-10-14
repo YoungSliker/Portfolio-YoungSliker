@@ -36,7 +36,6 @@
     cards.querySelectorAll('[aria-labelledby]').forEach(node => {
         node.setAttribute('aria-labelledby', 'homeWorks-' + node.getAttribute('aria-labelledby'));
     });
-    cards.querySelectorAll('canvas').forEach(node => node.remove());
     const workCards = [...cards.querySelectorAll('.young-nav577__card')];
     const back = document.createElement('button');
     back.type = 'button';
@@ -45,6 +44,7 @@
     worksPanel.append(heading, cards, back);
     works.append(worksPanel);
     home.append(works);
+    window.initPortfolioCardMeshes(works);
 
     const cue = document.createElement('button');
     cue.type = 'button';
@@ -173,7 +173,9 @@
     back.addEventListener('click', () => flip(1, true));
     works.addEventListener('click', event => {
         const action = event.target.closest('[data-nav-page]');
-        if (action && !moving) window.followPortfolioNavAction(action);
+        if (moving) return;
+        if (action) window.followPortfolioNavAction(action);
+        else if (!event.target.closest('.young-nav577__card, .home-works-return')) flip(1, true);
     });
     window.addEventListener('mousemove', event => {
         const target = event.target.closest('.home-scroll-cue, .home-works-return, .home-works-stage [data-nav-page]');

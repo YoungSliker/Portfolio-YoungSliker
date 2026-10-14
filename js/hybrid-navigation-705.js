@@ -309,8 +309,9 @@
         window.requestAnimationFrame(frame);
     }
 
-    function initElasticMeshCards() {
-        const cards = Array.from(overlay.querySelectorAll('.young-nav577__card'));
+    function initElasticMeshCards(root = overlay) {
+        const isVisible = () => root === overlay ? overlay.classList.contains('is-open') : !root.hidden && root.closest('.page-content')?.classList.contains('active');
+        const cards = Array.from(root.querySelectorAll('.young-nav577__card'));
         if (!cards.length) return;
 
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -426,7 +427,7 @@
         }
 
         function updateSurface(surface, delta) {
-            const open = overlay.classList.contains('is-open');
+            const open = isVisible();
             const active = surface.active && open && !reduceMotion;
             const targetStrength = active ? 1 : 0;
             surface.strength += (targetStrength - surface.strength) * Math.min(1, 0.14 * delta);
@@ -563,6 +564,7 @@
             previousTime = time;
 
             surfaces.forEach(surface => {
+                if (!isVisible() || !surface.nodes.length) return;
                 updateSurface(surface, delta);
                 drawSurface(surface);
             });
@@ -574,6 +576,7 @@
     }
 
     initParticleBrandText();
+    window.initPortfolioCardMeshes = initElasticMeshCards;
     initElasticMeshCards();
     setOverlayInert(true);
     startEmojiRotation();
