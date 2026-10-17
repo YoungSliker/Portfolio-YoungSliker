@@ -19,7 +19,7 @@ export function ArtworkTicket({ title, date, image, qrValue, width, height }: {
   useEffect(() => {
     const element = host.current;
     if (!element) return;
-    const observer = new ResizeObserver(([entry]) => setScale(entry.contentRect.width / (vertical ? 280 : 360)));
+    const observer = new ResizeObserver(([entry]) => setScale(entry.contentRect.width / (vertical ? 280 : 464)));
     observer.observe(element);
     return () => observer.disconnect();
   }, [vertical]);
@@ -30,12 +30,12 @@ export function ArtworkTicket({ title, date, image, qrValue, width, height }: {
     return () => { active = false; };
   }, [qrValue]);
   return <div ref={host} className="artwork-ticket" data-layout={vertical ? 'portrait' : 'landscape'}
-    style={{ aspectRatio: vertical ? '280 / 360' : '360 / 280' }}>
+    style={{ aspectRatio: vertical ? '280 / 464' : '464 / 280' }}>
     <div className="artwork-ticket__sheet" style={{
-      transform: vertical ? `translateY(${280 * scale}px) rotate(90deg) scale(${scale})` : `scale(${scale})`,
+      transform: vertical ? `scale(${scale})` : `translateY(${280 * scale}px) rotate(-90deg) scale(${scale})`,
     }}>
       <TearTicket image={image} imageAlt={title + '作品图像'}
-        width={360} height={280} orientation="horizontal" stubSize={74}
+        width={280} height={464} orientation="vertical" stubSize={74}
         scrim={false} imageRadius={0} radius={0} holes={16} holeSize={2} notch={3} roughness={0}
         tearAngle={30} stretch={20} resistance={.45} rotate={0}
         tilt tiltMax={5} tiltReach={180} parallax={date === 'RANDOM' ? 9 : 4} perspective={1000}

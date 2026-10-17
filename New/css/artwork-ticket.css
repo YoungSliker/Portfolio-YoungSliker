@@ -1,5 +1,5 @@
-.artwork-ticket { position:relative; width:100%; filter:drop-shadow(0 12px 17px #55341d20); }
-.artwork-ticket__sheet { position:absolute; top:0; left:0; width:360px; height:280px; transform-origin:0 0; }
+.artwork-ticket { position:relative; width:70%; margin-inline:auto; filter:drop-shadow(0 12px 17px #55341d20); }
+.artwork-ticket__sheet { position:absolute; top:0; left:0; width:280px; height:464px; transform-origin:0 0; }
 .artwork-ticket .tear-ticket__paper {
   mask:
     radial-gradient(circle at 7px 0, transparent 3.5px, #000 4px) 0 0 / 14px 100% repeat-x,
@@ -8,7 +8,12 @@
     radial-gradient(circle at 100% 7px, transparent 3.5px, #000 4px) 0 0 / 100% 14px repeat-y;
   mask-composite:intersect;
 }
-.artwork-ticket .tear-ticket__art { top:15px; left:15px; width:271px; height:198px; border-radius:0; }
+.artwork-ticket .tear-ticket__art { top:15px; left:15px; width:250px; height:375px; border-radius:0; }
+/* Rotate the 3:2 source into the portrait frame; the landscape sheet cancels this turn. */
+.artwork-ticket .tear-ticket__image {
+  width:375px; height:250px; left:-62.5px; top:62.5px; rotate:90deg;
+  object-fit:contain;
+}
 .artwork-ticket__qr {
   position:absolute; top:20px; right:20px; display:block;
   width:60px; height:60px; min-width:60px; max-width:none;
@@ -30,4 +35,4 @@
   overflow:hidden; white-space:nowrap; text-overflow:ellipsis; color:#d94a1c;
 }
 .artwork-ticket__description { margin:0; font-size:12px; line-height:1.1; white-space:nowrap; color:#d94a1c; }
-.artwork-ticket__caption strong { font-family:Arial,sans-serif; font-size:16px; line-height:1; font-weight:800; }
+.artwork-ticket__caption strong { font-family:Arial,sans-serif; font-size:16px; line-height:1; font-weight:800; color:#171717; }
