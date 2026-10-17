@@ -9,7 +9,8 @@ h1, h2, h3, p { margin: 0; }
 img { display: block; max-width: 100%; }
 .accent { color: var(--accent-text); }
 .mono, .eyebrow, .small-label { font-family: var(--mono); }
-.site-header { height: var(--header-height); padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 24px; position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: var(--paper); }
+.site-header { height: var(--header-height); padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 24px; position: fixed; top: 0; left:0; right:0; z-index: 20; border-bottom: 1px solid var(--line); background: var(--paper); transition:opacity .25s, transform .25s; }
+.site-header[data-hidden="true"] { opacity:0; visibility:hidden; transform:translateY(-100%); pointer-events:none; }
 .brand { font-weight: 900; font-size: 20px; letter-spacing: -1px; white-space: nowrap; }
 .brand span { vertical-align: top; font-size: 11px; margin-left: 2px; }
 .site-header nav { display: flex; gap: clamp(16px, 2.3vw, 38px); }

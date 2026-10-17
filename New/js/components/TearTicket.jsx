@@ -586,9 +586,6 @@ export default function TearTicket({
           <div
             ref={stubRef}
             className="tear-ticket__piece tear-ticket__piece--stub"
-            role="button"
-            tabIndex={disabled || used ? -1 : 0}
-            aria-label={ariaLabel}
             aria-hidden={used || undefined}
             aria-disabled={disabled || undefined}
             onPointerDown={onStubDown}
@@ -596,7 +593,6 @@ export default function TearTicket({
             onPointerUp={onStubUp}
             onPointerCancel={onStubUp}
             onLostPointerCapture={onStubUp}
-            onKeyDown={onStubKey}
             onDragStart={e => e.preventDefault()}
           >
             {border ? (
@@ -605,7 +601,9 @@ export default function TearTicket({
               </svg>
             ) : null}
             <div className="tear-ticket__paper tear-ticket__paper--stub" style={{ clipPath: `path('${geo.stub}')` }}>
-              <div className="tear-ticket__stub">{stub}</div>
+              <div className="tear-ticket__stub" role="button"
+                tabIndex={disabled || used ? -1 : 0} aria-label={ariaLabel}
+                onKeyDown={onStubKey}>{stub}</div>
             </div>
           </div>
         </motion.div>

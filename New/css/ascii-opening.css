@@ -1,0 +1,51 @@
+.ascii-opening { position:absolute; inset:0; background:#050505; color:#f7f6f0; overflow:hidden; }
+.ascii-canvas { display:block; width:100%; height:100%; }
+.ascii-top { position:absolute; top:0; left:0; right:0; display:flex; justify-content:space-between; align-items:center; padding:28px var(--gutter); border-bottom:1px solid #ffffff25; font:10px var(--mono); letter-spacing:1.5px; color:#aaa; }
+.ascii-top > span:first-child { font-size:20px; font-weight:900; font-style:italic; color:#fff; }
+.ascii-copy { position:absolute; top:38%; left:55%; right:8%; font-family:var(--mono); }
+.ascii-rule { height:1px; background:#ffffff50; margin-bottom:25px; position:relative; }
+.ascii-rule span { position:absolute; top:-8px; left:25px; padding:0 12px; background:#050505; color:#aaa; }
+.ascii-label { color:#898984; letter-spacing:1.6px; font-size:9px; margin-bottom:16px; }
+.ascii-copy h2 { font-size:clamp(28px,3.3vw,64px); letter-spacing:.06em; line-height:1.15; white-space:nowrap; }
+.ascii-description { color:#a7a7a1; font:clamp(12px,1.2vw,18px)/1.9 var(--mono); margin:26px 0; }
+.ascii-enter { background:transparent; color:#eee; padding:14px 21px; font:12px var(--mono); border:1px solid #a9a9a4; cursor:pointer; display:flex; gap:50px; }
+.ascii-enter:hover { color:#050505; background:#eee; }
+.ascii-signature { display:flex; justify-content:space-between; border-top:1px solid #ffffff35; padding-top:17px; margin-top:30px; color:#777; font-size:9px; letter-spacing:1px; }
+.ascii-scroll { position:absolute; left:50%; bottom:65px; transform:translateX(-50%); display:flex; align-items:center; flex-direction:column; gap:10px; color:#ddd; border:0; padding:8px; background:none; cursor:pointer; font:10px var(--mono); letter-spacing:2px; }
+.ascii-scroll small { color:#858580; font-size:8px; }
+.ascii-mouse { display:block; position:relative; width:20px; height:34px; border:1px solid #aaa; border-radius:12px; }
+.ascii-mouse i { position:absolute; top:6px; left:8px; width:2px; height:7px; background:#eee; animation:ascii-wheel 1.8s ease-in-out infinite; }
+.ascii-corner { position:absolute; width:24px; height:24px; opacity:.4; pointer-events:none; }
+.ascii-corner--a { top:9px; left:9px; border-top:1px solid; border-left:1px solid; }
+.ascii-corner--b { bottom:54px; right:9px; border-bottom:1px solid; border-right:1px solid; }
+.ascii-mobile-break { display:none; }
+.hero-landing { position:absolute; inset:0; isolation:isolate; background:var(--paper); clip-path:circle(0px at 50% 46%); }
+.intro-aperture { position:absolute; width:2px; height:2px; border-radius:50%; background:#fffdf7; pointer-events:none; transform:translate(-50%,-50%); opacity:0; }
+@keyframes ascii-wheel { 0% { transform:translateY(0); opacity:0; } 30% { opacity:1; } 100% { transform:translateY(12px); opacity:0; } }
+@media(max-width:767px) {
+  .ascii-top { padding:20px 22px; }
+  .ascii-top > span:first-child { font-size:16px; }
+  .ascii-top > span:last-child { font-size:7px; letter-spacing:0; }
+  .ascii-copy { top:60%; left:9%; right:9%; text-align:center; }
+  .ascii-rule { margin-bottom:14px; }
+  .ascii-label { font-size:7px; margin-bottom:10px; }
+  .ascii-copy h2 { font-size:27px; }
+  .ascii-description { font-size:11px; margin:12px 0; }
+  .ascii-enter { display:none; }
+  .ascii-signature { display:none; }
+  .ascii-scroll { bottom:42px; gap:6px; font-size:9px; }
+  .ascii-mouse { width:16px; height:27px; }
+  .ascii-mouse i { left:6px; }
+}
+@media(max-height:520px) and (min-width:768px) {
+  .ascii-top { padding-block:14px; }
+  .ascii-copy { top:24%; }
+  .ascii-rule { margin-bottom:14px; }
+  .ascii-description { font-size:11px; margin:12px 0; }
+  .ascii-signature { display:none; }
+  .ascii-scroll { left:48%; bottom:45px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .ascii-opening,.intro-aperture { display:none; }
+  .hero-landing { clip-path:none; }
+}

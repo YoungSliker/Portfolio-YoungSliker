@@ -24,7 +24,8 @@ for (const width of [375, 430, 768, 1024, 1440, 1920]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.locator('#contact').scrollIntoViewIfNeeded();
     await page.getByRole('link', { name: 'BACK TO TOP' }).click();
-    await expect(page.locator('#hero h1')).toBeInViewport();
+    await expect(page.locator('.ascii-scroll')).toBeInViewport();
+    await expect(page.locator('.site-header')).toBeHidden();
     expect(errors).toEqual([]);
     if (width === 375 || width === 1440) {
       await page.screenshot({ path: `docs/screenshots/current-foundation-${width}.png`, fullPage: true });

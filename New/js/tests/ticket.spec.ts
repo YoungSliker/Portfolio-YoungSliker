@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
+import { enterArchive } from './hero-helpers';
 const base = '/Portfolio-YoungSliker/New/';
 test('only random image moves while its frame and QR stay fixed', async ({page}) => {
   await page.setViewportSize({width:1440,height:900});
   await page.goto(base);
+  await enterArchive(page);
   const random = page.locator('.artwork-ticket[data-parallax="true"]');
   const picture = random.locator('.tear-ticket__image');
   await page.mouse.move(20,100);
@@ -27,6 +29,7 @@ for (const viewport of [{width:1440,height:900}, {width:375,height:667}]) {
   test('ticket appearance and keyboard tear at ' + viewport.width, async ({page}) => {
     await page.setViewportSize(viewport);
     await page.goto(base);
+    await enterArchive(page);
     const tickets = page.locator('.tear-ticket');
     await expect(tickets).toHaveCount(4);
     await expect(page.locator('.tear-ticket__scrim')).toHaveCount(0);
@@ -53,6 +56,7 @@ for (const viewport of [{width:1440,height:900}, {width:375,height:667}]) {
       await ticket.getByRole('button').focus();
       await page.keyboard.press('Enter');
       await expect(ticket).toHaveAttribute('data-used','');
+      await expect(page.locator('#hero')).toHaveAttribute('data-scene','archive');
       await expect(page.locator('.artwork-ticket__restore')).toHaveCount(0);
     }
   });
@@ -60,6 +64,7 @@ for (const viewport of [{width:1440,height:900}, {width:375,height:667}]) {
 test('horizontal and vertical stubs tear with pointer drag', async ({page}) => {
   await page.setViewportSize({width:1440,height:900});
   await page.goto(base);
+  await enterArchive(page);
   for (const i of [0,1]) {
     const ticket=page.locator('.tear-ticket').nth(i);
     const stub=ticket.locator('.artwork-ticket__stub');

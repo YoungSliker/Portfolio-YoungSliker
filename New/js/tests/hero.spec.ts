@@ -1,10 +1,12 @@
 import { test, expect } from '@playwright/test';
+import { enterArchive } from './hero-helpers';
 const base = '/Portfolio-YoungSliker/New/';
 
 for (const viewport of [{width:1440,height:900},{width:375,height:667},{width:844,height:390}]) {
-  test(`opening cue and artwork are visible before scrolling at ${viewport.width}`, async ({page}) => {
+  test(`archive cue and artwork are visible after the intro at ${viewport.width}`, async ({page}) => {
     await page.setViewportSize(viewport);
     await page.goto(base);
+    await enterArchive(page);
     const cue = page.getByRole('link',{name:'向下滚动，进入创作档案'});
     await expect(cue).toBeVisible();
     const bounds = await cue.boundingBox();
@@ -19,23 +21,22 @@ for (const viewport of [{width:1440,height:900},{width:375,height:667},{width:84
   });
 }
 
-test('scroll changes the composition and reversing restores the cue', async ({page}) => {
+test('wheel advances the opening and reversing restores the opening cue', async ({page}) => {
   await page.setViewportSize({width:1440,height:900});
   await page.goto(base);
-  const cue = page.locator('.scroll-cue');
+  const cue = page.locator('.ascii-scroll');
   await expect(cue).toBeVisible();
-  const first = await page.locator('.hero-card').first().boundingBox();
   await page.mouse.move(700,450);
   await page.mouse.wheel(0,400);
   await expect.poll(() => cue.evaluate(e => Number(getComputedStyle(e).opacity))).toBeLessThan(.1);
-  const after = await page.locator('.hero-card').first().boundingBox();
-  expect(Math.abs(after!.x-first!.x)+Math.abs(after!.y-first!.y)).toBeGreaterThan(30);
-  await expect(page.locator('.hero-bridge')).toBeVisible();
+  await expect.poll(async () => Number(await page.locator('#hero').getAttribute('data-progress'))).toBeGreaterThan(.05);
   await page.screenshot({path:'docs/screenshots/phase-2-transition-1440.png'});
   await page.mouse.wheel(0,-1200);
   await expect.poll(() => cue.evaluate(e => Number(getComputedStyle(e).opacity))).toBeGreaterThan(.95);
-  await page.mouse.wheel(0,1600);
-  await expect(page.locator('#about')).toBeInViewport();
+  await page.getByRole('button',{name:'向下滚动开始，进入作品集'}).click();
+  await expect(page.locator('.hero-title-group')).toHaveCSS('opacity','1');
+  await page.locator('.scroll-cue').click();
+  await expect(page.locator('#about h2')).toBeInViewport();
 });
 
 test('reduced motion keeps content and the cue without a long pinned scene', async ({page}) => {

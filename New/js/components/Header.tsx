@@ -1,7 +1,16 @@
 import { sections, type SectionId } from '../../data/content';
+import { useEffect, useState } from 'react';
 
 export function Header({ active }: { active: SectionId }) {
-  return <header className="site-header">
+  const [hidden, setHidden] = useState(true);
+  useEffect(() => {
+    const update = () => setHidden((document.getElementById('about')?.getBoundingClientRect().top ?? Infinity) > parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) + 21);
+    update();
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    return () => { window.removeEventListener('scroll', update); window.removeEventListener('resize', update); };
+  }, []);
+  return <header className="site-header" data-hidden={hidden} inert={hidden}>
     <a className="brand" href="#hero" aria-label="YoungSliker 返回封面">YOUNGSLIKER<span aria-hidden="true">®</span></a>
     <nav aria-label="章节导航">
       {sections.filter(section => section.id !== 'hero' && section.id !== 'showcase').map(section =>

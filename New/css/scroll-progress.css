@@ -1,8 +1,8 @@
-.reading-footer { position: fixed; bottom: 0; left: 0; right: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; gap: 30px; padding: 17px var(--gutter) calc(17px + env(safe-area-inset-bottom)); background: var(--paper); color: #625e56; font: 9px var(--mono); letter-spacing: 1px; pointer-events: none; }
+.reading-footer { position: fixed; bottom: 0; left: 0; right: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; gap: 30px; padding: 17px var(--gutter) calc(17px + env(safe-area-inset-bottom)); background: transparent; color: #c5c5c5; mix-blend-mode:difference; font: 9px var(--mono); letter-spacing: 1px; pointer-events: none; }
 .reading-chapter { display: flex; align-items: center; gap: 15px; }
 .reading-chapter > span:first-child { min-width: 70px; }
-.reading-track { width: 90px; height: 1px; background: #c9c2b6; }
-.reading-track i { display: block; height: 100%; background: var(--accent-text); transform: scaleX(var(--reading-progress, 0)); transform-origin: left; }
+.reading-track { width: 90px; height: 1px; background: #ffffff50; }
+.reading-track i { display: block; height: 100%; background: #fff; transform: scaleX(var(--reading-progress, 0)); transform-origin: left; }
 /* Secondary views should use dialog, aria-modal or the explicit open state. */
 body:has(dialog[open], [aria-modal="true"]:not([hidden]), [data-secondary-view="open"]) .reading-footer { display: none; }
 @media (max-width:1199px) { .reading-note { display: none; } }

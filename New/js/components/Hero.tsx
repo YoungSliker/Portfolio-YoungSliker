@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import { useHeroMotion } from '../hooks/useHeroMotion';
 import { ArtworkTicket } from './ArtworkTicket';
+import { AsciiOpening } from './AsciiOpening';
+import '../../css/ascii-opening.css';
 
 const covers = import.meta.glob('../../assets/images/Top1-optimized/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' }) as Record<string,string>;
 const cover = (file: string) => Object.entries(covers).find(([path]) => path.endsWith(`_${file}`))?.[1];
@@ -23,8 +25,17 @@ const artworks = [
 export function Hero() {
   const root = useRef<HTMLElement>(null);
   useHeroMotion(root);
+  const enter = () => {
+    const el = root.current;
+    if (!el) return;
+    const distance = el.offsetHeight - innerHeight;
+    window.scrollTo({ top:el.offsetTop + distance * .86, behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  };
   return <section ref={root} id="hero" className="hero" aria-labelledby="hero-title">
     <div className="hero-stage">
+      <AsciiOpening onEnter={enter} />
+      <div className="intro-aperture" aria-hidden="true" />
+      <div className="hero-landing">
       <div className="hero-meta"><span>CREATIVE ARCHIVE / 翟杨阳</span><span>AI · DESIGN · INTERACTION</span></div>
       <div className="hero-orbit" aria-hidden="true"><i /><span>+</span></div>
       <div className="hero-title-group">
@@ -38,11 +49,11 @@ export function Hero() {
             width={index === 1 ? 280 : 360} height={index === 1 ? 360 : 280} />
         </div>)}</div>
       <div className="hero-description"><span className="hero-rule" /><p>探索人工智能、数字体验<br className="mobile-break" />与视觉传播的边界。</p><span>AI × CREATIVE × INTERACTION</span></div>
-      <div className="hero-bridge" aria-hidden="true"><span>BEYOND A SINGLE MEDIUM</span><p>在 AI、设计与交互的<br /><em>交汇处。</em></p><span>继续向下，认识创作者 ↓</span></div>
       <a href="#about" className="scroll-cue" aria-label="向下滚动，进入创作档案">
         <span className="cue-track" aria-hidden="true"><span className="cue-comet" /></span>
         <span className="cue-label">SCROLL TO DISCOVER</span><span className="cue-chinese">向下滚动，进入创作档案</span>
       </a>
+      </div>
     </div>
   </section>;
 }
