@@ -13,7 +13,7 @@ export function ArtworkTicket({ title, description, date, image, qrValue, width,
     <TearTicket image={image} imageAlt={title + '作品图像'}
       width={width} height={height} orientation={vertical ? 'vertical' : 'horizontal'}
       stubSize={vertical ? 108 : 84} scrim={false} imageRadius={7}
-      radius={12} holes={10} holeSize={4} notch={3} roughness={0}
+      radius={0} holes={10} holeSize={4} notch={3} roughness={0}
       tearAngle={30} stretch={20} resistance={.45} rotate={0}
       tilt tiltMax={5} tiltReach={180} parallax={4} perspective={1000}
       background="#fffaf4" stubBackground="#fff1e2" color="#d94a1c"
@@ -23,9 +23,8 @@ export function ArtworkTicket({ title, description, date, image, qrValue, width,
         <p className="artwork-ticket__description">{description}</p>
         {qr && <img className="artwork-ticket__qr" src={qr} alt="扫描进入作品" />}
         <strong>No.{date}</strong>
-        <span className="artwork-ticket__hint">拖动撕开</span>
       </div>}>
-      <div className="artwork-ticket__caption"><span>PROJECT ARCHIVE / 作品档案</span><h2>{title}</h2></div>
+      <div className="artwork-ticket__caption"><h2>{title}</h2></div>
     </TearTicket>
   </div>;
 }
