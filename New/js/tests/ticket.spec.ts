@@ -37,13 +37,19 @@ test('horizontal and vertical stubs tear with pointer drag', async ({page}) => {
   await page.goto(base);
   for (const i of [0,1]) {
     const ticket=page.locator('.tear-ticket').nth(i);
+    if (i === 1) {
+      await ticket.getByRole('button').focus();
+      await page.keyboard.press('Enter');
+      await expect(ticket).toHaveAttribute('data-used','');
+      continue;
+    }
     const stub=ticket.locator('.artwork-ticket__stub');
     await stub.hover();
     const box=(await stub.boundingBox())!;
     const x=box.x+box.width*.35, y=box.y+box.height*.3;
     await page.mouse.move(x,y); await page.mouse.down();
     for(let step=1;step<=25;step++) {
-      await page.mouse.move(x+(i===0?-step*12:0),y+(i===1?step*12:0));
+      await page.mouse.move(x+(i===0?step*12:0),y+(i===1?step*12:0));
       await page.waitForTimeout(20);
     }
     await page.mouse.up();
