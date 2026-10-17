@@ -80,12 +80,12 @@ test('three fixed Top1 covers and a stable random fourth cover', async ({page}) 
     const cards = page.locator('.hero-card');
     await expect(cards).toHaveCount(4);
     for (const title of ['绥远方志','矿山*生态','微元灵溯']) await expect(cards.filter({hasText:title})).toHaveCount(1);
-    const randomTitle = (await cards.nth(1).locator('figcaption').textContent())!;
+    const randomTitle = (await cards.nth(1).locator('.artwork-ticket__caption h2').textContent())!;
     chosen.push(randomTitle);
-    const urls = await cards.locator('img').evaluateAll(imgs => imgs.map(img => (img as HTMLImageElement).src));
+    const urls = await cards.locator('.tear-ticket__image').evaluateAll(imgs => imgs.map(img => (img as HTMLImageElement).src));
     expect(urls.every(url => url.includes('/New/assets/'))).toBe(true);
     await page.locator('#works').evaluate(e => e.scrollIntoView());
-    await expect(cards.nth(1).locator('figcaption')).toHaveText(randomTitle);
+    await expect(cards.nth(1).locator('.artwork-ticket__caption h2')).toHaveText(randomTitle);
   }
   expect(chosen[0]).not.toBe(chosen[1]);
 });

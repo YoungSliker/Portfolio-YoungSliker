@@ -9,4 +9,3 @@ import '../../css/hero.css';
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>);
 
 import '../../css/scroll-progress.css';
-import '../../css/tear-ticket.css';

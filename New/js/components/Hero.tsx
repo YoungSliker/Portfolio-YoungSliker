@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { useHeroMotion } from '../hooks/useHeroMotion';
-import TearTicket from './TearTicket';
-const TearTicketAny = TearTicket as any;
+import { ArtworkTicket } from './ArtworkTicket';
 
 const covers = import.meta.glob('../../assets/images/Top1-optimized/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' }) as Record<string,string>;
 const cover = (file: string) => Object.entries(covers).find(([path]) => path.endsWith(`_${file}`))?.[1];
@@ -15,9 +14,10 @@ const randomWorks = Object.entries(covers)
 // Stable for this page visit, including section navigation.
 const randomWork = randomWorks[Math.floor(Math.random() * randomWorks.length)] ?? { id:'fallback', title:'创作选集', image:cover('库伦荞麦.png') };
 const artworks = [
-  { id:'suiyuan', title:'绥远方志', image:cover('绥远方志.jpg') }, randomWork,
-  { id:'mine', title:'矿山*生态', image:cover('矿山生态.jpg') },
-  { id:'weiyuan', title:'微元灵溯', image:cover('微元灵溯.jpg') },
+  { id:'suiyuan', title:'绥远方志', description:'基于人智混合的呼和浩特史体验场景设计', date:'202507', image:cover('绥远方志.jpg') },
+  { ...randomWork, description:'随机作品档案，扫码进入当前作品入口', date:'RANDOM' },
+  { id:'mine', title:'矿山*生态', description:'基于Depth Ai场景建模的Ue5实机演示', date:'202308', image:cover('矿山生态.jpg') },
+  { id:'weiyuan', title:'微元灵溯', description:'基于“隐性饥饿”的AI艺术可视化交互设计', date:'202406', image:cover('微元灵溯.jpg') },
 ];
 
 export function Hero() {
@@ -33,17 +33,9 @@ export function Hero() {
       </div>
       <div className="hero-artworks">{artworks.map((artwork,index) =>
         <div className={`hero-card hero-card--${index+1}`} key={artwork.id}>
-          <TearTicketAny image={artwork.image} imageAlt={`${artwork.title}作品图像`}
-            orientation={index === 1 ? 'vertical' : 'horizontal'}
-            scrim
-            width={index === 1 ? 250 : 300} height={index === 1 ? 310 : 210}
-            stubSize={index === 1 ? 72 : 82} radius={8} holes={9} holeSize={5}
-            rotate={0} tilt tiltMax={5} parallax={4}
-            background="#f7f2e9" stubBackground="#fffaf3" color="#d94a1c"
-            borderColor="#d94a1c" borderWidth={1} ariaLabel={`撕开${artwork.title}作品票根`}>
-            <span className="ticket-title">{artwork.title}</span>
-          </TearTicketAny>
-          <span className="hero-card-number">0{index+1}</span>
+          <ArtworkTicket title={artwork.title} description={artwork.description} date={artwork.date}
+            image={artwork.image} qrValue={`${location.origin}${import.meta.env.BASE_URL}#work=${artwork.id}`}
+            width={index === 1 ? 240 : 320} height={index === 1 ? 300 : 210} />
         </div>)}</div>
       <div className="hero-description"><span className="hero-rule" /><p>探索人工智能、数字体验<br className="mobile-break" />与视觉传播的边界。</p><span>AI × CREATIVE × INTERACTION</span></div>
       <div className="hero-bridge" aria-hidden="true"><span>BEYOND A SINGLE MEDIUM</span><p>在 AI、设计与交互的<br /><em>交汇处。</em></p><span>继续向下，认识创作者 ↓</span></div>

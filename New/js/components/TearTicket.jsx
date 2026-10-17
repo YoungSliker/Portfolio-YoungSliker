@@ -72,6 +72,7 @@ const buildGeometry = (W, H, S, R, holes, hole, notch, rough, vertical) => {
   return { vertical, cross, body, stub, bridges, ends, bodyOutline, stubOutline };
 };
 
+/** @param {import('./TearTicket.types').TearTicketProps} props */
 export default function TearTicket({
   children = null,
   stub = null,
@@ -100,8 +101,8 @@ export default function TearTicket({
   tiltReach = 260,
   parallax = 6,
   perspective = 1000,
-  background = '#27272a',
-  color = '#f5f5f5',
+  background = '#fffaf4',
+  color = '#d94a1c',
   border = true,
   borderColor = '',
   borderWidth = 1,
@@ -602,7 +603,7 @@ export default function TearTicket({
         </motion.div>
       </div>
       <span className="tear-ticket__sr" role="status">
-        {used ? 'Used' : ''}
+        {used ? '票根已撕下' : ''}
       </span>
     </div>
   );

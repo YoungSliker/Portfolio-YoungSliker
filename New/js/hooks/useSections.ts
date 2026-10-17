@@ -26,6 +26,12 @@ export function useSections() {
     const restoreAnchor = () => {
       cancelAnimationFrame(anchorFrame);
       const section = sections.find(item => `#${item.id}` === location.hash);
+      if (!section && location.hash.startsWith('#work=')) {
+        anchorFrame = requestAnimationFrame(() => {
+          document.getElementById('works')?.scrollIntoView({ block: 'start', behavior: 'instant' });
+        });
+        return;
+      }
       if (section) anchorFrame = requestAnimationFrame(() => {
         document.getElementById(section.id)?.scrollIntoView({ block: 'start', behavior: 'instant' });
       });
