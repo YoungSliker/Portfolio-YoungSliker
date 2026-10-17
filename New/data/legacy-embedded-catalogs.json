@@ -1,0 +1,393 @@
+{
+  "drift-735.js": [
+    {
+      "title": "老物件《伞下》",
+      "date": "2026.10",
+      "kind": "gallery",
+      "intro": ""
+    },
+    {
+      "title": "跨画钓鱼",
+      "date": "2026.10",
+      "kind": "gallery",
+      "intro": ""
+    },
+    {
+      "title": "天堂快递站",
+      "date": "2026.10",
+      "kind": "gallery",
+      "intro": "天堂快递站，用来接收和派送天堂与现实人间相互收发件的一个快递站。"
+    },
+    {
+      "title": "蛇祖漫剧",
+      "date": "2026.2.15",
+      "kind": "snake",
+      "intro": "以青年期黑蛇为核心角色，围绕写实生物形态与哑光金属质感展开视觉探索。通过四段动态影像，呈现黑蛇的体态、鳞片细节与沉静神态。"
+    },
+    {
+      "title": "Stable Diffusion使用经验分享",
+      "date": "2023.12.3",
+      "intro": "Stable Diffusion 使用经验分享：将操作方法与创作实践整理为图文教程。",
+      "kind": "tutorial"
+    },
+    {
+      "title": "“老人关怀”LOGO 设计",
+      "date": "2023.10.7",
+      "intro": "以关爱与尊重为核心，让老年关怀成为清晰、温暖、易识别的视觉符号。",
+      "kind": "logo"
+    },
+    {
+      "title": "中国人工智能艺术教育协同创新平台ARTI讲解及人工智能教育联盟公众号教程制作",
+      "date": "2024.3.14",
+      "intro": "围绕 ARTI 平台与人工智能艺术教育，将图像生成方法拆解为四个可观看的教程。",
+      "kind": "videos"
+    },
+    {
+      "title": "元宇宙空间设计生成式人工智能打造全新数字化虚拟沉浸式体验空间",
+      "date": "2023.11.29",
+      "intro": "作品由 Stable Diffusion 生成。以虚拟店铺与沉浸式空间为主题，探索建筑、投影与交互装置的融合。",
+      "kind": "gallery"
+    },
+    {
+      "title": "基于心脏衰老Ai生成演变信息可视化设计",
+      "date": "2023.10.17",
+      "intro": "以心脏形态的变化为线索，使用 Stable Diffusion 与分区提示词组织演变图像，探索心脏衰老的信息可视化表达。",
+      "kind": "heart"
+    },
+    {
+      "title": "小马博士讲故事活动断层成果应用",
+      "date": "2024.12.7",
+      "intro": "“炫动文创联‘萌’守护地震安全”（第二季）",
+      "kind": "gallery"
+    },
+    {
+      "title": "掌中建筑设计",
+      "date": "2023.9.17",
+      "intro": "作品由 Stable Diffusion 生成。十幅图像以可展开的画廊呈现。",
+      "kind": "accordion"
+    },
+    {
+      "title": "智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)",
+      "date": "2023.9.25",
+      "intro": "以 Midjourney Zoom 无限扩图串联生活场景，让智慧助老成为可感知的日常故事。",
+      "kind": "gallery"
+    },
+    {
+      "title": "白桦林主题餐厅设计",
+      "date": "2023.12.18",
+      "intro": "使用低模进行 SD 二创生图拓展思维，渲染理想效果图。作品由 Stable Diffusion 生成。",
+      "kind": "compare"
+    },
+    {
+      "title": "矿坑",
+      "date": "2024.6.2",
+      "intro": "作品由 Midjourney 生成。以地表侧视与矿脉纵深为线索，探索矿坑空间的层次与电影感。",
+      "kind": "mine"
+    },
+    {
+      "title": "讲好黄河故事之黄河文化符号IP设计",
+      "date": "2023.9.21",
+      "intro": "将黄河文化、龙的形象与五行意象融入现代潮玩角色，用色彩、服饰与图腾建立文化辨识度。",
+      "kind": "dragon"
+    }
+  ],
+  "visual-menu-813.js": [
+    {
+      "title": "品牌设计-库伦荞麦",
+      "description": "视觉传达设计",
+      "kind": "kulun",
+      "original": "视觉传达设计/品牌设计/库伦荞麦/q4.png",
+      "intro": "做世界上最健康的荞麦，\n养最健康的胃。"
+    },
+    {
+      "title": "万部华严经塔",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/万部华严经塔.jpg",
+      "original": "视觉传达设计/LOGO设计/万部华严经塔.png"
+    },
+    {
+      "title": "创意归绥",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/创意归绥.jpg",
+      "original": "视觉传达设计/LOGO设计/创意归绥.png"
+    },
+    {
+      "title": "十全十美",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/十全十美.jpg",
+      "original": "视觉传达设计/LOGO设计/十全十美.jpg"
+    },
+    {
+      "title": "回族小学",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/回族小学.jpg",
+      "original": "视觉传达设计/LOGO设计/回族小学.png"
+    },
+    {
+      "title": "天生归绥",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/天生归绥.jpg",
+      "original": "视觉传达设计/LOGO设计/天生归绥.png"
+    },
+    {
+      "title": "如意蒙银",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/如意蒙银.jpg",
+      "original": "视觉传达设计/LOGO设计/如意蒙银.png"
+    },
+    {
+      "title": "席力图召",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/席力图召.jpg",
+      "original": "视觉传达设计/LOGO设计/席力图召.png"
+    },
+    {
+      "title": "敕勒川阴山下",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/敕勒川阴山下.jpg",
+      "original": "视觉传达设计/LOGO设计/敕勒川阴山下.png"
+    },
+    {
+      "title": "文化大院",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/文化大院.jpg",
+      "original": "视觉传达设计/LOGO设计/文化大院.png"
+    },
+    {
+      "title": "智慧青城",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/智慧青城.jpg",
+      "original": "视觉传达设计/LOGO设计/智慧青城.png"
+    },
+    {
+      "title": "本木造型",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/本木造型.jpg",
+      "original": "视觉传达设计/LOGO设计/本木造型.png"
+    },
+    {
+      "title": "杏坞番红",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/杏坞番红.jpg",
+      "original": "视觉传达设计/LOGO设计/杏坞番红.png"
+    },
+    {
+      "title": "柳城绿荫",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/柳城绿荫.jpg",
+      "original": "视觉传达设计/LOGO设计/柳城绿荫.png"
+    },
+    {
+      "title": "牛角旋风",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/牛角旋风.jpg",
+      "original": "视觉传达设计/LOGO设计/牛角旋风.png"
+    },
+    {
+      "title": "白塔耸光",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/白塔耸光.jpg",
+      "original": "视觉传达设计/LOGO设计/白塔耸光.png"
+    },
+    {
+      "title": "百卉含英",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/百卉含英.jpg",
+      "original": "视觉传达设计/LOGO设计/百卉含英.png"
+    },
+    {
+      "title": "美季酒店",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/美季酒店.jpg",
+      "original": "视觉传达设计/LOGO设计/美季酒店.png"
+    },
+    {
+      "title": "自由呼市",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/自由呼市.jpg",
+      "original": "视觉传达设计/LOGO设计/自由呼市.png"
+    },
+    {
+      "title": "西贝莜面",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/西贝莜面.jpg",
+      "original": "视觉传达设计/LOGO设计/西贝莜面.png"
+    },
+    {
+      "title": "青冢拥黛",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/青冢拥黛.jpg",
+      "original": "视觉传达设计/LOGO设计/青冢拥黛.png"
+    },
+    {
+      "title": "青城构造",
+      "description": "LOGO设计",
+      "kind": "logo",
+      "full": "视觉传达设计/LOGO设计/青城构造.jpg",
+      "original": "视觉传达设计/LOGO设计/青城构造.png"
+    },
+    {
+      "title": "哈尼卡日历文创设计",
+      "description": "文创设计 · 1 / 2",
+      "kind": "image",
+      "full": "视觉传达设计/哈尼卡日历设计/哈尼卡竖版设计.jpg",
+      "coverSource": "视觉传达设计/哈尼卡日历设计/5.jpg",
+      "original": "视觉传达设计/哈尼卡日历设计/5.jpg"
+    },
+    {
+      "title": "哈尼卡日历文创设计",
+      "description": "文创设计 · 2 / 2",
+      "kind": "image",
+      "full": "视觉传达设计/哈尼卡日历设计/哈尼卡竖版设计.jpg",
+      "coverSource": "视觉传达设计/哈尼卡日历设计/截图_2023-06-20_20_30_54.jpg",
+      "original": "视觉传达设计/哈尼卡日历设计/截图_2023-06-20_20_30_54.jpg"
+    },
+    {
+      "title": "好书推荐-《小王子》-我和书",
+      "description": "影像设计 · 1 / 5",
+      "kind": "video",
+      "full": "视觉传达设计/好书推荐-《小王子》-我和书.mkv",
+      "coverSource": "视觉传达设计/1.webp",
+      "original": "视觉传达设计/1.webp"
+    },
+    {
+      "title": "好书推荐-《小王子》-我和书",
+      "description": "影像设计 · 2 / 5",
+      "kind": "video",
+      "full": "视觉传达设计/好书推荐-《小王子》-我和书.mkv",
+      "coverSource": "视觉传达设计/2.webp",
+      "original": "视觉传达设计/2.webp"
+    },
+    {
+      "title": "好书推荐-《小王子》-我和书",
+      "description": "影像设计 · 3 / 5",
+      "kind": "video",
+      "full": "视觉传达设计/好书推荐-《小王子》-我和书.mkv",
+      "coverSource": "视觉传达设计/3.webp",
+      "original": "视觉传达设计/3.webp"
+    },
+    {
+      "title": "好书推荐-《小王子》-我和书",
+      "description": "影像设计 · 4 / 5",
+      "kind": "video",
+      "full": "视觉传达设计/好书推荐-《小王子》-我和书.mkv",
+      "coverSource": "视觉传达设计/4.webp",
+      "original": "视觉传达设计/4.webp"
+    },
+    {
+      "title": "好书推荐-《小王子》-我和书",
+      "description": "影像设计 · 5 / 5",
+      "kind": "video",
+      "full": "视觉传达设计/好书推荐-《小王子》-我和书.mkv",
+      "coverSource": "视觉传达设计/5.png",
+      "original": "视觉传达设计/5.png"
+    },
+    {
+      "title": "设计学院造型基础展览视频",
+      "description": "影像设计",
+      "kind": "video",
+      "full": "视觉传达设计/设计学院造型基础展览视频.mkv",
+      "coverSource": "视觉传达设计/6.png",
+      "original": "视觉传达设计/6.png"
+    },
+    {
+      "title": "呼市记忆-雨伞设计",
+      "description": "视觉传达设计",
+      "kind": "image",
+      "full": "视觉传达设计/版面设计/呼市记忆-雨伞设计1.png",
+      "coverSource": "视觉传达设计/版面设计/呼市记忆-雨伞设计2.png",
+      "original": "视觉传达设计/版面设计/呼市记忆-雨伞设计2.png"
+    },
+    {
+      "title": "托县剪纸珍藏馆",
+      "description": "影像设计",
+      "kind": "video",
+      "full": "视觉传达设计/版面设计/托县剪纸珍藏馆.mp4",
+      "coverSource": "Del/papercut-last798.png",
+      "original": "视觉传达设计/主视窗素材/托县剪纸尾帧.png"
+    },
+    {
+      "title": "在生活中 有舆论风评--是人之常理",
+      "description": "视觉传达设计",
+      "kind": "image",
+      "full": "视觉传达设计/版面设计/新闻长图2.png",
+      "coverSource": "视觉传达设计/版面设计/新闻长图1.png",
+      "original": "视觉传达设计/版面设计/新闻长图1.png"
+    },
+    {
+      "title": "核战风险-给和平机会长图设计",
+      "description": "视觉传达设计",
+      "kind": "image",
+      "full": "视觉传达设计/版面设计/核战风险-给和平机会长图设计1.jpg",
+      "coverSource": "视觉传达设计/版面设计/核战风险-给和平机会长图设计2.jpg",
+      "original": "视觉传达设计/版面设计/核战风险-给和平机会长图设计2.jpg"
+    },
+    {
+      "title": "海报版式练习",
+      "description": "版式设计 · 2 张",
+      "kind": "image",
+      "full": "视觉传达设计/版面设计/海报版式练习1.png",
+      "original": "视觉传达设计/主视窗素材/海报版式练习-透明808.svg"
+    },
+    {
+      "title": "职业九宫格设计",
+      "description": "视觉传达设计",
+      "kind": "image",
+      "full": "视觉传达设计/版面设计/职业九宫格设计.jpg",
+      "coverSource": "视觉传达设计/版面设计/职业九宫格设计.jpg",
+      "original": "视觉传达设计/版面设计/职业九宫格设计.jpg"
+    },
+    {
+      "title": "舞动的植物-半日花信息可视化",
+      "description": "信息可视化",
+      "kind": "image",
+      "full": "视觉传达设计/版面设计/舞动的植物-半日花信息可视化.png",
+      "original": "视觉传达设计/主视窗素材/半日花-透明808.svg"
+    },
+    {
+      "title": "赤峰博物馆导览手册",
+      "description": "视觉传达设计",
+      "kind": "museum",
+      "full": "视觉传达设计/版面设计/赤峰博物馆导览手册6.png",
+      "coverSource": "视觉传达设计/版面设计/赤峰博物馆导览手册.png",
+      "original": "视觉传达设计/版面设计/赤峰博物馆导览手册.png"
+    },
+    {
+      "title": "阿尔寨石窟寺信息可视化",
+      "description": "视觉传达设计",
+      "kind": "image",
+      "full": "视觉传达设计/版面设计/阿尔寨石窟寺信息可视化.png",
+      "coverSource": "视觉传达设计/版面设计/阿尔寨石窟寺信息可视化.png",
+      "original": "视觉传达设计/版面设计/阿尔寨石窟寺信息可视化.png"
+    },
+    {
+      "title": "鼎湖上素",
+      "description": "视觉传达设计",
+      "kind": "image",
+      "full": "视觉传达设计/版面设计/鼎湖上素.jpg",
+      "coverSource": "视觉传达设计/版面设计/鼎湖上素.jpg",
+      "original": "视觉传达设计/版面设计/鼎湖上素.jpg",
+      "intro": "粤菜经典名菜之一"
+    }
+  ]
+}

@@ -1,0 +1,1521 @@
+{
+  "local": [
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/local-tailwind-566.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/hardware-system-566.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/research-chain-580.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/page-core-812.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-02.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-03.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-04.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-05.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-06.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-07.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-08.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-09.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-10.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-11.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-12.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-13.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-14.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-15.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-16.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-17.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-18.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-19.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-20.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-21.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-22.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-23.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-24.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-25.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-26.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-27.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-28.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-29.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-30.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-31.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/home-font-overlays-598.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/home-fold-text-602.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/home-2026.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/home-gridscan-lite.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-32.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-33.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-34.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/hybrid-navigation-589.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/weiyuan-react-708.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/weiyuan-735.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/suiyuan-year-689.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/drift-735.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/category-stack-706.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/gallery-751.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/depth-carousel-751.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/media-card-752.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/cubes-753.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/app-card-790.css",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/no-context-menu.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/preload-xiaozhuangyuan.js",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/home-card-flip.css",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/背景1.png",
+      "exists": true
+    },
+    {
+      "tag": "source",
+      "attribute": "src",
+      "path": "主界面/背景_pingpong.mp4",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/背景1.3/矩形 3.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/背景1.3/头像.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/背景02.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/nanobanana.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/OpenClaw.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/mj.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/suno.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/gpt.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/即梦.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/runway.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "主界面/mj.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/绥远方志_02.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/绥远方志_04.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/关于地方志的用户群体及其需求的比较.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/绥远方志_06.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/绥远方志_07.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/分镜头设计.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/三维资产部分展示.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/历史场景复原部分展示.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/城墙城门转绘.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/历史场景复原步骤.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/图像素材整理.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/绥远方志_05.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/筹备篇/筹备篇.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/驻军篇/驻军篇.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/融合篇/融合篇.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/建成篇/建成篇.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/融合篇/融合篇-7.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/final-prototype.jpeg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/pcb-eda.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/pcb-front.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/pcb-back.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/sketch.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/industrial-design.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/modeling.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/modeling-02.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/modeling-03.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/industrial-design.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/soldering-01.jpeg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/soldering-02.jpeg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/agent-plan.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/agent-architecture.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/agent-role-config.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/硬件开发/agent-dialogue.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/展览展示空间示意图.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/创意内蒙古-古田路9号-2025年毕业设计展览/线下展示.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/创意内蒙古-古田路9号-2025年毕业设计展览/裁剪1.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/创意内蒙古-古田路9号-2025年毕业设计展览/裁剪2.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/mmexport1749268508432.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/retouch_2025060700322678.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/MVIMG_20250607_115354.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/wx_camera_1749142108662.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/wx_camera_1749286618645.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/MVIMG_20250607_115336.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/wx_camera_1749872805918.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/绥远方志/研究链路/bilibili-video-cover.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/ui/Blender.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/ui/ShaderMap.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/ui/Ue5.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/ui/Stable Diffusior.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/ui/Upscayl.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/ui/SUNO.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/矿山/bg.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/矿山/3.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/矿山/1.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/矿山/2.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/矿山/bgg.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/矿山生态/矿山/bg.png",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/page-core-692.js",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-35.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-36.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-37.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-38.css",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-02.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-03.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-04.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-05.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/anime.umd.min.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-06.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-07.js",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/hardware-system-566.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/home-video-fit-396.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/home-border-glow-595.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/target-cursor-576.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/profile-logo-loop-415.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/profile-info-html-415.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/profile-depth-684.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/mine-react-bits-735.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/mine-eco-685.css",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/home-font-overlays-599.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/home-fold-text-602.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/anime-effects-601.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/suiyuan-352.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/dev-flow-switcher-420.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/target-cursor-730.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/profile-logo-loop-415.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/profile-depth-698.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/mine-eco-683.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/home-2026.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-08.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/home-border-glow-356.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-09.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-10.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-11.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-12.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-13.js",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-39.css",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-14.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/inline-566/script-15.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/research-chain-580.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/hybrid-navigation-705.js",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-40.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-41.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-42.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-43.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-44.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-45.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-46.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-47.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-48.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-49.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-50.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-51.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-52.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-53.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-54.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-55.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-56.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/inline-566/style-57.css",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/mine-react-bits-683.js",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/1/1.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/微元灵溯LOGO.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/1/2.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/资料调研.jpg",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互流程.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示1.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示1.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示2.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示3.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示4.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示5.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示6.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示7.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示8.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示9.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示10.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示11.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示12.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/交互展示13.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/建模资产1.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/建模资产2.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/Unity资产.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/代码资产.png",
+      "exists": true
+    },
+    {
+      "tag": "img",
+      "attribute": "src",
+      "path": "AIGC/微元灵溯/素材/微元灵溯首页.png",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/weiyuan-708.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/weiyuan-react-708.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/mine-neural-687.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/suiyuan-year-689.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/drift-735.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/drift-enhance-703.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/category-stack-706.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/gallery-data-742.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/gallery-751.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/media-card-752.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/backdrop-close-732.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/cubes-753.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/app-card-790.js",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/visual-menu-813.css",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/visual-menu-813.js",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/responsive-812.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/responsive-812.css",
+      "exists": true
+    },
+    {
+      "tag": "link",
+      "attribute": "href",
+      "path": "css/mobile-static-901.css",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/responsive-812.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/mobile-static-901.js",
+      "exists": true
+    },
+    {
+      "tag": "script",
+      "attribute": "src",
+      "path": "js/home-card-flip.js",
+      "exists": true
+    }
+  ],
+  "external": [
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://nanobanana.co/zh"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://openclaw.ai/"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://www.midjourney.com/"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://www.suno.ai"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://chatgpt.com/"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://jimeng.jianying.com/"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://app.runwayml.com/home"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://www.blender.org/"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://shadermap.com/home/"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://www.unrealengine.com/unreal-engine-5?lang=zh-CN"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://upscayl.org/"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://www.suno.ai"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://www.bilibili.com/video/BV1gf8TerEUc/"
+    },
+    {
+      "tag": "a",
+      "attribute": "href",
+      "url": "https://www.bilibili.com/video/BV1DC8geEE1f/"
+    }
+  ]
+}

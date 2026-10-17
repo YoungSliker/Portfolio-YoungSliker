@@ -1,0 +1,719 @@
+[
+  {
+    "title": "绥远方志",
+    "category": "AIGC",
+    "evidence": "AIGC/绥远方志",
+    "evidenceStatus": "legacy-detail",
+    "legacyId": "suiyuan",
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "矿山*生态",
+    "category": "AIGC",
+    "evidence": "AIGC/矿山生态",
+    "evidenceStatus": "legacy-detail",
+    "legacyId": "mine-eco",
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "微元灵溯",
+    "category": "AIGC",
+    "evidence": "AIGC/微元灵溯",
+    "evidenceStatus": "legacy-detail",
+    "legacyId": "weiyuan",
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "Stable Diffusion使用经验分享",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/Stable Diffusion使用经验分享",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "“老人关怀”LOGO 设计",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/“老人关怀”LOGO 设计",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "中国人工智能艺术教育协同创新平台ARTI讲解及人工智能教育联盟公众号教程制作",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/中国人工智能艺术教育协同创新平台ARTI讲解及人工智能教育联盟公众号教程制作",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "元宇宙空间设计生成式人工智能打造全新数字化虚拟沉浸式体验空间",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/元宇宙空间设计生成式人工智能打造全新数字化虚拟沉浸式体验空间",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "基于心脏衰老Ai生成演变信息可视化设计",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/基于心脏衰老Ai生成演变信息可视化设计",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "天堂快递站",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/天堂快递站",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "小马博士讲故事活动断层成果应用",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/小马博士讲故事活动断层成果应用",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "掌中建筑设计",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/掌中建筑设计",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "白桦林主题餐厅设计",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/白桦林主题餐厅设计",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "矿坑",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/矿坑",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "老物件《伞下》",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/老物件《伞下》",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "蛇祖漫剧",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/蛇祖漫剧",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "讲好黄河故事之黄河文化符号IP设计",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/讲好黄河故事之黄河文化符号IP设计",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "跨画钓鱼",
+    "category": "AIGC / 实验候选",
+    "evidence": "AIGC/背景/跨画钓鱼",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "蜀韵天下-川剧脸谱交互艺术设计",
+    "category": "数字体验 / 新媒体艺术",
+    "evidence": "js/gallery-data-742.js",
+    "evidenceStatus": "legacy-gallery",
+    "legacyId": 0,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "Kinect表情交互",
+    "category": "数字体验 / 新媒体艺术",
+    "evidence": "js/gallery-data-742.js",
+    "evidenceStatus": "legacy-gallery",
+    "legacyId": 1,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "Kinect手势水交互",
+    "category": "数字体验 / 新媒体艺术",
+    "evidence": "js/gallery-data-742.js",
+    "evidenceStatus": "legacy-gallery",
+    "legacyId": 2,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "Kinect粒子雨交互",
+    "category": "数字体验 / 新媒体艺术",
+    "evidence": "js/gallery-data-742.js",
+    "evidenceStatus": "legacy-gallery",
+    "legacyId": 3,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "Leap手势文物交互",
+    "category": "数字体验 / 新媒体艺术",
+    "evidence": "js/gallery-data-742.js",
+    "evidenceStatus": "legacy-gallery",
+    "legacyId": 4,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "昆虫音画动态海报",
+    "category": "数字体验 / 新媒体艺术",
+    "evidence": "js/gallery-data-742.js",
+    "evidenceStatus": "legacy-gallery",
+    "legacyId": 5,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "雪山残阳",
+    "category": "数字体验 / 新媒体艺术",
+    "evidence": "js/gallery-data-742.js",
+    "evidenceStatus": "legacy-gallery",
+    "legacyId": 6,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "音画交互海报",
+    "category": "数字体验 / 新媒体艺术",
+    "evidence": "js/gallery-data-742.js",
+    "evidenceStatus": "legacy-gallery",
+    "legacyId": 7,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "动态陨石穿越",
+    "category": "数字体验 / 新媒体艺术",
+    "evidence": "js/gallery-data-742.js",
+    "evidenceStatus": "legacy-gallery",
+    "legacyId": 8,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "助残帮-残障人士特殊群体服务APP",
+    "category": "数字体验 / APP",
+    "evidence": "数字体验设计/APP设计/助残帮-残障人士特殊群体服务APP",
+    "evidenceStatus": "asset-and-ui",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "学伴-线上学习行为习惯养成APP",
+    "category": "数字体验 / APP",
+    "evidence": "数字体验设计/APP设计/学伴-线上学习行为习惯养成APP",
+    "evidenceStatus": "asset-and-ui",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "颜茶阁-相面修复诊疗服务APP",
+    "category": "数字体验 / APP",
+    "evidence": "数字体验设计/APP设计/颜茶阁-相面修复诊疗服务APP",
+    "evidenceStatus": "asset-and-ui",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "库伦荞麦",
+    "category": "视觉传达 / 品牌",
+    "evidence": "视觉传达设计/品牌设计/库伦荞麦",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "呼市记忆-雨伞设计",
+    "category": "视觉传达 / 版面候选",
+    "evidence": [
+      "视觉传达设计/版面设计/呼市记忆-雨伞设计1.png",
+      "视觉传达设计/版面设计/呼市记忆-雨伞设计2.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "托县剪纸珍藏馆",
+    "category": "视觉传达 / 版面候选",
+    "evidence": [
+      "视觉传达设计/版面设计/托县剪纸珍藏馆.mp4"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "新闻长图",
+    "category": "视觉传达 / 版面候选",
+    "evidence": [
+      "视觉传达设计/版面设计/新闻长图1.png",
+      "视觉传达设计/版面设计/新闻长图2.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "核战风险-给和平机会长图设计",
+    "category": "视觉传达 / 版面候选",
+    "evidence": [
+      "视觉传达设计/版面设计/核战风险-给和平机会长图设计1.jpg",
+      "视觉传达设计/版面设计/核战风险-给和平机会长图设计2.jpg"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "海报版式练习",
+    "category": "视觉传达 / 版面候选",
+    "evidence": [
+      "视觉传达设计/版面设计/海报版式练习1.png",
+      "视觉传达设计/版面设计/海报版式练习2.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "职业九宫格设计",
+    "category": "视觉传达 / 版面候选",
+    "evidence": [
+      "视觉传达设计/版面设计/职业九宫格设计.jpg"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "舞动的植物-半日花信息可视化",
+    "category": "视觉传达 / 版面候选",
+    "evidence": [
+      "视觉传达设计/版面设计/舞动的植物-半日花信息可视化.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "赤峰博物馆导览手册",
+    "category": "视觉传达 / 版面候选",
+    "evidence": [
+      "视觉传达设计/版面设计/赤峰博物馆导览手册.png",
+      "视觉传达设计/版面设计/赤峰博物馆导览手册6.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "阿尔寨石窟寺信息可视化",
+    "category": "视觉传达 / 版面候选",
+    "evidence": [
+      "视觉传达设计/版面设计/阿尔寨石窟寺信息可视化.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "鼎湖上素",
+    "category": "视觉传达 / 版面候选",
+    "evidence": [
+      "视觉传达设计/版面设计/鼎湖上素.jpg"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "万部华严经塔",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/万部华严经塔.jpg",
+      "视觉传达设计/LOGO设计/万部华严经塔.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "创意归绥",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/创意归绥.jpg",
+      "视觉传达设计/LOGO设计/创意归绥.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "十全十美",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/十全十美.jpg"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "回族小学",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/回族小学.jpg",
+      "视觉传达设计/LOGO设计/回族小学.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "天生归绥",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/天生归绥.jpg",
+      "视觉传达设计/LOGO设计/天生归绥.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "如意蒙银",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/如意蒙银.jpg",
+      "视觉传达设计/LOGO设计/如意蒙银.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "席力图召",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/席力图召.jpg",
+      "视觉传达设计/LOGO设计/席力图召.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "敕勒川阴山下",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/敕勒川阴山下.jpg",
+      "视觉传达设计/LOGO设计/敕勒川阴山下.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "文化大院",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/文化大院.jpg",
+      "视觉传达设计/LOGO设计/文化大院.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "智慧青城",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/智慧青城.jpg",
+      "视觉传达设计/LOGO设计/智慧青城.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "本木造型",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/本木造型.jpg",
+      "视觉传达设计/LOGO设计/本木造型.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "杏坞番红",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/杏坞番红.jpg",
+      "视觉传达设计/LOGO设计/杏坞番红.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "柳城绿荫",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/柳城绿荫.jpg",
+      "视觉传达设计/LOGO设计/柳城绿荫.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "牛角旋风",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/牛角旋风.jpg",
+      "视觉传达设计/LOGO设计/牛角旋风.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "白塔耸光",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/白塔耸光.jpg",
+      "视觉传达设计/LOGO设计/白塔耸光.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "百卉含英",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/百卉含英.jpg",
+      "视觉传达设计/LOGO设计/百卉含英.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "美季酒店",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/美季酒店.jpg",
+      "视觉传达设计/LOGO设计/美季酒店.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "自由呼市",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/自由呼市.jpg",
+      "视觉传达设计/LOGO设计/自由呼市.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "西贝莜面",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/西贝莜面.jpg",
+      "视觉传达设计/LOGO设计/西贝莜面.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "青冢拥黛",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/青冢拥黛.jpg",
+      "视觉传达设计/LOGO设计/青冢拥黛.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "青城构造",
+    "category": "视觉传达 / LOGO候选",
+    "evidence": [
+      "视觉传达设计/LOGO设计/青城构造.jpg",
+      "视觉传达设计/LOGO设计/青城构造.png"
+    ],
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  },
+  {
+    "title": "哈尼卡日历设计",
+    "category": "视觉传达 / 分类待核对",
+    "evidence": "视觉传达设计/哈尼卡日历设计",
+    "evidenceStatus": "asset-only",
+    "legacyId": null,
+    "year": null,
+    "responsibilities": [],
+    "reviewStatus": "needs-review"
+  }
+]

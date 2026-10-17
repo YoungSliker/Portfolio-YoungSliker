@@ -1,0 +1,154 @@
+{
+  "AIGC": {
+    "files": 436,
+    "bytes": 482234346,
+    "kinds": {
+      "image": 421,
+      "video": 13,
+      "other": 2
+    }
+  },
+  "数字体验设计": {
+    "files": 254,
+    "bytes": 393574352,
+    "kinds": {
+      "image": 231,
+      "video": 17,
+      "other": 6
+    }
+  },
+  "视觉传达设计": {
+    "files": 127,
+    "bytes": 147805170,
+    "kinds": {
+      "image": 123,
+      "video": 2,
+      "other": 2
+    }
+  },
+  "主界面": {
+    "files": 34,
+    "bytes": 16283103,
+    "kinds": {
+      "image": 32,
+      "other": 1,
+      "video": 1
+    }
+  },
+  "Fonts": {
+    "files": 2,
+    "bytes": 18292388,
+    "kinds": {
+      "other": 2
+    }
+  },
+  "largestFiles": [
+    {
+      "category": "AIGC",
+      "path": "AIGC/背景/老物件《伞下》/老物件《雨下》.mp4",
+      "extension": ".mp4",
+      "kind": "video",
+      "bytes": 51974266
+    },
+    {
+      "category": "数字体验设计",
+      "path": "数字体验设计/新媒体艺术设计/小状元模型722/models-local.js",
+      "extension": ".js",
+      "kind": "other",
+      "bytes": 26140260
+    },
+    {
+      "category": "数字体验设计",
+      "path": "数字体验设计/APP设计/颜茶阁-相面修复诊疗服务APP/展示长图.png",
+      "extension": ".png",
+      "kind": "image",
+      "bytes": 25302432
+    },
+    {
+      "category": "数字体验设计",
+      "path": "数字体验设计/新媒体艺术设计/雪山残阳/测试2.mp4",
+      "extension": ".mp4",
+      "kind": "video",
+      "bytes": 23794556
+    },
+    {
+      "category": "AIGC",
+      "path": "AIGC/背景/跨画钓鱼/跨画钓鱼.mp4",
+      "extension": ".mp4",
+      "kind": "video",
+      "bytes": 18967177
+    },
+    {
+      "category": "视觉传达设计",
+      "path": "视觉传达设计/设计学院造型基础展览视频.mkv",
+      "extension": ".mkv",
+      "kind": "other",
+      "bytes": 18177024
+    },
+    {
+      "category": "数字体验设计",
+      "path": "数字体验设计/新媒体艺术设计/动态陨石穿越/TDMovieOut.0.mp4",
+      "extension": ".mp4",
+      "kind": "video",
+      "bytes": 17538187
+    },
+    {
+      "category": "Fonts",
+      "path": "Fonts/SourceHanSansSC-Bold-2.otf",
+      "extension": ".otf",
+      "kind": "other",
+      "bytes": 17002512
+    },
+    {
+      "category": "数字体验设计",
+      "path": "数字体验设计/新媒体艺术设计/音画交互海报/TDMovieOut.0.mp4",
+      "extension": ".mp4",
+      "kind": "video",
+      "bytes": 13888992
+    },
+    {
+      "category": "数字体验设计",
+      "path": "数字体验设计/新媒体艺术设计/川剧脸谱交互艺术设计/演示视频1~1-00.00.50.122-00.01.04.737.mp4",
+      "extension": ".mp4",
+      "kind": "video",
+      "bytes": 13784918
+    },
+    {
+      "category": "视觉传达设计",
+      "path": "视觉传达设计/品牌设计/库伦荞麦/库伦荞麦LOGO演绎.mp4",
+      "extension": ".mp4",
+      "kind": "video",
+      "bytes": 13211428
+    },
+    {
+      "category": "数字体验设计",
+      "path": "数字体验设计/新媒体艺术设计/Kinect粒子雨交互/1.mp4",
+      "extension": ".mp4",
+      "kind": "video",
+      "bytes": 12008206
+    },
+    {
+      "category": "主界面",
+      "path": "主界面/背景_pingpong.mp4",
+      "extension": ".mp4",
+      "kind": "video",
+      "bytes": 11286560
+    },
+    {
+      "category": "视觉传达设计",
+      "path": "视觉传达设计/版面设计/阿尔寨石窟寺信息可视化.png",
+      "extension": ".png",
+      "kind": "image",
+      "bytes": 10929622
+    },
+    {
+      "category": "AIGC",
+      "path": "AIGC/背景/掌中建筑设计/694/elder-care.mp4",
+      "extension": ".mp4",
+      "kind": "video",
+      "bytes": 10436726
+    }
+  ],
+  "missingLiteralHtmlReferences": [],
+  "scope": "Local files and literal index.html src/href/poster only; no runtime or remote checks."
+}
