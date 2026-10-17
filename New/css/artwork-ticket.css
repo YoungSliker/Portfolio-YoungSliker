@@ -1,5 +1,8 @@
-.artwork-ticket { position:relative; width:70%; margin-inline:auto; filter:drop-shadow(0 12px 17px #55341d20); }
+.artwork-ticket { position:relative; width:70%; margin-inline:auto; filter:drop-shadow(0 1px 1px #493d3038) drop-shadow(0 9px 12px #493d3030); }
 .artwork-ticket__sheet { position:absolute; top:0; left:0; width:280px; height:464px; transform-origin:0 0; }
+/* Pointer motion belongs to the image, not the paper, clipping frame or QR. */
+.artwork-ticket .tear-ticket__plane,
+.artwork-ticket .tear-ticket__content { transform:none !important; }
 .artwork-ticket .tear-ticket__paper {
   mask:
     radial-gradient(circle at 7px 0, transparent 3.5px, #000 4px) 0 0 / 14px 100% repeat-x,
@@ -14,10 +17,14 @@
   width:375px; height:250px; left:-62.5px; top:62.5px; rotate:90deg;
   object-fit:contain;
 }
+.artwork-ticket[data-parallax="true"] .tear-ticket__image { scale:1.1; }
+@media (prefers-reduced-motion:reduce) {
+  .artwork-ticket[data-parallax="true"] .tear-ticket__image { scale:1; }
+}
 .artwork-ticket__qr {
-  position:absolute; top:20px; right:20px; display:block;
+  position:absolute; top:15px; right:15px; display:block;
   width:60px; height:60px; min-width:60px; max-width:none;
-  aspect-ratio:1; object-fit:contain; border:3px solid #fff; background:#fff;
+  aspect-ratio:1; object-fit:contain; border:3px solid #fffdf7; background:#fffdf7;
   box-sizing:content-box; image-rendering:pixelated;
 }
 .artwork-ticket__stub {

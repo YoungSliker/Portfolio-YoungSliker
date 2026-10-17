@@ -1,5 +1,28 @@
 import { test, expect } from '@playwright/test';
 const base = '/Portfolio-YoungSliker/New/';
+test('only random image moves while its frame and QR stay fixed', async ({page}) => {
+  await page.setViewportSize({width:1440,height:900});
+  await page.goto(base);
+  const random = page.locator('.artwork-ticket[data-parallax="true"]');
+  const picture = random.locator('.tear-ticket__image');
+  await page.mouse.move(20,100);
+  await page.waitForTimeout(700);
+  const before = await picture.evaluate(el => getComputedStyle(el).transform);
+  const frame = await random.locator('.tear-ticket__art').boundingBox();
+  const qr = await random.locator('.artwork-ticket__qr').boundingBox();
+  await page.mouse.move(1400,850);
+  await expect.poll(() => picture.evaluate(el => getComputedStyle(el).transform)).not.toBe(before);
+  await page.waitForTimeout(700);
+  expect(await random.locator('.tear-ticket__art').boundingBox()).toEqual(frame);
+  expect(await random.locator('.artwork-ticket__qr').boundingBox()).toEqual(qr);
+  for (const image of await page.locator('.artwork-ticket[data-parallax="false"] .tear-ticket__image').all()) {
+    const offset = await image.evaluate(el => {
+      const matrix = new DOMMatrixReadOnly(getComputedStyle(el).transform);
+      return [matrix.m41, matrix.m42];
+    });
+    expect(offset).toEqual([0,0]);
+  }
+});
 for (const viewport of [{width:1440,height:900}, {width:375,height:667}]) {
   test('ticket appearance and keyboard tear at ' + viewport.width, async ({page}) => {
     await page.setViewportSize(viewport);

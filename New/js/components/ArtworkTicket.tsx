@@ -29,7 +29,7 @@ export function ArtworkTicket({ title, date, image, qrValue, width, height }: {
       .then(value => { if (active) setQr(value); });
     return () => { active = false; };
   }, [qrValue]);
-  return <div ref={host} className="artwork-ticket" data-layout={vertical ? 'portrait' : 'landscape'}
+  return <div ref={host} className="artwork-ticket" data-parallax={date === 'RANDOM' ? 'true' : 'false'} data-layout={vertical ? 'portrait' : 'landscape'}
     style={{ aspectRatio: vertical ? '280 / 464' : '464 / 280' }}>
     <div className="artwork-ticket__sheet" style={{
       transform: vertical ? `scale(${scale})` : `translateY(${280 * scale}px) rotate(-90deg) scale(${scale})`,
@@ -38,7 +38,7 @@ export function ArtworkTicket({ title, date, image, qrValue, width, height }: {
         width={280} height={464} orientation="vertical" stubSize={74}
         scrim={false} imageRadius={0} radius={0} holes={16} holeSize={2} notch={3} roughness={0}
         tearAngle={30} stretch={20} resistance={.45} rotate={0}
-        tilt tiltMax={5} tiltReach={180} parallax={date === 'RANDOM' ? 9 : 4} perspective={1000}
+        tilt={date === 'RANDOM'} tiltMax={5} tiltReach={180} parallax={date === 'RANDOM' ? 9 : 0} perspective={1000}
         background="#fffdf7" stubBackground="#fffdf7" color="#d94a1c"
         border={false} recenter={false} ariaLabel={'撕开' + title + '作品票根'}
         stub={<div className="artwork-ticket__stub">
