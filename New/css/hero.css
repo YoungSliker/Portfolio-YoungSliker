@@ -11,7 +11,7 @@
 .hero-card { margin: 0; position: absolute; width: 21%; max-width: 320px; z-index: 3; will-change: transform,opacity; }
 .hero-card:focus-within, .hero-card:hover { z-index: 7; }
 .hero-card--1 { left: 4%; top: 12%; transform: rotate(-11deg); }
-.hero-card--2 { right: 5%; top: 10%; width: 14%; transform: rotate(12deg); }
+.hero-card--2 { right: 5%; top: 10%; width: 20%; transform: rotate(12deg); }
 .hero-card--3 { left: 7%; top: 57%; width: 20%; transform: rotate(7deg); }
 .hero-card--4 { right: 5%; top: 57%; width: 20%; transform: rotate(-9deg); }
 .hero-description { position: absolute; top: 60%; left: 27%; right: 27%; text-align: center; z-index: 4; }
@@ -44,7 +44,7 @@
   .hero-orbit { width:230px; height:230px; left:calc(50% - 115px); top:calc(40% - 115px); }
   .hero-card { width:32%; }
   .hero-card--1 { top:9%; left:5%; transform:rotate(-10deg); }
-  .hero-card--2 { top:9%; right:7%; width:24%; transform:rotate(10deg); }
+  .hero-card--2 { top:9%; right:7%; width:30%; transform:rotate(10deg); }
   .hero-card--3 { top:65%; left:3%; width:30%; }
   .hero-card--4 { top:65%; right:3%; width:30%; }
   .hero-description { top:53%; left:18%; right:18%; }

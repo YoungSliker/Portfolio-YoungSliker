@@ -11,7 +11,7 @@ for (const viewport of [{width:1440,height:900}, {width:375,height:667}]) {
     await expect(page.locator('.artwork-ticket__stub')).toHaveCount(4);
     for (let i=0;i<4;i++) {
       const ticket=tickets.nth(i);
-      await expect(ticket).toHaveAttribute('data-orientation',i===1?'vertical':'horizontal');
+      await expect(ticket).toHaveAttribute('data-orientation','horizontal');
       await expect(ticket).toHaveCSS('color','rgb(217, 74, 28)');
       await expect(ticket.locator('.tear-ticket__image')).toBeVisible();
       await expect(ticket.locator('.artwork-ticket__qr')).toBeVisible();
