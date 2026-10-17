@@ -15,7 +15,7 @@ export function ArtworkTicket({ title, date, image, qrValue, width, height }: {
   const host = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
   const [qr, setQr] = useState('');
-  const label = labels[date] ?? { short: '随机', title, description: '创作选集 · 随机呈现' };
+  const label = labels[date] ?? { short: '设计', title, description: '创作选集 · 随机呈现' };
   useEffect(() => {
     const element = host.current;
     if (!element) return;
