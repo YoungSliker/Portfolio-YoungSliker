@@ -401,9 +401,14 @@ export default function TearTicket({
   }, []);
 
   const local = e => {
-    const r = stageRef.current.getBoundingClientRect();
-    const k = r.width / width || 1;
-    return { x: (e.clientX - r.left) / k, y: (e.clientY - r.top) / k };
+    // Invert the outer rotation and responsive scale using three stage anchors.
+    const points = stageRef.current.querySelectorAll('[data-ticket-anchor]');
+    const [o, x, y] = Array.from(points, point => point.getBoundingClientRect());
+    const ax = (x.left - o.left) / width, ay = (x.top - o.top) / width;
+    const bx = (y.left - o.left) / height, by = (y.top - o.top) / height;
+    const det = ax * by - ay * bx || 1;
+    const dx = e.clientX - o.left, dy = e.clientY - o.top;
+    return { x: (dx * by - dy * bx) / det, y: (dy * ax - dx * ay) / det };
   };
   const tearNow = () => {
     const s = sim.current;
@@ -534,6 +539,9 @@ export default function TearTicket({
       }}
     >
       <div ref={stageRef} className="tear-ticket__stage">
+        <span data-ticket-anchor="" style={{ position: 'absolute', left: 0, top: 0, pointerEvents: 'none' }} />
+        <span data-ticket-anchor="" style={{ position: 'absolute', left: width, top: 0, pointerEvents: 'none' }} />
+        <span data-ticket-anchor="" style={{ position: 'absolute', left: 0, top: height, pointerEvents: 'none' }} />
         <motion.div className="tear-ticket__plane" style={{ transform: plane }}>
           <div ref={bodyRef} className="tear-ticket__piece">
             {border ? (

@@ -35,7 +35,7 @@ export function Hero() {
         <div className={`hero-card hero-card--${index+1}`} key={artwork.id}>
           <ArtworkTicket title={artwork.title} description={artwork.description} date={artwork.date}
             image={artwork.image} qrValue={`${location.origin}${import.meta.env.BASE_URL}#work=${artwork.id}`}
-            width={320} height={210} />
+            width={index === 1 ? 280 : 360} height={index === 1 ? 360 : 280} />
         </div>)}</div>
       <div className="hero-description"><span className="hero-rule" /><p>探索人工智能、数字体验<br className="mobile-break" />与视觉传播的边界。</p><span>AI × CREATIVE × INTERACTION</span></div>
       <div className="hero-bridge" aria-hidden="true"><span>BEYOND A SINGLE MEDIUM</span><p>在 AI、设计与交互的<br /><em>交汇处。</em></p><span>继续向下，认识创作者 ↓</span></div>

@@ -12,9 +12,13 @@ for (const viewport of [{width:1440,height:900}, {width:375,height:667}]) {
     for (let i=0;i<4;i++) {
       const ticket=tickets.nth(i);
       await expect(ticket).toHaveAttribute('data-orientation','horizontal');
+      await expect(page.locator('.artwork-ticket').nth(i)).toHaveAttribute('data-layout', i === 1 ? 'portrait' : 'landscape');
       await expect(ticket).toHaveCSS('color','rgb(217, 74, 28)');
       await expect(ticket.locator('.tear-ticket__image')).toBeVisible();
       await expect(ticket.locator('.artwork-ticket__qr')).toBeVisible();
+      const qrSize = await ticket.locator('.artwork-ticket__qr').evaluate(el => ({w: el.clientWidth, h: el.clientHeight}));
+      expect(qrSize.w).toBe(qrSize.h);
+      await expect(ticket.locator('.tear-ticket__art')).toHaveCSS('border-radius','0px');
       await expect.poll(() => ticket.locator('.tear-ticket__image').evaluate(img => (img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
       const box=await ticket.boundingBox(); expect(box!.width).toBeGreaterThan(70);
     }
@@ -39,7 +43,7 @@ test('horizontal and vertical stubs tear with pointer drag', async ({page}) => {
     const x=box.x+box.width*.35, y=box.y+box.height*.3;
     await page.mouse.move(x,y); await page.mouse.down();
     for(let step=1;step<=25;step++) {
-      await page.mouse.move(x+(i===0?step*12:0),y+(i===1?step*12:0));
+      await page.mouse.move(x+(i===0?-step*12:0),y+(i===1?step*12:0));
       await page.waitForTimeout(20);
     }
     await page.mouse.up();
