@@ -5,6 +5,24 @@ export const phase = (p: number, from: number, to: number) => clamp((p - from) /
 export const smooth = (p: number) => p * p * (3 - 2 * p);
 const mix = (a: number, b: number, p: number) => a + (b - a) * p;
 type Dot = { x: number; y: number; brightness: number };
+export function ballPose(w: number, h: number, p: number, orbit?: {x:number; y:number; radius:number}) {
+  const size = w < 768 ? Math.min(w * 1.12, h * .61) : Math.min(h * .92, w * .55);
+  const left = w < 768 ? w * .5 - size * .5 : w * .24 - size * .5;
+  const top = w < 768 ? h * .06 : h * .14;
+  const roll = smooth(phase(p, 0, .26));
+  const radius = size * .225;
+  const cx = mix(left + .5 * size, w / 2, roll);
+  // The topmost bright pixel settles exactly at the viewport center.
+  const cy = mix(top + .3 * size, h * .5 + radius - 2, roll);
+  const grow = smooth(phase(p,.36,.58));
+  const align = smooth(phase(p,.4,.58));
+  const dotRadius = 2 + grow * ((orbit?.radius ?? 185) - 2);
+  const dotX = mix(cx,orbit?.x ?? w / 2,align);
+  const dotY = mix(cy - radius + 2,orbit?.y ?? h / 2,align);
+  // The globe keeps its size; only the surviving meteor pixel grows.
+  return {size,left,top,roll,radius,cx,
+    cy,dotX,dotY,dotRadius};
+}
 
 // Original figure from the user-supplied Hero ASCII One scene. The sphere and
 // scrolling are rendered locally so the ball can move independently of the figure.
@@ -37,22 +55,12 @@ export function createAtlasScene(canvas: HTMLCanvasElement) {
       canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
       ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
     },
-    draw(p: number, time: number, centerY: number) {
+    draw(p: number, time: number, orbit: {x:number; y:number; radius:number}) {
       if (!ctx || !w || !h) return;
-      ctx.fillStyle = '#050505'; ctx.fillRect(0, 0, w, h);
+      ctx.clearRect(0, 0, w, h);
       const mobile = w < 768;
-      // Deterministic star field: no per-frame random allocation or flicker.
-      ctx.fillStyle = '#999';
-      for (let i = 0; i < (mobile ? 170 : 500); i++) {
-        const x = ((i * 127.17 + Math.sin(i * 7.1) * 100) % w + w) % w;
-        const y = ((i * 73.73 + time * (i % 3 + 1) * 1.6) % h + h) % h;
-        ctx.globalAlpha = (.12 + (i % 7) * .05) * (1 - phase(p, .2, .58));
-        ctx.beginPath(); ctx.arc(x, y, i % 5 === 0 ? 1.5 : .7, 0, Math.PI * 2); ctx.fill();
-      }
       ctx.globalAlpha = 1;
-      const size = mobile ? Math.min(w * 1.12, h * .61) : Math.min(h * .92, w * .55);
-      const left = mobile ? w * .5 - size * .5 : w * .24 - size * .5;
-      const top = mobile ? h * .06 : h * .14;
+      const {size,left,top,roll,radius,cx,cy} = ballPose(w,h,p,orbit);
       const figureOpacity = 1 - phase(p, .12, .28);
       if (figureOpacity > 0) {
         ctx.fillStyle = '#c5c5c5';
@@ -65,19 +73,16 @@ export function createAtlasScene(canvas: HTMLCanvasElement) {
         }
       }
       ctx.globalAlpha = 1;
-      const roll = smooth(phase(p, 0, .19));
-      const zoom = smooth(phase(p, .19, .52));
-      const startX = left + .5 * size, startY = top + .3 * size;
-      const cx = mix(startX, w / 2, roll);
-      const cy = mix(startY, centerY, roll) + Math.sin(roll * Math.PI) * h * .23;
-      const baseRadius = size * .225;
-      const radius = mix(baseRadius, Math.max(w, h) * 1.3, zoom);
-      const rotation = roll * 2.5 + zoom * .7 + time * .065 * (1 - roll);
-      // Screen-space dot grid keeps GPU/CPU work bounded even during extreme zoom.
+      const rotation = roll * 2.5 + time * .065 * (1 - roll);
+      // Keep the dot lattice attached to the globe while it rolls and fades.
+      // Cull offscreen dots without resetting the grid origin at the viewport edge.
       const step = mobile ? 5 : 6;
-      const leftEdge = Math.max(0, cx - radius), rightEdge = Math.min(w, cx + radius);
-      const topEdge = Math.max(0, cy - radius), bottomEdge = Math.min(h, cy + radius);
-      const fade = 1 - phase(p, .54, .65);
+      const originX = cx - radius, originY = cy - radius;
+      const leftEdge = originX + Math.max(0, Math.ceil((-step - originX) / step)) * step;
+      const topEdge = originY + Math.max(0, Math.ceil((-step - originY) / step)) * step;
+      const rightEdge = Math.min(w + step, cx + radius);
+      const bottomEdge = Math.min(h + step, cy + radius);
+      const fade = 1 - smooth(phase(p, .26, .36));
       ctx.fillStyle = '#e0e0dc';
       for (let y = topEdge; y < bottomEdge; y += step) for (let x = leftEdge; x < rightEdge; x += step) {
         const nx = (x - cx) / radius, ny = (y - cy) / radius;
@@ -88,8 +93,8 @@ export function createAtlasScene(canvas: HTMLCanvasElement) {
         const v = nz * Math.cos(rotation) - nx * Math.sin(rotation);
         const terrain = Math.sin(u * 9 + Math.sin(ny * 7) * 1.7) + Math.cos(ny * 12 + v * 6) * .7;
         const light = Math.max(.04, -.35 * nx - .4 * ny + .8 * nz);
-        const luminance = (.13 + light * (terrain > .25 ? .86 : .3)) * fade;
-        ctx.globalAlpha = luminance;
+        const luminance = .13 + light * (terrain > .25 ? .86 : .3);
+        ctx.globalAlpha = luminance * fade;
         ctx.beginPath(); ctx.arc(x, y, step * (.09 + luminance * .31), 0, Math.PI * 2); ctx.fill();
       }
       ctx.globalAlpha = 1;
@@ -97,3 +102,4 @@ export function createAtlasScene(canvas: HTMLCanvasElement) {
     dispose() { disposed = true; img.onload = img.onerror = null; dots = []; },
   };
 }
+

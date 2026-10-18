@@ -12,13 +12,23 @@ for (const width of [1440,375,844]) {
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(base);
     await expect(page.locator('.ascii-canvas')).toHaveAttribute('data-ready','true');
+    await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready');
+    await expect(page.locator('.ascii-grid canvas')).toHaveAttribute('data-ready','true');
+    await expect(page.locator('.ascii-copy h2')).toHaveText('YoungSliker Portfolio');
+    await expect(page.locator('.ascii-top')).toHaveCount(0);
     await expect(page.locator('.site-header')).toBeHidden();
     await expect(page.locator('.hero-landing')).toHaveAttribute('inert','');
     await expect(page.locator('.ascii-scroll')).toBeInViewport();
     await page.screenshot({path:`docs/screenshots/ascii-opening-${width}.png`});
     await progress(page,.12);
     await page.screenshot({path:`docs/screenshots/ascii-roll-${width}.png`});
-    await progress(page,.35);
+    await progress(page,.29);
+    const dot = await page.locator('.intro-aperture').boundingBox();
+    const viewport = page.viewportSize()!;
+    expect(Math.abs(dot!.x + dot!.width / 2 - viewport.width / 2)).toBeLessThan(2);
+    expect(Math.abs(dot!.y + dot!.height / 2 - viewport.height / 2)).toBeLessThan(2);
+    await page.screenshot({path:`docs/screenshots/ascii-settled-${width}.png`});
+    await progress(page,.45);
     await page.screenshot({path:`docs/screenshots/ascii-zoom-${width}.png`});
     await progress(page,.58);
     const geometry = await page.locator('#hero').evaluate(el => {

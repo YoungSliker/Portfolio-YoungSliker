@@ -1,7 +1,7 @@
 import { useLayoutEffect, type RefObject } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { createAtlasScene, phase, smooth } from '../lib/atlasScene';
+import { createAtlasScene, ballPose, phase, smooth } from '../lib/atlasScene';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +18,9 @@ export function useHeroMotion(root: RefObject<HTMLElement | null>) {
     const cards = Array.from(element.querySelectorAll<HTMLElement>('.hero-card'));
     const copy = element.querySelector<HTMLElement>('.ascii-copy')!;
     const cue = element.querySelector<HTMLElement>('.ascii-scroll')!;
+    const canvas = element.querySelector<HTMLCanvasElement>('.ascii-canvas')!;
+    const grid = element.querySelector<HTMLElement>('.ascii-grid')!;
+    const meteor = element.querySelector<HTMLElement>('.ascii-meteor')!;
     const media = gsap.matchMedia();
     media.add({ reduced:'(prefers-reduced-motion: reduce)', normal:'(prefers-reduced-motion: no-preference)' }, context => {
       if (context.conditions!.reduced) {
@@ -26,28 +29,37 @@ export function useHeroMotion(root: RefObject<HTMLElement | null>) {
         element.dataset.scene = 'archive';
         return;
       }
-      const scene = createAtlasScene(element.querySelector<HTMLCanvasElement>('canvas')!);
+      const scene = createAtlasScene(canvas);
+      const entranceState = {figure:0,spark:0,copy:0,cue:0,grid:0};
+      let entrance: gsap.core.Timeline | undefined;
       let p = 0, width = 0, height = 0, x = 0, y = 0, radius = 0;
       let frame = 0, lastTime = 0, focusFrame = 0;
       let preservingFocusScroll = false;
       const rotations = cards.map(card => gsap.getProperty(card, 'rotation') as number);
       const update = () => {
-        const grow = smooth(phase(p, .4, .58));
+        const grow = smooth(phase(p, .36, .58));
+        const pose = ballPose(width,height,p,{x,y,radius});
+        const {dotX,dotY,dotRadius} = pose;
         const reveal = smooth(phase(p, .58, .78));
         const circle = p < .58 ? 0 : radius + reveal * Math.hypot(width, height);
-        const dotRadius = 2 + grow * (radius - 2);
-        element.dataset.scene = p < .19 ? 'roll' : p < .4 ? 'zoom' : p < .58 ? 'dot' : p < .78 ? 'reveal' : 'archive';
+        element.dataset.scene = p < .26 ? 'roll' : p < .32 ? 'settled' : p < .58 ? 'dot' : p < .78 ? 'reveal' : 'archive';
         element.dataset.progress = p.toFixed(4);
         landing.style.clipPath = p >= .78 ? 'none' : `circle(${circle}px at ${x}px ${y}px)`;
         landing.inert = p < .72;
         opening.inert = p > .1;
         opening.style.visibility = p >= .78 ? 'hidden' : 'visible';
-        aperture.style.left = `${x}px`; aperture.style.top = `${y}px`;
+        aperture.style.left = `${dotX}px`; aperture.style.top = `${dotY}px`;
         aperture.style.width = aperture.style.height = `${dotRadius * 2}px`;
-        aperture.style.opacity = p >= .4 && p < .58 ? '1' : '0';
+        aperture.style.opacity = p < .58 ? String(entranceState.spark) : '0';
         aperture.style.background = grow > .9 ? '#eeeae3' : '#fffdf7';
-        copy.style.opacity = String(1 - phase(p, .015, .13));
-        cue.style.opacity = String(1 - phase(p, 0, .07));
+        canvas.style.opacity = String(entranceState.figure);
+        copy.style.opacity = String(entranceState.copy * (1 - phase(p, .015, .13)));
+        copy.style.translate = `0 ${18 * (1 - entranceState.copy)}px`;
+        cue.style.opacity = String(entranceState.cue * (1 - phase(p, 0, .07)));
+        cue.inert = entranceState.cue < .95;
+        const gridOpacity = entranceState.grid * (1 - phase(p,.32,.58));
+        grid.style.opacity = String(gridOpacity);
+        opening.dataset.gridActive = String(gridOpacity > .01 && p < .58);
         const entry = smooth(phase(p, .62, .79));
         const text = element.querySelectorAll('.hero-title-group,.hero-description,.hero-meta,.scroll-cue');
         gsap.set(text, { opacity:entry, y:24 * (1 - entry) });
@@ -64,14 +76,37 @@ export function useHeroMotion(root: RefObject<HTMLElement | null>) {
         x = orbit.offsetLeft + orbit.offsetWidth / 2;
         y = orbit.offsetTop + orbit.offsetHeight / 2;
         radius = orbit.offsetWidth / 2;
+        const impact = ballPose(width,height,0);
+        meteor.querySelector<HTMLElement>('i')!.style.transform = `rotate(${Math.atan2(-height * .08 - impact.dotY,width * .96 - impact.dotX) * 180 / Math.PI}deg)`;
         scene.resize(width, height); update();
       };
       const trigger = ScrollTrigger.create({
         trigger:element, start:'top top', end:'bottom bottom', invalidateOnRefresh:true,
-        onUpdate:self => { if (!preservingFocusScroll) { p = self.progress; update(); } },
+        onUpdate:self => {
+          if (!preservingFocusScroll) {
+            p = self.progress;
+            if (p > .002 && entrance && entrance.progress() < 1) entrance.progress(1);
+            update();
+          }
+        },
         onRefresh:self => { p = self.progress; measure(); },
       });
       measure();
+      document.body.dataset.introEntering = 'true';
+      element.dataset.entrance = 'meteor';
+      entrance = gsap.timeline({
+        onUpdate:update,
+        onComplete:() => { element.dataset.entrance = 'ready'; delete document.body.dataset.introEntering; },
+      });
+      entrance.fromTo(meteor, {x:width * .96,y:-height * .08,opacity:0},
+        {x:()=>ballPose(width,height,0).dotX,y:()=>ballPose(width,height,0).dotY,opacity:1,duration:.9,ease:'power2.in'},.15)
+        .set(entranceState,{spark:1},1.05)
+        .to(meteor,{opacity:0,duration:.2},1.05)
+        .to(entranceState,{figure:1,duration:.65,ease:'power2.out',onStart:()=>{element.dataset.entrance='figure';}},1.1)
+        .to(entranceState,{copy:1,duration:.55,ease:'power2.out',onStart:()=>{element.dataset.entrance='copy';}},1.8)
+        .to(entranceState,{grid:1,duration:.55,onStart:()=>{element.dataset.entrance='grid';}},2.4)
+        .to(entranceState,{cue:1,duration:.4,onStart:()=>{element.dataset.entrance='cue';}},2.95);
+      if (p > .002) entrance.progress(1);
       // Native focus may scroll a transformed control back to its unpinned
       // layout position. Keep the already visible archive still while focusing.
       const keepFocusedControlInScene = (event: FocusEvent) => {
@@ -88,7 +123,7 @@ export function useHeroMotion(root: RefObject<HTMLElement | null>) {
       landing.addEventListener('focusin', keepFocusedControlInScene);
       const draw = (time: number) => {
         if (time - lastTime >= 33 && !document.hidden && p < .78 && element.getBoundingClientRect().bottom > 0) {
-          scene.draw(p, time / 1000, y); lastTime = time;
+          scene.draw(p, time / 1000, {x,y,radius}); lastTime = time;
         }
         frame = requestAnimationFrame(draw);
       };
@@ -98,6 +133,8 @@ export function useHeroMotion(root: RefObject<HTMLElement | null>) {
       return () => {
         observer.disconnect(); cancelAnimationFrame(frame); cancelAnimationFrame(focusFrame);
         landing.removeEventListener('focusin', keepFocusedControlInScene);
+        entrance?.kill(); delete document.body.dataset.introEntering;
+        canvas.style.removeProperty('filter'); aperture.style.removeProperty('filter');
         trigger.kill(); scene.dispose();
         landing.inert = false; opening.inert = false;
         gsap.set(cards, {clearProps:'transform,opacity'});
