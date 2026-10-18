@@ -1,0 +1,10 @@
+.loading-intro { position:absolute; inset:0; background:#050505; }
+.loading-skip { position:absolute; right:var(--gutter); bottom:60px; padding:12px; border:0; background:transparent; color:#aaa; font:11px var(--mono); cursor:pointer; opacity:0; }
+.loading-skip:focus-visible { opacity:1; }
+body[data-intro-entering="true"] .reading-footer { opacity:0; }
+.hero-landing { position:absolute; inset:0; isolation:isolate; background:var(--paper); clip-path:circle(0 at 50% 46%); }
+.intro-aperture { position:absolute; width:6px; height:6px; left:50%; top:50%; border-radius:50%; background:#fff; pointer-events:none; transform:translate(-50%,-50%); }
+@media(prefers-reduced-motion:reduce) {
+ .loading-intro,.intro-aperture { display:none; }
+ .hero-landing { clip-path:none; }
+}

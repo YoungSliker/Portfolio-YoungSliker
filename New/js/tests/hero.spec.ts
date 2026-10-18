@@ -28,7 +28,7 @@ test('scrolling can leave the opening without replaying it on return', async ({p
   await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready');
   await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
   await expect(page.locator('.hero-title-group')).toHaveCSS('opacity','1');
-  await expect(page.locator('.ascii-opening')).toBeHidden();
+  await expect(page.locator('.loading-intro')).toBeHidden();
   await page.locator('.scroll-cue').click();
   await expect(page.locator('#about h2')).toBeInViewport();
 });
@@ -83,4 +83,5 @@ test('three fixed Top1 covers and a stable random fourth cover', async ({page}) 
   }
   expect(chosen[0]).not.toBe(chosen[1]);
 });
+
 

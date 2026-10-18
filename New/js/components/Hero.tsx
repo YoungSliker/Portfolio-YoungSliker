@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { useHeroMotion } from '../hooks/useHeroMotion';
 import { ArtworkTicket } from './ArtworkTicket';
-import { AsciiOpening } from './AsciiOpening';
-import '../../css/ascii-opening.css';
+import { LoadingIntro } from './LoadingIntro';
+import '../../css/loading-intro.css';
 
 const covers = import.meta.glob('../../assets/images/Top1-optimized/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' }) as Record<string,string>;
 const cover = (file: string) => Object.entries(covers).find(([path]) => path.endsWith(`_${file}`))?.[1];
@@ -32,7 +32,7 @@ export function Hero() {
   };
   return <section ref={root} id="hero" className="hero" aria-labelledby="hero-title">
     <div className="hero-stage">
-      <AsciiOpening onEnter={enter} />
+      <LoadingIntro onEnter={enter} />
       <div className="intro-aperture" aria-hidden="true" />
       <div className="hero-landing">
       <div className="hero-meta"><span>CREATIVE ARCHIVE / 翟杨阳</span><span>AI · DESIGN · INTERACTION</span></div>
@@ -56,3 +56,4 @@ export function Hero() {
     </div>
   </section>;
 }
+
