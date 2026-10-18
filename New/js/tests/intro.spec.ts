@@ -1,67 +1,52 @@
-import { test, expect, type Page } from '@playwright/test';
-const base = '/Portfolio-YoungSliker/New/';
-async function progress(page: Page, value: number) {
-  await page.locator('#hero').evaluate((el, p) => window.scrollTo({top:(el as HTMLElement).offsetTop + (el.clientHeight - innerHeight) * p, behavior:'instant'}), value);
-  await expect.poll(async () => Math.abs(Number(await page.locator('#hero').getAttribute('data-progress')) - value)).toBeLessThan(.001);
-  await page.waitForTimeout(100);
-}
-for (const width of [1440,375,844]) {
-  test('ASCII roll, portal and archive at ' + width, async ({page}) => {
-    await page.setViewportSize({width,height:width === 844 ? 390 : width === 375 ? 812 : 900});
-    const errors: string[] = [];
-    page.on('pageerror', error => errors.push(error.message));
-    await page.goto(base);
-    await expect(page.locator('.ascii-canvas')).toHaveAttribute('data-ready','true');
-    await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready');
-    await expect(page.locator('.ascii-grid canvas')).toHaveAttribute('data-ready','true');
-    await expect(page.locator('.ascii-copy h2')).toHaveText('YoungSliker Portfolio');
-    await expect(page.locator('.ascii-top')).toHaveCount(0);
-    await expect(page.locator('.site-header')).toBeHidden();
-    await expect(page.locator('.hero-landing')).toHaveAttribute('inert','');
-    await expect(page.locator('.ascii-scroll')).toBeInViewport();
-    await page.screenshot({path:`docs/screenshots/ascii-opening-${width}.png`});
-    await progress(page,.12);
-    await page.screenshot({path:`docs/screenshots/ascii-roll-${width}.png`});
-    await progress(page,.29);
-    const dot = await page.locator('.intro-aperture').boundingBox();
-    const viewport = page.viewportSize()!;
-    expect(Math.abs(dot!.x + dot!.width / 2 - viewport.width / 2)).toBeLessThan(2);
-    expect(Math.abs(dot!.y + dot!.height / 2 - viewport.height / 2)).toBeLessThan(2);
-    await page.screenshot({path:`docs/screenshots/ascii-settled-${width}.png`});
-    await progress(page,.45);
-    await page.screenshot({path:`docs/screenshots/ascii-zoom-${width}.png`});
-    await progress(page,.58);
-    const geometry = await page.locator('#hero').evaluate(el => {
-      const ring = el.querySelector<HTMLElement>('.hero-orbit')!;
-      const landing = el.querySelector<HTMLElement>('.hero-landing')!;
-      return { diameter:ring.offsetWidth, clip:landing.style.clipPath };
-    });
-    expect(Math.abs(parseFloat(geometry.clip.replace('circle(','')) - geometry.diameter/2)).toBeLessThan(1);
-    await page.screenshot({path:`docs/screenshots/ascii-portal-${width}.png`});
-    await progress(page,.86);
-    await expect(page.locator('.hero-landing')).not.toHaveAttribute('inert','');
-    await expect(page.locator('.hero-title-group')).toHaveCSS('opacity','1');
-    await expect(page.locator('.hero-card').first()).toHaveCSS('opacity','1');
-    await expect(page.locator('.site-header')).toBeHidden();
-    await page.screenshot({path:`docs/screenshots/ascii-archive-${width}.png`});
-    await page.locator('.scroll-cue').click();
-    await expect(page.locator('.site-header')).toBeVisible();
-    await expect(page.locator('#about h2')).toBeInViewport();
-    await expect(page.locator('.reading-footer')).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
-    await progress(page,0);
-    await expect(page.locator('.ascii-scroll')).toHaveCSS('opacity','1');
-    await expect(page.locator('.site-header')).toBeHidden();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    expect(errors).toEqual([]);
-  });
-}
-test('reduced motion skips the long scene and keyboard reaches About', async ({page}) => {
-  await page.emulateMedia({reducedMotion:'reduce'});
+import { test, expect } from '@playwright/test';
+const base='/Portfolio-YoungSliker/New/';
+for(const width of [1440,375,844]) {
+ test('automatic 5s opening and archive at '+width,async({page})=>{
+  await page.setViewportSize({width,height:width===844?390:width===375?812:900});
+  await page.clock.install({time:new Date('2026-10-18T00:00:00Z')});
+  await page.clock.pauseAt(new Date('2026-10-18T00:00:01Z'));
+  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base);
-  await expect(page.locator('.ascii-opening')).toBeHidden();
-  await expect(page.locator('.hero-landing')).toHaveCSS('clip-path','none');
-  await page.keyboard.press('Tab');
-  await expect(page.getByRole('link',{name:'跳到主要内容'})).toBeFocused();
-  await page.keyboard.press('Enter');
+  await expect(page.locator('.ascii-canvas')).toHaveAttribute('data-ready','true');
+  await expect(page.locator('.ascii-copy')).toHaveCount(0);
+  await expect(page.locator('.ascii-scroll')).toHaveCount(0);
+  await expect(page.locator('.ascii-atom')).toHaveCount(3);
+  await expect(page.locator('.hero-landing')).toHaveAttribute('inert','');
+  await page.clock.runFor(694);
+  await expect(page.locator('#hero')).toHaveAttribute('data-scene','meteor');
+  await page.screenshot({path:`docs/screenshots/auto-figure-${width}.png`});
+  await page.clock.runFor(556);
+  await expect(page.locator('#hero')).toHaveAttribute('data-scene','impact');
+  await expect(page.locator('.ascii-atoms')).toHaveAttribute('data-active','true');
+  await page.screenshot({path:`docs/screenshots/auto-impact-${width}.png`});
+  await page.clock.runFor(1944);
+  await expect(page.locator('#hero')).toHaveAttribute('data-scene','dot');
+  await expect(page.locator('.ascii-canvas')).toHaveCSS('filter','none');
+  await page.screenshot({path:`docs/screenshots/auto-dot-${width}.png`});
+  await page.clock.runFor(1875);
+  await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready');
+  await expect(page.locator('.hero-landing')).not.toHaveAttribute('inert','');
+  await expect(page.locator('.hero-title-group')).toHaveCSS('opacity','1');
+  for(const card of await page.locator('.hero-card').all())await expect(card).toHaveCSS('opacity','1');
+  expect(await page.evaluate(()=>scrollY)).toBe(0);
+  expect(await page.locator('#hero').evaluate(e=>e.clientHeight<=innerHeight)).toBe(true);
+  await expect(page.locator('.ascii-atoms')).toHaveAttribute('data-active','false');
+  await page.screenshot({path:`docs/screenshots/auto-archive-${width}.png`});
+  await page.clock.resume();
+  await page.locator('.scroll-cue').click();
+  await expect(page.locator('#about h2')).toBeInViewport();
   await expect(page.locator('.site-header')).toBeVisible();
+  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+  await expect(page.locator('#hero')).toHaveAttribute('data-scene','archive');
+  expect(errors).toEqual([]);
+ });
+}
+test('reduced motion opens archive immediately',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto(base);
+ await expect(page.locator('.ascii-opening')).toBeHidden();
+ await expect(page.locator('.hero-landing')).toHaveCSS('clip-path','none');
+ await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'跳到主要内容'})).toBeFocused();
+ await page.keyboard.press('Enter');await expect(page.locator('.site-header')).toBeVisible();
 });
+
+

@@ -1,4 +1,5 @@
 import CursorGrid from './CursorGrid';
+import type { CSSProperties } from 'react';
 
 export function AsciiOpening({ onEnter }: { onEnter: () => void }) {
   return <div className="ascii-opening">
@@ -9,18 +10,18 @@ export function AsciiOpening({ onEnter }: { onEnter: () => void }) {
     </div>
     <canvas className="ascii-canvas" aria-hidden="true" />
     <div className="ascii-meteor" aria-hidden="true"><i /></div>
-    <div className="ascii-copy">
-      <div className="ascii-rule"><span>∞</span></div>
-      <p className="ascii-label">EVERY IDEA BEGINS WITH A PUSH.</p>
-      <h2>YoungSliker Portfolio</h2>
-      <p className="ascii-description">每一次探索，每一个像素，<br />都让想象中的世界，向前一步。</p>
-      <button className="ascii-enter" onClick={onEnter}>进入创作档案 <span>↗</span></button>
-      <div className="ascii-signature">AI × DESIGN × INTERACTION <span>∞</span></div>
+    <div className="ascii-atoms" aria-hidden="true">
+      {[0,1,2].map(atom=><div className={`ascii-atom ascii-atom--${atom}`} key={atom}>
+        <div className="atom-nucleus">{Array.from({length:13},(_,i)=><i key={i} style={{'--i':i} as CSSProperties} />)}</div>
+        {[0,1,2].map(orbit=><div className="atom-orbit" key={orbit} style={{'--orbit':orbit} as CSSProperties}>
+          {[-1,0,1].map(lane=><span className={`atom-track${lane?' atom-track--secondary':''}`} key={lane} style={{'--offset':`${lane*7}px`} as CSSProperties}>
+            {Array.from({length:64},(_,i)=><i key={i} style={{'--angle':`${i*360/64}deg`} as CSSProperties} />)}
+          </span>)}
+          <span className="atom-electron"><b /></span>
+        </div>)}
+      </div>)}
     </div>
-    <button className="ascii-scroll" onClick={onEnter} aria-label="向下滚动开始，进入作品集">
-      <span className="ascii-mouse" aria-hidden="true"><i /></span>
-      <span>向下滚动开始</span><small>SCROLL TO BEGIN</small>
-    </button>
+    <button className="ascii-skip" onClick={onEnter}>跳过开场</button>
     <span className="ascii-corner ascii-corner--a" /><span className="ascii-corner ascii-corner--b" />
   </div>;
 }

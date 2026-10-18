@@ -28,8 +28,7 @@ export function Hero() {
   const enter = () => {
     const el = root.current;
     if (!el) return;
-    const distance = el.offsetHeight - innerHeight;
-    window.scrollTo({ top:el.offsetTop + distance * .86, behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    el.dispatchEvent(new Event('intro:skip'));
   };
   return <section ref={root} id="hero" className="hero" aria-labelledby="hero-title">
     <div className="hero-stage">

@@ -21,24 +21,17 @@ for (const viewport of [{width:1440,height:900},{width:375,height:667},{width:84
   });
 }
 
-test('wheel advances the opening and reversing restores the opening cue', async ({page}) => {
+test('scrolling can leave the opening without replaying it on return', async ({page}) => {
   await page.setViewportSize({width:1440,height:900});
   await page.goto(base);
-  const cue = page.locator('.ascii-scroll');
-  await expect(cue).toBeVisible();
-  await page.mouse.move(700,450);
-  await page.mouse.wheel(0,400);
-  await expect.poll(() => cue.evaluate(e => Number(getComputedStyle(e).opacity))).toBeLessThan(.1);
-  await expect.poll(async () => Number(await page.locator('#hero').getAttribute('data-progress'))).toBeGreaterThan(.05);
-  await page.screenshot({path:'docs/screenshots/phase-2-transition-1440.png'});
-  await page.mouse.wheel(0,-1200);
-  await expect.poll(() => cue.evaluate(e => Number(getComputedStyle(e).opacity))).toBeGreaterThan(.95);
-  await page.getByRole('button',{name:'向下滚动开始，进入作品集'}).click();
+  await page.mouse.wheel(0,1000);
+  await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready');
+  await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
   await expect(page.locator('.hero-title-group')).toHaveCSS('opacity','1');
+  await expect(page.locator('.ascii-opening')).toBeHidden();
   await page.locator('.scroll-cue').click();
   await expect(page.locator('#about h2')).toBeInViewport();
 });
-
 test('reduced motion keeps content and the cue without a long pinned scene', async ({page}) => {
   await page.setViewportSize({width:375,height:667});
   await page.emulateMedia({reducedMotion:'reduce'});
@@ -90,3 +83,4 @@ test('three fixed Top1 covers and a stable random fourth cover', async ({page}) 
   }
   expect(chosen[0]).not.toBe(chosen[1]);
 });
+

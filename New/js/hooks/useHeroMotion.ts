@@ -1,146 +1,72 @@
 import { useLayoutEffect, type RefObject } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { createAtlasScene, ballPose, phase, smooth } from '../lib/atlasScene';
 
-gsap.registerPlugin(ScrollTrigger);
-
-// One reversible scroll track: roll -> zoom -> dot/orbit match -> archive reveal.
+// One automatic 5-second opening, independent of scrolling.
 export function useHeroMotion(root: RefObject<HTMLElement | null>) {
-  useLayoutEffect(() => {
-    const element = root.current;
-    if (!element) return;
-    const stage = element.querySelector<HTMLElement>('.hero-stage')!;
-    const landing = element.querySelector<HTMLElement>('.hero-landing')!;
-    const opening = element.querySelector<HTMLElement>('.ascii-opening')!;
-    const aperture = element.querySelector<HTMLElement>('.intro-aperture')!;
-    const orbit = element.querySelector<HTMLElement>('.hero-orbit')!;
-    const cards = Array.from(element.querySelectorAll<HTMLElement>('.hero-card'));
-    const copy = element.querySelector<HTMLElement>('.ascii-copy')!;
-    const cue = element.querySelector<HTMLElement>('.ascii-scroll')!;
-    const canvas = element.querySelector<HTMLCanvasElement>('.ascii-canvas')!;
-    const grid = element.querySelector<HTMLElement>('.ascii-grid')!;
-    const meteor = element.querySelector<HTMLElement>('.ascii-meteor')!;
-    const media = gsap.matchMedia();
-    media.add({ reduced:'(prefers-reduced-motion: reduce)', normal:'(prefers-reduced-motion: no-preference)' }, context => {
-      if (context.conditions!.reduced) {
-        landing.inert = false; opening.inert = true;
-        gsap.set(landing, { clipPath:'none' });
-        element.dataset.scene = 'archive';
-        return;
-      }
-      const scene = createAtlasScene(canvas);
-      const entranceState = {figure:0,spark:0,copy:0,cue:0,grid:0};
-      let entrance: gsap.core.Timeline | undefined;
-      let p = 0, width = 0, height = 0, x = 0, y = 0, radius = 0;
-      let frame = 0, lastTime = 0, focusFrame = 0;
-      let preservingFocusScroll = false;
-      const rotations = cards.map(card => gsap.getProperty(card, 'rotation') as number);
-      const update = () => {
-        const grow = smooth(phase(p, .36, .58));
-        const pose = ballPose(width,height,p,{x,y,radius});
-        const {dotX,dotY,dotRadius} = pose;
-        const reveal = smooth(phase(p, .58, .78));
-        const circle = p < .58 ? 0 : radius + reveal * Math.hypot(width, height);
-        element.dataset.scene = p < .26 ? 'roll' : p < .32 ? 'settled' : p < .58 ? 'dot' : p < .78 ? 'reveal' : 'archive';
-        element.dataset.progress = p.toFixed(4);
-        landing.style.clipPath = p >= .78 ? 'none' : `circle(${circle}px at ${x}px ${y}px)`;
-        landing.inert = p < .72;
-        opening.inert = p > .1;
-        opening.style.visibility = p >= .78 ? 'hidden' : 'visible';
-        aperture.style.left = `${dotX}px`; aperture.style.top = `${dotY}px`;
-        aperture.style.width = aperture.style.height = `${dotRadius * 2}px`;
-        aperture.style.opacity = p < .58 ? String(entranceState.spark) : '0';
-        aperture.style.background = grow > .9 ? '#eeeae3' : '#fffdf7';
-        canvas.style.opacity = String(entranceState.figure);
-        copy.style.opacity = String(entranceState.copy * (1 - phase(p, .015, .13)));
-        copy.style.translate = `0 ${18 * (1 - entranceState.copy)}px`;
-        cue.style.opacity = String(entranceState.cue * (1 - phase(p, 0, .07)));
-        cue.inert = entranceState.cue < .95;
-        const gridOpacity = entranceState.grid * (1 - phase(p,.32,.58));
-        grid.style.opacity = String(gridOpacity);
-        opening.dataset.gridActive = String(gridOpacity > .01 && p < .58);
-        const entry = smooth(phase(p, .62, .79));
-        const text = element.querySelectorAll('.hero-title-group,.hero-description,.hero-meta,.scroll-cue');
-        gsap.set(text, { opacity:entry, y:24 * (1 - entry) });
-        const directions = [[-1,-1],[1,-1],[-1,1],[1,1]];
-        cards.forEach((card,i) => {
-          const t = smooth(phase(p, .64 + i * .015, .79 + i * .015));
-          gsap.set(card, { x:directions[i][0] * width * .22 * (1-t),
-            y:directions[i][1] * height * .3 * (1-t),
-            rotation:rotations[i] + directions[i][0] * 20 * (1-t), scale:.7 + .3*t, opacity:t });
-        });
-      };
-      const measure = () => {
-        width = stage.clientWidth; height = stage.clientHeight;
-        x = orbit.offsetLeft + orbit.offsetWidth / 2;
-        y = orbit.offsetTop + orbit.offsetHeight / 2;
-        radius = orbit.offsetWidth / 2;
-        const impact = ballPose(width,height,0);
-        meteor.querySelector<HTMLElement>('i')!.style.transform = `rotate(${Math.atan2(-height * .08 - impact.dotY,width * .96 - impact.dotX) * 180 / Math.PI}deg)`;
-        scene.resize(width, height); update();
-      };
-      const trigger = ScrollTrigger.create({
-        trigger:element, start:'top top', end:'bottom bottom', invalidateOnRefresh:true,
-        onUpdate:self => {
-          if (!preservingFocusScroll) {
-            p = self.progress;
-            if (p > .002 && entrance && entrance.progress() < 1) entrance.progress(1);
-            update();
-          }
-        },
-        onRefresh:self => { p = self.progress; measure(); },
-      });
-      measure();
-      document.body.dataset.introEntering = 'true';
-      element.dataset.entrance = 'meteor';
-      entrance = gsap.timeline({
-        onUpdate:update,
-        onComplete:() => { element.dataset.entrance = 'ready'; delete document.body.dataset.introEntering; },
-      });
-      entrance.fromTo(meteor, {x:width * .96,y:-height * .08,opacity:0},
-        {x:()=>ballPose(width,height,0).dotX,y:()=>ballPose(width,height,0).dotY,opacity:1,duration:.9,ease:'power2.in'},.15)
-        .set(entranceState,{spark:1},1.05)
-        .to(meteor,{opacity:0,duration:.2},1.05)
-        .to(entranceState,{figure:1,duration:.65,ease:'power2.out',onStart:()=>{element.dataset.entrance='figure';}},1.1)
-        .to(entranceState,{copy:1,duration:.55,ease:'power2.out',onStart:()=>{element.dataset.entrance='copy';}},1.8)
-        .to(entranceState,{grid:1,duration:.55,onStart:()=>{element.dataset.entrance='grid';}},2.4)
-        .to(entranceState,{cue:1,duration:.4,onStart:()=>{element.dataset.entrance='cue';}},2.95);
-      if (p > .002) entrance.progress(1);
-      // Native focus may scroll a transformed control back to its unpinned
-      // layout position. Keep the already visible archive still while focusing.
-      const keepFocusedControlInScene = (event: FocusEvent) => {
-        if (p < .78 || !(event.target instanceof Element) || !event.target.closest('.tear-ticket')) return;
-        const position = scrollY;
-        preservingFocusScroll = true;
-        cancelAnimationFrame(focusFrame);
-        focusFrame = requestAnimationFrame(() => {
-          window.scrollTo({top:position, behavior:'instant'});
-          preservingFocusScroll = false;
-          trigger.update();
-        });
-      };
-      landing.addEventListener('focusin', keepFocusedControlInScene);
-      const draw = (time: number) => {
-        if (time - lastTime >= 33 && !document.hidden && p < .78 && element.getBoundingClientRect().bottom > 0) {
-          scene.draw(p, time / 1000, {x,y,radius}); lastTime = time;
-        }
-        frame = requestAnimationFrame(draw);
-      };
-      frame = requestAnimationFrame(draw);
-      const observer = new ResizeObserver(() => { trigger.refresh(); });
-      observer.observe(stage);
-      return () => {
-        observer.disconnect(); cancelAnimationFrame(frame); cancelAnimationFrame(focusFrame);
-        landing.removeEventListener('focusin', keepFocusedControlInScene);
-        entrance?.kill(); delete document.body.dataset.introEntering;
-        canvas.style.removeProperty('filter'); aperture.style.removeProperty('filter');
-        trigger.kill(); scene.dispose();
-        landing.inert = false; opening.inert = false;
-        gsap.set(cards, {clearProps:'transform,opacity'});
-        gsap.set(element.querySelectorAll('.hero-title-group,.hero-description,.hero-meta,.scroll-cue'), {clearProps:'transform,opacity'});
-      };
-    }, element);
-    return () => media.revert();
-  }, [root]);
+ useLayoutEffect(()=>{
+  const el=root.current;if(!el)return;
+  const get=(s:string)=>el.querySelector<HTMLElement>(s)!;
+  const stage=get('.hero-stage'),landing=get('.hero-landing'),opening=get('.ascii-opening');
+  const aperture=get('.intro-aperture'),orbit=get('.hero-orbit'),grid=get('.ascii-grid'),atoms=get('.ascii-atoms'),meteor=get('.ascii-meteor');
+  const canvas=el.querySelector<HTMLCanvasElement>('.ascii-canvas')!;
+  const cards=Array.from(el.querySelectorAll<HTMLElement>('.hero-card'));
+  const texts=el.querySelectorAll('.hero-title-group,.hero-description,.hero-meta,.scroll-cue');
+  const media=gsap.matchMedia();
+  media.add({reduced:'(prefers-reduced-motion: reduce)',normal:'(prefers-reduced-motion: no-preference)'},context=>{
+   const state={p:0,figure:0,ball:0,spark:0,spiral:0,atoms:0,grid:0,flight:0};
+   let width=0,height=0,x=0,y=0,radius=0,frame=0,disposed=false,complete=false;
+   const rotations=cards.map(card=>gsap.getProperty(card,'rotation') as number);
+   const scene=context.conditions!.reduced?null:createAtlasScene(canvas);
+   const update=()=>{
+    const p=state.p,grow=smooth(phase(p,.24,.58));
+    const pose=ballPose(width,height,p,{x,y,radius});
+    const reveal=smooth(phase(p,.58,.78));
+    landing.style.clipPath=p>=.78?'none':`circle(${p<.58?0:radius+reveal*Math.hypot(width,height)}px at ${x}px ${y}px)`;
+    landing.inert=p<.87;opening.inert=complete;opening.style.visibility=p>=.78?'hidden':'visible';
+    el.dataset.progress=p.toFixed(4);
+    el.dataset.scene=p===1?'archive':p>=.58?'reveal':p>=.36?'dot':p>=.26?'fade':p>0?'roll':state.spark?'impact':'meteor';
+    aperture.style.left=`${pose.dotX}px`;aperture.style.top=`${pose.dotY}px`;
+    aperture.style.width=aperture.style.height=`${pose.dotRadius*2}px`;
+    aperture.style.opacity=p<.58?String(state.spark):'0';
+    aperture.style.background=grow>.9?'#eeeae3':'#fffdf7';
+    const impact=ballPose(width,height,0),startX=width*.96,startY=-height*.08;
+    gsap.set(meteor,{x:startX+(impact.dotX-startX)*state.flight,y:startY+(impact.dotY-startY)*state.flight});
+    meteor.querySelector<HTMLElement>('i')!.style.transform=`rotate(${Math.atan2(startY-impact.dotY,startX-impact.dotX)*180/Math.PI}deg)`;
+    const fade=1-smooth(phase(p,0,.3));
+    atoms.style.opacity=String(state.atoms*fade);atoms.dataset.active=String(state.atoms>0&&fade>0&&!complete);
+    grid.style.opacity=String(state.grid*(1-phase(p,.32,.58)));
+    opening.dataset.gridActive=String(state.grid>0&&p<.58&&!complete);
+    gsap.set(texts,{opacity:smooth(phase(p,.62,.79)),y:24*(1-smooth(phase(p,.62,.79)))});
+    cards.forEach((card,i)=>{const t=smooth(phase(p,.64+i*.025,.79+i*.025));gsap.set(card,{x:(i%2?1:-1)*width*.22*(1-t),y:(i<2?-1:1)*height*.3*(1-t),rotation:rotations[i]+(i%2?1:-1)*20*(1-t),scale:.7+.3*t,opacity:t});});
+    scene?.draw(p,performance.now()/1000,{x,y,radius},state);
+   };
+   const measure=()=>{width=stage.clientWidth;height=stage.clientHeight;x=orbit.offsetLeft+orbit.offsetWidth/2;y=orbit.offsetTop+orbit.offsetHeight/2;radius=orbit.offsetWidth/2;scene?.resize(width,height);update();};
+   const finish=()=>{complete=true;state.p=1;state.spark=1;update();el.dataset.entrance='ready';delete document.body.dataset.introEntering;cancelAnimationFrame(frame);};
+   measure();
+   const timeline=gsap.timeline({paused:true,onUpdate:update,onComplete:finish});
+   const skip=()=>{timeline.pause();finish();};
+   const onScroll=()=>{if(!complete&&scrollY>el.offsetTop+20)skip();};
+   el.addEventListener('intro:skip',skip);window.addEventListener('scroll',onScroll,{passive:true});
+   const observer=new ResizeObserver(measure);observer.observe(stage);
+   if(context.conditions!.reduced||scrollY>el.offsetTop+20)finish();
+   else {
+    document.body.dataset.introEntering='true';el.dataset.entrance='loading';
+    timeline.set(meteor,{opacity:1},.05)
+     .to(state,{flight:1,duration:.7,ease:'power2.in'},.05)
+     .to(state,{figure:1,duration:.25},.35)
+     .set(state,{ball:1,spark:1},.75)
+     .to(meteor,{opacity:0,duration:.15},.75)
+     .to(state,{spiral:1,duration:.5,ease:'none'},.75)
+     .to(state,{atoms:1,grid:1,duration:.25},.75)
+     // One uninterrupted progress ramp; roll, fade and spark growth overlap.
+     .to(state,{p:1,duration:2.65,ease:'none'},.95);
+    const draw=()=>{if(disposed||complete)return;if(!document.hidden)scene?.draw(state.p,performance.now()/1000,{x,y,radius},state);frame=requestAnimationFrame(draw);};
+    scene!.ready.then(()=>{if(disposed||complete)return;el.dataset.entrance='playing';timeline.timeScale(3.6/5).play();frame=requestAnimationFrame(draw);});
+   }
+   return ()=>{disposed=true;timeline.kill();cancelAnimationFrame(frame);observer.disconnect();scene?.dispose();el.removeEventListener('intro:skip',skip);window.removeEventListener('scroll',onScroll);delete document.body.dataset.introEntering;gsap.set(cards,{clearProps:'transform,opacity'});};
+  },el);
+  return ()=>media.revert();
+ },[root]);
 }
+

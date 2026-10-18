@@ -24,7 +24,7 @@ for (const width of [375, 430, 768, 1024, 1440, 1920]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.locator('#contact').scrollIntoViewIfNeeded();
     await page.getByRole('link', { name: 'BACK TO TOP' }).click();
-    await expect(page.locator('.ascii-scroll')).toBeInViewport();
+    await expect(page.locator('.scroll-cue')).toBeInViewport();
     await expect(page.locator('.site-header')).toBeHidden();
     expect(errors).toEqual([]);
     if (width === 375 || width === 1440) {
@@ -83,3 +83,4 @@ test('production subpath serves old entry and Chinese media without copying them
   expect((await request.get('/Portfolio-YoungSliker/.git/config')).status()).toBe(404);
   expect((await request.get(`${base}missing.js`)).status()).toBe(404);
 });
+
