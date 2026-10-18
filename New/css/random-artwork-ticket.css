@@ -1,0 +1,6 @@
+.random-artwork { position:relative; width:100%; }
+.random-artwork__fold { position:absolute; inset:0 15%; opacity:0; pointer-events:none; filter:drop-shadow(0 9px 12px #493d3030); }
+.random-artwork__fold .paper-crumple { height:100%; overflow:visible; }
+.random-artwork__fold .paper-crumple-hit,.random-artwork__fold .paper-crumple-sr { display:none; }
+.random-artwork[data-changing="true"] .random-artwork__live { opacity:0; pointer-events:none; }
+.random-artwork[data-changing="true"] .random-artwork__fold { opacity:1; }

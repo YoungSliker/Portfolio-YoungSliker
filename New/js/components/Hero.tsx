@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useHeroMotion } from '../hooks/useHeroMotion';
 import { ArtworkTicket } from './ArtworkTicket';
 import { LoadingIntro } from './LoadingIntro';
+import { RandomArtworkTicket } from './RandomArtworkTicket';
 import '../../css/loading-intro.css';
 
 const covers = import.meta.glob('../../assets/images/Top1-optimized/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' }) as Record<string,string>;
@@ -13,7 +14,7 @@ const randomWorks = Object.entries(covers)
     title: decodeURIComponent(path.split('/').pop() ?? '作品').replace(/\.[^.]+$/, '').replace(/^.*_/, ''),
     image,
   }));
-// Stable for this page visit, including section navigation.
+// The initial selection is stable; the random ticket owns its timed rotation.
 const randomWork = randomWorks[Math.floor(Math.random() * randomWorks.length)] ?? { id:'fallback', title:'创作选集', image:cover('库伦荞麦.png') };
 const artworks = [
   { id:'suiyuan', title:'绥远方志', description:'基于人智混合的呼和浩特史体验场景设计', date:'202507', image:cover('绥远方志.jpg') },
@@ -43,9 +44,9 @@ export function Hero() {
       </div>
       <div className="hero-artworks">{artworks.map((artwork,index) =>
         <div className={`hero-card hero-card--${index+1}`} key={artwork.id}>
-          <ArtworkTicket title={artwork.title} description={artwork.description} date={artwork.date}
+          {index===1?<RandomArtworkTicket works={randomWorks} initial={randomWork}/>:<ArtworkTicket title={artwork.title} description={artwork.description} date={artwork.date}
             image={artwork.image} qrValue={`${location.origin}${import.meta.env.BASE_URL}#work=${artwork.id}`}
-            width={index === 1 ? 280 : 360} height={index === 1 ? 360 : 280} />
+            width={360} height={280} />}
         </div>)}</div>
       <div className="hero-description"><span className="hero-rule" /><p>探索人工智能、数字体验<br className="mobile-break" />与视觉传播的边界。</p><span>AI × CREATIVE × INTERACTION</span></div>
       <a href="#about" className="scroll-cue" aria-label="向下滚动，进入创作档案">
