@@ -5,6 +5,21 @@ import '../../css/glass-title.css';
 export function GlassTitle() {
   const [reduced, setReduced] = useState(false);
   const [fontReady, setFontReady] = useState(false);
+  const [entered, setEntered] = useState(false);
+  useEffect(() => {
+    const hero = document.getElementById('hero');
+    let timer;
+    const check = () => {
+      if (hero?.dataset.entrance === 'ready') {
+        observer.disconnect();
+        timer = setTimeout(() => setEntered(true), 150);
+      }
+    };
+    const observer = new MutationObserver(check);
+    if (hero) observer.observe(hero, { attributes: true, attributeFilter: ['data-entrance'] });
+    check();
+    return () => { observer.disconnect(); clearTimeout(timer); };
+  }, []);
   useEffect(() => {
     let active = true;
     document.fonts.load('400 100px "PortfolioTitle"', '设计作品集').then(() => {
@@ -17,7 +32,7 @@ export function GlassTitle() {
   }, []);
   return <div className="hero-glass-title">
     <h1 id="hero-title">设计作品集</h1>
-    {fontReady && !reduced && <div className="hero-glass-title__effect" aria-hidden="true">
+    {entered && fontReady && !reduced && <div className="hero-glass-title__effect" aria-hidden="true">
       <FluidGlass text="设计作品集" fontFamily="PortfolioTitle, Microsoft YaHei, sans-serif"
         fontWeight={400} textColor="#111111" shape="blob" size={190}
         interaction="follow" refraction={.85} dispersion={.85} reflection={.75}

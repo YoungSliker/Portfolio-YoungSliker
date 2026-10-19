@@ -1,5 +1,17 @@
 import {test,expect} from '@playwright/test';
 const base='/Portfolio-YoungSliker/New/';
+test('reload from About starts at the white dot before glass initialization', async ({page}) => {
+ await page.goto(base + '#about');
+ await expect(page.locator('#about h2')).toBeInViewport();
+ await page.reload({waitUntil:'domcontentloaded'});
+ await expect(page).toHaveURL(new RegExp('/New/$'));
+ expect(await page.evaluate(()=>scrollY)).toBe(0);
+ await expect(page.locator('#hero')).toHaveAttribute('data-entrance','playing');
+ await expect(page.locator('.fluid-glass')).toHaveCount(0);
+ await expect(page.locator('.loading-intro')).toBeVisible();
+ await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready');
+ await expect(page.locator('.fluid-glass')).toHaveAttribute('data-glass-ready','true',{timeout:20000});
+});
 for(const width of [1440,375,844]) {
  test('white dot loading reveal at '+width,async({page})=>{
   await page.setViewportSize({width,height:width===844?390:width===375?812:900});

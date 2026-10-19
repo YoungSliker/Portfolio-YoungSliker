@@ -651,7 +651,9 @@ const FluidGlass = ({
     const programs = new Map();
 
     const request = name => {
-      const key = name === 'content' ? name : `${name}>${view.ratio < 1.75 ? 1 : 0}`;
+      // One ray-traced sample; supersampling repeats the full interior tracing
+      // four times and makes shader compilation stall on integrated GPUs.
+      const key = name === 'content' ? name : `${name}>0`;
       if (programs.has(key)) return programs.get(key);
       const [a, b, sampled] = key.split('>');
       const fragment = compile(
