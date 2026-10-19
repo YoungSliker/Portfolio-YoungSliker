@@ -3,6 +3,7 @@ import { useHeroMotion } from '../hooks/useHeroMotion';
 import { ArtworkTicket } from './ArtworkTicket';
 import { LoadingIntro } from './LoadingIntro';
 import { RandomArtworkTicket } from './RandomArtworkTicket';
+import { GlassTitle } from './GlassTitle';
 import '../../css/loading-intro.css';
 
 const covers = import.meta.glob('../../assets/images/Top1-optimized/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' }) as Record<string,string>;
@@ -40,7 +41,7 @@ export function Hero() {
       <div className="hero-orbit" aria-hidden="true"><i /><span>+</span></div>
       <div className="hero-title-group">
         <p className="hero-kicker">IDEAS IN MOTION. WORLDS IN THE MAKING.</p>
-        <h1 id="hero-title">YOUNGSLIKER<span>®</span></h1>
+        <GlassTitle />
       </div>
       <div className="hero-artworks">{artworks.map((artwork,index) =>
         <div className={`hero-card hero-card--${index+1}`} key={artwork.id}>
