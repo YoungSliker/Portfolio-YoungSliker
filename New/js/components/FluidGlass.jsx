@@ -411,7 +411,13 @@ vec4 shadeTrace(Trace tr, vec3 rd, vec4 background, vec4 tone, vec2 w, vec2 tx, 
     red = shade(red, factors);
     green = shade(green, factors);
     blue = shade(blue, factors);
-    transmitted = mix(vec4(red.r, green.g, blue.b, green.a), tone, band);
+    // Text textures are premultiplied and transparent outside the glyphs.
+    // Use the union of channel coverage, filling uncovered channels with paper.
+    float coverage = max(red.a, max(green.a, blue.a));
+    vec3 paper = vec3(0.93333, 0.91765, 0.89020);
+    vec3 spectral = vec3(red.r, green.g, blue.b)
+      + paper * (vec3(coverage) - vec3(red.a, green.a, blue.a));
+    transmitted = mix(vec4(spectral, coverage), tone, band);
     mirror = mix(mirror, tone * uReflection, band);
   }
 
@@ -428,7 +434,7 @@ vec4 shadeTrace(Trace tr, vec3 rd, vec4 background, vec4 tone, vec2 w, vec2 tx, 
   float rimLight = pow(1.0 - cosi, 3.0) * (0.25 + 0.75 * abs(dot(normalize(tr.n.xy + 1e-5), facing))) * 0.55 * uReflection;
   rimLight *= smoothstep(0.0, 0.08, cosi);
   glass = vec4(rimLight) + glass * (1.0 - rimLight);
-  return mix(background, glass, uPresence);
+  return mix(background, glass, uPresence * smoothstep(0.0, 0.12, cosi));
 }
 
 void main() {
@@ -1010,6 +1016,13 @@ const FluidGlass = ({
       if (s.interaction === 'follow' && pointer.inside) {
         goalX = pointer.x;
         goalY = pointer.y;
+      }
+      if (s.interaction === 'follow') {
+        const margin = size * 1.4 + 6;
+        const mx = Math.min(margin, view.width / 2);
+        const my = Math.min(margin, view.height / 2);
+        goalX = clamp(goalX, mx, view.width - mx);
+        goalY = clamp(goalY, my, view.height - my);
       }
       const omega = (pointer.grabbed ? 34 : 24) * Math.pow(0.18, s.smoothness) * (reduced ? 1.6 : 1);
       const substeps = Math.max(1, Math.ceil(dt / (1 / 240)));
