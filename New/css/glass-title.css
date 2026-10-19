@@ -4,15 +4,16 @@
   font-weight: 400;
   font-display: swap;
 }
-.hero-glass-title { position:relative; width:100%; height:clamp(160px,21vw,380px); }
+.hero-glass-title { position:relative; top:clamp(-60px,-3.5vw,-30px); width:100%; height:clamp(160px,21vw,380px); }
 .hero .hero-glass-title h1 {
   position:absolute; inset:0; display:grid; place-items:center; margin:0;
   font-family:PortfolioTitle,'Microsoft YaHei',sans-serif; font-weight:400;
   font-size:clamp(70px,13.4vw,243px); letter-spacing:-.03em; line-height:1;
 }
-.hero-glass-title__effect { position:absolute; inset:0; }
+.hero-glass-title__effect { position:absolute; inset:-110px 0; }
 .hero-glass-title:has(.fluid-glass[data-rendered='true']) h1 { opacity:0; }
 @media(max-width:600px) {
-  .hero-glass-title { height:150px; }
+  .hero-glass-title { height:150px; top:-15px; }
+  .hero-glass-title__effect { inset:-80px 0; }
   .hero .hero-glass-title h1 { font-size:16vw; }
 }

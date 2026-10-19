@@ -1,8 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import FluidGlass from './FluidGlass';
 import '../../css/glass-title.css';
 
 export function GlassTitle() {
+  const title = useRef(null);
+  const [fontSize, setFontSize] = useState(100);
+  useEffect(() => {
+    const update = () => setFontSize(parseFloat(getComputedStyle(title.current).fontSize));
+    const observer = new ResizeObserver(update);
+    observer.observe(title.current); update();
+    return () => observer.disconnect();
+  }, []);
   const [reduced, setReduced] = useState(false);
   const [fontReady, setFontReady] = useState(false);
   const [entered, setEntered] = useState(false);
@@ -31,10 +39,10 @@ export function GlassTitle() {
     return () => { active = false; media.removeEventListener('change', update); };
   }, []);
   return <div className="hero-glass-title">
-    <h1 id="hero-title">设计作品集</h1>
+    <h1 ref={title} id="hero-title">设计作品集</h1>
     {entered && fontReady && !reduced && <div className="hero-glass-title__effect" aria-hidden="true">
       <FluidGlass text="设计作品集" fontFamily="PortfolioTitle, Microsoft YaHei, sans-serif"
-        fontWeight={400} textColor="#111111" shape="blob" size={190}
+        fontWeight={400} fontSize={fontSize} textColor="#111111" shape="blob" size={190}
         interaction="follow" refraction={.85} dispersion={.85} reflection={.75}
         shadow={.18} elevation={.25} wobble={.4} morphOnClick={false}
         maxDevicePixelRatio={1.5} />
