@@ -210,7 +210,8 @@ function createPaperPath(rest, triangles, shortSide, density, sharpness, depth, 
         }
       }
       constrain(edges, 3, 1, pass % 2 !== 0);
-      if (pass === 8 || pass === 17) separateLayers();
+      // Resolve collisions throughout compression, before folds can cross deeply.
+      if (pass % 3 === 2) separateLayers();
     }
     for (let h = 0; h < hinges.length; h += 4) {
       const a = hinges[h],

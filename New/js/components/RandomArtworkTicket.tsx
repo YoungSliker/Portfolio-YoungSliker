@@ -69,7 +69,9 @@ export function RandomArtworkTicket({works,initial}:{works:RandomWork[];initial:
           await api.image(await snapshot(live.current!));
           if(disposed||!eligible())return;
           flushSync(()=>setBusy(true));
-          if(!await api.fold(.88)||disposed)return;
+          if(!await api.fold(1)||disposed)return;
+          await wait(350);
+          if(disposed)return;
           if(!inView||document.hidden)return;
           current.current=next;flushSync(()=>setWork(next));
           await api.image(await snapshot(live.current!));
@@ -89,8 +91,8 @@ export function RandomArtworkTicket({works,initial}:{works:RandomWork[];initial:
     </div>
     {texture&&!reduced&&!failed&&<div className="random-artwork__fold" aria-hidden="true">
       <PaperCrumple src={texture} autoRef={control} onReady={()=>setReady(true)} onError={()=>setFailed(true)}
-        width={280} height={464} sceneHeight="100%" inset={0} detail={40} foldCount={6}
-        crumpleDuration={.55} releaseDuration={.45} paperColor="#fffdf7" draggable={false} disabled
+        width={280} height={464} sceneHeight="100%" inset={0} detail={64} foldCount={8} foldSharpness={.35}
+        crumpleDuration={.8} releaseDuration={.65} paperColor="#fffdf7" draggable={false} disabled
         imageFit="contain" shadow={false} paperTexture={.06}/>
     </div>}
   </div>;

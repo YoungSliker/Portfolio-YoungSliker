@@ -14,7 +14,7 @@ for(const width of [1440,375]) {
   const fixed=await page.locator('.hero-card:not(.hero-card--2) .tear-ticket__image').evaluateAll(imgs=>imgs.map(img=>(img as HTMLImageElement).src));
   await page.screenshot({path:`docs/screenshots/random-flat-${width}.png`});
   await expect(random).toHaveAttribute('data-changing','true',{timeout:12000});
-  await expect.poll(async()=>Number(await random.locator('.paper-crumple').getAttribute('data-fold'))).toBeGreaterThan(.5);
+  await expect.poll(async()=>Number(await random.locator('.paper-crumple').getAttribute('data-fold'))).toBeGreaterThan(.99);
   await page.screenshot({path:`docs/screenshots/random-crumpled-${width}.png`});
   await expect(random).not.toHaveAttribute('data-work',old!,{timeout:10000});
   await expect(random).toHaveAttribute('data-changing','false',{timeout:10000});
