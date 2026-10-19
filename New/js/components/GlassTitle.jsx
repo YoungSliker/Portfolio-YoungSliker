@@ -20,7 +20,7 @@ export function GlassTitle() {
     {fontReady && !reduced && <div className="hero-glass-title__effect" aria-hidden="true">
       <FluidGlass text="设计作品集" fontFamily="PortfolioTitle, Microsoft YaHei, sans-serif"
         fontWeight={400} textColor="#111111" shape="blob" size={190}
-        interaction="follow" refraction={.85} dispersion={.18} reflection={.75}
+        interaction="follow" refraction={.85} dispersion={.85} reflection={.75}
         shadow={.18} elevation={.25} wobble={.4} morphOnClick={false}
         maxDevicePixelRatio={1.5} />
     </div>}
