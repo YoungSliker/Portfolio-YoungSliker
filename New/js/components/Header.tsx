@@ -10,7 +10,7 @@ export function Header({ active }: { active: SectionId }) {
     window.addEventListener('resize', update);
     return () => { window.removeEventListener('scroll', update); window.removeEventListener('resize', update); };
   }, []);
-  return <header className="site-header" data-hidden={hidden} inert={hidden}>
+  return <header className="site-header" data-section={active} data-hidden={hidden} inert={hidden}>
     <a className="brand" href="#hero" aria-label="YoungSliker 返回封面">YOUNGSLIKER<span aria-hidden="true">®</span></a>
     <nav aria-label="章节导航">
       {sections.filter(section => section.id !== 'hero' && section.id !== 'showcase').map(section =>

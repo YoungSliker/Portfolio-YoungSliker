@@ -45,7 +45,9 @@ test('reduced motion, keyboard entry, history and landscape remain readable', as
   await page.goBack();
   await expect(page).toHaveURL(/#about$/);
   await page.reload();
-  await expect(page.locator('#about h2')).toBeVisible();
+  await expect(page).toHaveURL(new RegExp('/New/$'));
+  await expect(page.locator('#hero-title')).toBeInViewport();
+  await page.locator('.scroll-cue').click();
   await expect(page.locator('#about h2')).toBeInViewport();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
@@ -64,7 +66,7 @@ test('slashless preview URL redirects and large accent text has sufficient contr
       return channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722;
     };
     const text = luminance(getComputedStyle(element).color);
-    const paper = luminance(getComputedStyle(document.body).backgroundColor);
+    const paper = luminance(getComputedStyle(element.closest('#about')!).backgroundColor);
     return (Math.max(text, paper) + .05) / (Math.min(text, paper) + .05);
   });
   expect(ratio).toBeGreaterThanOrEqual(3);

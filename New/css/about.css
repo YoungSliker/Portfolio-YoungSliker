@@ -1,0 +1,46 @@
+.about { background:#eeeae3; border-top:1px solid #d8d1c5; position:relative; scroll-margin-top:-20px; }
+.about-chapter { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #cfc7bb; padding-bottom:24px; }
+.about-chapter .eyebrow { margin:0; }
+.about-chapter > span { font-size:10px; letter-spacing:1px; color:#70685d; }
+.about-lead { display:grid; grid-template-columns:1.15fr 1fr; gap:10%; padding:70px 0 90px; }
+.about-signature { font:11px var(--mono); letter-spacing:1.2px; margin-bottom:26px; }
+.about-statement h2 { font-size:clamp(60px,7.4vw,128px); font-weight:800; letter-spacing:-.065em; line-height:1.14; }
+.about-statement h2 span { color:#d94a1c; }
+.about-caption { display:block; font:10px var(--mono); letter-spacing:2px; margin-top:32px; }
+.about-profile { align-self:center; }
+.about-intersection { position:relative; height:170px; width:260px; margin:0 0 38px; }
+.about-intersection i { position:absolute; width:126px; height:126px; border:1px solid #a59a89; border-radius:50%; top:5px; left:0; transition:border-color .3s,transform .5s; }
+.about-intersection i:nth-child(2) { left:64px; }
+.about-intersection i:nth-child(3) { left:32px; top:38px; }
+.about-intersection[data-field="0"] i:nth-child(1),.about-intersection[data-field="1"] i:nth-child(2),.about-intersection[data-field="2"] i:nth-child(3) { border-color:#d94a1c; transform:scale(1.06); }
+.about-intersection b { position:absolute; left:88px; top:66px; color:#d94a1c; font:22px var(--mono); }
+.about-intersection > span { position:absolute; left:214px; top:45px; writing-mode:vertical-rl; font:9px var(--mono); letter-spacing:2px; }
+.about-name { font-size:21px; margin-bottom:20px; }.about-name span { margin-left:12px; font:12px var(--mono); color:#70685d; }
+.about-bio { font-size:clamp(17px,1.45vw,23px); line-height:1.95; max-width:540px; }
+.about-bio em { font-style:normal; color:#d94a1c; }
+.about-profile .text-link { margin-top:26px; }
+.about-fields-heading { display:flex; justify-content:space-between; gap:20px; align-items:center; margin-bottom:28px; }
+.about-fields-heading span { font-size:10px; letter-spacing:1px; }.about-fields-heading p { font-size:13px; color:#70685d; }
+.about-field { border-top:1px solid #bfb7ab; }.about-field:last-child { border-bottom:1px solid #bfb7ab; }
+.about-field button { width:100%; display:grid; grid-template-columns:65px 1fr 40px; align-items:center; gap:20px; padding:27px 0; color:inherit; background:none; border:0; text-align:left; cursor:pointer; }
+.about-field-number { font:12px var(--mono); align-self:start; padding-top:8px; }
+.about-field-title { font:500 clamp(24px,2.7vw,44px) var(--sans); letter-spacing:-.04em; }
+.about-field-title small { display:block; font:10px var(--mono); letter-spacing:1px; margin-top:10px; color:#70685d; }
+.about-field-toggle { font:32px var(--mono); justify-self:end; }
+.about-field[data-active="true"] .about-field-number,.about-field[data-active="true"] .about-field-toggle { color:#d94a1c; }
+.about-field-body { padding:0 60px 32px 85px; display:grid; grid-template-columns:1.3fr 1fr; gap:60px; }
+.about-field-body[hidden] { display:none; }
+.about-field-body p { font-size:15px; line-height:1.9; max-width:560px; color:#62594e; }
+.about-field-body ul { display:flex; flex-wrap:wrap; align-content:start; gap:8px; list-style:none; padding:0; margin:0; }
+.about-field-body li { border:1px solid #c7beaf; border-radius:30px; padding:8px 14px; font-size:11px; }
+.about-next { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:30px 0 0; font-size:13px; }.about-next .mono { font-size:10px; }
+@media(max-width:767px) {
+ .about-chapter > span { display:none; }
+ .about-lead { grid-template-columns:1fr; gap:40px; padding:40px 0 55px; }
+ .about-statement h2 { font-size:clamp(58px,13vw,92px); }
+ .about-intersection { height:140px; transform:scale(.8); transform-origin:left top; margin-bottom:0; }
+ .about-bio { font-size:17px; }.about-fields-heading { display:block; }.about-fields-heading p { margin-top:12px; }
+ .about-field button { grid-template-columns:28px 1fr 24px; gap:10px; padding:23px 0; }
+ .about-field-title { font-size:24px; }.about-field-title small { font-size:9px; }
+ .about-field-body { grid-template-columns:1fr; gap:20px; padding:0 0 25px 38px; }.about-field-body p { font-size:14px; }
+}
