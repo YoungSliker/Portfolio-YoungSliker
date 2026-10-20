@@ -40,5 +40,7 @@
 - [x] PHASE 1：React + TypeScript + Vite 六章节骨架、导航、设计变量、数据模型与验证（见 phase-1-report.md）。
 - [x] PHASE 2 第一轮：重新研究参考站，完成封面构图、滚动提示、退场与进入 About 的过渡。
 - [x] PHASE 2 后续：About 个人介绍、三领域展开交互、双向滚动衔接与响应式实现；视觉待用户反馈，见 phase-2-about-report.md。
+- [x] PHASE 3：按用户提供简历接入时间轴、年份导航、当前节点高亮、无日期荣誉区和作品概况入口；见 phase-3-report.md。
+- [x] PHASE 4：12 件真实作品的 React Flow 图谱原型，分类展开、聚焦、缩放、拖动、复位和概况；见 phase-4-report.md。
 
 旧版页面与发布设置保持不变。新版依赖独立位于 New。六章节当前仅为工程骨架，不代表整体视觉定稿。

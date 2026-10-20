@@ -28,7 +28,10 @@ export function useSections() {
       const section = sections.find(item => `#${item.id}` === location.hash);
       if (!section && location.hash.startsWith('#work=')) {
         anchorFrame = requestAnimationFrame(() => {
-          document.getElementById('works')?.scrollIntoView({ block: 'start', behavior: 'instant' });
+          const workId=location.hash.slice(6);
+          const target=document.getElementById(`work-${workId}`)??document.getElementById('works');
+          target?.scrollIntoView({ block: 'start', behavior: 'instant' });
+          if(target?.id!=='works')target?.focus({preventScroll:true});
         });
         return;
       }
