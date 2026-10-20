@@ -6,6 +6,7 @@
 .graph-breadcrumb button[aria-pressed=true],.graph-collection button[aria-pressed=true]{color:#fff8ee;background:#24231f;border-color:#24231f}
 .graph-layout{position:relative;background:radial-gradient(ellipse at center,#f3efe7,transparent 70%);border-block:1px solid #d8cfc2}
 .graph-canvas{height:660px}
+.graph-zoom-readout{position:absolute;left:16px;bottom:16px;z-index:4;font:10px var(--mono);color:#776a59;pointer-events:none}
 .graph-canvas .react-flow__pane{touch-action:pan-y}
 .graph-canvas .react-flow__node{touch-action:none}
 .archive-node{width:160px;text-align:center}

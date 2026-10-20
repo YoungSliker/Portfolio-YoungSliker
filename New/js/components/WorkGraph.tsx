@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Background, Handle, Position, ReactFlow, type Node, type NodeProps, type NodeChange, type ReactFlowInstance } from '@xyflow/react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { applyNodeChanges, Background, Handle, Position, ReactFlow, useStore, type Edge, type Node, type NodeProps, type NodeChange, type ReactFlowInstance } from '@xyflow/react';
 import { categories } from '../../data/content';
 import { graphGroups, graphWorks } from '../../data/graph';
 import { legacyAsset } from '../lib/assets';
@@ -22,15 +22,48 @@ function ArchiveNodeView({data}:NodeProps<ArchiveNode>){
   </button>
  </div>;
 }
-const nodeTypes={archive:ArchiveNodeView};
+const nodeTypes={archive:memo(ArchiveNodeView)};
+const nodeOrigin:[number,number]=[.5,.5];
+const fitOptions={padding:.18,maxZoom:1};
+const readZoom=(state:{transform:[number,number,number]})=>Math.round(state.transform[2]*100);
+function ZoomReadout(){
+ const zoom=useStore(readZoom);
+ return <output className="graph-zoom-readout" aria-label="图谱缩放比例">{zoom}%</output>;
+}
+// Pointer updates stay inside the canvas; unchanged nodes retain their data and callbacks.
+const GraphCanvas=memo(function GraphCanvas({models,edges,resetVersion,onInit}:{
+ models:ArchiveNode[];edges:Edge[];resetVersion:number;onInit:(flow:ReactFlowInstance<ArchiveNode>)=>void;
+}){
+ const [nodes,setNodes]=useState(models);
+ const previousReset=useRef(resetVersion);
+ useEffect(()=>{
+  const reset=previousReset.current!==resetVersion;
+  previousReset.current=resetVersion;
+  setNodes(current=>{
+   const byId=new Map(current.map(n=>[n.id,n]));
+   return models.map(model=>{
+    const old=byId.get(model.id);
+    return old&&!reset?{...old,data:model.data}:model;
+   });
+  });
+ },[models,resetVersion]);
+ const onNodesChange=useCallback((changes:NodeChange<ArchiveNode>[])=>{
+  setNodes(current=>applyNodeChanges(changes,current));
+ },[]);
+ return <div className="graph-canvas" aria-label="作品关系图">
+  <ReactFlow<ArchiveNode> nodes={nodes} edges={edges} nodeTypes={nodeTypes} onInit={onInit} onNodesChange={onNodesChange} nodeOrigin={nodeOrigin}
+   fitView fitViewOptions={fitOptions} minZoom={.15} maxZoom={1.8} nodeDragThreshold={5} nodesDraggable nodesConnectable={false} elementsSelectable={false}
+   zoomOnScroll={false} zoomOnDoubleClick={false} zoomOnPinch panOnScroll={false} preventScrolling={false} panOnDrag zoomActivationKeyCode={null}>
+   <Background color="#c8bfae" gap={30} size={.7}/><ZoomReadout/>
+  </ReactFlow>
+ </div>;
+});
 export default function WorkGraph(){
  const [category,setCategory]=useState<string|null>(null);
  const [group,setGroup]=useState<string|null>(null);
  const [expanded,setExpanded]=useState<string[]>(['aigc']);
- const [positions,setPositions]=useState<Record<string,Point>>({});
  const [selected,setSelected]=useState<string|null>(null);
  const [flow,setFlow]=useState<ReactFlowInstance<ArchiveNode>|null>(null);
- const [zoom,setZoom]=useState(1);
  const [resetVersion,setResetVersion]=useState(0);
  const detail=useRef<HTMLDivElement>(null);
  const returnButton=useRef<HTMLButtonElement|null>(null);
@@ -38,21 +71,17 @@ export default function WorkGraph(){
  const work=graphWorks.find(w=>w.id===selected);
  const groups=graphGroups.filter(g=>g.category===category&&g.id!=='scenes');
  const works=graphWorks.filter(w=>w.group===(category==='aigc'?'scenes':group));
- function reset(){setCategory(null);setGroup(null);setSelected(null);setExpanded(['aigc']);setPositions({});setResetVersion(v=>v+1);}
+ function reset(){setCategory(null);setGroup(null);setSelected(null);setExpanded(['aigc']);setResetVersion(v=>v+1);}
  function chooseCategory(id:string){setCategory(id);setGroup(null);setSelected(null);setExpanded(old=>old.includes(id)?old:[...old,id]);}
  function chooseGroup(id:string){setGroup(id);setSelected(null);setExpanded(old=>old.includes(id)?old:[...old,id]);}
  function chooseWork(id:string){returnButton.current=document.activeElement instanceof HTMLButtonElement?document.activeElement:null;setSelected(id);}
  function close(){setSelected(null);returnButton.current?.focus({preventScroll:true});}
- function moveNodes(changes:NodeChange<ArchiveNode>[]){
-  const moves=changes.filter(c=>c.type==='position'&&c.position);
-  if(moves.length)setPositions(old=>{const next={...old};for(const c of moves)if(c.type==='position'&&c.position)next[c.id]=c.position;return next;});
- }
  const visibleGroups=graphGroups.filter(g=>g.id!=='scenes'&&expanded.includes(g.category));
  const visibleWorks=graphWorks.filter(w=>expanded.includes(w.group==='scenes'?'aigc':w.group));
  const nodes:ArchiveNode[]=useMemo(()=>{
-  const make=(id:string,label:string,eyebrow:string,kind:string,choose:()=>void,cover?:string):ArchiveNode=>({id,type:'archive',position:positions[id]??anchors[id]??workPositions[id],data:{label,eyebrow,kind,cover,active:selected===id||category===id||group===id,choose},focusable:false});
+  const make=(id:string,label:string,eyebrow:string,kind:string,choose:()=>void,cover?:string):ArchiveNode=>({id,type:'archive',position:anchors[id]??workPositions[id],data:{label,eyebrow,kind,cover,active:selected===id||category===id||group===id,choose},focusable:false});
   return [make('root','YOUNGSLIKER','CREATIVE UNIVERSE','root',reset),...categories.map(c=>make(c.id,c.label,c.number,'category',()=>chooseCategory(c.id))),...visibleGroups.map(g=>make(g.id,g.label,'','group',()=>chooseGroup(g.id))),...visibleWorks.map(w=>make(w.id,w.title,dates[w.id]??'PROJECT','work',()=>chooseWork(w.id),preview(w.id)))];
- },[expanded,positions,category,group,selected]);
+ },[expanded,category,group,selected]);
  const edges=useMemo(()=>[
   ...categories.map(c=>({id:`root-${c.id}`,source:'root',target:c.id})),
   ...visibleGroups.map(g=>({id:`${g.category}-${g.id}`,source:g.category,target:g.id})),
@@ -66,19 +95,13 @@ export default function WorkGraph(){
   <div className="graph-topline"><span>CONNECTED PRACTICES</span><span>12 件作品 · 三个领域</span></div>
   <nav className="graph-breadcrumb" aria-label="作品图谱分类"><button onClick={reset} aria-pressed={!category}>全部领域</button>{categories.map(c=><button key={c.id} onClick={()=>chooseCategory(c.id)} aria-pressed={category===c.id}>{c.label}</button>)}</nav>
   <div className="graph-layout">
-   <div className="graph-canvas" aria-label="作品关系图">
-    <ReactFlow<ArchiveNode> nodes={nodes} edges={edges} nodeTypes={nodeTypes} onInit={setFlow} onNodesChange={moveNodes} nodeOrigin={[.5,.5]}
-     fitView fitViewOptions={{padding:.18,maxZoom:1}} minZoom={.15} maxZoom={1.8} nodeDragThreshold={5} nodesDraggable nodesConnectable={false} elementsSelectable={false}
-     zoomOnScroll={false} zoomOnDoubleClick={false} zoomOnPinch panOnScroll={false} preventScrolling={false} panOnDrag zoomActivationKeyCode={null} onMove={(_,v)=>setZoom(v.zoom)}>
-     <Background color="#c8bfae" gap={30} size={.7}/>
-    </ReactFlow>
-   </div>
+   <GraphCanvas models={nodes} edges={edges} resetVersion={resetVersion} onInit={setFlow}/>
    {work&&<div className="graph-detail" ref={detail} tabIndex={-1} role="region" aria-label="作品概况" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();close();}}}>
     <button className="graph-close" onClick={close}>返回图谱 ×</button><img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} loading="lazy" decoding="async"/>
     <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3>{work.title}</h3><p>{work.summary}</p><small>资料来源：{work.source}</small><a className="text-link" href={legacyAsset('index.html',import.meta.env.BASE_URL)}>浏览旧版完整作品集 ↗</a>
    </div>}
   </div>
-  <div className="graph-tools" aria-label="图谱操作"><button onClick={()=>void flow?.zoomOut({duration:reduced()?0:180})} aria-label="缩小图谱">−</button><output aria-label="图谱缩放比例">{Math.round(zoom*100)}%</output><button onClick={()=>void flow?.zoomIn({duration:reduced()?0:180})} aria-label="放大图谱">＋</button><button onClick={()=>void flow?.fitView({padding:.18,maxZoom:1,duration:reduced()?0:350})}>适应画布</button><button onClick={reset}>重置图谱</button></div>
+  <div className="graph-tools" aria-label="图谱操作"><button onClick={()=>void flow?.zoomOut({duration:reduced()?0:180})} aria-label="缩小图谱">−</button><button onClick={()=>void flow?.zoomIn({duration:reduced()?0:180})} aria-label="放大图谱">＋</button><button onClick={()=>void flow?.fitView({padding:.18,maxZoom:1,duration:reduced()?0:350})}>适应画布</button><button onClick={reset}>重置图谱</button></div>
   <p className="graph-hint">拖动圆点，自由整理关系 · 拖动空白处移动画布 · 滚轮继续浏览页面</p>
   {groups.length>0&&<div className="graph-collection" aria-label="子分类">{groups.map(g=><button key={g.id} aria-pressed={group===g.id} onClick={()=>chooseGroup(g.id)}>{g.label} <span>{graphWorks.filter(w=>w.group===g.id).length}</span></button>)}</div>}
   {works.length>0&&<div className="graph-work-list" aria-label="当前分类作品">{works.map(w=><button key={w.id} aria-pressed={selected===w.id} onClick={()=>chooseWork(w.id)}>{w.title}<span aria-hidden="true">↗</span></button>)}</div>}
