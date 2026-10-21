@@ -57,3 +57,9 @@
 .about-flowing-fields .flowing-menu__link { padding-inline:var(--gutter); }
 
 body[data-about-transition]::before { content:""; position:fixed; inset:0 0 auto; height:calc(var(--header-height) + 2px); background:#eeeae3; z-index:1; pointer-events:none; }
+
+/* Avoid one-pixel borders and the filtered clip edge at the header join. */
+.about { border-top:0; }
+.site-header[data-section="about"], body[data-about-transition] .site-header { border-bottom-color:transparent; }
+body[data-about-transition]::before { height:calc(var(--header-height) + 4px); background:var(--paper); }
+body[data-about-transition] .site-header { background:var(--paper); }

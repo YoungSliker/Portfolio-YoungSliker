@@ -29,8 +29,8 @@ export function GlassTitle() {
       <FluidGlass text="设计作品集" fontFamily="PortfolioTitle, Microsoft YaHei, sans-serif"
         fontWeight={400} fontSize={fontSize} textColor="#111111" shape="blob" size={190}
         interaction="follow" refraction={.85} dispersion={.85} reflection={.75}
-        shadow={.18} elevation={.25} wobble={.4} morphOnClick={false}
-        maxDevicePixelRatio={1.5} />
+        shadow={0} elevation={.25} wobble={.4} morphOnClick={false}
+        maxDevicePixelRatio={1} />
     </div>}
   </div>;
 }

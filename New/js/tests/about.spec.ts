@@ -89,6 +89,8 @@ test('outgoing home clears before the About slit appears',async({page})=>{
  await scrub(.2);await expect(page.locator('.hero-stage')).not.toHaveCSS('filter','blur(0px)');await expect(page.locator('#about')).toHaveCSS('visibility','hidden');
  await scrub(.36);await expect(page.locator('.hero-stage')).toHaveCSS('opacity','0');await expect(page.locator('#about')).toHaveCSS('visibility','hidden');
  await scrub(.7);await expect(page.locator('#about')).toHaveCSS('visibility','visible');await expect(page.locator('.hero-stage')).toHaveCSS('opacity','0');
+ await expect(page.locator('.about-flowing-fields')).toHaveCSS('opacity','0');
+ await expect(page.locator('.about-fields-heading')).toHaveCSS('opacity','0');
  await page.screenshot({path:'docs/screenshots/about-cleared-before-opening.png'});
 });
 

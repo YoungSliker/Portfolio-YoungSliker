@@ -32,7 +32,7 @@ for(const width of [1440,375,844]) {
   await expect(page.locator('.hero-landing')).not.toHaveAttribute('inert','');
   for(const card of await page.locator('.hero-card').all())await expect(card).toHaveCSS('opacity','1');
   expect(await page.evaluate(()=>scrollY)).toBe(0);
-  await page.screenshot({path:`docs/screenshots/loading-archive-${width}.png`});
+  await page.screenshot({path:`docs/screenshots/loading-archive-${width}-${Date.now()}.png`});
   await page.clock.resume();await page.locator('.scroll-cue').click();
   await expect(page.locator('#about h2')).toBeInViewport();
   await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
@@ -57,3 +57,4 @@ test('glass starts rendering behind the loading cover',async({page})=>{
  await expect(page.locator('#hero')).toHaveAttribute('data-entrance','playing');
  await expect(page.locator('.loading-intro')).toBeVisible();
 });
+
