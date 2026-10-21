@@ -11,8 +11,8 @@ const details = [
 ];
 
 const fieldCovers=import.meta.glob('../../assets/images/menu/*.webp',{eager:true,query:'?url',import:'default'}) as Record<string,string>;
-const coverIds=[['suiyuan','mine-eco','weiyuan'],['shuyun','kinect-face','kinect-water'],['kulun','wanbu','guisui']];
-const fieldItems=categories.map((category,index)=>({text:category.label,sequence:details[index].words.map((text,i)=>({text,image:fieldCovers[`../../assets/images/menu/${coverIds[index][i]}.webp`]}))}));
+const coverIds=[['suiyuan','mine-eco','weiyuan','ai-extra-0','ai-extra-1','ai-extra-2'],['shuyun','kinect-face','kinect-water','xueban','yanchage','zhucanbang'],['kulun','wanbu','guisui','visual-10','visual-11','visual-12']];
+const fieldItems=categories.map((category,index)=>({text:category.label,sequence:coverIds[index].map((id,i)=>({text:details[index].words[i%details[index].words.length],image:fieldCovers[`../../assets/images/menu/${id}.webp`]}))}));
 
 export function About() {
   const root = useRef<HTMLElement>(null);

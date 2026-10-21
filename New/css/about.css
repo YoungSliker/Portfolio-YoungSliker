@@ -50,3 +50,10 @@
 .about-portal{position:relative;background:#eeeae3;transform-origin:center;will-change:clip-path}.about-flowing-fields{background:#eeeae3}@media(prefers-reduced-motion:reduce){.about-portal{clip-path:none;filter:none;will-change:auto}}
 
 .about{z-index:2;will-change:clip-path,transform}@media(prefers-reduced-motion:reduce){.about{will-change:auto}}
+
+/* Full viewport band: cancel section gutters, without faded or empty edges. */
+.about-flowing-fields { margin-inline:calc(-1 * var(--gutter)); width:calc(100% + 2 * var(--gutter)); }
+.about-flowing-fields .flowing-menu { mask-image:none; -webkit-mask-image:none; }
+.about-flowing-fields .flowing-menu__link { padding-inline:var(--gutter); }
+
+body[data-about-transition]::before { content:""; position:fixed; inset:0 0 auto; height:calc(var(--header-height) + 2px); background:#eeeae3; z-index:1; pointer-events:none; }

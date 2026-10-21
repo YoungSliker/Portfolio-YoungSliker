@@ -8,3 +8,5 @@ body[data-intro-entering="true"] .reading-footer { opacity:0; }
  .loading-intro,.intro-aperture { display:none; }
  .hero-landing { clip-path:none; }
 }
+
+body[data-intro-entering="true"] .intro-aperture { will-change:transform; }

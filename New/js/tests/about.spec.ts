@@ -46,7 +46,9 @@ test('flowing menu reverses colors and carries project images on hover',async({p
   await expect(band).toHaveCSS('color','rgb(250, 249, 246)');
   await expect(band.locator('.flowing-menu__image').first()).toHaveCSS('background-image',/webp/);
   const pairs=menu.locator('.flowing-menu__band').nth(['AIGC设计','数字体验设计','视觉传达设计'].indexOf(label)).locator('.flowing-menu__part').first().locator('.flowing-menu__pair');
-  await expect(pairs).toHaveCount(3);
+  await expect(pairs).toHaveCount(6);
+  const urls=await pairs.locator('.flowing-menu__image').evaluateAll(nodes=>nodes.map(el=>getComputedStyle(el).backgroundImage));
+  for(let i=0;i<urls.length;i++)expect(new Set([urls[i],urls[(i+1)%urls.length],urls[(i+2)%urls.length]]).size).toBe(3);
   for(const pair of await pairs.all()){await expect(pair.locator('.flowing-menu__part-text')).not.toContainText(' · ');await expect(pair.locator('.flowing-menu__image')).toHaveCount(1);
    expect(await pair.locator('.flowing-menu__image').evaluate(async el=>{const src=getComputedStyle(el).backgroundImage.slice(5,-2);const image=new Image();image.src=src;await image.decode();return image.naturalWidth>0&&image.naturalWidth<=480;})).toBe(true);
   }
@@ -88,4 +90,18 @@ test('outgoing home clears before the About slit appears',async({page})=>{
  await scrub(.36);await expect(page.locator('.hero-stage')).toHaveCSS('opacity','0');await expect(page.locator('#about')).toHaveCSS('visibility','hidden');
  await scrub(.7);await expect(page.locator('#about')).toHaveCSS('visibility','visible');await expect(page.locator('.hero-stage')).toHaveCSS('opacity','0');
  await page.screenshot({path:'docs/screenshots/about-cleared-before-opening.png'});
+});
+
+
+test('fast slit scrolling stays attached to header and menu fills viewport',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ await page.goto('/Portfolio-YoungSliker/New/');await page.getByRole('button',{name:'跳过开场'}).click();
+ for(const progress of [.45,.85,.55,.95,.7,1]){
+  await page.evaluate(p=>{const el=document.getElementById('about')!,h=document.querySelector('.site-header')!.getBoundingClientRect().height;const start=el.offsetTop-innerHeight*.92;scrollTo({top:start+(innerHeight*.92-h)*p,behavior:'instant'});},progress);
+  await expect.poll(async()=>page.evaluate(()=>Math.abs(document.getElementById('about')!.getBoundingClientRect().top-document.querySelector('.site-header')!.getBoundingClientRect().height))).toBeLessThan(3);
+ }
+ await expect(page.locator('.about-statement')).toHaveCSS('opacity','1');
+ await expect(page.locator('.about-profile')).toHaveCSS('opacity','1');
+ const menu=page.locator('.about-flowing-fields');await menu.scrollIntoViewIfNeeded();
+ const box=await menu.boundingBox();expect(Math.abs(box!.x)).toBeLessThan(2);expect(Math.abs(box!.width-1440)).toBeLessThan(20);
 });
