@@ -18,6 +18,7 @@ export function About() {
   const [active, setActive] = useState(0);
   useAboutMotion(root);
   return <section ref={root} id="about" className="section about" aria-labelledby="about-title">
+    <div className="about-portal">
     <div className="about-chapter"><p className="eyebrow"><span>02 /</span> ABOUT ME</p><span className="mono">IDEAS MEET POSSIBILITIES</span></div>
     <div className="about-lead">
       <div className="about-statement" data-about-reveal>
@@ -32,10 +33,11 @@ export function About() {
         <a className="text-link" href="#works">浏览我的作品 <span aria-hidden="true">↗</span></a>
       </div>
     </div>
+    </div>
     <div className="about-fields-heading" data-about-reveal><span className="mono">THREE FIELDS / ONE PRACTICE</span><p>三种视角，共同构成我的创作。</p></div>
     <div className="about-flowing-fields">
       <FlowingMenu items={fieldItems} intro={false} speed={65} carryContent showArrow
-        textColor="#171717" bgColor="#faf9f6" marqueeBgColor="#171717" marqueeTextColor="#faf9f6"
+        textColor="#171717" bgColor="#eeeae3" marqueeBgColor="#171717" marqueeTextColor="#faf9f6"
         borderColor="#d8d0c4" ariaLabel="创作领域" onItemClick={(_item:unknown,index:number)=>setActive(index)} />
     </div>
     <p className="about-field-summary" aria-live="polite">{details[active].text}</p>

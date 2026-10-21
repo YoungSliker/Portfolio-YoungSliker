@@ -1,125 +1,46 @@
 import {test,expect} from '@playwright/test';
-import {graphWorks} from '../../data/graph';
+import {graphGroups,graphWorks} from '../../data/graph';
 const base='/Portfolio-YoungSliker/New/';
-for(const width of [375,844,1440,1920]){
- test(`graph branches, overview, reset and page scroll ${width}`,async({page})=>{
-  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.setViewportSize({width,height:width===844?390:900});
-  await page.emulateMedia({reducedMotion:'reduce'});
-  await page.goto(base+'#works');
-  const graph=page.locator('.work-graph');
-  await expect(graph).toBeVisible();
-  await graph.locator('.graph-canvas').scrollIntoViewIfNeeded();
-  await page.screenshot({path:`docs/screenshots/phase4-radial-${width}.png`});
-  const nav=graph.locator('.graph-canvas');
-  const paths=[
-    ['AIGC设计','场景与叙事','scenes'],
-    ['数字体验设计','新媒体交互','media'],
-    ['数字体验设计','APP 设计','apps'],
-    ['视觉传达设计','品牌设计','brand'],
-    ['视觉传达设计','标志设计','logos'],
-  ];
-  for(const [category,label,id] of paths){
-    await nav.getByRole('button',{name:category,exact:true}).click();
-    if(id!=='scenes') await graph.locator('.graph-canvas').getByRole('button',{name:new RegExp(label)}).click();
-    const list=graph.locator('.graph-canvas');
-    const works=graphWorks.filter(w=>w.group===id);
-
-    for(const work of works){
-      const button=list.getByRole('button',{name:work.title,exact:true});
-      await button.focus();await page.keyboard.press('Enter');
-      const detail=graph.getByRole('region',{name:'作品概况'});
-      await expect(detail.getByRole('heading')).toHaveText(work.title);
-      await expect(detail).toBeFocused();
-      await detail.scrollIntoViewIfNeeded();
-      await expect.poll(()=>detail.locator('img').evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
-      await page.keyboard.press('Escape');
-      await expect(button).toBeFocused();
-    }
-  }
-  await graph.getByRole('button',{name:'重置图谱',exact:true}).click();
-  await expect(graph.locator('.archive-node--work button')).toHaveCount(3);
-  await expect(graph.locator('.react-flow__node')).toHaveCount(7);
-  // Exercise the actual graph nodes, not only the accessible navigation.
-  await graph.locator('.react-flow__node[data-id="aigc"] button').click();
-  await graph.locator('.react-flow__node[data-id="suiyuan"] button').click();
-  await expect(graph.getByRole('region',{name:'作品概况'})).toContainText('绥远方志');
-  await graph.getByRole('button',{name:'适应画布',exact:true}).click();
-  const output=graph.getByLabel('图谱缩放比例');
-  const before=await output.textContent();
-  await graph.getByRole('button',{name:'放大图谱',exact:true}).click();
-  await expect(output).not.toHaveText(before!);
-  await graph.getByRole('button',{name:'适应画布',exact:true}).click();
-  await graph.locator('.graph-canvas').scrollIntoViewIfNeeded();
-  await page.screenshot({path:`docs/screenshots/phase4-graph-${width}.png`});
-  const rect=await graph.locator('.graph-canvas').boundingBox();
-  await page.mouse.move(rect!.x+10,Math.min(rect!.y+100,width===844?250:650));
-  const scroll=await page.evaluate(()=>scrollY);
-  const scale=await output.textContent();
-  await page.mouse.wheel(0,220);
-  await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(scroll+50);
-  await expect(output).toHaveText(scale!);
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  expect(errors).toEqual([]);
- });
-}
-test('radial nodes drag directly, connections follow and reset restores positions',async({page})=>{
- await page.setViewportSize({width:1440,height:900});
- await page.goto(base);
- await expect(page.locator('.work-graph')).toHaveCount(0);
- await page.locator('#works').evaluate(e=>e.scrollIntoView({behavior:'instant'}));
+for(const width of [375,844,1440,1920]) test(`collapsed graph, branch toggle and content ${width}`,async({page})=>{
+ await page.setViewportSize({width,height:width===844?390:900});await page.emulateMedia({reducedMotion:'reduce'});
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'#works');
  const graph=page.locator('.work-graph');
- await expect(graph).toBeVisible();
- await graph.locator('.graph-canvas').scrollIntoViewIfNeeded();
- const viewport=graph.locator('.react-flow__viewport');
- const pane=graph.locator('.react-flow__pane');
- await expect(pane).toHaveClass(/draggable/);
- const node=graph.locator('.react-flow__node[data-id="suiyuan"]');
- const original=await node.getAttribute('style');
- const neighbor=graph.locator('.react-flow__node[data-id="aigc"]');
- const neighborBefore=await neighbor.getAttribute('style');
- const edge=graph.locator('.react-flow__edge[data-id="scenes-suiyuan"] path').first();
- const path=await edge.getAttribute('d');
- const box=await node.locator('.archive-node-disc').boundingBox();
- await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height/2);
- await page.mouse.down();await page.mouse.move(box!.x+box!.width/2+95,box!.y+box!.height/2+60,{steps:12});await page.mouse.up();
- await expect(node).not.toHaveAttribute('style',original!);
- await expect(neighbor).not.toHaveAttribute('style',neighborBefore!);
- await expect.poll(async()=>{
-  const before=await neighbor.getAttribute('style');
-  await page.waitForTimeout(150);
-  return (await neighbor.getAttribute('style'))===before;
- },{timeout:7000}).toBe(true);
- await expect(edge).not.toHaveAttribute('d',path!);
- await expect(graph.getByRole('region',{name:'作品概况'})).toHaveCount(0);
- const previous=await viewport.getAttribute('style');
- const rect=await graph.locator('.graph-canvas').boundingBox();
- await page.mouse.move(rect!.x+30,rect!.y+100);
- await page.mouse.down();await page.mouse.move(rect!.x+160,rect!.y+160,{steps:10});await page.mouse.up();
- await expect(viewport).not.toHaveAttribute('style',previous!);
- const dragged=await viewport.getAttribute('style');
- await graph.getByRole('button',{name:'重置图谱',exact:true}).click();
- await expect(node).toHaveAttribute('style',original!);
- await expect(viewport).not.toHaveAttribute('style',dragged!);
- await graph.locator('.graph-canvas').getByRole('button',{name:'数字体验设计',exact:true}).click();
- await graph.locator('.graph-canvas').getByRole('button',{name:/APP 设计/}).click();
- await graph.locator('.graph-canvas').getByRole('button',{name:'学伴',exact:true}).click();
- await expect(graph.getByRole('region',{name:'作品概况'})).toContainText('学伴');
-});
-
-test('all domains preserves expanded branches and AIGC starts open',async({page})=>{
- await page.emulateMedia({reducedMotion:'reduce'});
- await page.goto(base+'#works');
- const graph=page.locator('.work-graph'),nav=graph.locator('.graph-canvas');
- await expect(graph.locator('.archive-node--category[data-active=true]')).toHaveCount(1);
- await expect(graph.locator('.archive-node--work button')).toHaveCount(3);
- for(const [category,group] of [['数字体验设计','APP 设计'],['视觉传达设计','标志设计']]){
-  await nav.getByRole('button',{name:category,exact:true}).click();
-  await graph.locator('.graph-canvas').getByRole('button',{name:new RegExp(group)}).click();
+ const node=(id:string)=>graph.locator(`.react-flow__node[data-id="${id}"] button`);
+ const activate=async(id:string)=>{await node(id).focus();await page.keyboard.press('Enter');};
+ await expect(graph.locator('.react-flow__node')).toHaveCount(4);
+ await expect(node('root')).toHaveAccessibleName('我的作品');
+ await graph.scrollIntoViewIfNeeded();await page.screenshot({path:`docs/screenshots/graph-collapsed-${width}.png`});
+ await activate('aigc');await expect(graph.locator('.react-flow__node')).toHaveCount(10);
+ await activate('aigc');await expect(graph.locator('.react-flow__node')).toHaveCount(4);
+ for(const category of ['aigc','digital','visual']){
+  await activate(category);
+  for(const group of graphGroups.filter(g=>g.category===category)){
+   if(group.id!=='scenes')await activate(group.id);
+   for(const work of graphWorks.filter(w=>w.group===group.id)){
+    await activate(work.id);
+    const detail=graph.getByRole('region',{name:'作品概况'});await expect(detail.getByRole('heading')).toHaveText(work.title);
+    if(work.pending)await expect(detail).toContainText('待加入');
+    else await expect.poll(()=>detail.locator('img').evaluate((e:HTMLImageElement)=>e.complete&&e.naturalWidth>0)).toBe(true);
+    await page.keyboard.press('Escape');await expect(node(work.id)).toBeFocused();
+   }
+   if(group.id!=='scenes')await activate(group.id);
+  }
+  await activate(category);
  }
- const count=await graph.locator('.react-flow__node').count();
- await nav.getByRole('button',{name:'YOUNGSLIKER',exact:true}).click();
- await expect(graph.locator('.react-flow__node')).toHaveCount(count);
- await expect(graph.locator('.react-flow__node[data-id="xueban"]')).toBeAttached();
- await expect(graph.locator('.react-flow__node[data-id="wanbu"]')).toBeAttached();
+ await expect(graph.locator('.react-flow__node')).toHaveCount(4);
+ await activate('root');await expect(graph.locator('.react-flow__node')).toHaveCount(16);
+ await activate('root');await expect(graph.locator('.react-flow__node')).toHaveCount(4);
+ await expect(graph.locator('.graph-breadcrumb,.graph-work-list')).toHaveCount(0);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(errors).toEqual([]);
+});
+test('drag moves neighbors, date appears only on hover and reset collapses',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto(base+'#works');
+ const graph=page.locator('.work-graph');await graph.locator('.graph-canvas').scrollIntoViewIfNeeded();
+ await graph.getByRole('button',{name:'AIGC设计',exact:true}).click();
+ const node=graph.locator('.react-flow__node[data-id="suiyuan"]');const neighbor=graph.locator('.react-flow__node[data-id="aigc"]');
+ await expect(node.locator('.graph-date-tail')).toHaveCSS('opacity','0');await node.hover();await expect(node.locator('.graph-date-tail')).toHaveCSS('opacity','1');
+ const before=await neighbor.getAttribute('style');const rect=await node.locator('.archive-node-disc').boundingBox();
+ await page.mouse.move(rect!.x+rect!.width/2,rect!.y+rect!.height/2);await page.mouse.down();await page.mouse.move(rect!.x+rect!.width/2+65,rect!.y+rect!.height/2+50,{steps:12});await page.mouse.up();
+ await expect(neighbor).not.toHaveAttribute('style',before!);
+ await graph.getByRole('button',{name:'重置图谱',exact:true}).click();await expect(graph.locator('.react-flow__node')).toHaveCount(4);
 });

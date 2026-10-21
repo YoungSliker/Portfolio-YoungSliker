@@ -11,7 +11,9 @@ export function useSections() {
     const context = gsap.context(() => {
       for (const section of sections) {
         ScrollTrigger.create({
-          trigger: `#${section.id}`, start: 'top 45%', end: 'bottom 45%',
+          trigger: `#${section.id}`,
+          start:()=>document.getElementById(section.id)!.offsetTop-innerHeight*.45,
+          end:()=>{const el=document.getElementById(section.id)!;return el.offsetTop+el.offsetHeight-innerHeight*.45;},
           onToggle: self => { if (self.isActive) setActive(section.id); },
         });
       }
@@ -36,13 +38,21 @@ export function useSections() {
         return;
       }
       if (section) anchorFrame = requestAnimationFrame(() => {
-        document.getElementById(section.id)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+        const target=document.getElementById(section.id);
+        const headerHeight=document.querySelector('.site-header')?.getBoundingClientRect().height??80;
+        if(target)window.scrollTo({top:Math.max(0,target.offsetTop-(section.id==='hero'?0:headerHeight)),behavior:'instant'});
       });
     };
     restoreAnchor();
+    let disposed=false;
+    const initialHash=location.hash;
+    document.fonts.ready.then(()=>{if(!disposed&&initialHash&&location.hash===initialHash){ScrollTrigger.refresh();restoreAnchor();}});
+    window.addEventListener('load',restoreAnchor);
     window.addEventListener('hashchange', restoreAnchor);
     return () => {
+      disposed=true;
       cancelAnimationFrame(anchorFrame);
+      window.removeEventListener('load',restoreAnchor);
       window.removeEventListener('hashchange', restoreAnchor);
       window.removeEventListener('load', refresh);
       resize.disconnect(); context.revert();

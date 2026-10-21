@@ -37,7 +37,7 @@ test('flowing menu reverses colors and carries project images on hover',async({p
  await page.emulateMedia({reducedMotion:'reduce'});
  await page.goto('/Portfolio-YoungSliker/New/#about');
  const menu=page.getByRole('navigation',{name:'创作领域'});
- await expect(menu).toHaveCSS('background-color','rgb(250, 249, 246)');
+ await expect(menu).toHaveCSS('background-color','rgb(238, 234, 227)');
  for(const label of ['AIGC设计','数字体验设计','视觉传达设计']) {
   await menu.getByRole('button',{name:label,exact:true}).hover();
   const band=menu.locator('.flowing-menu__float');
@@ -49,4 +49,29 @@ test('flowing menu reverses colors and carries project images on hover',async({p
  await menu.screenshot({path:'docs/screenshots/about-flowing-hover.png'});
  await page.mouse.move(0,0);
  await expect(menu.locator('.flowing-menu__float')).toBeHidden();
+});
+
+test('development StrictMode menu starts after cleanup and remount',async({page})=>{
+ await page.goto('http://127.0.0.1:5173/Portfolio-YoungSliker/New/#about');
+ const menu=page.getByRole('navigation',{name:'创作领域'});
+ await menu.getByRole('button',{name:'AIGC设计',exact:true}).hover();
+ await expect(menu.locator('.flowing-menu__float')).toBeVisible();
+ const track=menu.locator('.flowing-menu__float-layer').first().locator('.flowing-menu__track');
+ const transform=await track.getAttribute('style');await expect(track).not.toHaveAttribute('style',transform!);
+});
+
+test('About opens from a central slit as the page scrolls',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto('/Portfolio-YoungSliker/New/');
+ await page.getByRole('button',{name:'跳过开场'}).click();
+ const portal=page.locator('#about');
+ await page.evaluate(()=>scrollTo({top:document.getElementById('about')!.offsetTop-innerHeight*.9,behavior:'instant'}));
+ await expect(portal).not.toHaveCSS('clip-path','none');
+ await page.waitForTimeout(450);const initial=await portal.evaluate(e=>getComputedStyle(e).clipPath);
+ await page.screenshot({path:'docs/screenshots/about-slit-start.png'});
+ await page.evaluate(()=>scrollTo({top:document.getElementById('about')!.offsetTop-innerHeight*.5,behavior:'instant'}));
+ await page.waitForTimeout(450);await page.screenshot({path:'docs/screenshots/about-slit-middle.png'});
+ await page.evaluate(()=>scrollTo({top:document.getElementById('about')!.offsetTop-80,behavior:'instant'}));
+ await expect(portal).toHaveCSS('clip-path','inset(0px 0%)');
+ expect(await portal.evaluate(e=>getComputedStyle(e).clipPath)).not.toBe(initial);
+ await page.screenshot({path:'docs/screenshots/about-slit-open.png'});
 });

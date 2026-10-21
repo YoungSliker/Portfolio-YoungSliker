@@ -46,3 +46,7 @@
 }
 
 .about-flowing-fields{height:390px;margin-top:24px}.about-field-summary{min-height:4em;max-width:760px;margin:24px 0;font-size:14px;line-height:1.9;color:#655d51}@media(max-width:767px){.about-flowing-fields{height:270px}}
+
+.about-portal{position:relative;background:#eeeae3;transform-origin:center;will-change:clip-path}.about-flowing-fields{background:#eeeae3}@media(prefers-reduced-motion:reduce){.about-portal{clip-path:none;filter:none;will-change:auto}}
+
+.about{z-index:2;will-change:clip-path,transform}@media(prefers-reduced-motion:reduce){.about{will-change:auto}}
