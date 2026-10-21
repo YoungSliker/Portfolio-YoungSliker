@@ -1,3 +1,4 @@
+import {placeExpandedNodes} from '../lib/graphPlacement';
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {applyNodeChanges,type Edge,type Node,type NodeChange} from '@xyflow/react';
 
@@ -19,12 +20,8 @@ export function useElasticGraph<N extends Node>(models:N[],edges:Edge[],resetVer
   stop();
   const reset=previousReset.current!==resetVersion;
   previousReset.current=resetVersion;
-  const old=new Map(current.current.map(n=>[n.id,n]));
-  commit(models.map(model=>{
-   const existing=old.get(model.id);
-   return existing&&!reset?{...existing,data:model.data}:model;
-  }));
- },[models,resetVersion,commit,stop]);
+  commit(reset?models:placeExpandedNodes(models,current.current,edges));
+ },[models,edges,resetVersion,commit,stop]);
  useEffect(()=>{
   const hide=()=>{if(document.hidden)stop();};
   document.addEventListener('visibilitychange',hide);

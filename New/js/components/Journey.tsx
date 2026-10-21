@@ -1,5 +1,5 @@
 import {useRef,useState} from 'react';
-import {journeyEntries,journeyYears,journeyAwards} from '../../data/journey';
+import {journeyEntries,journeyYears} from '../../data/journey';
 import {useJourney} from '../hooks/useJourney';
 import '../../css/journey.css';
 
@@ -9,7 +9,7 @@ export function Journey() {
   const [overview,setOverview]=useState<string|null>(null);
   const goToYear=(year:string)=>{
     const entry=journeyEntries.find(item=>item.year===year)!;
-    document.getElementById(`journey-${entry.id}`)?.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+    document.getElementById(`journey-${entry.id}`)?.scrollIntoView({block:'start',behavior:'instant'});
   };
   return <section ref={root} id="journey" className="section journey" aria-labelledby="journey-title">
     <div className="journey-heading"><p className="eyebrow"><span>03 /</span> THE JOURNEY</p><h2 id="journey-title">每一步，<br/><span>都是新的视角。</span></h2></div>
@@ -35,7 +35,6 @@ export function Journey() {
 
       </article>)}</div>
     </div>
-    <div className="journey-awards"><div><span className="journey-nav-label">RECOGNITION / 荣誉</span><h3>探索的回响。</h3></div><ul>{journeyAwards.map(award=><li key={award.title}><time>{award.date}</time><span>{award.title}</span><strong>{award.result}</strong><p>{award.project}</p></li>)}</ul></div>
     <a className="journey-next" href="#works"><span>探索汇成作品</span><span>04 / WORKS ↗</span></a>
   </section>;
 }

@@ -75,3 +75,12 @@ test('About opens from a central slit as the page scrolls',async({page})=>{
  expect(await portal.evaluate(e=>getComputedStyle(e).clipPath)).not.toBe(initial);
  await page.screenshot({path:'docs/screenshots/about-slit-open.png'});
 });
+
+test('outgoing home clears before the About slit appears',async({page})=>{
+ await page.goto('/Portfolio-YoungSliker/New/');await page.getByRole('button',{name:'跳过开场'}).click();
+ const scrub=async(progress:number)=>{await page.evaluate(p=>{const about=document.getElementById('about')!,h=document.querySelector('.site-header')!.getBoundingClientRect().height;const start=about.offsetTop-innerHeight*.92;const end=about.offsetTop-h;scrollTo({top:start+(end-start)*p,behavior:'instant'});},progress);};
+ await scrub(.2);await expect(page.locator('.hero-stage')).not.toHaveCSS('filter','blur(0px)');await expect(page.locator('#about')).toHaveCSS('visibility','hidden');
+ await scrub(.36);await expect(page.locator('.hero-stage')).toHaveCSS('opacity','0');await expect(page.locator('#about')).toHaveCSS('visibility','hidden');
+ await scrub(.7);await expect(page.locator('#about')).toHaveCSS('visibility','visible');await expect(page.locator('.hero-stage')).toHaveCSS('opacity','0');
+ await page.screenshot({path:'docs/screenshots/about-cleared-before-opening.png'});
+});

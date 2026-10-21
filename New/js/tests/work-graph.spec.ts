@@ -44,3 +44,13 @@ test('drag moves neighbors, date appears only on hover and reset collapses',asyn
  await expect(neighbor).not.toHaveAttribute('style',before!);
  await graph.getByRole('button',{name:'重置图谱',exact:true}).click();await expect(graph.locator('.react-flow__node')).toHaveCount(4);
 });
+
+test('video and image branches coexist without overlapping cards',async({page})=>{
+ await page.setViewportSize({width:1440,height:1000});await page.emulateMedia({reducedMotion:'reduce'});await page.goto(base+'#works');
+ const graph=page.locator('.work-graph');
+ for(const id of ['aigc','ai-video','ai-image']){const button=graph.locator(`.react-flow__node[data-id="${id}"] button`);await button.focus();await page.keyboard.press('Enter');}
+ await graph.getByRole('button',{name:'适应画布',exact:true}).click();
+ const boxes=await graph.locator('.react-flow__node').evaluateAll(nodes=>nodes.map(n=>{const r=n.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height};}));
+ for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const a=boxes[i],b=boxes[j];expect(a.x+a.w<=b.x||b.x+b.w<=a.x||a.y+a.h<=b.y||b.y+b.h<=a.y).toBe(true);}
+ await graph.locator('.graph-canvas').screenshot({path:'docs/screenshots/graph-video-image-spaced.png'});
+});

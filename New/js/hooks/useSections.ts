@@ -44,15 +44,20 @@ export function useSections() {
       });
     };
     restoreAnchor();
-    let disposed=false;
+    let disposed=false,interacted=false;
+    const markInteraction=()=>{interacted=true;};
+    const inputEvents=['pointerdown','keydown','wheel','touchstart'];
+    inputEvents.forEach(event=>window.addEventListener(event,markInteraction,{passive:true}));
     const initialHash=location.hash;
-    document.fonts.ready.then(()=>{if(!disposed&&initialHash&&location.hash===initialHash){ScrollTrigger.refresh();restoreAnchor();}});
-    window.addEventListener('load',restoreAnchor);
+    document.fonts.ready.then(()=>{if(!disposed&&!interacted&&initialHash&&location.hash===initialHash){ScrollTrigger.refresh();restoreAnchor();}});
+    const restoreOnLoad=()=>{if(!interacted)restoreAnchor();};
+    window.addEventListener('load',restoreOnLoad);
     window.addEventListener('hashchange', restoreAnchor);
     return () => {
       disposed=true;
       cancelAnimationFrame(anchorFrame);
-      window.removeEventListener('load',restoreAnchor);
+      window.removeEventListener('load',restoreOnLoad);
+      inputEvents.forEach(event=>window.removeEventListener(event,markInteraction));
       window.removeEventListener('hashchange', restoreAnchor);
       window.removeEventListener('load', refresh);
       resize.disconnect(); context.revert();
