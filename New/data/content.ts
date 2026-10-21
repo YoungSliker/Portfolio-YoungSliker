@@ -11,7 +11,7 @@ export const sections = [
 export type SectionId = typeof sections[number]['id'];
 
 export const categories = [
-  { id: 'aigc', number: '01', title: 'AIGC DESIGN', label: '人工智能生成设计', description: '生成式视觉、AI 创作、实时场景与数字叙事。' },
+  { id: 'aigc', number: '01', title: 'AIGC DESIGN', label: 'AIGC设计', description: '生成式视觉、AI 创作、实时场景与数字叙事。' },
   { id: 'digital', number: '02', title: 'DIGITAL EXPERIENCE', label: '数字体验设计', description: '新媒体艺术、交互装置、APP 设计与用户体验。' },
   { id: 'visual', number: '03', title: 'VISUAL COMMUNICATION', label: '视觉传达设计', description: '品牌识别、版面设计、信息可视化与视觉系统。' },
 ] as const;

@@ -13,7 +13,7 @@ for(const width of [375,844,1440,1920]){
   await page.screenshot({path:`docs/screenshots/phase4-radial-${width}.png`});
   const nav=graph.getByRole('navigation',{name:'作品图谱分类'});
   const paths=[
-    ['人工智能生成设计','场景与叙事','scenes'],
+    ['AIGC设计','场景与叙事','scenes'],
     ['数字体验设计','新媒体交互','media'],
     ['数字体验设计','APP 设计','apps'],
     ['视觉传达设计','品牌设计','brand'],
@@ -38,7 +38,7 @@ for(const width of [375,844,1440,1920]){
     }
   }
   await graph.getByRole('button',{name:'重置图谱',exact:true}).click();
-  await expect(graph.locator('.graph-work-list')).toHaveCount(0);
+  await expect(graph.locator('.graph-work-list button')).toHaveCount(3);
   await expect(graph.locator('.react-flow__node')).toHaveCount(7);
   // Exercise the actual graph nodes, not only the accessible navigation.
   await graph.locator('.react-flow__node[data-id="aigc"] button').click();
@@ -76,12 +76,20 @@ test('radial nodes drag directly, connections follow and reset restores position
  await expect(pane).toHaveClass(/draggable/);
  const node=graph.locator('.react-flow__node[data-id="suiyuan"]');
  const original=await node.getAttribute('style');
+ const neighbor=graph.locator('.react-flow__node[data-id="aigc"]');
+ const neighborBefore=await neighbor.getAttribute('style');
  const edge=graph.locator('.react-flow__edge[data-id="scenes-suiyuan"] path').first();
  const path=await edge.getAttribute('d');
  const box=await node.locator('.archive-node-disc').boundingBox();
  await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height/2);
  await page.mouse.down();await page.mouse.move(box!.x+box!.width/2+95,box!.y+box!.height/2+60,{steps:12});await page.mouse.up();
  await expect(node).not.toHaveAttribute('style',original!);
+ await expect(neighbor).not.toHaveAttribute('style',neighborBefore!);
+ await expect.poll(async()=>{
+  const before=await neighbor.getAttribute('style');
+  await page.waitForTimeout(150);
+  return (await neighbor.getAttribute('style'))===before;
+ },{timeout:7000}).toBe(true);
  await expect(edge).not.toHaveAttribute('d',path!);
  await expect(graph.getByRole('region',{name:'作品概况'})).toHaveCount(0);
  const previous=await viewport.getAttribute('style');
@@ -97,4 +105,21 @@ test('radial nodes drag directly, connections follow and reset restores position
  await graph.locator('.graph-collection').getByRole('button',{name:/APP 设计/}).click();
  await graph.locator('.graph-work-list').getByRole('button',{name:'学伴',exact:true}).click();
  await expect(graph.getByRole('region',{name:'作品概况'})).toContainText('学伴');
+});
+
+test('all domains preserves expanded branches and AIGC starts open',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.goto(base+'#works');
+ const graph=page.locator('.work-graph'),nav=graph.getByRole('navigation');
+ await expect(nav.getByRole('button',{name:'AIGC设计',exact:true})).toHaveAttribute('aria-pressed','true');
+ await expect(graph.locator('.graph-work-list button')).toHaveCount(3);
+ for(const [category,group] of [['数字体验设计','APP 设计'],['视觉传达设计','标志设计']]){
+  await nav.getByRole('button',{name:category,exact:true}).click();
+  await graph.locator('.graph-collection').getByRole('button',{name:new RegExp(group)}).click();
+ }
+ const count=await graph.locator('.react-flow__node').count();
+ await nav.getByRole('button',{name:'全部领域',exact:true}).click();
+ await expect(graph.locator('.react-flow__node')).toHaveCount(count);
+ await expect(graph.locator('.react-flow__node[data-id="xueban"]')).toBeAttached();
+ await expect(graph.locator('.react-flow__node[data-id="wanbu"]')).toBeAttached();
 });

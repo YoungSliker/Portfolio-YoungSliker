@@ -1,4 +1,4 @@
-.hero { --paper: #eeeae3; position: relative; height: 100svh; scroll-margin-top:calc(-1 * (var(--header-height) + 20px)); }
+.hero { --paper: #eeeae3; position: relative; height: 100svh; scroll-margin-top:calc(-1 * var(--header-height)); }
 .hero-stage { height: 100svh; min-height: 440px; position: relative; top: 0; overflow: clip; isolation: isolate; background: #050505; }
 .hero-meta { position: absolute; inset: 24px var(--gutter) auto; display: flex; justify-content: space-between; font: 9px var(--mono); letter-spacing: 1.3px; color: #625e56; z-index: 6; }
 .hero-title-group { position: absolute; left: 0; right: 0; top: 31%; text-align: center; z-index: 2; will-change: transform,opacity; }

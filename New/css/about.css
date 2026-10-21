@@ -1,4 +1,4 @@
-.about { background:#eeeae3; border-top:1px solid #d8d1c5; position:relative; scroll-margin-top:-20px; }
+.about { background:#eeeae3; border-top:1px solid #d8d1c5; position:relative; scroll-margin-top:0; }
 .about-chapter { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #cfc7bb; padding-bottom:24px; }
 .about-chapter .eyebrow { margin:0; }
 .about-chapter > span { font-size:10px; letter-spacing:1px; color:#70685d; }

@@ -1,5 +1,6 @@
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { applyNodeChanges, Background, Handle, Position, ReactFlow, useStore, type Edge, type Node, type NodeProps, type NodeChange, type ReactFlowInstance } from '@xyflow/react';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
+import { Background, Handle, Position, ReactFlow, useStore, type Edge, type Node, type NodeProps, type ReactFlowInstance } from '@xyflow/react';
+import { useElasticGraph } from '../hooks/useElasticGraph';
 import { categories } from '../../data/content';
 import { graphGroups, graphWorks } from '../../data/graph';
 import { legacyAsset } from '../lib/assets';
@@ -34,24 +35,9 @@ function ZoomReadout(){
 const GraphCanvas=memo(function GraphCanvas({models,edges,resetVersion,onInit}:{
  models:ArchiveNode[];edges:Edge[];resetVersion:number;onInit:(flow:ReactFlowInstance<ArchiveNode>)=>void;
 }){
- const [nodes,setNodes]=useState(models);
- const previousReset=useRef(resetVersion);
- useEffect(()=>{
-  const reset=previousReset.current!==resetVersion;
-  previousReset.current=resetVersion;
-  setNodes(current=>{
-   const byId=new Map(current.map(n=>[n.id,n]));
-   return models.map(model=>{
-    const old=byId.get(model.id);
-    return old&&!reset?{...old,data:model.data}:model;
-   });
-  });
- },[models,resetVersion]);
- const onNodesChange=useCallback((changes:NodeChange<ArchiveNode>[])=>{
-  setNodes(current=>applyNodeChanges(changes,current));
- },[]);
+ const {nodes,onNodesChange,onNodeDragStart,onNodeDragStop}=useElasticGraph(models,edges,resetVersion);
  return <div className="graph-canvas" aria-label="作品关系图">
-  <ReactFlow<ArchiveNode> nodes={nodes} edges={edges} nodeTypes={nodeTypes} onInit={onInit} onNodesChange={onNodesChange} nodeOrigin={nodeOrigin}
+  <ReactFlow<ArchiveNode> nodes={nodes} edges={edges} nodeTypes={nodeTypes} onInit={onInit} onNodesChange={onNodesChange} onNodeDragStart={onNodeDragStart} onNodeDragStop={onNodeDragStop} nodeOrigin={nodeOrigin}
    fitView fitViewOptions={fitOptions} minZoom={.15} maxZoom={1.8} nodeDragThreshold={5} nodesDraggable nodesConnectable={false} elementsSelectable={false}
    zoomOnScroll={false} zoomOnDoubleClick={false} zoomOnPinch panOnScroll={false} preventScrolling={false} panOnDrag zoomActivationKeyCode={null}>
    <Background color="#c8bfae" gap={30} size={.7}/><ZoomReadout/>
@@ -59,7 +45,7 @@ const GraphCanvas=memo(function GraphCanvas({models,edges,resetVersion,onInit}:{
  </div>;
 });
 export default function WorkGraph(){
- const [category,setCategory]=useState<string|null>(null);
+ const [category,setCategory]=useState<string|null>('aigc');
  const [group,setGroup]=useState<string|null>(null);
  const [expanded,setExpanded]=useState<string[]>(['aigc']);
  const [selected,setSelected]=useState<string|null>(null);
@@ -71,7 +57,8 @@ export default function WorkGraph(){
  const work=graphWorks.find(w=>w.id===selected);
  const groups=graphGroups.filter(g=>g.category===category&&g.id!=='scenes');
  const works=graphWorks.filter(w=>w.group===(category==='aigc'?'scenes':group));
- function reset(){setCategory(null);setGroup(null);setSelected(null);setExpanded(['aigc']);setResetVersion(v=>v+1);}
+ function reset(){setCategory('aigc');setGroup(null);setSelected(null);setExpanded(['aigc']);setResetVersion(v=>v+1);}
+ function showAll(){setCategory(null);setGroup(null);setSelected(null);void flow?.fitView({padding:.18,maxZoom:1,duration:reduced()?0:300});}
  function chooseCategory(id:string){setCategory(id);setGroup(null);setSelected(null);setExpanded(old=>old.includes(id)?old:[...old,id]);}
  function chooseGroup(id:string){setGroup(id);setSelected(null);setExpanded(old=>old.includes(id)?old:[...old,id]);}
  function chooseWork(id:string){returnButton.current=document.activeElement instanceof HTMLButtonElement?document.activeElement:null;setSelected(id);}
@@ -80,8 +67,8 @@ export default function WorkGraph(){
  const visibleWorks=graphWorks.filter(w=>expanded.includes(w.group==='scenes'?'aigc':w.group));
  const nodes:ArchiveNode[]=useMemo(()=>{
   const make=(id:string,label:string,eyebrow:string,kind:string,choose:()=>void,cover?:string):ArchiveNode=>({id,type:'archive',position:anchors[id]??workPositions[id],data:{label,eyebrow,kind,cover,active:selected===id||category===id||group===id,choose},focusable:false});
-  return [make('root','YOUNGSLIKER','CREATIVE UNIVERSE','root',reset),...categories.map(c=>make(c.id,c.label,c.number,'category',()=>chooseCategory(c.id))),...visibleGroups.map(g=>make(g.id,g.label,'','group',()=>chooseGroup(g.id))),...visibleWorks.map(w=>make(w.id,w.title,dates[w.id]??'PROJECT','work',()=>chooseWork(w.id),preview(w.id)))];
- },[expanded,category,group,selected]);
+  return [make('root','YOUNGSLIKER','CREATIVE UNIVERSE','root',showAll),...categories.map(c=>make(c.id,c.label,c.number,'category',()=>chooseCategory(c.id))),...visibleGroups.map(g=>make(g.id,g.label,'','group',()=>chooseGroup(g.id))),...visibleWorks.map(w=>make(w.id,w.title,dates[w.id]??'PROJECT','work',()=>chooseWork(w.id),preview(w.id)))];
+ },[expanded,category,group,selected,flow]);
  const edges=useMemo(()=>[
   ...categories.map(c=>({id:`root-${c.id}`,source:'root',target:c.id})),
   ...visibleGroups.map(g=>({id:`${g.category}-${g.id}`,source:g.category,target:g.id})),
@@ -93,7 +80,7 @@ export default function WorkGraph(){
  useEffect(()=>{if(selected){detail.current?.focus({preventScroll:true});if(innerWidth<768)detail.current?.scrollIntoView({behavior:reduced()?'instant':'smooth',block:'nearest'});}},[selected]);
  return <div className="work-graph">
   <div className="graph-topline"><span>CONNECTED PRACTICES</span><span>12 件作品 · 三个领域</span></div>
-  <nav className="graph-breadcrumb" aria-label="作品图谱分类"><button onClick={reset} aria-pressed={!category}>全部领域</button>{categories.map(c=><button key={c.id} onClick={()=>chooseCategory(c.id)} aria-pressed={category===c.id}>{c.label}</button>)}</nav>
+  <nav className="graph-breadcrumb" aria-label="作品图谱分类"><button onClick={showAll} aria-pressed={!category}>全部领域</button>{categories.map(c=><button key={c.id} onClick={()=>chooseCategory(c.id)} aria-pressed={category===c.id}>{c.label}</button>)}</nav>
   <div className="graph-layout">
    <GraphCanvas models={nodes} edges={edges} resetVersion={resetVersion} onInit={setFlow}/>
    {work&&<div className="graph-detail" ref={detail} tabIndex={-1} role="region" aria-label="作品概况" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();close();}}}>
