@@ -14,7 +14,7 @@ export const journeyEntries:TimelineEntry[] = [
 ];
 // No invented dates or individual/team attribution.
 export const journeyAwards = [
-  {title:'第八届中国国际“互联网+”大学生创新创业大赛',result:'省级银奖',project:'“青年红色筑梦之旅”赛道'},
-  {title:'第一届亚洲大学生创意设计展',result:'一等奖',project:'元宇宙空间设计：生成式人工智能打造全新数字化虚拟沉浸式体验空间'},
+  {date:'2022.09',title:'第八届中国国际“互联网+”大学生创新创业大赛',result:'省级银奖',project:'“青年红色筑梦之旅”赛道'},
+  {date:'2024.06',title:'第一届亚洲大学生创意设计展',result:'一等奖',project:'元宇宙空间设计：生成式人工智能打造全新数字化虚拟沉浸式体验空间'},
 ];
 export const journeyYears = [...new Set(journeyEntries.map(entry=>entry.year))];

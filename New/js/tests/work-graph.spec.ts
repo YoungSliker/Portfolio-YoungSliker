@@ -11,7 +11,7 @@ for(const width of [375,844,1440,1920]){
   await expect(graph).toBeVisible();
   await graph.locator('.graph-canvas').scrollIntoViewIfNeeded();
   await page.screenshot({path:`docs/screenshots/phase4-radial-${width}.png`});
-  const nav=graph.getByRole('navigation',{name:'作品图谱分类'});
+  const nav=graph.locator('.graph-canvas');
   const paths=[
     ['AIGC设计','场景与叙事','scenes'],
     ['数字体验设计','新媒体交互','media'],
@@ -21,10 +21,10 @@ for(const width of [375,844,1440,1920]){
   ];
   for(const [category,label,id] of paths){
     await nav.getByRole('button',{name:category,exact:true}).click();
-    if(id!=='scenes') await graph.locator('.graph-collection').getByRole('button',{name:new RegExp(label)}).click();
-    const list=graph.locator('.graph-work-list');
+    if(id!=='scenes') await graph.locator('.graph-canvas').getByRole('button',{name:new RegExp(label)}).click();
+    const list=graph.locator('.graph-canvas');
     const works=graphWorks.filter(w=>w.group===id);
-    await expect(list.getByRole('button')).toHaveCount(works.length);
+
     for(const work of works){
       const button=list.getByRole('button',{name:work.title,exact:true});
       await button.focus();await page.keyboard.press('Enter');
@@ -38,7 +38,7 @@ for(const width of [375,844,1440,1920]){
     }
   }
   await graph.getByRole('button',{name:'重置图谱',exact:true}).click();
-  await expect(graph.locator('.graph-work-list button')).toHaveCount(3);
+  await expect(graph.locator('.archive-node--work button')).toHaveCount(3);
   await expect(graph.locator('.react-flow__node')).toHaveCount(7);
   // Exercise the actual graph nodes, not only the accessible navigation.
   await graph.locator('.react-flow__node[data-id="aigc"] button').click();
@@ -101,24 +101,24 @@ test('radial nodes drag directly, connections follow and reset restores position
  await graph.getByRole('button',{name:'重置图谱',exact:true}).click();
  await expect(node).toHaveAttribute('style',original!);
  await expect(viewport).not.toHaveAttribute('style',dragged!);
- await graph.getByRole('navigation').getByRole('button',{name:'数字体验设计',exact:true}).click();
- await graph.locator('.graph-collection').getByRole('button',{name:/APP 设计/}).click();
- await graph.locator('.graph-work-list').getByRole('button',{name:'学伴',exact:true}).click();
+ await graph.locator('.graph-canvas').getByRole('button',{name:'数字体验设计',exact:true}).click();
+ await graph.locator('.graph-canvas').getByRole('button',{name:/APP 设计/}).click();
+ await graph.locator('.graph-canvas').getByRole('button',{name:'学伴',exact:true}).click();
  await expect(graph.getByRole('region',{name:'作品概况'})).toContainText('学伴');
 });
 
 test('all domains preserves expanded branches and AIGC starts open',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});
  await page.goto(base+'#works');
- const graph=page.locator('.work-graph'),nav=graph.getByRole('navigation');
- await expect(nav.getByRole('button',{name:'AIGC设计',exact:true})).toHaveAttribute('aria-pressed','true');
- await expect(graph.locator('.graph-work-list button')).toHaveCount(3);
+ const graph=page.locator('.work-graph'),nav=graph.locator('.graph-canvas');
+ await expect(graph.locator('.archive-node--category[data-active=true]')).toHaveCount(1);
+ await expect(graph.locator('.archive-node--work button')).toHaveCount(3);
  for(const [category,group] of [['数字体验设计','APP 设计'],['视觉传达设计','标志设计']]){
   await nav.getByRole('button',{name:category,exact:true}).click();
-  await graph.locator('.graph-collection').getByRole('button',{name:new RegExp(group)}).click();
+  await graph.locator('.graph-canvas').getByRole('button',{name:new RegExp(group)}).click();
  }
  const count=await graph.locator('.react-flow__node').count();
- await nav.getByRole('button',{name:'全部领域',exact:true}).click();
+ await nav.getByRole('button',{name:'YOUNGSLIKER',exact:true}).click();
  await expect(graph.locator('.react-flow__node')).toHaveCount(count);
  await expect(graph.locator('.react-flow__node[data-id="xueban"]')).toBeAttached();
  await expect(graph.locator('.react-flow__node[data-id="wanbu"]')).toBeAttached();

@@ -31,13 +31,14 @@ test('project targets, browser history and resume facts',async({page})=>{
  await expect(page.locator('.journey-awards')).toContainText('第一届亚洲大学生创意设计展');
  await expect(page.locator('.journey-awards')).not.toContainText('第二届');
  await expect(page.locator('#journey-suiyuan')).toContainText('2025.01 — 2025.07');
- for(const [id,work] of [['mine','mine-eco'],['lingsu','weiyuan'],['suiyuan','suiyuan']]) {
-  await page.locator(`#journey-${id} a`).click();
-  await expect(page.locator(`#work-${work}`)).toBeInViewport();
-  await expect(page.locator(`#work-${work}`)).toBeFocused();
-  await page.reload();
-  await expect(page.locator(`#work-${work}`)).toBeInViewport();
-  await page.goBack();
+ await expect(page.locator('.journey-awards')).toContainText('2022.09');
+ await expect(page.locator('.journey-awards')).toContainText('2024.06');
+ for(const id of ['mine','lingsu','suiyuan','arti','internship','earthquake']) {
+  const button=page.locator(`#journey-${id} .journey-work-link`);await button.click();
+  await expect(page.locator(`#overview-${id}`)).toBeVisible();
+  await expect(button).toHaveAttribute('aria-expanded','true');
   await expect(page).toHaveURL(/#journey$/);
+  await expect(page.locator('.journey-overview')).toHaveCount(1);
+  await button.click();await expect(page.locator('.journey-overview')).toHaveCount(0);
  }
 });

@@ -11,11 +11,11 @@ for (const width of [375, 844, 1440, 1920]) {
   await expect(page.locator('.reading-footer')).toContainText('02 / 06');
   await page.locator('.scroll-cue').evaluate(e=>(e as HTMLElement).blur());
   await page.screenshot({path:`docs/screenshots/phase2-about-top-${width}.png`});
-  for(const id of ['aigc','digital','visual']) {
-   const button=page.locator(`#field-${id}`);await button.focus();await page.keyboard.press('Enter');
-   await expect(button).toHaveAttribute('aria-expanded','true');
-   await expect(page.locator(`#field-panel-${id}`)).toBeVisible();
-   await expect(page.locator('.about-field-body:visible')).toHaveCount(1);
+  const menu=page.getByRole('navigation',{name:'创作领域'});
+  for(const [label,text] of [['AIGC设计','场景的构建'],['数字体验设计','从观看走向参与'],['视觉传达设计','清晰的形态']]) {
+   const button=menu.getByRole('button',{name:label,exact:true});await button.focus();await page.keyboard.press('Enter');
+   await expect(page.locator('.about-field-summary')).toContainText(text);
+   await expect(menu.locator('.flowing-menu__float')).toBeVisible();
   }
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.screenshot({path:`docs/screenshots/phase2-about-fields-${width}.png`});
@@ -31,4 +31,22 @@ test('About reduced motion and works link',async({page})=>{
  for(const item of await page.locator('[data-about-reveal]').all())await expect(item).toHaveCSS('opacity','1');
  await page.getByRole('link',{name:'浏览我的作品'}).click();
  await expect(page.locator('#works h2')).toBeInViewport();
+});
+
+test('flowing menu reverses colors and carries project images on hover',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.goto('/Portfolio-YoungSliker/New/#about');
+ const menu=page.getByRole('navigation',{name:'创作领域'});
+ await expect(menu).toHaveCSS('background-color','rgb(250, 249, 246)');
+ for(const label of ['AIGC设计','数字体验设计','视觉传达设计']) {
+  await menu.getByRole('button',{name:label,exact:true}).hover();
+  const band=menu.locator('.flowing-menu__float');
+  await expect(band).toBeVisible();
+  await expect(band).toHaveCSS('background-color','rgb(23, 23, 23)');
+  await expect(band).toHaveCSS('color','rgb(250, 249, 246)');
+  await expect(band.locator('.flowing-menu__image').first()).toHaveCSS('background-image',/webp/);
+ }
+ await menu.screenshot({path:'docs/screenshots/about-flowing-hover.png'});
+ await page.mouse.move(0,0);
+ await expect(menu.locator('.flowing-menu__float')).toBeHidden();
 });

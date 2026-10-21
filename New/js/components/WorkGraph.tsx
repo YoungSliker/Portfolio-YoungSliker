@@ -14,12 +14,18 @@ const dates:Record<string,string>={suiyuan:'2025.07','mine-eco':'2023.08',weiyua
 const previews=import.meta.glob('../../assets/images/graph/*.webp',{eager:true,query:'?url',import:'default'}) as Record<string,string>;
 const preview=(id:string)=>previews[`../../assets/images/graph/${id}.webp`];
 const workPositions:Record<string,Point>={shuyun:{x:360,y:-650},'kinect-face':{x:620,y:-610},'kinect-water':{x:690,y:-380},xueban:{x:820,y:-250},yanchage:{x:870,y:0},zhucanbang:{x:680,y:130},kulun:{x:750,y:380},wanbu:{x:490,y:690},guisui:{x:170,y:730}};
+const categoryType:Record<string,{en:string;lead:string;title:string;note:string}>={
+ 'AIGC设计':{en:'GENERATIVE / ART',lead:'生成式创作',title:'AIGC',note:'人工智能 · 视觉表达'},
+ '数字体验设计':{en:'DIGITAL / EXPERIENCE',lead:'人与数字',title:'体验设计',note:'交互 · 空间 · 界面'},
+ '视觉传达设计':{en:'VISUAL / COMMUNICATION',lead:'图形与文字',title:'视觉传达',note:'品牌 · 信息 · 秩序'},
+};
 function ArchiveNodeView({data}:NodeProps<ArchiveNode>){
+ const typography=categoryType[data.label];
  return <div className={`archive-node archive-node--${data.kind}`} data-active={data.active}>
   <Handle type="target" position={Position.Top}/><Handle type="source" position={Position.Bottom}/>
   <button onClick={data.choose} aria-label={data.label}>
-   <span className="archive-node-disc">{data.cover?<img src={data.cover} alt="" draggable={false}/>:<span>{data.kind==='root'?'YS':data.kind==='category'?data.eyebrow:'＋'}</span>}</span>
-   <strong>{data.label}</strong><small>{data.kind==='root'?'CREATIVE UNIVERSE':data.kind==='work'?data.eyebrow:'点击展开 · 拖动探索'}</small>
+   <span className="archive-node-disc">{data.cover?<img src={data.cover} alt="" draggable={false}/>:data.kind==='category'&&typography?<span className="graph-type"><span className="graph-type-en">{typography.en}</span><i/><span className="graph-type-lead">{typography.lead}</span><b>{typography.title}</b><span className="graph-type-note">{typography.note}</span></span>:<span>{data.kind==='root'?'YS':'＋'}</span>}</span>
+   {data.kind!=='category'&&<strong>{data.label}</strong>}<small>{data.kind==='root'?'CREATIVE UNIVERSE':data.kind==='work'?data.eyebrow:'点击展开 · 拖动探索'}</small>
   </button>
  </div>;
 }
@@ -55,8 +61,6 @@ export default function WorkGraph(){
  const returnButton=useRef<HTMLButtonElement|null>(null);
  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
  const work=graphWorks.find(w=>w.id===selected);
- const groups=graphGroups.filter(g=>g.category===category&&g.id!=='scenes');
- const works=graphWorks.filter(w=>w.group===(category==='aigc'?'scenes':group));
  function reset(){setCategory('aigc');setGroup(null);setSelected(null);setExpanded(['aigc']);setResetVersion(v=>v+1);}
  function showAll(){setCategory(null);setGroup(null);setSelected(null);void flow?.fitView({padding:.18,maxZoom:1,duration:reduced()?0:300});}
  function chooseCategory(id:string){setCategory(id);setGroup(null);setSelected(null);setExpanded(old=>old.includes(id)?old:[...old,id]);}
@@ -79,8 +83,8 @@ export default function WorkGraph(){
  useEffect(()=>{if(!flow)return;const timer=setTimeout(()=>void flow.fitView({padding:.18,maxZoom:1,minZoom:.2,duration:reduced()?0:420}),40);return()=>clearTimeout(timer);},[flow,expanded,resetVersion]);
  useEffect(()=>{if(selected){detail.current?.focus({preventScroll:true});if(innerWidth<768)detail.current?.scrollIntoView({behavior:reduced()?'instant':'smooth',block:'nearest'});}},[selected]);
  return <div className="work-graph">
-  <div className="graph-topline"><span>CONNECTED PRACTICES</span><span>12 件作品 · 三个领域</span></div>
-  <nav className="graph-breadcrumb" aria-label="作品图谱分类"><button onClick={showAll} aria-pressed={!category}>全部领域</button>{categories.map(c=><button key={c.id} onClick={()=>chooseCategory(c.id)} aria-pressed={category===c.id}>{c.label}</button>)}</nav>
+  <div className="graph-tools" aria-label="图谱操作"><button onClick={()=>void flow?.zoomOut({duration:reduced()?0:180})} aria-label="缩小图谱">−</button><button onClick={()=>void flow?.zoomIn({duration:reduced()?0:180})} aria-label="放大图谱">＋</button><button onClick={()=>void flow?.fitView({padding:.18,maxZoom:1,duration:reduced()?0:350})}>适应画布</button><button onClick={reset}>重置图谱</button></div>
+  <p className="graph-hint">拖动圆点，自由整理关系 · 拖动空白处移动画布 · 滚轮继续浏览页面</p>
   <div className="graph-layout">
    <GraphCanvas models={nodes} edges={edges} resetVersion={resetVersion} onInit={setFlow}/>
    {work&&<div className="graph-detail" ref={detail} tabIndex={-1} role="region" aria-label="作品概况" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();close();}}}>
@@ -88,9 +92,6 @@ export default function WorkGraph(){
     <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3>{work.title}</h3><p>{work.summary}</p><small>资料来源：{work.source}</small><a className="text-link" href={legacyAsset('index.html',import.meta.env.BASE_URL)}>浏览旧版完整作品集 ↗</a>
    </div>}
   </div>
-  <div className="graph-tools" aria-label="图谱操作"><button onClick={()=>void flow?.zoomOut({duration:reduced()?0:180})} aria-label="缩小图谱">−</button><button onClick={()=>void flow?.zoomIn({duration:reduced()?0:180})} aria-label="放大图谱">＋</button><button onClick={()=>void flow?.fitView({padding:.18,maxZoom:1,duration:reduced()?0:350})}>适应画布</button><button onClick={reset}>重置图谱</button></div>
-  <p className="graph-hint">拖动圆点，自由整理关系 · 拖动空白处移动画布 · 滚轮继续浏览页面</p>
-  {groups.length>0&&<div className="graph-collection" aria-label="子分类">{groups.map(g=><button key={g.id} aria-pressed={group===g.id} onClick={()=>chooseGroup(g.id)}>{g.label} <span>{graphWorks.filter(w=>w.group===g.id).length}</span></button>)}</div>}
-  {works.length>0&&<div className="graph-work-list" aria-label="当前分类作品">{works.map(w=><button key={w.id} aria-pressed={selected===w.id} onClick={()=>chooseWork(w.id)}>{w.title}<span aria-hidden="true">↗</span></button>)}</div>}
+
  </div>;
 }

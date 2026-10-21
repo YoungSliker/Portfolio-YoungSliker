@@ -1359,7 +1359,8 @@ const FluidGlass = ({
       playback();
       wake();
     });
-    intersection.observe(container);
+    // Warm the shader behind the intro clip while the hero is on screen.
+    intersection.observe(container.closest('.hero-stage') ?? container);
     const onVisibility = () => {
       pageVisible = document.visibilityState !== 'hidden';
       playback();

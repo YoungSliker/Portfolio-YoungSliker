@@ -1,13 +1,13 @@
 import {test,expect} from '@playwright/test';
 const base='/Portfolio-YoungSliker/New/';
-test('reload from About starts at the white dot before glass initialization', async ({page}) => {
+test('reload from About starts at the white dot while glass preloads', async ({page}) => {
  await page.goto(base + '#about');
  await expect(page.locator('#about h2')).toBeInViewport();
  await page.reload({waitUntil:'domcontentloaded'});
  await expect(page).toHaveURL(new RegExp('/New/$'));
  expect(await page.evaluate(()=>scrollY)).toBe(0);
  await expect(page.locator('#hero')).toHaveAttribute('data-entrance','playing');
- await expect(page.locator('.fluid-glass')).toHaveCount(0);
+
  await expect(page.locator('.loading-intro')).toBeVisible();
  await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready');
  await expect(page.locator('.fluid-glass')).toHaveAttribute('data-glass-ready','true',{timeout:20000});
@@ -46,4 +46,14 @@ test('reduced motion bypasses loading animation',async({page})=>{
  await expect(page.locator('.hero-landing')).toHaveCSS('clip-path','none');
  await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'跳到主要内容'})).toBeFocused();
  await page.keyboard.press('Enter');await expect(page.locator('.site-header')).toBeVisible();
+});
+
+test('glass starts rendering behind the loading cover',async({page})=>{
+ await page.clock.install({time:new Date('2026-10-21T00:00:00Z')});
+ await page.clock.pauseAt(new Date('2026-10-21T00:00:01Z'));
+ await page.goto(base);
+ await page.evaluate(()=>document.fonts.load('400 100px "PortfolioTitle"','设计作品集'));
+ await expect(page.locator('.fluid-glass canvas')).toHaveCount(1);
+ await expect(page.locator('#hero')).toHaveAttribute('data-entrance','playing');
+ await expect(page.locator('.loading-intro')).toBeVisible();
 });

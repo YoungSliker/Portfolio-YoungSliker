@@ -42,3 +42,6 @@
  .journey-awards { grid-template-columns:1fr; gap:10px; margin-top:45px; }.journey-next { margin-top:40px; }
 }
 @media(max-height:550px) { .journey-sidebar { position:relative; top:auto; } }
+
+.journey-work-link{border:0;border-bottom:1px solid #8d725d;background:none;cursor:pointer;padding:0;text-align:left}
+.journey-overview{margin-top:24px;padding:26px;border:1px solid #494139;background:#20201e;max-width:720px;animation:overview-in .25s ease-out}.journey-overview h4{font-size:22px;margin:14px 0;color:#ffb093}.journey-overview p{font-size:14px;line-height:1.9;color:#d0c9bf}.journey-overview .journey-overview-meta{font-size:11px;color:#aaa39a;margin-top:18px}.journey-awards time{font:12px var(--mono);color:#aaa39a}@keyframes overview-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){.journey-overview{animation:none}}
