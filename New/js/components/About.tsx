@@ -10,8 +10,9 @@ const details = [
   { words:['品牌识别','信息可视化','视觉系统'], text:'让信息拥有清晰的形态。在文字、图形与秩序之间，寻找有辨识度的视觉表达。' },
 ];
 
-const fieldCovers=import.meta.glob('../../assets/images/graph/*.webp',{eager:true,query:'?url',import:'default'}) as Record<string,string>;
-const fieldItems=categories.map((category,index)=>({text:category.label,marquee:details[index].words.join(' · '),image:fieldCovers[`../../assets/images/graph/${['suiyuan','shuyun','kulun'][index]}.webp`]}));
+const fieldCovers=import.meta.glob('../../assets/images/menu/*.webp',{eager:true,query:'?url',import:'default'}) as Record<string,string>;
+const coverIds=[['suiyuan','mine-eco','weiyuan'],['shuyun','kinect-face','kinect-water'],['kulun','wanbu','guisui']];
+const fieldItems=categories.map((category,index)=>({text:category.label,sequence:details[index].words.map((text,i)=>({text,image:fieldCovers[`../../assets/images/menu/${coverIds[index][i]}.webp`]}))}));
 
 export function About() {
   const root = useRef<HTMLElement>(null);

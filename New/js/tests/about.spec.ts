@@ -45,6 +45,11 @@ test('flowing menu reverses colors and carries project images on hover',async({p
   await expect(band).toHaveCSS('background-color','rgb(23, 23, 23)');
   await expect(band).toHaveCSS('color','rgb(250, 249, 246)');
   await expect(band.locator('.flowing-menu__image').first()).toHaveCSS('background-image',/webp/);
+  const pairs=menu.locator('.flowing-menu__band').nth(['AIGC设计','数字体验设计','视觉传达设计'].indexOf(label)).locator('.flowing-menu__part').first().locator('.flowing-menu__pair');
+  await expect(pairs).toHaveCount(3);
+  for(const pair of await pairs.all()){await expect(pair.locator('.flowing-menu__part-text')).not.toContainText(' · ');await expect(pair.locator('.flowing-menu__image')).toHaveCount(1);
+   expect(await pair.locator('.flowing-menu__image').evaluate(async el=>{const src=getComputedStyle(el).backgroundImage.slice(5,-2);const image=new Image();image.src=src;await image.decode();return image.naturalWidth>0&&image.naturalWidth<=480;})).toBe(true);
+  }
  }
  await menu.screenshot({path:'docs/screenshots/about-flowing-hover.png'});
  await page.mouse.move(0,0);

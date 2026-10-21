@@ -34,7 +34,7 @@ const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 const prefersReduced = () =>
   typeof window !== 'undefined' && (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false);
 
-/** @param {{items?: Array<{text: string, marquee?: string, image?: string, link?: string, meta?: string}>, [key: string]: any}} props */
+/** @param {{items?: Array<{text: string, marquee?: string, image?: string, sequence?: Array<{text: string, image: string}>, link?: string, meta?: string}>, [key: string]: any}} props */
 function FlowingMenu({
   items = [],
   speed = 60,
@@ -536,6 +536,8 @@ function FlowingMenu({
     onClick: event => { stopIntro(); goTo(index, 'center'); settingsRef.current.onItemClick?.(item, index, event); }
   });
 
+  const renderSequence = item => (item.sequence ?? [{text:item.marquee ?? item.text,image:item.image}]).map((entry,index)=><span className="flowing-menu__pair" key={index}>{entry.image && <span className={IMAGE} style={{backgroundImage:`url(${entry.image})`}} />}<span className={PART_TEXT}>{entry.text}</span></span>);
+
   const shape = SHAPES.includes(imageShape) ? imageShape : 'pill';
 
   return (
@@ -606,8 +608,7 @@ function FlowingMenu({
                 >
                   {Array.from({ length: copies[index] ?? 3 }, (_, copy) => (
                     <div className={PART} key={copy}>
-                      <span className={PART_TEXT}>{item.marquee ?? item.text}</span>
-                      {item.image && <span className={IMAGE} style={{ backgroundImage: `url(${item.image})` }} />}
+                      {renderSequence(item)}
                     </div>
                   ))}
                 </div>
@@ -642,8 +643,7 @@ function FlowingMenu({
                   {item &&
                     Array.from({ length: copies[slots[slot]] ?? 3 }, (_, copy) => (
                       <div className={PART} key={copy}>
-                        <span className={PART_TEXT}>{item.marquee ?? item.text}</span>
-                        {item.image && <span className={IMAGE} style={{ backgroundImage: `url(${item.image})` }} />}
+                        {renderSequence(item)}
                       </div>
                     ))}
                 </div>

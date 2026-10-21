@@ -203,3 +203,5 @@
   will-change: transform, opacity;
 }
 
+
+.flowing-menu__pair { display:flex; align-items:center; flex-shrink:0; height:100%; }
