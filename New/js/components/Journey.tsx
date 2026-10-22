@@ -16,7 +16,7 @@ const overviewCopy:Record<string,string>={
   suiyuan:'以呼和浩特史志为内容，使用 AIGC、Unity 与 VR 构建沉浸式交互体验。'
 };
 const overviewImages:Record<string,string[]>= {
-  education:['数媒/IMDACNEWLOGO','数媒/师大标志'],
+  education:['数媒/师大标志(左右组合)'],
   arti:['ARTI/0091','ARTI/0092'], lingsu:['微元灵溯LOGO'], internship:['FaceMindLogo'],
   earthquake:['小马博士/0069','小马博士/0070'], suiyuan:['绥远方志/0031','绥远方志/0034']
 };
@@ -53,11 +53,11 @@ export function Journey() {
         <p className="journey-description">{entry.description}</p>
         <ul className="journey-tags">{entry.tags.map(tag=><li key={tag}>{tag}</li>)}</ul>
         {!entry.confirmed&&<p className="journey-review">计划书记录 · 日期与职责待核对</p>}
-        {(entry.kind!=='获奖'||entry.id==='award-1')&&<button className="journey-work-link" aria-expanded={overview===entry.id} aria-controls={`overview-${entry.id}`} onClick={()=>setOverview(overview===entry.id?null:entry.id)}>查看「{entry.id==='internship'?'实习经历':entry.id==='award-1'?'亚创获奖':entry.title}」概况 <span aria-hidden="true">{overview===entry.id?'−':'＋'}</span></button>}
+        {(entry.kind!=='获奖'||entry.id==='award-1')&&<button className="journey-work-link" aria-expanded={overview===entry.id} aria-controls={`overview-${entry.id}`} onClick={()=>setOverview(overview===entry.id?null:entry.id)}>查看「{entry.id==='internship'?'实习经历':entry.id==='award-1'?'“亚创大赛”一等奖':entry.title}」概况 <span aria-hidden="true">{overview===entry.id?'−':'＋'}</span></button>}
         </div>
         {overview===entry.id&&<section id={`overview-${entry.id}`} className="journey-overview" aria-label={`${entry.title}概况`}>
           <span className="journey-nav-label">PROJECT / 概况</span><h4>{entry.id==='internship'?'脸谱心智 · AIGC 实习':entry.title}</h4>
-          {entry.id==='award-1'?<button type="button" className="journey-certificate" onClick={()=>setImageOpen(true)} aria-label="放大亚创获奖证书"><img src={awardImage} alt="亚创获奖证书"/><span>点击查看大图</span></button>:<><p>{overviewCopy[entry.id]??entry.description}</p>{overviewImages[entry.id]&&<div className={`journey-overview-images journey-overview-images--${entry.id}`}>{overviewImages[entry.id].map((key,index)=>{const src=imageFrom(key);return src?<img key={index} src={src} alt="" loading="lazy"/>:null;})}</div>}</>} {entry.id!=='award-1'&&<p className="journey-overview-meta">{entry.organization} · {entry.date}</p>}
+          {entry.id==='award-1'?<button type="button" className="journey-certificate" onClick={()=>setImageOpen(true)} aria-label="放大亚创获奖证书"><span>点击查看大图</span><img src={awardImage} alt="亚创获奖证书"/></button>:<><p>{overviewCopy[entry.id]??entry.description}</p>{entry.id==='mine'?<div className="journey-mine-card"><strong>MINING ECOLOGY<br/>RESTORATION</strong><small>DEPTH AI → UE5&nbsp;&nbsp; / &nbsp;&nbsp;2023</small></div>:overviewImages[entry.id]&&<div className={`journey-overview-images journey-overview-images--${entry.id}`}>{overviewImages[entry.id].map((key,index)=>{const src=imageFrom(key);return src?<img key={index} src={src} alt="" loading="lazy"/>:null;})}</div>}</>} {entry.id!=='award-1'&&<p className="journey-overview-meta">{entry.organization} · {entry.date}</p>}
         </section>}
 
       </article>)}</div>
