@@ -4,8 +4,8 @@ import {useJourney} from '../hooks/useJourney';
 import '../../css/journey.css';
 import awardImage from '../../assets/images/03 The Journey/亚洲大创一等奖.jpg';
 
-const journeyImages=import.meta.glob('../../assets/images/03 The Journey/**/*.{png,jpg,jpeg}',{eager:true,query:'?url',import:'default'}) as Record<string,string>;
-const imageFrom=(key:string)=>Object.entries(journeyImages).find(([path])=>path.includes(`/03 The Journey/${key}`))?.[1];
+const journeyImages=import.meta.glob('../../assets/images/03 The Journey/thumbnails/**/*.webp',{eager:true,query:'?url',import:'default'}) as Record<string,string>;
+const imageFrom=(key:string)=>Object.entries(journeyImages).find(([path])=>path.includes(`/thumbnails/${key}`))?.[1];
 const overviewCopy:Record<string,string>={
   education:'数字媒体艺术专业，围绕用户体验、影像创作与数字动态表达建立完整的设计基础。',
   mine:'以 Depth AI 建立场景模型，并在 UE5 中完成生态重建主题的实机演示。',
@@ -25,6 +25,7 @@ export function Journey() {
   const root=useRef<HTMLElement>(null);
   const active=useJourney(root);
   const [overview,setOverview]=useState<string|null>(null);
+  const [suiyuanImages]=useState(()=>Object.keys(journeyImages).filter(path=>path.includes('/绥远方志/')).map(path=>path.split('/thumbnails/')[1]).sort(()=>Math.random()-.5).slice(0,2));
   const lightbox=useRef<HTMLDialogElement>(null);
   const [imageOpen,setImageOpen]=useState(false);
   useEffect(()=>{
@@ -56,8 +57,18 @@ export function Journey() {
         {(entry.kind!=='获奖'||entry.id==='award-1')&&<button className="journey-work-link" aria-expanded={overview===entry.id} aria-controls={`overview-${entry.id}`} onClick={()=>setOverview(overview===entry.id?null:entry.id)}>查看「{entry.id==='internship'?'实习经历':entry.id==='award-1'?'“亚创大赛”一等奖':entry.title}」概况 <span aria-hidden="true">{overview===entry.id?'−':'＋'}</span></button>}
         </div>
         {overview===entry.id&&<section id={`overview-${entry.id}`} className="journey-overview" aria-label={`${entry.title}概况`}>
-          <span className="journey-nav-label">PROJECT / 概况</span><h4>{entry.id==='internship'?'脸谱心智 · AIGC 实习':entry.title}</h4>
-          {entry.id==='award-1'?<button type="button" className="journey-certificate" onClick={()=>setImageOpen(true)} aria-label="放大亚创获奖证书"><span>点击查看大图</span><img src={awardImage} alt="亚创获奖证书"/></button>:<><p>{overviewCopy[entry.id]??entry.description}</p>{entry.id==='mine'?<div className="journey-mine-card"><strong>MINING ECOLOGY<br/>RESTORATION</strong><small>DEPTH AI → UE5&nbsp;&nbsp; / &nbsp;&nbsp;2023</small></div>:overviewImages[entry.id]&&<div className={`journey-overview-images journey-overview-images--${entry.id}`}>{overviewImages[entry.id].map((key,index)=>{const src=imageFrom(key);return src?<img key={index} src={src} alt="" loading="lazy"/>:null;})}</div>}</>} {entry.id!=='award-1'&&<p className="journey-overview-meta">{entry.organization} · {entry.date}</p>}
+          {entry.id==='award-1'?<button type="button" className="journey-certificate" onClick={()=>setImageOpen(true)} aria-label="放大亚创获奖证书"><span>点击查看大图</span><img src={imageFrom('亚洲大创一等奖')} alt="亚创获奖证书"/></button>:entry.id==='mine'?<div className="journey-mine-card">
+            <div className="mine-kicker">ECOLOGICAL RECONSTRUCTION · UE5</div><h4>矿山*生态</h4>
+            <strong>MINING ECOLOGY<br/>RESTORATION</strong>
+            <p>使用 AI 图像生成、语言模型、ShaderMap 与 SUNO 辅助创作，结合场景建模与 UE5，完成生态重建主题的实机演示。</p>
+            <dl>{[['TYPE','生态场景设计'],['PIPELINE','Depth AI → UE5'],['OUTPUT','矿山场景实机'],['YEAR','2023']].map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+          </div>:<>
+            <span className="journey-nav-label">{entry.id==='internship'?'INTERNSHIP / 实习经历':'PROJECT / 概况'}</span>
+            <h4>{entry.id==='internship'?'AIGC 实习 · 工作内容':entry.id==='earthquake'?'活动断层成果应用':entry.title}</h4>
+            {entry.id==='internship'?<ul className="journey-internship-list"><li>配置和优化 ComfyUI 的 LivePortrait、easyanimat。</li><li>完善和修改角色卡，制作抽卡抽奖动画及类 fufu 的角色 AI 动画。</li><li>制作 CP30 宣发海报、易拉宝，完善哄哄模拟器设计，迭代话题与话术。</li><li>完善 VUP 模拟器设计，使用 PyQt 编写界面。</li></ul>:<p>{overviewCopy[entry.id]??entry.description}</p>}
+            {overviewImages[entry.id]&&<div className={`journey-overview-images journey-overview-images--${entry.id}`}>{(entry.id==='suiyuan'?suiyuanImages:overviewImages[entry.id]).map((key,index)=>{const src=imageFrom(key);return src?<img key={key} src={src} alt={`${entry.title}展示 ${index+1}`} loading="lazy" decoding="async"/>:null;})}</div>}
+            <p className="journey-overview-meta">{entry.organization} · {entry.date}</p>
+          </>}
         </section>}
 
       </article>)}</div>
