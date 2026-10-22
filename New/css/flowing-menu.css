@@ -205,3 +205,4 @@
 
 
 .flowing-menu__pair { display:flex; align-items:center; flex-shrink:0; height:100%; }
+.flowing-menu__link:hover .flowing-menu__label-text { color:#ff642d; }

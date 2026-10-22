@@ -16,6 +16,7 @@
 .journey-records { position:relative; border-left:1px solid #49433b; }
 .journey-records:before { content:''; position:absolute; left:-1px; top:0; bottom:0; width:1px; background:#ff936b; transform:scaleY(var(--journey-progress)); transform-origin:top; }
 .journey-entry { position:relative; padding:0 0 65px 55px; margin-bottom:50px; border-bottom:1px solid #37332e; scroll-margin-top:15px; }
+.journey-entry:hover .journey-node { border-color:#ff642d; box-shadow:0 0 0 6px #ff642d22; }
 .journey-entry:last-child { margin-bottom:0; }
 .journey-node { position:absolute; left:-6px; top:4px; width:11px; height:11px; border:1px solid #8c8275; background:#161616; border-radius:50%; transition:background .2s,box-shadow .2s; }
 .journey-entry[data-current="true"] .journey-node { background:#ff936b; border-color:#ff936b; box-shadow:0 0 0 6px #ff936b20; }
@@ -23,7 +24,7 @@
 .journey-meta { display:flex; align-items:center; gap:20px; font:11px var(--mono); color:#bcb2a5; margin-bottom:20px; }
 .journey-meta > span:last-child { border:1px solid #5b5146; border-radius:20px; padding:4px 10px; font-size:10px; }
 .journey-entry h3 { font-size:clamp(25px,3.2vw,46px); font-weight:500; line-height:1.3; letter-spacing:-.03em; transition:color .2s; }
-.journey-entry[data-current="true"] h3 { color:#ff936b; }
+.journey-entry[data-current="true"] h3 { color:#ff642d; }
 .journey-organization { font-size:13px; color:#c6beb3; margin-top:12px; }
 .journey-description { font-size:16px; line-height:1.9; color:#d0c9bf; max-width:640px; margin-top:25px; }
 .journey-tags { display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:20px 0 0; }.journey-tags li { font-size:10px; border:1px solid #494139; padding:6px 10px; border-radius:20px; color:#bbb1a4; }
@@ -54,6 +55,12 @@
 .journey-certificate { display:block; width:100%; padding:0; border:0; background:transparent; color:#ffb093; cursor:zoom-in; text-align:left; }
 .journey-certificate img { width:100%; height:auto; max-height:380px; object-fit:contain; }
 .journey-certificate span { display:block; margin-top:14px; font-size:12px; }
+.journey-entry--award-1 .journey-certificate span { writing-mode:vertical-rl; margin:10px auto 0; letter-spacing:2px; }
+.journey-overview-images { display:flex; gap:12px; margin-top:18px; align-items:stretch; }
+.journey-overview-images img { width:calc(50% - 6px); height:110px; object-fit:cover; border:1px solid #494139; }
+.journey-overview-images--lingsu img, .journey-overview-images--internship img { width:auto; max-width:48%; object-fit:contain; }
+.journey-overview-images--education img { object-fit:contain; background:#faf9f6; }
+.journey-overview-images--award-1 img { height:150px; }
 .journey-lightbox { position:fixed; inset:0; width:100%; height:100dvh; max-width:none; max-height:none; margin:0; padding:60px 32px 32px; border:0; background:transparent; }
 .journey-lightbox[open] { display:flex; align-items:center; justify-content:center; }
 .journey-lightbox::backdrop { background:rgba(0,0,0,.58); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); }

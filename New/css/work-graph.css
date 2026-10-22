@@ -13,6 +13,7 @@
 .archive-node button{position:relative;width:100%;padding:0;background:none;border:0;color:#25241f;pointer-events:auto;cursor:grab!important;touch-action:none}
 .archive-node button:active{cursor:grabbing!important}
 .archive-node-disc{display:grid;place-items:center;width:92px;height:92px;margin:0 auto 12px;border:1px solid #d0c2ae;border-radius:50%;background:#e8dfcf;box-shadow:0 7px 22px #30261812;transition:box-shadow .2s,border-color .2s;overflow:hidden}
+.archive-node button:hover .archive-node-disc{border-color:#ff642d;box-shadow:0 0 0 8px #ff642d1c,0 10px 28px #3026182b;transform:translateY(-3px)}
 .archive-node-disc img{width:100%;height:100%;object-fit:cover;pointer-events:none}
 .archive-node-disc>span{font:22px var(--mono);color:#b84623}
 .archive-node strong{display:block;font-size:14px;font-weight:500;line-height:1.4;padding:2px 0;background:var(--paper)}

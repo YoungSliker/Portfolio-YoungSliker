@@ -35,9 +35,9 @@ export function About() {
       </div>
     </div>
     </div>
-    <div className="about-fields-heading" data-about-reveal><span className="mono">THREE FIELDS / ONE PRACTICE</span><p>三种视角，共同构成我的创作。</p></div>
+    <div className="about-fields-heading" data-about-reveal><span className="mono">THREE FIELDS / ONE PRACTICE</span></div>
     <div className="about-flowing-fields">
-      <FlowingMenu items={fieldItems} intro={false} speed={65} carryContent showArrow
+      <FlowingMenu items={fieldItems} intro={false} speed={65} carryContent showArrow={false}
         textColor="#171717" bgColor="#eeeae3" marqueeBgColor="#171717" marqueeTextColor="#faf9f6"
         borderColor="#d8d0c4" ariaLabel="创作领域" onItemClick={(_item:unknown,index:number)=>setActive(index)} />
     </div>

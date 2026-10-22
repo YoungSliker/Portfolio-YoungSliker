@@ -28,7 +28,7 @@ for(const width of [375,844,1440,1920]) {
 test('project targets, browser history and resume facts',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});
  await page.goto(base+'#journey');
- await expect(page.locator('.journey-records')).toContainText('第一届亚洲大学生创意设计展');
+ await expect(page.locator('.journey-records')).toContainText('亚创一等奖');
  await expect(page.locator('.journey-records')).not.toContainText('第二届');
  await expect(page.locator('.journey-awards')).toHaveCount(0);
  await expect(page.locator('#journey-suiyuan')).toContainText('2025.01 — 2025.07');
