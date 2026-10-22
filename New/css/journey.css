@@ -47,3 +47,19 @@
 .journey-overview{margin-top:24px;padding:26px;border:1px solid #494139;background:#20201e;max-width:720px;animation:overview-in .25s ease-out}.journey-overview h4{font-size:22px;margin:14px 0;color:#ffb093}.journey-overview p{font-size:14px;line-height:1.9;color:#d0c9bf}.journey-overview .journey-overview-meta{font-size:11px;color:#aaa39a;margin-top:18px}.journey-awards time{font:12px var(--mono);color:#aaa39a}@keyframes overview-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){.journey-overview{animation:none}}
 
 @media(max-width:767px){.journey-sidebar nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.journey-sidebar button{min-width:0;flex-direction:column;align-items:flex-start;gap:6px}.journey-sidebar button span{font-size:23px}}
+
+.journey-entry { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); column-gap:clamp(24px,3vw,56px); align-items:start; }
+.journey-entry-copy { min-width:0; }
+.journey-overview { grid-column:2; grid-row:1; margin:0; min-width:0; width:100%; }
+.journey-certificate { display:block; width:100%; padding:0; border:0; background:transparent; color:#ffb093; cursor:zoom-in; text-align:left; }
+.journey-certificate img { width:100%; height:auto; max-height:380px; object-fit:contain; }
+.journey-certificate span { display:block; margin-top:14px; font-size:12px; }
+.journey-lightbox { position:fixed; inset:0; width:100%; height:100dvh; max-width:none; max-height:none; margin:0; padding:60px 32px 32px; border:0; background:transparent; }
+.journey-lightbox[open] { display:flex; align-items:center; justify-content:center; }
+.journey-lightbox::backdrop { background:rgba(0,0,0,.58); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); }
+.journey-lightbox>img { max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 16px 80px #0008; }
+.journey-lightbox-close { position:absolute; right:24px; top:18px; padding:10px 14px; color:white; background:#222; border:1px solid #888; cursor:pointer; }
+@media(max-width:767px) { .journey-entry { grid-template-columns:minmax(0,1fr); } .journey-overview { grid-column:1; grid-row:auto; margin-top:24px; } }
+
+.journey-lightbox { -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); }
+
