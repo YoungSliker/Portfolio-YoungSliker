@@ -14,7 +14,7 @@ const practiceEntries:TimelineEntry[] = [
 ];
 // No invented dates or individual/team attribution.
 export const journeyAwards = [
-  {date:'2022.09',title:'第八届中国国际“互联网+”大学生创新创业大赛',result:'省级银奖',project:'“青年红色筑梦之旅”赛道'},
+  {date:'2022.09',title:'第八届中国国际“互联网+”大学生创新创业大赛',result:'“互联网+”省银',project:'非遗颂"铸牢"'},
   {date:'2024.06',title:'第一届亚洲大学生创意设计展',result:'“亚创大赛”一等奖',project:'元宇宙空间设计：生成式人工智能打造全新数字化虚拟沉浸式体验空间'},
 ];
 export const journeyEntries:TimelineEntry[] = [...practiceEntries,...journeyAwards.map((award,index)=>({id:`award-${index}`,year:award.date.slice(0,4),date:award.date,kind:'获奖',title:award.result,organization:award.title,description:award.project,tags:['荣誉'],source:'用户确认日期与简历',confirmed:true}))].sort((a,b)=>a.date.localeCompare(b.date));

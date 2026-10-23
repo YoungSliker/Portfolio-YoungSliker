@@ -6,7 +6,7 @@
  const back=document.createElement('a');
  back.href='New/?journeyReturn=1#journey';back.textContent='← 返回新版 · 继续浏览';
  back.className='journey-return-link cursor-target';
- back.style.cssText='position:fixed;right:24px;bottom:28px;z-index:2147483001;padding:12px 18px;border:1px solid #827468;border-radius:4px;background:#20201ef2;color:#ffb093;font:14px/1.4 sans-serif;text-decoration:none;box-shadow:0 6px 24px #0004;';
+ back.style.cssText='position:fixed;right:24px;bottom:28px;z-index:2147482990;padding:12px 18px;border:1px solid #827468;border-radius:4px;background:#20201ef2;color:#ffb093;font:14px/1.4 sans-serif;text-decoration:none;box-shadow:0 6px 24px #0004;';
  const placeReturn=()=>{const host=document.querySelector('dialog[open]')||document.body;if(back.parentElement!==host)host.appendChild(back);};
  window.addEventListener('DOMContentLoaded',()=>{
   placeReturn();new MutationObserver(placeReturn).observe(document.body,{subtree:true,attributes:true,attributeFilter:['open'],childList:true});
@@ -21,10 +21,12 @@
   if(!tile)return false;
   tile.click();return true;
  };
- window.addEventListener('load',()=>{
-  if(open())return;
-  observer=new MutationObserver(()=>{if(open())observer.disconnect();});
+ const reveal=()=>{document.documentElement.removeAttribute('data-journey-direct');};
+ const start=()=>{
+  if(open()){requestAnimationFrame(reveal);return;}
+  observer=new MutationObserver(()=>{if(open()){observer.disconnect();requestAnimationFrame(reveal);}});
   observer.observe(document.getElementById('aigc-drift-root')||document.body,{childList:true,subtree:true});
-  setTimeout(()=>observer.disconnect(),15000);
- },{once:true});
+  setTimeout(()=>{observer.disconnect();reveal();},15000);
+ };
+ if(document.readyState==='loading')window.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();

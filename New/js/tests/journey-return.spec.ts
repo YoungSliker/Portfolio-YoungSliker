@@ -8,8 +8,20 @@ test('legacy return restores the open overview and its screen position',async({p
  const before=await row.evaluate(el=>el.getBoundingClientRect().top);
  const images=await row.locator('.journey-overview img').evaluateAll(imgs=>imgs.map(img=>img.getAttribute('src')));
  await link.click();await expect(page).toHaveURL(/index.html\?work=suiyuan/);
+ await expect(page.locator('html')).not.toHaveAttribute('data-journey-direct','true');
+ await page.getByRole('link',{name:'← 返回新版 · 继续浏览'}).hover();
+ expect(await page.locator('.target-cursor-wrapper').evaluate(el=>Number(getComputedStyle(el).zIndex))).toBeGreaterThan(await page.locator('.journey-return-link').evaluate(el=>Number(getComputedStyle(el).zIndex)));
  await page.getByRole('link',{name:'← 返回新版 · 继续浏览'}).click();
  await expect(row.locator('.journey-overview')).toBeVisible();
  await expect.poll(()=>row.evaluate(el=>el.getBoundingClientRect().top)).toBeCloseTo(before,0);
  expect(await row.locator('.journey-overview img').evaluateAll(imgs=>imgs.map(img=>img.getAttribute('src')))).toEqual(images);
+});
+test('Internet Plus silver certificate uses the supplied artwork and image',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/Portfolio-YoungSliker/New/#journey');
+ const row=page.locator('#journey-award-0');await expect(row.locator('h3')).toHaveText('“互联网+”省银');await expect(row.locator('.journey-description')).toHaveText('非遗颂"铸牢"');
+ await row.locator('.journey-work-link').click();
+ const image=row.locator('.journey-certificate img');await expect.poll(()=>image.evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
+ await row.locator('.journey-certificate').click();await expect(page.getByRole('dialog')).toHaveAttribute('aria-label','“互联网+”省银获奖证书大图');
+ await expect.poll(()=>page.locator('.journey-lightbox>img').evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
+ await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).not.toBeVisible();
 });

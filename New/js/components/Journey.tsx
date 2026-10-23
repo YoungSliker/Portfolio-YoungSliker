@@ -5,6 +5,7 @@ import {InteractiveCursor} from './InteractiveCursor';
 import {legacyAsset} from '../lib/assets';
 import '../../css/journey.css';
 import awardImage from '../../assets/images/03 The Journey/亚洲大创一等奖.jpg';
+import silverImage from '../../assets/images/03 The Journey/“互联网+”大学生创新创业大赛省银.jpg';
 
 const journeyImages=import.meta.glob('../../assets/images/03 The Journey/thumbnails/**/*.webp',{eager:true,query:'?url',import:'default'}) as Record<string,string>;
 const imageFrom=(key:string)=>Object.entries(journeyImages).find(([path])=>path.includes(`/thumbnails/${key}`))?.[1];
@@ -59,6 +60,8 @@ export function Journey() {
   };
   const lightbox=useRef<HTMLDialogElement>(null);
   const [imageOpen,setImageOpen]=useState(false);
+  const [activeCertificate,setActiveCertificate]=useState('award-1');
+  const certificateTitle=activeCertificate==='award-0'?'“互联网+”省银获奖证书':'亚洲大学生创意设计展一等奖证书';
   useEffect(()=>{
     if(!imageOpen)return;
     const dialog=lightbox.current!;const previous=document.body.style.overflow;
@@ -85,11 +88,11 @@ export function Journey() {
         <p className="journey-description">{entry.description}</p>
         <ul className="journey-tags">{entry.tags.map(tag=><li key={tag}>{tag}</li>)}</ul>
         {!entry.confirmed&&<p className="journey-review">计划书记录 · 日期与职责待核对</p>}
-        {(entry.kind!=='获奖'||entry.id==='award-1')&&<button className="journey-work-link" aria-expanded={overview===entry.id} aria-controls={`overview-${entry.id}`} onClick={()=>toggleOverview(entry.id)}>查看「{entry.id==='internship'?'实习经历':entry.id==='award-1'?'“亚创大赛”一等奖':entry.title}」概况 <span aria-hidden="true">{overview===entry.id?'−':'＋'}</span></button>}
+        <button className="journey-work-link" aria-expanded={overview===entry.id} aria-controls={`overview-${entry.id}`} onClick={()=>toggleOverview(entry.id)}>查看「{entry.id==='internship'?'实习经历':entry.title}」概况 <span aria-hidden="true">{overview===entry.id?'−':'＋'}</span></button>
         </div>
         {overview===entry.id&&<section id={`overview-${entry.id}`} className="journey-overview" aria-label={`${entry.title}概况`}>
           {['mine','arti','lingsu','earthquake','suiyuan'].includes(entry.id)&&<a className="journey-detail-link" href={`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${entry.id}`} onClick={()=>rememberPosition(entry.id)}>查看作品详情 ↗</a>}
-          {entry.id==='award-1'?<button type="button" className="journey-certificate" onClick={()=>setImageOpen(true)} aria-label="放大亚创获奖证书"><span>点击查看大图</span><img data-cursor-bound src={imageFrom('亚洲大创一等奖')} alt="亚创获奖证书"/></button>:<>
+          {entry.kind==='获奖'?<button type="button" className="journey-certificate" onClick={()=>{setActiveCertificate(entry.id);setImageOpen(true);}} aria-label={`放大${entry.title}证书`}><span>点击查看大图</span><img data-cursor-bound src={imageFrom(entry.id==='award-0'?'“互联网+”大学生创新创业大赛省银':'亚洲大创一等奖')} alt={`${entry.title}证书`}/></button>:<>
             <span className="journey-nav-label">{entry.id==='internship'?'INTERNSHIP / 实习经历':'PROJECT / 概况'}</span>
             <h4>{entry.id==='internship'?'AIGC 实习 · 工作内容':entry.id==='earthquake'?'活动断层成果应用':entry.title}</h4>
             {entry.id==='internship'?<ul className="journey-internship-list"><li>配置和优化 ComfyUI 的 LivePortrait、easyanimat。</li><li>完善和修改角色卡，制作抽卡抽奖动画及类 fufu 的角色 AI 动画。</li><li>制作 CP30 宣发海报、易拉宝，完善哄哄模拟器设计，迭代话题与话术。</li><li>完善 VUP 模拟器设计，使用 PyQt 编写界面。</li></ul>:<p>{overviewCopy[entry.id]??entry.description}</p>}
@@ -100,10 +103,10 @@ export function Journey() {
 
       </article>)}</div>
     </div>
-    <dialog ref={lightbox} className="journey-lightbox" aria-label="亚洲大学生创意设计展一等奖证书大图" onClose={()=>setImageOpen(false)} onClick={event=>{if(event.target===event.currentTarget)setImageOpen(false);}}>
+    <dialog ref={lightbox} className="journey-lightbox" aria-label={`${certificateTitle}大图`} onClose={()=>setImageOpen(false)} onClick={event=>{if(event.target===event.currentTarget)setImageOpen(false);}}>
       {imageOpen&&<InteractiveCursor/>}
       <button type="button" className="journey-lightbox-close" aria-label="关闭证书大图" onClick={()=>setImageOpen(false)}>关闭 ×</button>
-      <img src={awardImage} alt="亚洲大学生创意设计展一等奖证书大图"/>
+      <img src={activeCertificate==='award-0'?silverImage:awardImage} alt={`${certificateTitle}大图`}/>
     </dialog>
     <a className="journey-next" href="#works"><span>探索汇成作品</span><span>04 / WORKS ↗</span></a>
   </section>;
