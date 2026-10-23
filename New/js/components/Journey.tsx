@@ -28,6 +28,25 @@ export function Journey() {
   const active=useJourney(root);
   const [overview,setOverview]=useState<string|null>(null);
   const [suiyuanImages,setSuiyuanImages]=useState<string[]>([]);
+  const rememberPosition=(id:string)=>{
+    sessionStorage.setItem('portfolio-journey-return',JSON.stringify({id,offset:document.getElementById(`journey-${id}`)?.getBoundingClientRect().top??0,images:suiyuanImages}));
+  };
+  useEffect(()=>{
+    if(!new URLSearchParams(location.search).has('journeyReturn'))return;
+    let cancelled=false;
+    try{
+      const saved=JSON.parse(sessionStorage.getItem('portfolio-journey-return')||'null');
+      if(!saved||!journeyEntries.some(entry=>entry.id===saved.id))return;
+      setOverview(saved.id);setSuiyuanImages(saved.images||[]);
+      void document.fonts.ready.then(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        if(cancelled)return;
+        const entry=document.getElementById(`journey-${saved.id}`);
+        if(entry)window.scrollTo({top:scrollY+entry.getBoundingClientRect().top-saved.offset,behavior:'instant'});
+        const url=new URL(location.href);url.searchParams.delete('journeyReturn');history.replaceState(null,'',url);
+      })));
+    }catch{/* A missing saved position falls back to the Journey section. */}
+    return()=>{cancelled=true;};
+  },[]);
   const toggleOverview=(id:string)=>{
     if(id==='suiyuan'&&overview!==id){
       const pool=Object.keys(journeyImages).filter(path=>path.includes('/绥远方志/')).map(path=>path.split('/thumbnails/')[1]);
@@ -69,13 +88,8 @@ export function Journey() {
         {(entry.kind!=='获奖'||entry.id==='award-1')&&<button className="journey-work-link" aria-expanded={overview===entry.id} aria-controls={`overview-${entry.id}`} onClick={()=>toggleOverview(entry.id)}>查看「{entry.id==='internship'?'实习经历':entry.id==='award-1'?'“亚创大赛”一等奖':entry.title}」概况 <span aria-hidden="true">{overview===entry.id?'−':'＋'}</span></button>}
         </div>
         {overview===entry.id&&<section id={`overview-${entry.id}`} className="journey-overview" aria-label={`${entry.title}概况`}>
-          {['mine','arti','lingsu','earthquake','suiyuan'].includes(entry.id)&&<a className="journey-detail-link" href={`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${entry.id}`} target="_blank" rel="noopener noreferrer">查看作品详情 ↗</a>}
-          {entry.id==='award-1'?<button type="button" className="journey-certificate" onClick={()=>setImageOpen(true)} aria-label="放大亚创获奖证书"><span>点击查看大图</span><img data-cursor-bound src={imageFrom('亚洲大创一等奖')} alt="亚创获奖证书"/></button>:entry.id==='mine'?<div className="journey-mine-card">
-            <div className="mine-kicker">ECOLOGICAL RECONSTRUCTION · UE5</div><h4>矿山*生态</h4>
-            <strong>MINING ECOLOGY<br/>RESTORATION</strong>
-            <p>使用 AI 图像生成、语言模型、ShaderMap 与 SUNO 辅助创作，结合场景建模与 UE5，完成生态重建主题的实机演示。</p>
-            <dl>{[['TYPE','生态场景设计'],['PIPELINE','Depth AI → UE5'],['OUTPUT','矿山场景实机'],['YEAR','2023']].map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-          </div>:<>
+          {['mine','arti','lingsu','earthquake','suiyuan'].includes(entry.id)&&<a className="journey-detail-link" href={`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${entry.id}`} onClick={()=>rememberPosition(entry.id)}>查看作品详情 ↗</a>}
+          {entry.id==='award-1'?<button type="button" className="journey-certificate" onClick={()=>setImageOpen(true)} aria-label="放大亚创获奖证书"><span>点击查看大图</span><img data-cursor-bound src={imageFrom('亚洲大创一等奖')} alt="亚创获奖证书"/></button>:<>
             <span className="journey-nav-label">{entry.id==='internship'?'INTERNSHIP / 实习经历':'PROJECT / 概况'}</span>
             <h4>{entry.id==='internship'?'AIGC 实习 · 工作内容':entry.id==='earthquake'?'活动断层成果应用':entry.title}</h4>
             {entry.id==='internship'?<ul className="journey-internship-list"><li>配置和优化 ComfyUI 的 LivePortrait、easyanimat。</li><li>完善和修改角色卡，制作抽卡抽奖动画及类 fufu 的角色 AI 动画。</li><li>制作 CP30 宣发海报、易拉宝，完善哄哄模拟器设计，迭代话题与话术。</li><li>完善 VUP 模拟器设计，使用 PyQt 编写界面。</li></ul>:<p>{overviewCopy[entry.id]??entry.description}</p>}

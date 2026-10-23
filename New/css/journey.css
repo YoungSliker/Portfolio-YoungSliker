@@ -85,10 +85,10 @@
 .journey-overview-images:not(.journey-overview-images--lingsu):not(.journey-overview-images--internship):not(.journey-overview-images--education) img {height:auto;object-fit:contain;align-self:center;}
 .journey-internship-list {padding-left:18px;font-size:14px;line-height:1.9;color:#d0c9bf;}
 .journey-internship-list li+li {margin-top:8px;}
-.journey-entry--award-1 .journey-overview {padding:0;border:0;background:none;}
+.journey-entry--award-1 .journey-overview {padding:26px;border:1px solid #494139;background:#20201e;}
 .journey-certificate {display:flex;justify-content:center;gap:14px;min-height:190px;}
 .journey-certificate img {width:50%;max-height:190px;}
-.journey-entry--mine .journey-overview {padding:0;border:0;background:none;}
+.journey-entry--mine .journey-overview {padding:26px;border:1px solid #494139;background:#20201e;}
 .journey-mine-card {margin:0;padding:22px 18px 0;overflow:hidden;background:linear-gradient(#08100ddd,#08100dee),url('../assets/images/menu/mine-eco.webp') center/cover;border:1px solid #536b2344;}
 .mine-kicker {font:700 9px/1.5 var(--sans);letter-spacing:2px;color:#b7ee36;}
 .journey-mine-card h4 {font-size:clamp(32px,3.3vw,58px);font-weight:900;color:#fff;line-height:1.15;margin:18px 0;}
@@ -112,5 +112,5 @@
 .journey-overview {position:relative;}
 .journey-detail-link {position:absolute;right:20px;top:20px;font-size:11px;color:#ffb093;padding:5px 0;z-index:1;}
 .journey-overview:has(.journey-detail-link)>.journey-nav-label {display:block;padding-right:100px;min-height:24px;}
-.journey-entry--mine .journey-detail-link {position:relative;display:block;text-align:right;right:auto;top:auto;width:max-content;margin:0 0 10px auto;}
+.journey-entry--mine .journey-detail-link {position:absolute;right:20px;top:20px;}
 

@@ -5,7 +5,7 @@ test('overview sits on the right and award opens a dismissible image',async({pag
  const mine=page.locator('#journey-mine');await mine.locator('.journey-work-link').click();
  const copy=await mine.locator('.journey-entry-copy').boundingBox(),panel=await mine.locator('.journey-overview').boundingBox();
  expect(panel!.x).toBeGreaterThan(copy!.x+copy!.width);expect(Math.abs(panel!.y-copy!.y)).toBeLessThan(2);
- await expect(mine.locator('.journey-mine-card dl div')).toHaveCount(4);
+ await expect(mine.locator('.journey-overview h4')).toHaveText('矿山*生态');
  await mine.screenshot({path:'test-results/journey-mine-review.png'});
  const award=page.locator('#journey-award-1');await award.locator('.journey-work-link').click();
  const thumb=award.locator('.journey-certificate img');await expect(thumb).toBeVisible();expect(await thumb.evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
