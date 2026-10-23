@@ -1,6 +1,8 @@
 import {useEffect,useRef,useState} from 'react';
 import {journeyEntries,journeyYears} from '../../data/journey';
 import {useJourney} from '../hooks/useJourney';
+import {InteractiveCursor} from './InteractiveCursor';
+import {legacyAsset} from '../lib/assets';
 import '../../css/journey.css';
 import awardImage from '../../assets/images/03 The Journey/亚洲大创一等奖.jpg';
 
@@ -25,7 +27,17 @@ export function Journey() {
   const root=useRef<HTMLElement>(null);
   const active=useJourney(root);
   const [overview,setOverview]=useState<string|null>(null);
-  const [suiyuanImages]=useState(()=>Object.keys(journeyImages).filter(path=>path.includes('/绥远方志/')).map(path=>path.split('/thumbnails/')[1]).sort(()=>Math.random()-.5).slice(0,2));
+  const [suiyuanImages,setSuiyuanImages]=useState<string[]>([]);
+  const toggleOverview=(id:string)=>{
+    if(id==='suiyuan'&&overview!==id){
+      const pool=Object.keys(journeyImages).filter(path=>path.includes('/绥远方志/')).map(path=>path.split('/thumbnails/')[1]);
+      for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+      let next=pool.slice(0,2);
+      if(next.every(item=>suiyuanImages.includes(item))&&pool.length>2)next=[pool[2],pool[0]];
+      setSuiyuanImages(next);
+    }
+    setOverview(overview===id?null:id);
+  };
   const lightbox=useRef<HTMLDialogElement>(null);
   const [imageOpen,setImageOpen]=useState(false);
   useEffect(()=>{
@@ -50,14 +62,15 @@ export function Journey() {
       <div className="journey-records">{journeyEntries.map((entry,index)=><article tabIndex={-1} key={entry.id} id={`journey-${entry.id}`} className={`journey-entry journey-entry--${entry.id}`} data-timeline-entry data-current={active===index} data-past={active>index} aria-current={active===index?'step':undefined}>
         <span className="journey-node" aria-hidden="true"/>
         <div className="journey-entry-copy"><div className="journey-meta"><span>{entry.date}</span><span>{entry.kind}</span></div>
-        <h3>{entry.title}</h3>{entry.id!=='award-1'&&<p className="journey-organization">{entry.organization}</p>}
+        <h3>{entry.title}</h3><p className="journey-organization">{entry.id==='award-1'?'2024第一届亚洲大学生创意设计展':entry.organization}</p>
         <p className="journey-description">{entry.description}</p>
         <ul className="journey-tags">{entry.tags.map(tag=><li key={tag}>{tag}</li>)}</ul>
         {!entry.confirmed&&<p className="journey-review">计划书记录 · 日期与职责待核对</p>}
-        {(entry.kind!=='获奖'||entry.id==='award-1')&&<button className="journey-work-link" aria-expanded={overview===entry.id} aria-controls={`overview-${entry.id}`} onClick={()=>setOverview(overview===entry.id?null:entry.id)}>查看「{entry.id==='internship'?'实习经历':entry.id==='award-1'?'“亚创大赛”一等奖':entry.title}」概况 <span aria-hidden="true">{overview===entry.id?'−':'＋'}</span></button>}
+        {(entry.kind!=='获奖'||entry.id==='award-1')&&<button className="journey-work-link" aria-expanded={overview===entry.id} aria-controls={`overview-${entry.id}`} onClick={()=>toggleOverview(entry.id)}>查看「{entry.id==='internship'?'实习经历':entry.id==='award-1'?'“亚创大赛”一等奖':entry.title}」概况 <span aria-hidden="true">{overview===entry.id?'−':'＋'}</span></button>}
         </div>
         {overview===entry.id&&<section id={`overview-${entry.id}`} className="journey-overview" aria-label={`${entry.title}概况`}>
-          {entry.id==='award-1'?<button type="button" className="journey-certificate" onClick={()=>setImageOpen(true)} aria-label="放大亚创获奖证书"><span>点击查看大图</span><img src={imageFrom('亚洲大创一等奖')} alt="亚创获奖证书"/></button>:entry.id==='mine'?<div className="journey-mine-card">
+          {['mine','arti','lingsu','earthquake','suiyuan'].includes(entry.id)&&<a className="journey-detail-link" href={`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${entry.id}`} target="_blank" rel="noopener noreferrer">查看作品详情 ↗</a>}
+          {entry.id==='award-1'?<button type="button" className="journey-certificate" onClick={()=>setImageOpen(true)} aria-label="放大亚创获奖证书"><span>点击查看大图</span><img data-cursor-bound src={imageFrom('亚洲大创一等奖')} alt="亚创获奖证书"/></button>:entry.id==='mine'?<div className="journey-mine-card">
             <div className="mine-kicker">ECOLOGICAL RECONSTRUCTION · UE5</div><h4>矿山*生态</h4>
             <strong>MINING ECOLOGY<br/>RESTORATION</strong>
             <p>使用 AI 图像生成、语言模型、ShaderMap 与 SUNO 辅助创作，结合场景建模与 UE5，完成生态重建主题的实机演示。</p>
@@ -74,6 +87,7 @@ export function Journey() {
       </article>)}</div>
     </div>
     <dialog ref={lightbox} className="journey-lightbox" aria-label="亚洲大学生创意设计展一等奖证书大图" onClose={()=>setImageOpen(false)} onClick={event=>{if(event.target===event.currentTarget)setImageOpen(false);}}>
+      {imageOpen&&<InteractiveCursor/>}
       <button type="button" className="journey-lightbox-close" aria-label="关闭证书大图" onClick={()=>setImageOpen(false)}>关闭 ×</button>
       <img src={awardImage} alt="亚洲大学生创意设计展一等奖证书大图"/>
     </dialog>

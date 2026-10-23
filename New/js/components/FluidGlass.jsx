@@ -957,14 +957,12 @@ const FluidGlass = ({
       return !settled;
     };
 
-    let lastIntroFrame = -Infinity;
     const frame = now => {
       raf = 0;
       if (lost) return;
       // Precompile under the cover, but do not compete with its reveal at full frame rate.
       if (document.body.dataset.introEntering === 'true') {
-        if (now-lastIntroFrame < 1000/15) { raf=requestAnimationFrame(frame);return; }
-        lastIntroFrame=now;
+        raf=requestAnimationFrame(frame);return;
       }
       const gap = now - tick;
       tick = now;

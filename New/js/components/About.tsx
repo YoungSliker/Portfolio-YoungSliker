@@ -42,6 +42,6 @@ export function About() {
         borderColor="#d8d0c4" ariaLabel="创作领域" onItemClick={(_item:unknown,index:number)=>setActive(index)} />
     </div>
     <p className="about-field-summary" aria-live="polite">{details[active].text}</p>
-    <a className="about-next" href="#journey"><span>继续了解我的经历</span><span className="mono">03 / JOURNEY ↓</span></a>
+    <a className="about-next" href="#journey"><span data-cursor-bound>继续了解我的经历</span><span className="mono">03 / JOURNEY ↓</span></a>
   </section>;
 }

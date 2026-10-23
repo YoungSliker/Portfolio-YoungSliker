@@ -543,6 +543,7 @@ export default function TearTicket({
         <span data-ticket-anchor="" style={{ position: 'absolute', left: width, top: 0, pointerEvents: 'none' }} />
         <span data-ticket-anchor="" style={{ position: 'absolute', left: 0, top: height, pointerEvents: 'none' }} />
         <motion.div className="tear-ticket__plane" style={{ transform: plane }}>
+          {[[0,0],[width,0],[width,height],[0,height]].map(([x,y],i)=><span key={i} data-cursor-corner="" style={{position:'absolute',left:x,top:y,width:0,height:0,pointerEvents:'none'}}/>)}
           <div ref={bodyRef} className="tear-ticket__piece">
             {border ? (
               <svg className="tear-ticket__edge" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
