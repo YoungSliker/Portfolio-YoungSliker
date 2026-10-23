@@ -4,6 +4,7 @@ import { useElasticGraph } from '../hooks/useElasticGraph';
 import { categories } from '../../data/content';
 import { graphDetailKeys, graphGroups, graphWorks } from '../../data/graph';
 import { legacyAsset } from '../lib/assets';
+import { InteractiveCursor } from './InteractiveCursor';
 import '@xyflow/react/dist/style.css';
 import '../../css/work-graph.css';
 
@@ -66,9 +67,17 @@ export default function WorkGraph(){
  const [flow,setFlow]=useState<ReactFlowInstance<ArchiveNode>|null>(null);
  const [resetVersion,setResetVersion]=useState(0);
  const detail=useRef<HTMLDivElement>(null);
+ const lightbox=useRef<HTMLDialogElement>(null);
+ const [imageOpen,setImageOpen]=useState(false);
  const returnButton=useRef<HTMLButtonElement|null>(null);
  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
  const work=graphWorks.find(w=>w.id===selected);
+ const imageWork=work&&!work.pending&&['logos','layout','ai-image'].includes(work.group)&&/\.(png|jpe?g|webp|gif|avif|svg)$/i.test(work.original);
+ useEffect(()=>{
+  const dialog=lightbox.current;if(!imageOpen||!dialog)return;
+  const previous=document.body.style.overflow;document.body.style.overflow='hidden';dialog.showModal();
+  return()=>{dialog.close();document.body.style.overflow=previous;};
+ },[imageOpen]);
  function reset(){setCategory(null);setGroup(null);setSelected(null);setExpanded([]);setResetVersion(v=>v+1);}
  function showAll(){setSelected(null);setExpanded(old=>old.length?[]:categories.map(c=>c.id));}
  function chooseCategory(id:string){setCategory(id);setGroup(null);setSelected(null);setExpanded(old=>old.includes(id)?old.filter(x=>x!==id&&!graphGroups.some(g=>g.category===id&&g.id===x)):[...old,id]);}
@@ -98,11 +107,14 @@ export default function WorkGraph(){
   <div className="graph-layout">
    <GraphCanvas models={nodes} edges={edges} resetVersion={resetVersion} onInit={setFlow}/>
    {work&&<div className="graph-detail" ref={detail} tabIndex={-1} role="region" aria-label="作品概况" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();close();}}}>
-    <button className="graph-close" onClick={close}>返回图谱 ×</button>{preview(work.id)&&<img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} loading="lazy" decoding="async"/>}
+    <button className="graph-close" onClick={close}>返回图谱 ×</button>{preview(work.id)&&(imageWork?<button className="graph-cover-button" onClick={()=>setImageOpen(true)} aria-label={`放大查看${work.title}`}><img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} decoding="async"/><span>点击查看原图 ↗</span></button>:<img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} loading="lazy" decoding="async"/>)}
     <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3>{work.title}</h3><p>{work.summary}</p><small>{work.pending?'待加入 · 暂无素材':work.date}</small>
-    {!work.pending&&<a className="text-link" target="_blank" rel="noopener noreferrer" href={graphDetailKeys[work.id]?`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${graphDetailKeys[work.id]}`:legacyAsset(work.original,import.meta.env.BASE_URL)}>{graphDetailKeys[work.id]?'查看作品详情':'查看作品原始素材'} ↗<span className="sr-only">（新标签页打开）</span></a>}
+    {!work.pending&&<a className="graph-detail-link" target="_blank" rel="noopener noreferrer" aria-label={`${graphDetailKeys[work.id]?'查看完整作品详情':'打开作品原始素材'}（新标签页）`} href={graphDetailKeys[work.id]?`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${graphDetailKeys[work.id]}`:legacyAsset(work.original,import.meta.env.BASE_URL)}><span>{graphDetailKeys[work.id]?'查看完整作品':'打开原始作品'}</span><span aria-hidden="true">↗</span></a>}
    </div>}
   </div>
+  <dialog ref={lightbox} className="graph-lightbox" aria-label={work?`${work.title}原图`:'作品原图'} onClose={()=>setImageOpen(false)} onClick={e=>{if(e.target===e.currentTarget)setImageOpen(false);}}>
+   {imageOpen&&work&&<><InteractiveCursor/><button autoFocus className="graph-lightbox-close" onClick={()=>setImageOpen(false)}>关闭 ×</button><img src={legacyAsset(work.original,import.meta.env.BASE_URL)} alt={work.title}/></>}
+  </dialog>
 
  </div>;
 }

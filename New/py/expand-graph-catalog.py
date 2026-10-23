@@ -16,7 +16,7 @@ def add(id, group, title, cover='', original='', date='', pending=False):
     if cover and (repo/cover).is_file():
         try:
             with Image.open(repo/cover) as im:
-                im=ImageOps.exif_transpose(im).convert('RGB'); im.thumbnail((480,480),Image.Resampling.LANCZOS)
+                im=ImageOps.exif_transpose(im).convert('RGBA'); im.thumbnail((480,480),Image.Resampling.LANCZOS)
                 im.save(root/f'assets/images/graph/{id}.webp',quality=80)
         except (OSError,ValueError): pass
     elif original and (repo/original).suffix.lower()=='.mp4' and (repo/original).exists():

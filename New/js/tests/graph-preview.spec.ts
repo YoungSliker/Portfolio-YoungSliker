@@ -1,0 +1,20 @@
+import {test,expect} from '@playwright/test';
+test('single image preview, dismissal and tidy detail action',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.goto('/Portfolio-YoungSliker/New/#works');
+ const activate=async(id:string)=>{await page.locator(`.react-flow__node[data-id="${id}"] button`).focus();await page.keyboard.press('Enter');};
+ await activate('visual');await activate('logos');await activate('wanbu');
+ const card=page.getByRole('region',{name:'作品概况'});
+ await card.getByRole('button',{name:'放大查看万部华严经塔'}).click();
+ const dialog=page.getByRole('dialog',{name:'万部华严经塔原图'});
+ await expect(dialog).toBeVisible();
+ await expect.poll(()=>dialog.locator('img').evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
+ await expect(dialog.locator('img')).toHaveAttribute('src',/万部|%E4%B8%87/);
+ await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();
+ await card.getByRole('button',{name:'放大查看万部华严经塔'}).click();
+ await dialog.click({position:{x:5,y:5}});await expect(dialog).not.toBeVisible();
+ await activate('aigc');await activate('mine-eco');
+ await expect(card.locator('.graph-detail-link')).toHaveText('查看完整作品↗');
+ await expect(card.locator('.graph-detail-link')).toHaveAttribute('href',/work=mine$/);
+ await card.screenshot({path:'test-results/graph-detail-refined.png'});
+});
