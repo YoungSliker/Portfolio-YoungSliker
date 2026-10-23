@@ -961,7 +961,8 @@ const FluidGlass = ({
       raf = 0;
       if (lost) return;
       // Precompile under the cover, but do not compete with its reveal at full frame rate.
-      if (document.body.dataset.introEntering === 'true') {
+      const entrance=container.closest('#hero')?.dataset.entrance;
+      if (entrance === 'playing' || (entrance === 'preparing' && container.dataset.glassReady === 'true')) {
         raf=requestAnimationFrame(frame);return;
       }
       const gap = now - tick;

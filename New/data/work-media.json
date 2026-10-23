@@ -1,0 +1,640 @@
+{
+  "wanbu": [
+    {
+      "src": "视觉传达设计/LOGO设计/万部华严经塔.png",
+      "type": "image"
+    }
+  ],
+  "guisui": [
+    {
+      "src": "视觉传达设计/LOGO设计/创意归绥.png",
+      "type": "image"
+    }
+  ],
+  "ai-extra-0": [
+    {
+      "src": "AIGC/背景/老物件《伞下》/0-5主场景31-piclite.jpg",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/老物件《伞下》/20-25主场景31-piclite.jpg",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/老物件《伞下》/角色设计.jpg",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/老物件《伞下》/老物件《雨下》.mp4",
+      "type": "video"
+    }
+  ],
+  "ai-extra-1": [
+    {
+      "src": "AIGC/背景/跨画钓鱼/跨画钓鱼.mp4",
+      "type": "video"
+    }
+  ],
+  "ai-extra-2": [
+    {
+      "src": "AIGC/背景/天堂快递站/天堂快递站-piclite.jpg",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/天堂快递站/天堂-piclite.jpg",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/天堂快递站/现实人间-piclite.jpg",
+      "type": "image"
+    }
+  ],
+  "ai-extra-3": [
+    {
+      "src": "AIGC/背景/蛇祖漫剧/1.mp4",
+      "type": "video"
+    },
+    {
+      "src": "AIGC/背景/网页预览/700/snake-video-2.mp4",
+      "type": "video"
+    },
+    {
+      "src": "AIGC/背景/蛇祖漫剧/3.mp4",
+      "type": "video"
+    },
+    {
+      "src": "AIGC/背景/蛇祖漫剧/4.mp4",
+      "type": "video"
+    }
+  ],
+  "ai-extra-4": [
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/封面.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 2.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 3.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 4.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 5.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 6.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 7.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 8.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 9.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 10.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 11.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 12.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 13.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 14.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 15.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 16.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 17.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 18.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 19.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 20.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 21.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 22.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 23.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 24.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/Stable Diffusion使用经验分享/画板 25.png",
+      "type": "image"
+    }
+  ],
+  "ai-extra-5": [
+    {
+      "src": "AIGC/背景/“老人关怀”LOGO 设计/Rob Janoff.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/“老人关怀”LOGO 设计/简约现代风格1.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/“老人关怀”LOGO 设计/简约现代风格2.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/“老人关怀”LOGO 设计/简约现代风格3.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/“老人关怀”LOGO 设计/组 11.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/“老人关怀”LOGO 设计/组 12.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/“老人关怀”LOGO 设计/组 13.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/“老人关怀”LOGO 设计/自然主义风格1.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/“老人关怀”LOGO 设计/自然主义风格2.png",
+      "type": "image"
+    }
+  ],
+  "ai-extra-6": [
+    {
+      "src": "AIGC/背景/中国人工智能艺术教育协同创新平台ARTI讲解及人工智能教育联盟公众号教程制作/AI产品与交互设计图像生成教程.mp4",
+      "type": "video"
+    },
+    {
+      "src": "AIGC/背景/中国人工智能艺术教育协同创新平台ARTI讲解及人工智能教育联盟公众号教程制作/AI平面与视觉设计图像生成教程.mp4",
+      "type": "video"
+    },
+    {
+      "src": "AIGC/背景/中国人工智能艺术教育协同创新平台ARTI讲解及人工智能教育联盟公众号教程制作/AI装置与公共艺术图像生成教程.mp4",
+      "type": "video"
+    },
+    {
+      "src": "AIGC/背景/中国人工智能艺术教育协同创新平台ARTI讲解及人工智能教育联盟公众号教程制作/基础图像生成视频教程.mp4",
+      "type": "video"
+    }
+  ],
+  "ai-extra-7": [
+    {
+      "src": "AIGC/背景/元宇宙空间设计生成式人工智能打造全新数字化虚拟沉浸式体验空间/Clip_2024-07-19_15-10-12.png.png",
+      "type": "image"
+    }
+  ],
+  "ai-extra-8": [
+    {
+      "src": "AIGC/背景/基于心脏衰老Ai生成演变信息可视化设计/1.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/基于心脏衰老Ai生成演变信息可视化设计/2.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/基于心脏衰老Ai生成演变信息可视化设计/3.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/基于心脏衰老Ai生成演变信息可视化设计/4.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/基于心脏衰老Ai生成演变信息可视化设计/5.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/基于心脏衰老Ai生成演变信息可视化设计/6.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/基于心脏衰老Ai生成演变信息可视化设计/7.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/基于心脏衰老Ai生成演变信息可视化设计/a.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/基于心脏衰老Ai生成演变信息可视化设计/b.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/基于心脏衰老Ai生成演变信息可视化设计/c.png",
+      "type": "image"
+    }
+  ],
+  "ai-extra-9": [
+    {
+      "src": "AIGC/背景/小马博士讲故事活动断层成果应用/1.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/小马博士讲故事活动断层成果应用/2.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/小马博士讲故事活动断层成果应用/3.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/掌中建筑设计/694/xiaoma.mkv",
+      "type": "video"
+    }
+  ],
+  "ai-extra-10": [
+    {
+      "src": "AIGC/背景/掌中建筑设计/0.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/掌中建筑设计/1.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/掌中建筑设计/2.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/掌中建筑设计/3.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/掌中建筑设计/4.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/掌中建筑设计/5.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/掌中建筑设计/6.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/掌中建筑设计/7.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/掌中建筑设计/8.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/掌中建筑设计/9.png",
+      "type": "image"
+    }
+  ],
+  "ai-extra-11": [
+    {
+      "src": "AIGC/背景/智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)/1.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)/3.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)/4.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)/5.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)/6.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/掌中建筑设计/694/elder-care.mp4",
+      "type": "video"
+    }
+  ],
+  "ai-extra-12": [
+    {
+      "src": "AIGC/背景/白桦林主题餐厅设计/白桦林主题餐厅设计1.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/白桦林主题餐厅设计/1.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/白桦林主题餐厅设计/2.png",
+      "type": "image"
+    }
+  ],
+  "ai-extra-13": [
+    {
+      "src": "AIGC/背景/矿坑/1.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/矿坑/2.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/矿坑/6.jpg",
+      "type": "image"
+    }
+  ],
+  "ai-extra-14": [
+    {
+      "src": "AIGC/背景/讲好黄河故事之黄河文化符号IP设计/土.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/讲好黄河故事之黄河文化符号IP设计/木 (1).png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/讲好黄河故事之黄河文化符号IP设计/木 (2).png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/讲好黄河故事之黄河文化符号IP设计/木 (3).png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/讲好黄河故事之黄河文化符号IP设计/水.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/讲好黄河故事之黄河文化符号IP设计/火 (1).png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/讲好黄河故事之黄河文化符号IP设计/火 (2).png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/讲好黄河故事之黄河文化符号IP设计/草稿.png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/讲好黄河故事之黄河文化符号IP设计/金 (1).png",
+      "type": "image"
+    },
+    {
+      "src": "AIGC/背景/讲好黄河故事之黄河文化符号IP设计/金 (2).png",
+      "type": "image"
+    }
+  ],
+  "visual-3": [
+    {
+      "src": "视觉传达设计/LOGO设计/十全十美.jpg",
+      "type": "image"
+    }
+  ],
+  "visual-4": [
+    {
+      "src": "视觉传达设计/LOGO设计/回族小学.png",
+      "type": "image"
+    }
+  ],
+  "visual-5": [
+    {
+      "src": "视觉传达设计/LOGO设计/天生归绥.png",
+      "type": "image"
+    }
+  ],
+  "visual-6": [
+    {
+      "src": "视觉传达设计/LOGO设计/如意蒙银.png",
+      "type": "image"
+    }
+  ],
+  "visual-7": [
+    {
+      "src": "视觉传达设计/LOGO设计/席力图召.png",
+      "type": "image"
+    }
+  ],
+  "visual-8": [
+    {
+      "src": "视觉传达设计/LOGO设计/web-preview/敕勒川.gif",
+      "type": "image"
+    }
+  ],
+  "visual-9": [
+    {
+      "src": "视觉传达设计/LOGO设计/文化大院.png",
+      "type": "image"
+    }
+  ],
+  "visual-10": [
+    {
+      "src": "视觉传达设计/LOGO设计/智慧青城.png",
+      "type": "image"
+    }
+  ],
+  "visual-11": [
+    {
+      "src": "视觉传达设计/LOGO设计/本木造型.png",
+      "type": "image"
+    }
+  ],
+  "visual-12": [
+    {
+      "src": "视觉传达设计/LOGO设计/杏坞番红.png",
+      "type": "image"
+    }
+  ],
+  "visual-13": [
+    {
+      "src": "视觉传达设计/LOGO设计/柳城绿荫.png",
+      "type": "image"
+    }
+  ],
+  "visual-14": [
+    {
+      "src": "视觉传达设计/LOGO设计/牛角旋风.png",
+      "type": "image"
+    }
+  ],
+  "visual-15": [
+    {
+      "src": "视觉传达设计/LOGO设计/白塔耸光.png",
+      "type": "image"
+    }
+  ],
+  "visual-16": [
+    {
+      "src": "视觉传达设计/LOGO设计/百卉含英.png",
+      "type": "image"
+    }
+  ],
+  "visual-17": [
+    {
+      "src": "视觉传达设计/LOGO设计/美季酒店.png",
+      "type": "image"
+    }
+  ],
+  "visual-18": [
+    {
+      "src": "视觉传达设计/LOGO设计/自由呼市.png",
+      "type": "image"
+    }
+  ],
+  "visual-19": [
+    {
+      "src": "视觉传达设计/LOGO设计/web-preview/西贝莜面.gif",
+      "type": "image"
+    }
+  ],
+  "visual-20": [
+    {
+      "src": "视觉传达设计/LOGO设计/青冢拥黛.png",
+      "type": "image"
+    }
+  ],
+  "visual-21": [
+    {
+      "src": "视觉传达设计/LOGO设计/web-preview/青城构造.gif",
+      "type": "image"
+    }
+  ],
+  "visual-22": [
+    {
+      "src": "视觉传达设计/哈尼卡日历设计/哈尼卡竖版设计.jpg",
+      "type": "image"
+    },
+    {
+      "src": "视觉传达设计/哈尼卡日历设计/5.jpg",
+      "type": "image"
+    },
+    {
+      "src": "视觉传达设计/哈尼卡日历设计/截图_2023-06-20_20_30_54.jpg",
+      "type": "image"
+    }
+  ],
+  "visual-24": [
+    {
+      "src": "视觉传达设计/好书推荐-《小王子》-我和书.mkv",
+      "type": "video"
+    }
+  ],
+  "visual-29": [
+    {
+      "src": "视觉传达设计/设计学院造型基础展览视频.mkv",
+      "type": "video"
+    }
+  ],
+  "visual-30": [
+    {
+      "src": "视觉传达设计/版面设计/呼市记忆-雨伞设计1.png",
+      "type": "image"
+    }
+  ],
+  "visual-31": [
+    {
+      "src": "视觉传达设计/版面设计/托县剪纸珍藏馆.mp4",
+      "type": "loop"
+    }
+  ],
+  "visual-32": [
+    {
+      "src": "视觉传达设计/版面设计/新闻长图2.png",
+      "type": "image"
+    }
+  ],
+  "visual-33": [
+    {
+      "src": "视觉传达设计/版面设计/核战风险-给和平机会长图设计1.jpg",
+      "type": "image"
+    }
+  ],
+  "visual-34": [
+    {
+      "src": "视觉传达设计/版面设计/海报版式练习1.png",
+      "type": "image"
+    },
+    {
+      "src": "视觉传达设计/版面设计/海报版式练习2.png",
+      "type": "image"
+    }
+  ],
+  "visual-35": [
+    {
+      "src": "视觉传达设计/版面设计/职业九宫格设计.jpg",
+      "type": "image"
+    }
+  ],
+  "visual-36": [
+    {
+      "src": "视觉传达设计/版面设计/舞动的植物-半日花信息可视化.png",
+      "type": "image"
+    }
+  ],
+  "visual-37": [
+    {
+      "src": "视觉传达设计/版面设计/赤峰博物馆导览手册.png",
+      "type": "image"
+    },
+    {
+      "src": "视觉传达设计/版面设计/赤峰博物馆导览手册6.png",
+      "type": "image"
+    }
+  ],
+  "visual-38": [
+    {
+      "src": "视觉传达设计/版面设计/阿尔寨石窟寺信息可视化.png",
+      "type": "image"
+    }
+  ],
+  "visual-39": [
+    {
+      "src": "视觉传达设计/版面设计/鼎湖上素.jpg",
+      "type": "image"
+    }
+  ]
+}

@@ -15,6 +15,9 @@ export function useHeroMotion(root:RefObject<HTMLElement|null>) {
   media.add({reduced:'(prefers-reduced-motion: reduce)',normal:'(prefers-reduced-motion: no-preference)'},context=>{
    const state={p:0};let width=0,height=0,x=0,y=0,radius=0,complete=false;
    let dotAnimation:Animation|undefined;
+   let warmTimer:ReturnType<typeof setTimeout>|undefined;
+   let warmObserver:MutationObserver|undefined;
+   let startFrame=0;
    const rotations=cards.map(card=>gsap.getProperty(card,'rotation') as number);
    const setTextOpacity=gsap.quickSetter(texts,'opacity');
    const setTextY=gsap.quickSetter(texts,'y','px');
@@ -28,26 +31,39 @@ export function useHeroMotion(root:RefObject<HTMLElement|null>) {
     cards.forEach((card,i)=>{const t=smooth(phase(p,.64+i*.02,.86+i*.02));const set=cardSetters[i];set.x((i%2?1:-1)*width*.15*(1-t));set.y((i<2?-1:1)*height*.2*(1-t));set.rotation(rotations[i]+(i%2?1:-1)*12*(1-t));set.scale(.85+.15*t);set.opacity(t);});
    };
    const measure=()=>{width=stage.clientWidth;height=stage.clientHeight;x=orbit.offsetLeft+orbit.offsetWidth/2;y=orbit.offsetTop+orbit.offsetHeight/2;radius=Math.max(1,orbit.offsetWidth/2);aperture.style.width=aperture.style.height=`${radius*2}px`;aperture.style.left=aperture.style.top='0px';update();};
-   const finish=()=>{complete=true;state.p=1;update();aperture.style.visibility='hidden';dotAnimation?.cancel();el.dataset.entrance='ready';delete document.body.dataset.introEntering;};
+   const finish=()=>{complete=true;clearTimeout(warmTimer);warmObserver?.disconnect();cancelAnimationFrame(startFrame);state.p=1;update();aperture.style.visibility='hidden';dotAnimation?.cancel();el.dataset.entrance='ready';delete document.body.dataset.introEntering;};
    measure();
-   const timeline=gsap.timeline({paused:true,onUpdate:update,onComplete:finish}).to(state,{p:1,duration:1.4,ease:'none'});
+   const timeline=gsap.timeline({paused:true,onUpdate:update,onComplete:finish}).to(state,{p:1,duration:1.8,ease:'none'});
    const skip=()=>{timeline.pause();finish();};
    const onScroll=()=>{if(!complete&&scrollY>el.offsetTop+20)skip();};
    el.addEventListener('intro:skip',skip);window.addEventListener('scroll',onScroll,{passive:true});
    const observer=new ResizeObserver(measure);observer.observe(stage);
    if(context.conditions!.reduced||scrollY>el.offsetTop+20)finish();
    else {
-    document.body.dataset.introEntering='true';el.dataset.entrance='playing';aperture.style.visibility='visible';
+    document.body.dataset.introEntering='true';el.dataset.entrance='preparing';aperture.style.visibility='visible';
+    aperture.style.transform=`translate3d(${x-radius}px,${height/2-radius}px,0) scale(${3/radius})`;
+    const start=()=>{
+    if(complete||el.dataset.entrance==='playing')return;
+    clearTimeout(warmTimer);warmObserver?.disconnect();el.dataset.entrance='playing';
     // Compositor animation keeps the expanding dot moving during JS initialization.
     dotAnimation=aperture.animate([
       {transform:`translate3d(${x-radius}px,${height/2-radius}px,0) scale(${3/radius})`,opacity:1,offset:0,easing:'ease-in-out'},
       {transform:`translate3d(${x-radius}px,${y-radius}px,0) scale(1)`,opacity:1,offset:.55},
       {transform:`translate3d(${x-radius}px,${y-radius}px,0) scale(1)`,opacity:0,offset:.56},
       {transform:`translate3d(${x-radius}px,${y-radius}px,0) scale(1)`,opacity:0,offset:1}
-    ],{duration:1400,fill:'both'});
+    ],{duration:1800,fill:'both'});
     timeline.play();
+    };
+    const prepared=()=>{
+     if(el.querySelector('.fluid-glass[data-glass-ready="true"]')){
+      warmObserver?.disconnect();startFrame=requestAnimationFrame(()=>{startFrame=requestAnimationFrame(start);});
+     }
+    };
+    warmObserver=new MutationObserver(prepared);warmObserver.observe(el,{subtree:true,attributes:true,attributeFilter:['data-glass-ready']});
+    // Wait for the actual shader's first draw, with an escape hatch on unsupported GPUs.
+    warmTimer=setTimeout(start,8000);prepared();
    }
-   return ()=>{dotAnimation?.cancel();timeline.kill();observer.disconnect();el.removeEventListener('intro:skip',skip);window.removeEventListener('scroll',onScroll);delete document.body.dataset.introEntering;gsap.set(cards,{clearProps:'transform,opacity'});};
+   return ()=>{clearTimeout(warmTimer);warmObserver?.disconnect();cancelAnimationFrame(startFrame);dotAnimation?.cancel();timeline.kill();observer.disconnect();el.removeEventListener('intro:skip',skip);window.removeEventListener('scroll',onScroll);delete document.body.dataset.introEntering;gsap.set(cards,{clearProps:'transform,opacity'});};
   },el);
   return ()=>media.revert();
  },[root]);

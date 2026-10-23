@@ -5,6 +5,8 @@ import { categories } from '../../data/content';
 import { graphDetailKeys, graphGroups, graphWorks } from '../../data/graph';
 import { legacyAsset } from '../lib/assets';
 import { InteractiveCursor } from './InteractiveCursor';
+import mediaCatalog from '../../data/work-media.json';
+import { WorkMedia, type WorkMedium } from './WorkMedia';
 import '@xyflow/react/dist/style.css';
 import '../../css/work-graph.css';
 
@@ -69,10 +71,13 @@ export default function WorkGraph(){
  const detail=useRef<HTMLDivElement>(null);
  const lightbox=useRef<HTMLDialogElement>(null);
  const [imageOpen,setImageOpen]=useState(false);
+ const [mediaIndex,setMediaIndex]=useState(0);
  const returnButton=useRef<HTMLButtonElement|null>(null);
  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
  const work=graphWorks.find(w=>w.id===selected);
- const imageWork=work&&!work.pending&&['logos','layout','ai-image'].includes(work.group)&&/\.(png|jpe?g|webp|gif|avif|svg)$/i.test(work.original);
+ const media=work?(mediaCatalog as Record<string,WorkMedium[]>)[work.id]??[]:[];
+ const imageWork=media.length>0;
+ const openPreview=()=>{setMediaIndex(0);setImageOpen(true);};
  useEffect(()=>{
   const dialog=lightbox.current;if(!imageOpen||!dialog)return;
   const previous=document.body.style.overflow;document.body.style.overflow='hidden';dialog.showModal();
@@ -107,13 +112,13 @@ export default function WorkGraph(){
   <div className="graph-layout">
    <GraphCanvas models={nodes} edges={edges} resetVersion={resetVersion} onInit={setFlow}/>
    {work&&<div className="graph-detail" ref={detail} tabIndex={-1} role="region" aria-label="作品概况" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();close();}}}>
-    <button className="graph-close" onClick={close}>返回图谱 ×</button>{preview(work.id)&&(imageWork?<button className="graph-cover-button" onClick={()=>setImageOpen(true)} aria-label={`放大查看${work.title}`}><img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} decoding="async"/><span>点击查看原图 ↗</span></button>:<img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} loading="lazy" decoding="async"/>)}
+    <button className="graph-close" onClick={close}>返回图谱 ×</button>{preview(work.id)&&(imageWork?<button className="graph-cover-button" onClick={openPreview} aria-label={`放大查看${work.title}`}><img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} decoding="async"/><span>{media.length>1?`查看作品 · ${media.length} 项`:'查看作品'} ↗</span></button>:<img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} loading="lazy" decoding="async"/>)}
     <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3>{work.title}</h3><p>{work.summary}</p><small>{work.pending?'待加入 · 暂无素材':work.date}</small>
     {!work.pending&&<a className="graph-detail-link" target="_blank" rel="noopener noreferrer" aria-label={`${graphDetailKeys[work.id]?'查看完整作品详情':'打开作品原始素材'}（新标签页）`} href={graphDetailKeys[work.id]?`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${graphDetailKeys[work.id]}`:legacyAsset(work.original,import.meta.env.BASE_URL)}><span>{graphDetailKeys[work.id]?'查看完整作品':'打开原始作品'}</span><span aria-hidden="true">↗</span></a>}
    </div>}
   </div>
   <dialog ref={lightbox} className="graph-lightbox" aria-label={work?`${work.title}原图`:'作品原图'} onClose={()=>setImageOpen(false)} onClick={e=>{if(e.target===e.currentTarget)setImageOpen(false);}}>
-   {imageOpen&&work&&<><InteractiveCursor/><button autoFocus className="graph-lightbox-close" onClick={()=>setImageOpen(false)}>关闭 ×</button><img src={legacyAsset(work.original,import.meta.env.BASE_URL)} alt={work.title}/></>}
+   {imageOpen&&work&&media[mediaIndex]&&<><InteractiveCursor/><button autoFocus className="graph-lightbox-close" onClick={()=>setImageOpen(false)}>关闭 ×</button><WorkMedia key={`${work.id}-${mediaIndex}`} item={media[mediaIndex]} title={work.title}/>{media.length>1&&<nav className="graph-media-nav" aria-label="作品图组"><button onClick={()=>setMediaIndex(i=>(i+media.length-1)%media.length)}>上一项</button><span>{mediaIndex+1} / {media.length}</span><button onClick={()=>setMediaIndex(i=>(i+1)%media.length)}>下一项</button></nav>}</>}
   </dialog>
 
  </div>;

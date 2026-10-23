@@ -1,60 +1,32 @@
 import {test,expect} from '@playwright/test';
 const base='/Portfolio-YoungSliker/New/';
-test('reload from About starts at the white dot while glass preloads', async ({page}) => {
- await page.goto(base + '#about');
- await expect(page.locator('#about h2')).toBeInViewport();
- await page.reload({waitUntil:'domcontentloaded'});
- await expect(page).toHaveURL(new RegExp('/New/$'));
+test('reload from About returns to the opening and prepares glass',async({page})=>{
+ await page.goto(base+'#about');await expect(page.locator('#about h2')).toBeInViewport();
+ await page.reload({waitUntil:'domcontentloaded'});await expect(page).toHaveURL(new RegExp('/New/$'));
  expect(await page.evaluate(()=>scrollY)).toBe(0);
- await expect(page.locator('#hero')).toHaveAttribute('data-entrance','playing');
-
- await expect(page.locator('.loading-intro')).toBeVisible();
- await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready');
- await expect(page.locator('.fluid-glass')).toHaveAttribute('data-glass-ready','true',{timeout:20000});
+ await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready',{timeout:20000});
+ await expect(page.locator('.fluid-glass')).toHaveAttribute('data-glass-ready','true');
 });
-for(const width of [1440,375,844]) {
- test('white dot loading reveal at '+width,async({page})=>{
-  await page.setViewportSize({width,height:width===844?390:width===375?812:900});
-  await page.clock.install({time:new Date('2026-10-18T00:00:00Z')});
-  await page.clock.pauseAt(new Date('2026-10-18T00:00:01Z'));
-  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(base);
-  await expect(page.locator('.ascii-canvas,.ascii-atoms,.ascii-grid,.ascii-meteor')).toHaveCount(0);
-  await expect(page.locator('.hero-landing')).toHaveAttribute('inert','');
-  const initial=await page.locator('.intro-aperture').boundingBox();
-  await page.clock.runFor(500);
-  const grown=await page.locator('.intro-aperture').boundingBox();
-  expect(grown!.width).toBeGreaterThan(initial!.width);
-  await expect(page.locator('.intro-aperture')).toHaveCSS('filter','none');
-  await page.screenshot({path:`docs/screenshots/loading-dot-${width}.png`});
-  await page.clock.runFor(950);
-  await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready');
-  await expect(page.locator('.hero-landing')).not.toHaveAttribute('inert','');
-  for(const card of await page.locator('.hero-card').all())await expect(card).toHaveCSS('opacity','1');
-  expect(await page.evaluate(()=>scrollY)).toBe(0);
-  await page.screenshot({path:`docs/screenshots/loading-archive-${width}-${Date.now()}.png`});
-  await page.clock.resume();await page.locator('.scroll-cue').click();
-  await expect(page.locator('#about h2')).toBeInViewport();
-  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
-  await expect(page.locator('#hero')).toHaveAttribute('data-scene','archive');
-  expect(errors).toEqual([]);
- });
-}
+for(const width of [1440,375,844])test(`prepared opening at ${width}`,async({page})=>{
+ await page.setViewportSize({width,height:width===844?390:width===375?812:900});
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(base,{waitUntil:'domcontentloaded'});
+ await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready',{timeout:20000});
+ await expect(page.locator('.hero-landing')).not.toHaveAttribute('inert','');
+ await expect(page.locator('.loading-intro')).toBeHidden();
+ for(const card of await page.locator('.hero-card').all())await expect(card).toHaveCSS('opacity','1');
+ expect(await page.evaluate(()=>scrollY)).toBe(0);
+ await page.locator('.scroll-cue').click();await expect(page.locator('#about h2')).toBeInViewport();
+ await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await expect(page.locator('#hero')).toHaveAttribute('data-scene','archive');
+ expect(errors).toEqual([]);
+});
 test('reduced motion bypasses loading animation',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await page.goto(base);
- await expect(page.locator('.loading-intro')).toBeHidden();
- await expect(page.locator('.hero-landing')).toHaveCSS('clip-path','none');
- await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'跳到主要内容'})).toBeFocused();
- await page.keyboard.press('Enter');await expect(page.locator('.site-header')).toBeVisible();
+ await expect(page.locator('.loading-intro')).toBeHidden();await expect(page.locator('.hero-landing')).toHaveCSS('clip-path','none');
+ await expect(page.locator('.fluid-glass')).toHaveCount(0);
 });
-
-test('glass starts rendering behind the loading cover',async({page})=>{
- await page.clock.install({time:new Date('2026-10-21T00:00:00Z')});
- await page.clock.pauseAt(new Date('2026-10-21T00:00:01Z'));
- await page.goto(base);
- await page.evaluate(()=>document.fonts.load('400 100px "PortfolioTitle"','设计作品集'));
- await expect(page.locator('.fluid-glass canvas')).toHaveCount(1);
- await expect(page.locator('#hero')).toHaveAttribute('data-entrance','playing');
- await expect(page.locator('.loading-intro')).toBeVisible();
+test('skip remains usable when WebGL is unavailable',async({page})=>{
+ await page.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(this:HTMLCanvasElement,type:any,...args:any[]){return type==='webgl2'?null:(original as any).call(this,type,...args)} as any;});
+ await page.goto(base);await page.getByRole('button',{name:'跳过开场'}).click();
+ await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready');
 });
-

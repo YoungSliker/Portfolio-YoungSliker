@@ -56,6 +56,12 @@
 .graph-lightbox::backdrop{background:#171612b8;backdrop-filter:blur(14px)}
 .graph-lightbox>img{display:block;max-width:100%;max-height:calc(100dvh - 128px);object-fit:contain;box-shadow:0 16px 64px #0004}
 .graph-lightbox-close{position:fixed;right:24px;top:20px;padding:12px 20px;border:1px solid #c7baaa;background:#faf6ed;color:#34291d}
+.graph-media-nav{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:20px;padding:8px;background:#faf6ed;color:#34291d;white-space:nowrap}
+.graph-media-nav button,.graph-video-controls button{padding:10px 16px;background:#eee7db;border:1px solid #c4b6a2;color:#34291d}
+.graph-video{width:min(100%,1100px)}
+.graph-video video{display:block;width:100%;max-height:calc(100dvh - 200px)}
+.graph-video-controls{display:flex;align-items:center;gap:16px;padding:12px;background:#faf6ed}
+.graph-video-controls input{flex:1;min-width:30px}
 @media(max-width:767px){.graph-canvas{height:480px}.graph-detail{position:relative;inset:auto;width:100%;max-height:none;box-shadow:none;margin-top:10px}.graph-topline{font-size:8px}.graph-breadcrumb{gap:6px}.graph-breadcrumb button{font-size:11px;padding:10px}.graph-detail img{height:220px}.graph-tools button{padding-inline:9px}}
 @media(prefers-reduced-motion:reduce){.archive-node-disc{transition:none}}
 
