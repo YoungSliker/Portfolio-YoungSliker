@@ -961,8 +961,12 @@ const FluidGlass = ({
       raf = 0;
       if (lost) return;
       // Precompile under the cover, but do not compete with its reveal at full frame rate.
-      const entrance=container.closest('#hero')?.dataset.entrance;
-      if (entrance === 'playing' || (entrance === 'preparing' && container.dataset.glassReady === 'true')) {
+      const hero=container.closest('#hero');
+      const entrance=hero?.dataset.entrance;
+      // Resume before the reveal at .55, rather than freezing already-visible glass
+      // until the entire entrance ends. Reset the clock while hidden.
+      if ((entrance === 'playing' && Number(hero.dataset.progress)<.48) || (entrance === 'preparing' && container.dataset.glassReady === 'true')) {
+        last=now;tick=now;
         raf=requestAnimationFrame(frame);return;
       }
       const gap = now - tick;
