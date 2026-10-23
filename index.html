@@ -6,6 +6,7 @@
     <style>html[data-journey-direct]{background:#161616}html[data-journey-direct] body{visibility:hidden}</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <base href="./">
+    <link rel="stylesheet" href="css/journey-loading.css">
     <title>翟杨阳 | 作品集设计</title>
     <link rel="stylesheet" href="css/local-tailwind-566.css?v=20260818-externalized">
     <link rel="stylesheet" href="css/hardware-system-566.css?v=20260818-externalized">
@@ -144,6 +145,15 @@
     <link rel="stylesheet" href="css/home-card-flip.css?v=20261014-card-mesh">
 </head>
 <body>
+    <div id="journey-loading" role="status" aria-label="正在加载作品详情">
+      <div class="journey-loading-panel">
+        <header>YOUNGSLIKER / WORK ARCHIVE</header>
+        <div class="journey-loading-lights" aria-hidden="true">
+          <span style="--n:0"><i></i>01</span><span style="--n:1"><i></i>02</span><span style="--n:2"><i></i>03</span><span style="--n:3"><i></i>04</span><span style="--n:4"><i></i>05</span><span style="--n:5"><i></i>06</span>
+        </div>
+        <footer><span>OPENING PROJECT</span><span>正在打开作品</span></footer>
+      </div>
+    </div>
 
     <div id="main-wrapper">
         <!-- 579：导航微动效 + CardNav 整卡可点击 -->

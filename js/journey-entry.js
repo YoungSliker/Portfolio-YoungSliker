@@ -21,7 +21,12 @@
   if(!tile)return false;
   tile.click();return true;
  };
- const reveal=()=>{document.documentElement.removeAttribute('data-journey-direct');};
+ const reveal=()=>{
+  const loader=document.getElementById('journey-loading');
+  if(!document.documentElement.hasAttribute('data-journey-direct'))return;
+  loader?.classList.add('is-ready');
+  setTimeout(()=>document.documentElement.removeAttribute('data-journey-direct'),matchMedia('(prefers-reduced-motion:reduce)').matches?0:240);
+ };
  const start=()=>{
   if(open()){requestAnimationFrame(reveal);return;}
   observer=new MutationObserver(()=>{if(open()){observer.disconnect();requestAnimationFrame(reveal);}});
