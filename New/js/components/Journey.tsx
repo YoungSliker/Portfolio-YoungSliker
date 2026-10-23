@@ -92,7 +92,7 @@ export function Journey() {
         </div>
         {overview===entry.id&&<section id={`overview-${entry.id}`} className="journey-overview" aria-label={`${entry.title}概况`}>
           {['mine','arti','lingsu','earthquake','suiyuan'].includes(entry.id)&&<a className="journey-detail-link" href={`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${entry.id}`} onClick={()=>rememberPosition(entry.id)}>查看作品详情 ↗</a>}
-          {entry.kind==='获奖'?<button type="button" className="journey-certificate" onClick={()=>{setActiveCertificate(entry.id);setImageOpen(true);}} aria-label={`放大${entry.title}证书`}><span>点击查看大图</span><img data-cursor-bound src={imageFrom(entry.id==='award-0'?'“互联网+”大学生创新创业大赛省银':'亚洲大创一等奖')} alt={`${entry.title}证书`}/></button>:<>
+          {entry.kind==='获奖'?<button type="button" className="journey-certificate" onClick={()=>{setActiveCertificate(entry.id);setImageOpen(true);}} aria-label={`放大${entry.title}证书`}><span>点击查看大图</span><div data-cursor-bound className={`certificate-image${entry.id==='award-0'?' certificate-image--rotate':''}`}><img src={imageFrom(entry.id==='award-0'?'“互联网+”大学生创新创业大赛省银':'亚洲大创一等奖')} alt={`${entry.title}证书`}/></div></button>:<>
             <span className="journey-nav-label">{entry.id==='internship'?'INTERNSHIP / 实习经历':'PROJECT / 概况'}</span>
             <h4>{entry.id==='internship'?'AIGC 实习 · 工作内容':entry.id==='earthquake'?'活动断层成果应用':entry.title}</h4>
             {entry.id==='internship'?<ul className="journey-internship-list"><li>配置和优化 ComfyUI 的 LivePortrait、easyanimat。</li><li>完善和修改角色卡，制作抽卡抽奖动画及类 fufu 的角色 AI 动画。</li><li>制作 CP30 宣发海报、易拉宝，完善哄哄模拟器设计，迭代话题与话术。</li><li>完善 VUP 模拟器设计，使用 PyQt 编写界面。</li></ul>:<p>{overviewCopy[entry.id]??entry.description}</p>}
@@ -106,7 +106,7 @@ export function Journey() {
     <dialog ref={lightbox} className="journey-lightbox" aria-label={`${certificateTitle}大图`} onClose={()=>setImageOpen(false)} onClick={event=>{if(event.target===event.currentTarget)setImageOpen(false);}}>
       {imageOpen&&<InteractiveCursor/>}
       <button type="button" className="journey-lightbox-close" aria-label="关闭证书大图" onClick={()=>setImageOpen(false)}>关闭 ×</button>
-      <img src={activeCertificate==='award-0'?silverImage:awardImage} alt={`${certificateTitle}大图`}/>
+      <img className={activeCertificate==='award-0'?'certificate-full--rotate':undefined} src={activeCertificate==='award-0'?silverImage:awardImage} alt={`${certificateTitle}大图`}/>
     </dialog>
     <a className="journey-next" href="#works"><span>探索汇成作品</span><span>04 / WORKS ↗</span></a>
   </section>;

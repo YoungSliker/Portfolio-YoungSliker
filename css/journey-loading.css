@@ -6,9 +6,11 @@ html[data-journey-direct] #journey-loading.is-ready {opacity:0;pointer-events:no
 .journey-loading-lights {display:flex;justify-content:space-between;gap:16px;margin:46px 0 34px;}
 .journey-loading-lights span {display:grid;justify-items:center;gap:12px;color:#777078;font-size:9px;}
 .journey-loading-lights i {position:relative;display:block;width:27px;height:60px;border:1px solid #343137;background:#0e0d11;box-shadow:inset 2px 2px 6px #000;}
-.journey-loading-lights i:after {content:'';position:absolute;inset:5px;background:#ff642d;box-shadow:0 0 10px #ff642d88,0 0 24px #ff642d33;opacity:.12;transform:translateY(-8px) scaleY(.75);animation:journey-switch 2.4s infinite;animation-delay:calc(var(--n)*.16s);will-change:transform,opacity;}
+.journey-loading-lights i:after {content:'';position:absolute;inset:5px;border-radius:3px;background:linear-gradient(90deg,#ff642d,#ffd6a4 45%,#fff0d4 52%,#ff8c4b 70%,#ff642d);box-shadow:inset 0 0 3px #fff1c9,0 0 6px #ffb275,0 0 16px #ff642dcc,0 0 32px #ff642d70;opacity:.16;transform:translateY(-6px) scaleY(.78);animation:journey-switch 3.2s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--n)*.18s - 3.2s);will-change:transform,opacity;}
+.journey-loading-lights i:before {content:'';position:absolute;inset:-12px -9px;border-radius:50%;background:radial-gradient(ellipse,#ff642d55,transparent 70%);opacity:0;animation:journey-neon-halo 3.2s ease-in-out infinite;animation-delay:calc(var(--n)*.18s - 3.2s);pointer-events:none;}
 .journey-loading-panel footer {display:flex;justify-content:space-between;gap:16px;font-size:9px;color:#9e959a;}
 .journey-loading-panel footer span:last-child {color:#ff9067;}
-@keyframes journey-switch {0%,70%,100%{opacity:.12;transform:translateY(-8px) scaleY(.75)}20%,55%{opacity:1;transform:translateY(5px) scaleY(.75)}}
+@keyframes journey-switch {0%,100%{opacity:.16;transform:translateY(-6px) scaleY(.78)}20%{opacity:1;transform:translateY(7px) scaleY(.86)}29%{opacity:1;transform:translateY(3px) scaleY(.77)}38%,54%{opacity:1;transform:translateY(4px) scaleY(.8)}76%{opacity:.16;transform:translateY(-7px) scaleY(.76)}88%{opacity:.16;transform:translateY(-6px) scaleY(.78)}}
+@keyframes journey-neon-halo {0%,76%,100%{opacity:.05;transform:scale(.8)}25%,54%{opacity:1;transform:scale(1.12)}}
 @media(max-width:500px){.journey-loading-panel{padding:26px 22px}.journey-loading-lights{gap:10px}.journey-loading-lights i{width:23px}}
-@media(prefers-reduced-motion:reduce){.journey-loading-lights i:after{animation:none;opacity:.8;transform:none}html[data-journey-direct] #journey-loading{transition:none}}
+@media(prefers-reduced-motion:reduce){.journey-loading-lights i:after,.journey-loading-lights i:before{animation:none;opacity:.8;transform:none}html[data-journey-direct] #journey-loading{transition:none}}
