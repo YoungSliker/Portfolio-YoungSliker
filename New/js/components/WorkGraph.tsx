@@ -2,7 +2,7 @@ import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { Background, Handle, Position, ReactFlow, useStore, type Edge, type Node, type NodeProps, type ReactFlowInstance } from '@xyflow/react';
 import { useElasticGraph } from '../hooks/useElasticGraph';
 import { categories } from '../../data/content';
-import { graphGroups, graphWorks } from '../../data/graph';
+import { graphDetailKeys, graphGroups, graphWorks } from '../../data/graph';
 import { legacyAsset } from '../lib/assets';
 import '@xyflow/react/dist/style.css';
 import '../../css/work-graph.css';
@@ -99,7 +99,8 @@ export default function WorkGraph(){
    <GraphCanvas models={nodes} edges={edges} resetVersion={resetVersion} onInit={setFlow}/>
    {work&&<div className="graph-detail" ref={detail} tabIndex={-1} role="region" aria-label="作品概况" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();close();}}}>
     <button className="graph-close" onClick={close}>返回图谱 ×</button>{preview(work.id)&&<img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} loading="lazy" decoding="async"/>}
-    <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3>{work.title}</h3><p>{work.summary}</p><small>{work.pending?'待加入 · 暂无素材':`资料来源：${work.source}`}</small><a className="text-link" href={legacyAsset('index.html',import.meta.env.BASE_URL)}>浏览旧版完整作品集 ↗</a>
+    <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3>{work.title}</h3><p>{work.summary}</p><small>{work.pending?'待加入 · 暂无素材':work.date}</small>
+    {!work.pending&&<a className="text-link" target="_blank" rel="noopener noreferrer" href={graphDetailKeys[work.id]?`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${graphDetailKeys[work.id]}`:legacyAsset(work.original,import.meta.env.BASE_URL)}>{graphDetailKeys[work.id]?'查看作品详情':'查看作品原始素材'} ↗<span className="sr-only">（新标签页打开）</span></a>}
    </div>}
   </div>
 

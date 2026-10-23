@@ -27,4 +27,10 @@ const mainWorks = [
   {id:'guisui',group:'logos',title:'创意归绥',cover:'视觉传达设计/LOGO设计/创意归绥.jpg',summary:'创意归绥标志设计。',source:'旧站视觉传达作品清单'},
 ];
 
-export const graphWorks = [...mainWorks.map(w=>({...w,date:({suiyuan:"2025.07","mine-eco":"2023.08",weiyuan:"2024.06"} as Record<string,string>)[w.id]??"",pending:false,original:w.cover})),...extraWorks];
+export const graphDetailKeys:Record<string,string>={suiyuan:'suiyuan','mine-eco':'mine',weiyuan:'lingsu','ai-extra-6':'arti','ai-extra-9':'earthquake'};
+const confirmedSummaries:Record<string,string>={
+ 'ai-extra-6':'围绕 ARTI 平台与人工智能艺术教育，将图像生成方法拆解为四个可观看的教程。',
+ 'ai-extra-9':'制作系列视频，传播活动断层探测成果的应用及减轻地震灾害损失的知识。',
+ weiyuan:'与精灵相遇，在探索中认识维生素；让看不见的营养知识成为可探索、可互动的体验。',
+};
+export const graphWorks = [...mainWorks.map(w=>({...w,date:({suiyuan:"2025.07","mine-eco":"2023.08",weiyuan:"2024.06"} as Record<string,string>)[w.id]??"",pending:false,original:w.cover})),...extraWorks].map(w=>({...w,summary:confirmedSummaries[w.id]??w.summary}));

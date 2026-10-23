@@ -1,5 +1,6 @@
 import {test,expect} from '@playwright/test';
-import {graphGroups,graphWorks} from '../../data/graph';
+import {graphDetailKeys,graphGroups,graphWorks} from '../../data/graph';
+import {legacyAsset} from '../lib/assets';
 const base='/Portfolio-YoungSliker/New/';
 for(const width of [375,844,1440,1920]) test(`collapsed graph, branch toggle and content ${width}`,async({page})=>{
  await page.setViewportSize({width,height:width===844?390:900});await page.emulateMedia({reducedMotion:'reduce'});
@@ -19,8 +20,13 @@ for(const width of [375,844,1440,1920]) test(`collapsed graph, branch toggle and
    for(const work of graphWorks.filter(w=>w.group===group.id)){
     await activate(work.id);
     const detail=graph.getByRole('region',{name:'作品概况'});await expect(detail.getByRole('heading')).toHaveText(work.title);
-    if(work.pending)await expect(detail).toContainText('待加入');
+    if(work.pending){await expect(detail).toContainText('待加入');await expect(detail.getByRole('link')).toHaveCount(0);}
     else await expect.poll(()=>detail.locator('img').evaluate((e:HTMLImageElement)=>e.complete&&e.naturalWidth>0)).toBe(true);
+    if(!work.pending){
+     const link=detail.getByRole('link');
+     const expected=graphDetailKeys[work.id]?`/Portfolio-YoungSliker/index.html?work=${graphDetailKeys[work.id]}`:legacyAsset(work.original,base);
+     await expect(link).toHaveAttribute('href',expected);await expect(link).toHaveAttribute('target','_blank');
+    }
     await page.keyboard.press('Escape');await expect(node(work.id)).toBeFocused();
    }
    if(group.id!=='scenes')await activate(group.id);
