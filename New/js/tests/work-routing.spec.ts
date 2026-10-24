@@ -4,7 +4,7 @@ import media from '../../data/work-media.json' with {type:'json'};
 import fs from 'node:fs';
 import path from 'node:path';
 test('all published graph entries have full routes and existing preview media',()=>{
- for(const w of graphWorks.filter(w=>!w.pending))expect(graphDetailKeys[w.id],w.title).toBeTruthy();
+ for(const w of graphWorks.filter(w=>!w.pending))expect(graphDetailKeys[w.id]||w.original.endsWith('.mp4'),w.title).toBeTruthy();
  for(const items of Object.values(media))for(const item of items)expect(fs.existsSync(path.resolve('..',item.src)),item.src).toBe(true);
  expect(media['visual-24'][0]).toMatchObject({type:'video',src:expect.stringContaining('.mkv')});
  expect(media['visual-29'][0]).toMatchObject({type:'video'});

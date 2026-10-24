@@ -275,18 +275,6 @@
   ],
   "ai-extra-9": [
     {
-      "src": "AIGC/背景/小马博士讲故事活动断层成果应用/1.png",
-      "type": "image"
-    },
-    {
-      "src": "AIGC/背景/小马博士讲故事活动断层成果应用/2.png",
-      "type": "image"
-    },
-    {
-      "src": "AIGC/背景/小马博士讲故事活动断层成果应用/3.png",
-      "type": "image"
-    },
-    {
       "src": "AIGC/背景/掌中建筑设计/694/xiaoma.mkv",
       "type": "video"
     }
@@ -334,26 +322,6 @@
     }
   ],
   "ai-extra-11": [
-    {
-      "src": "AIGC/背景/智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)/1.png",
-      "type": "image"
-    },
-    {
-      "src": "AIGC/背景/智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)/3.png",
-      "type": "image"
-    },
-    {
-      "src": "AIGC/背景/智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)/4.png",
-      "type": "image"
-    },
-    {
-      "src": "AIGC/背景/智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)/5.png",
-      "type": "image"
-    },
-    {
-      "src": "AIGC/背景/智慧助老-帮助老年人使用手机（MjZoom）无限扩图视频)/6.png",
-      "type": "image"
-    },
     {
       "src": "AIGC/背景/掌中建筑设计/694/elder-care.mp4",
       "type": "video"
@@ -635,6 +603,18 @@
     {
       "src": "视觉传达设计/版面设计/鼎湖上素.jpg",
       "type": "image"
+    }
+  ],
+  "domestic-human": [
+    {
+      "src": "New/assets/videos/03 The Journey/国内仿真人.mp4",
+      "type": "video"
+    }
+  ],
+  "international-human": [
+    {
+      "src": "New/assets/videos/03 The Journey/国外仿真人.mp4",
+      "type": "video"
     }
   ]
 }
