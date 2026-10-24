@@ -139,3 +139,11 @@
  .graph-detail--app{width:100%}
 }
 .graph-confirmed-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.graph-confirmed-tags span{font-size:10px;border:1px solid #d8cfc2;border-radius:20px;padding:5px 8px;color:#79624e}
+.graph-mode-switch{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.graph-mode-switch button{min-height:40px;border:1px solid #d8cfc2;border-radius:24px;padding:8px 16px;background:transparent;font-size:12px;color:#776a59}
+.graph-mode-switch button[aria-pressed=true]{background:#292821;color:#faf6ed;border-color:#292821;opacity:1}
+.graph-mode-switch span{font-size:11px;color:#776a59;margin-left:8px}
+.work-graph--story{height:calc(300svh + 160px);position:relative}
+.work-graph--story .graph-stage{position:sticky;top:calc(var(--header-height,80px) + 10px);background:#faf9f6;z-index:2}
+.work-graph--story .graph-canvas{height:calc(100svh - var(--header-height,80px) - 210px);min-height:280px;max-height:660px}
+@media(max-width:767px),(max-height:649px){.graph-mode-switch{display:none}}
