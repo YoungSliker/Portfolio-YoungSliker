@@ -27,7 +27,7 @@ export function useSections() {
     let anchorFrame = 0;
     const restoreAnchor = () => {
       cancelAnimationFrame(anchorFrame);
-      const section = sections.find(item => `#${item.id}` === location.hash);
+      const section = sections.find(item => `#${item.id}` === location.hash || (!location.hash&&new URLSearchParams(location.search).has('project')&&item.id==='works'));
       if (!section && location.hash.startsWith('#work=')) {
         anchorFrame = requestAnimationFrame(() => {
           const workId=location.hash.slice(6);

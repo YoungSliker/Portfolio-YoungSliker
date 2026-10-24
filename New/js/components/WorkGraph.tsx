@@ -1,6 +1,7 @@
 import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { Background, Handle, Position, ReactFlow, useStore, type Edge, type Node, type NodeProps, type ReactFlowInstance } from '@xyflow/react';
 import { useElasticGraph } from '../hooks/useElasticGraph';
+import {journeyEntries} from '../../data/journey';
 import { categories } from '../../data/content';
 import { graphDetailKeys, graphGroups, graphWorks } from '../../data/graph';
 import { legacyAsset } from '../lib/assets';
@@ -68,12 +69,15 @@ function readGraphReturn():GraphReturn|null{
 }
 export default function WorkGraph(){
  const [restored]=useState(readGraphReturn);
+ const [linked]=useState(()=>graphWorks.find(w=>w.id===(location.hash.startsWith('#work=')?location.hash.slice(6):new URLSearchParams(location.search).get('project'))));
+ const linkedGroup=graphGroups.find(g=>g.id===linked?.group);
+
  const restoreViewport=useRef(Boolean(restored));
  const [returnToken]=useState(()=>crypto.randomUUID());
- const [category,setCategory]=useState<string|null>(restored?.category??null);
- const [group,setGroup]=useState<string|null>(restored?.group??null);
- const [expanded,setExpanded]=useState<string[]>(restored?.expanded??[]);
- const [selected,setSelected]=useState<string|null>(restored?.selected??null);
+ const [category,setCategory]=useState<string|null>(restored?.category??linkedGroup?.category??null);
+ const [group,setGroup]=useState<string|null>(restored?.group??(linkedGroup?.id==='scenes'?null:linkedGroup?.id)??null);
+ const [expanded,setExpanded]=useState<string[]>(restored?.expanded??(linkedGroup?[linkedGroup.category,...(linkedGroup.id==='scenes'?[]:[linkedGroup.id])]:[]));
+ const [selected,setSelected]=useState<string|null>(restored?.selected??linked?.id??null);
  const [flow,setFlow]=useState<ReactFlowInstance<ArchiveNode>|null>(null);
  const [resetVersion,setResetVersion]=useState(0);
  const historySignature=useRef('');
@@ -83,7 +87,8 @@ export default function WorkGraph(){
   if(historySignature.current===signature)return;
   const first=!historySignature.current;historySignature.current=signature;
   const next={...history.state,portfolioGraph:snapshot};
-  if(first)history.replaceState(next,'');else history.pushState(next,'');
+  const url=new URL(location.href);if(selected)url.searchParams.set('project',selected);else {url.searchParams.delete('project');if(url.hash.startsWith('#work='))url.hash='works';}
+  if(first)history.replaceState(next,'',url);else history.pushState(next,'',url);
  },[expanded,selected,category,group]);
  useEffect(()=>{
   const restore=(event:PopStateEvent)=>{
@@ -93,6 +98,16 @@ export default function WorkGraph(){
   };
   window.addEventListener('popstate',restore);return()=>window.removeEventListener('popstate',restore);
  },[]);
+ useEffect(()=>{
+  const locate=()=>{
+   if(!location.hash.startsWith('#work='))return;
+   const item=graphWorks.find(w=>w.id===location.hash.slice(6));const parent=graphGroups.find(g=>g.id===item?.group);if(!item||!parent)return;
+   const snapshot={expanded:[parent.category,...(parent.id==='scenes'?[]:[parent.id])],selected:item.id,category:parent.category,group:parent.id==='scenes'?null:parent.id};
+   historySignature.current=JSON.stringify(snapshot);history.replaceState({...history.state,portfolioGraph:snapshot},'');
+   setExpanded(snapshot.expanded);setSelected(item.id);setCategory(parent.category);setGroup(snapshot.group);
+  };
+  window.addEventListener('hashchange',locate);return()=>window.removeEventListener('hashchange',locate);
+ },[]);
  const detail=useRef<HTMLDivElement>(null);
  const lightbox=useRef<HTMLDialogElement>(null);
  const [imageOpen,setImageOpen]=useState(false);
@@ -100,9 +115,12 @@ export default function WorkGraph(){
  const returnButton=useRef<HTMLButtonElement|null>(null);
  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
  const work=graphWorks.find(w=>w.id===selected);
+ const confirmedEntry=journeyEntries.find(e=>e.workId===work?.id||e.id===({'ai-extra-6':'arti','ai-extra-9':'earthquake'} as Record<string,string>)[work?.id??'']);
  const media=work?(mediaCatalog as Record<string,WorkMedium[]>)[work.id]??[]:[];
  const imageWork=media.length>0&&!['logos','layout','apps'].includes(work?.group??'')&&!['ai-extra-2','ai-extra-5','ai-extra-7','ai-extra-10','ai-extra-12','ai-extra-14'].includes(work?.id??'');
  const videoGrid=['ai-extra-3','ai-extra-6'].includes(work?.id??'');
+ const [linkStatus,setLinkStatus]=useState('');
+ const copyLink=async()=>{const url=new URL(location.href);url.search='';url.searchParams.set('project',selected!);url.hash='works';try{await navigator.clipboard.writeText(url.href);setLinkStatus('链接已复制');}catch{setLinkStatus(url.href);}};
  const openPreview=()=>{setMediaIndex(0);setImageOpen(true);};
  useEffect(()=>{
   const dialog=lightbox.current;if(!imageOpen||!dialog)return;
@@ -113,8 +131,8 @@ export default function WorkGraph(){
  function showAll(){setSelected(null);setExpanded(old=>old.length?[]:categories.map(c=>c.id));}
  function chooseCategory(id:string){setCategory(id);setGroup(null);setSelected(null);setExpanded(old=>old.includes(id)?old.filter(x=>x!==id&&!graphGroups.some(g=>g.category===id&&g.id===x)):[...old,id]);}
  function chooseGroup(id:string){setGroup(id);setSelected(null);setExpanded(old=>old.includes(id)?old.filter(x=>x!==id):[...old,id]);}
- function chooseWork(id:string){returnButton.current=document.activeElement instanceof HTMLButtonElement?document.activeElement:null;setSelected(id);}
- function close(){setSelected(null);returnButton.current?.focus({preventScroll:true});}
+ function chooseWork(id:string){setLinkStatus('');returnButton.current=document.activeElement instanceof HTMLButtonElement?document.activeElement:null;setSelected(id);}
+ function close(){setSelected(null);returnButton.current?.focus({preventScroll:true});if(innerWidth<768)returnButton.current?.scrollIntoView({block:'nearest',behavior:'instant'});}
  const visibleGroups=graphGroups.filter(g=>g.id!=='scenes'&&expanded.includes(g.category));
  const visibleWorks=graphWorks.filter(w=>expanded.includes(w.group==='scenes'?'aigc':w.group));
  const nodes:ArchiveNode[]=useMemo(()=>{
@@ -134,17 +152,30 @@ export default function WorkGraph(){
  }
  useEffect(()=>{if(!flow)return;if(restoreViewport.current&&restored){restoreViewport.current=false;const timer=setTimeout(()=>{void flow.setViewport(restored.viewport);window.scrollTo({top:restored.scrollY,behavior:'instant'});},100);return()=>clearTimeout(timer);}const timer=setTimeout(()=>void flow.fitView({padding:.18,maxZoom:1,minZoom:.2,duration:reduced()?0:420}),40);return()=>clearTimeout(timer);},[flow,expanded,resetVersion]);
  useEffect(()=>{if(selected){detail.current?.focus({preventScroll:true});if(innerWidth<768)detail.current?.scrollIntoView({behavior:reduced()?'instant':'smooth',block:'nearest'});}},[selected]);
+ const mobileCategory=category&&expanded.includes(category)?category:null;
+ const mobileGroup=group&&expanded.includes(group)?group:null;
+ const mobileBack=()=>{setSelected(null);if(mobileGroup){setExpanded(old=>old.filter(id=>id!==mobileGroup));setGroup(null);}else if(mobileCategory){setExpanded(old=>old.filter(id=>id!==mobileCategory&&!graphGroups.some(g=>g.id===id&&g.category===mobileCategory)));setCategory(null);}};
  return <div className="work-graph">
   <div className="graph-toolbar"><p className="graph-intro">三个设计领域，<br/>彼此连接的创作实践。</p>
   <div className="graph-tools" aria-label="图谱操作"><button onClick={()=>void flow?.zoomOut({duration:reduced()?0:180})} aria-label="缩小图谱">−</button><button onClick={()=>void flow?.zoomIn({duration:reduced()?0:180})} aria-label="放大图谱">＋</button><button onClick={()=>void flow?.fitView({padding:.18,maxZoom:1,duration:reduced()?0:350})}>适应画布</button><button onClick={reset}>重置图谱</button></div>
   <p className="graph-hint">拖动圆点，自由整理关系 · 拖动空白处移动画布 · 滚轮继续浏览页面</p>
   </div>
+  <nav className="graph-mobile-browser" aria-label="作品分层浏览">
+   <div className="graph-mobile-heading">{mobileCategory?<button onClick={mobileBack}>← 返回{mobileGroup?'分类':'领域'}</button>:<span>选择创作领域</span>}<span>{mobileGroup?graphGroups.find(g=>g.id===mobileGroup)?.label:categories.find(c=>c.id===mobileCategory)?.label}</span></div>
+   <div className="graph-mobile-items">
+    {!mobileCategory?categories.map(c=><button key={c.id} onClick={()=>chooseCategory(c.id)}>{c.label}<span aria-hidden="true">↗</span></button>):!mobileGroup?<>
+     {graphGroups.filter(g=>g.category===mobileCategory&&g.id!=='scenes').map(g=><button key={g.id} onClick={()=>chooseGroup(g.id)}>{g.label}<span>{graphWorks.filter(w=>w.group===g.id).length} 件</span></button>)}
+     {mobileCategory==='aigc'&&graphWorks.filter(w=>w.group==='scenes').map(w=><button key={w.id} onClick={()=>chooseWork(w.id)}><img src={preview(w.id)} alt=""/>{w.title}<span aria-hidden="true">↗</span></button>)}
+    </>:graphWorks.filter(w=>w.group===mobileGroup).map(w=><button key={w.id} aria-pressed={selected===w.id} onClick={()=>chooseWork(w.id)}><img src={preview(w.id)} alt=""/><span>{w.title}</span><span aria-hidden="true">↗</span></button>)}
+   </div>
+  </nav>
   <div className="graph-layout">
    <GraphCanvas models={nodes} edges={edges} resetVersion={resetVersion} onInit={setFlow}/>
    {work&&<div className={`graph-detail${work.group==='apps'?' graph-detail--app':''}`} ref={detail} tabIndex={-1} role="region" aria-label="作品概况" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();close();}}}>
     <button className="graph-close" onClick={close}>返回图谱 ×</button>{work.group==='apps'?<AppPreview key={work.id} id={work.id}/>:preview(work.id)&&(imageWork?<button className="graph-cover-button" onClick={openPreview} aria-label={`放大查看${work.title}`}><img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} decoding="async"/><span>{media.length>1?`查看作品 · ${media.length} 项`:'查看作品'} ↗</span></button>:<img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} loading="lazy" decoding="async"/>)}
-    <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3>{work.title}</h3><p>{work.summary}</p><small>{work.pending?'待加入 · 暂无素材':work.date}</small>
+    <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3>{work.title}</h3><p>{work.summary}</p>{confirmedEntry&&<div className="graph-confirmed-tags" aria-label="作品相关方向">{confirmedEntry.tags.map(tag=><span key={tag}>{tag}</span>)}</div>}<small>{work.pending?'待加入 · 暂无素材':work.date}</small>
     {!work.pending&&<a className="graph-detail-link" onClick={saveReturn} onAuxClick={saveReturn} target="_blank" rel="noopener noreferrer" aria-label={`${graphDetailKeys[work.id]?'查看完整作品详情':'查看完整作品详情'}（新标签页）`} href={graphDetailKeys[work.id]?`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${graphDetailKeys[work.id]}&from=graph&graphReturn=${returnToken}`:mediaUrl(work.original)}><span>{graphDetailKeys[work.id]?'查看完整作品':'查看完整作品'}</span><span aria-hidden="true">↗</span></a>}
+    <button className="graph-share" onClick={copyLink}>复制作品链接 ↗</button>{linkStatus&&<p role="status" className="graph-share-status">{linkStatus}</p>}
    </div>}
   </div>
   <dialog ref={lightbox} className="graph-lightbox" aria-label={work?`${work.title}原图`:'作品原图'} onClose={()=>setImageOpen(false)} onClick={e=>{if(e.target===e.currentTarget)setImageOpen(false);}}>

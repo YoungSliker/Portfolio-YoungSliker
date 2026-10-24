@@ -18,6 +18,7 @@ const overviewCopy:Record<string,string>={
   earthquake:'制作系列视频，传播活动断层探测成果的应用及减轻地震灾害损失的知识。',
   suiyuan:'以呼和浩特史志为内容，使用 AIGC、Unity 与 VR 构建沉浸式交互体验。'
 };
+const graphEntryIds:Record<string,string>={mine:'mine-eco',arti:'ai-extra-6',lingsu:'weiyuan',earthquake:'ai-extra-9',suiyuan:'suiyuan'};
 const overviewImages:Record<string,string[]>= {
   education:['数媒/师大标志(左右组合)'],
   arti:['ARTI/0091','ARTI/0092'], lingsu:['微元灵溯LOGO'], internship:['FaceMindLogo'],
@@ -96,7 +97,7 @@ export function Journey() {
             <h4>{entry.id==='internship'?'AIGC 实习 · 工作内容':entry.id==='earthquake'?'活动断层成果应用':entry.title}</h4>
             {entry.id==='internship'?<ul className="journey-internship-list"><li>配置和优化 ComfyUI 的 LivePortrait、easyanimat。</li><li>完善和修改角色卡，制作抽卡抽奖动画及类 fufu 的角色 AI 动画。</li><li>制作 CP30 宣发海报、易拉宝，完善哄哄模拟器设计，迭代话题与话术。</li><li>完善 VUP 模拟器设计，使用 PyQt 编写界面。</li></ul>:<p>{overviewCopy[entry.id]??entry.description}</p>}
             {overviewImages[entry.id]&&<div className={`journey-overview-images journey-overview-images--${entry.id}`}>{(entry.id==='suiyuan'?suiyuanImages:overviewImages[entry.id]).map((key,index)=>{const src=imageFrom(key);return src?<img key={key} src={src} alt={`${entry.title}展示 ${index+1}`} loading="lazy" decoding="async"/>:null;})}</div>}
-            <p className="journey-overview-meta">{entry.organization} · {entry.date}</p>
+            <p className="journey-overview-meta">{entry.organization} · {entry.date}</p>{graphEntryIds[entry.id]&&<a className="journey-graph-link" href={`#work=${graphEntryIds[entry.id]}`}>在图谱中定位 ↗</a>}
           </>}
         </section>}
 
