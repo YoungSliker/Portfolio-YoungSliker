@@ -13,8 +13,8 @@ export function useJourney(root:RefObject<HTMLElement|null>) {
       let index=0;
       for(let i=0;i<tops.length;i++)if(tops[i]<=line)index=i;
       if(last.current!==index){last.current=index;setActive(index);}
-      const distance=tops[0]-tops[tops.length-1];
-      const progress=distance?Math.min(1,Math.max(0,(line-tops[0])/distance)):0;
+      const distance=tops[tops.length-1]-tops[0];
+      const progress=distance>0?Math.min(1,Math.max(0,(line-tops[0])/distance)):0;
       section.style.setProperty('--journey-progress',String(progress));
     };
     const schedule=()=>{if(!frame)frame=requestAnimationFrame(measure);};
