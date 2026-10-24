@@ -76,6 +76,23 @@ export default function WorkGraph(){
  const [selected,setSelected]=useState<string|null>(restored?.selected??null);
  const [flow,setFlow]=useState<ReactFlowInstance<ArchiveNode>|null>(null);
  const [resetVersion,setResetVersion]=useState(0);
+ const historySignature=useRef('');
+ useEffect(()=>{
+  const snapshot={expanded,selected,category,group};
+  const signature=JSON.stringify(snapshot);
+  if(historySignature.current===signature)return;
+  const first=!historySignature.current;historySignature.current=signature;
+  const next={...history.state,portfolioGraph:snapshot};
+  if(first)history.replaceState(next,'');else history.pushState(next,'');
+ },[expanded,selected,category,group]);
+ useEffect(()=>{
+  const restore=(event:PopStateEvent)=>{
+   const snapshot=event.state?.portfolioGraph;if(!snapshot)return;
+   historySignature.current=JSON.stringify(snapshot);
+   setExpanded(snapshot.expanded);setSelected(snapshot.selected);setCategory(snapshot.category);setGroup(snapshot.group);
+  };
+  window.addEventListener('popstate',restore);return()=>window.removeEventListener('popstate',restore);
+ },[]);
  const detail=useRef<HTMLDivElement>(null);
  const lightbox=useRef<HTMLDialogElement>(null);
  const [imageOpen,setImageOpen]=useState(false);
