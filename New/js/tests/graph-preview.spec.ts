@@ -15,6 +15,6 @@ test('single image preview, dismissal and tidy detail action',async({page})=>{
  await dialog.click({position:{x:5,y:5}});await expect(dialog).not.toBeVisible();
  await activate('aigc');await activate('mine-eco');
  await expect(card.locator('.graph-detail-link')).toHaveText('查看完整作品↗');
- await expect(card.locator('.graph-detail-link')).toHaveAttribute('href',/work=mine$/);
+ await expect(card.locator('.graph-detail-link')).toHaveAttribute('href',/work=mine&from=graph&graphReturn=/);
  await card.screenshot({path:'test-results/graph-detail-refined.png'});
 });

@@ -61,11 +61,18 @@ const GraphCanvas=memo(function GraphCanvas({models,edges,resetVersion,onInit}:{
   </ReactFlow>
  </div>;
 });
+type GraphReturn={expanded:string[];selected:string|null;category:string|null;group:string|null;positions:Record<string,Point>;viewport:{x:number;y:number;zoom:number};scrollY:number};
+function readGraphReturn():GraphReturn|null{
+ try{const token=new URLSearchParams(location.search).get('graphReturn');return token?JSON.parse(localStorage.getItem('graph-return:'+token)||'null'):null;}catch{return null;}
+}
 export default function WorkGraph(){
- const [category,setCategory]=useState<string|null>(null);
- const [group,setGroup]=useState<string|null>(null);
- const [expanded,setExpanded]=useState<string[]>([]);
- const [selected,setSelected]=useState<string|null>(null);
+ const [restored]=useState(readGraphReturn);
+ const restoreViewport=useRef(Boolean(restored));
+ const [returnToken]=useState(()=>crypto.randomUUID());
+ const [category,setCategory]=useState<string|null>(restored?.category??null);
+ const [group,setGroup]=useState<string|null>(restored?.group??null);
+ const [expanded,setExpanded]=useState<string[]>(restored?.expanded??[]);
+ const [selected,setSelected]=useState<string|null>(restored?.selected??null);
  const [flow,setFlow]=useState<ReactFlowInstance<ArchiveNode>|null>(null);
  const [resetVersion,setResetVersion]=useState(0);
  const detail=useRef<HTMLDivElement>(null);
@@ -92,7 +99,7 @@ export default function WorkGraph(){
  const visibleGroups=graphGroups.filter(g=>g.id!=='scenes'&&expanded.includes(g.category));
  const visibleWorks=graphWorks.filter(w=>expanded.includes(w.group==='scenes'?'aigc':w.group));
  const nodes:ArchiveNode[]=useMemo(()=>{
-  const make=(id:string,label:string,eyebrow:string,kind:string,choose:()=>void,cover?:string):ArchiveNode=>({id,type:'archive',position:anchors[id],data:{label,eyebrow,kind,cover,date:graphWorks.find(w=>w.id===id)?.date,active:kind==='root'?expanded.length>0:kind==='work'?selected===id:expanded.includes(id),choose},focusable:false});
+  const make=(id:string,label:string,eyebrow:string,kind:string,choose:()=>void,cover?:string):ArchiveNode=>({id,type:'archive',position:resetVersion===0?(restored?.positions[id]??anchors[id]):anchors[id],data:{label,eyebrow,kind,cover,date:graphWorks.find(w=>w.id===id)?.date,active:kind==='root'?expanded.length>0:kind==='work'?selected===id:expanded.includes(id),choose},focusable:false});
   return [make('root','我的作品','CREATIVE UNIVERSE','root',showAll),...categories.map(c=>make(c.id,c.label,c.number,'category',()=>chooseCategory(c.id))),...visibleGroups.map(g=>make(g.id,g.label,'','group',()=>chooseGroup(g.id))),...visibleWorks.map(w=>make(w.id,w.title,'','work',()=>chooseWork(w.id),preview(w.id)))];
  },[expanded,category,group,selected,flow]);
  const edges=useMemo(()=>[
@@ -102,7 +109,11 @@ export default function WorkGraph(){
   // Both projects are explicitly described as interactive experiences by the author.
   ...(expanded.includes('aigc')?['suiyuan','weiyuan'].map(id=>({id:`experience-${id}`,source:'digital',target:id})):[]),
  ].map(e=>({...e,type:'straight',style:{stroke:e.id.startsWith('experience')?'#d9b49b':'#b7aa99',strokeWidth:e.source==='root'?1.5:1,strokeDasharray:e.id.startsWith('experience')||e.source.startsWith('ai-')||e.target.startsWith('ai-')?'4 6':undefined},focusable:false})),[expanded]);
- useEffect(()=>{if(!flow)return;const timer=setTimeout(()=>void flow.fitView({padding:.18,maxZoom:1,minZoom:.2,duration:reduced()?0:420}),40);return()=>clearTimeout(timer);},[flow,expanded,resetVersion]);
+ function saveReturn(){
+  if(!flow)return;
+  try{localStorage.setItem('graph-return:'+returnToken,JSON.stringify({expanded,selected,category,group,positions:Object.fromEntries(flow.getNodes().map(n=>[n.id,n.position])),viewport:flow.getViewport(),scrollY:window.scrollY}));}catch{}
+ }
+ useEffect(()=>{if(!flow)return;if(restoreViewport.current&&restored){restoreViewport.current=false;const timer=setTimeout(()=>{void flow.setViewport(restored.viewport);window.scrollTo({top:restored.scrollY,behavior:'instant'});},100);return()=>clearTimeout(timer);}const timer=setTimeout(()=>void flow.fitView({padding:.18,maxZoom:1,minZoom:.2,duration:reduced()?0:420}),40);return()=>clearTimeout(timer);},[flow,expanded,resetVersion]);
  useEffect(()=>{if(selected){detail.current?.focus({preventScroll:true});if(innerWidth<768)detail.current?.scrollIntoView({behavior:reduced()?'instant':'smooth',block:'nearest'});}},[selected]);
  return <div className="work-graph">
   <div className="graph-toolbar"><p className="graph-intro">三个设计领域，<br/>彼此连接的创作实践。</p>
@@ -114,11 +125,11 @@ export default function WorkGraph(){
    {work&&<div className="graph-detail" ref={detail} tabIndex={-1} role="region" aria-label="作品概况" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();close();}}}>
     <button className="graph-close" onClick={close}>返回图谱 ×</button>{preview(work.id)&&(imageWork?<button className="graph-cover-button" onClick={openPreview} aria-label={`放大查看${work.title}`}><img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} decoding="async"/><span>{media.length>1?`查看作品 · ${media.length} 项`:'查看作品'} ↗</span></button>:<img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} loading="lazy" decoding="async"/>)}
     <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3>{work.title}</h3><p>{work.summary}</p><small>{work.pending?'待加入 · 暂无素材':work.date}</small>
-    {!work.pending&&<a className="graph-detail-link" target="_blank" rel="noopener noreferrer" aria-label={`${graphDetailKeys[work.id]?'查看完整作品详情':'打开作品原始素材'}（新标签页）`} href={graphDetailKeys[work.id]?`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${graphDetailKeys[work.id]}`:legacyAsset(work.original,import.meta.env.BASE_URL)}><span>{graphDetailKeys[work.id]?'查看完整作品':'打开原始作品'}</span><span aria-hidden="true">↗</span></a>}
+    {!work.pending&&<a className="graph-detail-link" onClick={saveReturn} onAuxClick={saveReturn} target="_blank" rel="noopener noreferrer" aria-label={`${graphDetailKeys[work.id]?'查看完整作品详情':'打开作品原始素材'}（新标签页）`} href={graphDetailKeys[work.id]?`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${graphDetailKeys[work.id]}&from=graph&graphReturn=${returnToken}`:legacyAsset(work.original,import.meta.env.BASE_URL)}><span>{graphDetailKeys[work.id]?'查看完整作品':'打开原始作品'}</span><span aria-hidden="true">↗</span></a>}
    </div>}
   </div>
   <dialog ref={lightbox} className="graph-lightbox" aria-label={work?`${work.title}原图`:'作品原图'} onClose={()=>setImageOpen(false)} onClick={e=>{if(e.target===e.currentTarget)setImageOpen(false);}}>
-   {imageOpen&&work&&media[mediaIndex]&&<><InteractiveCursor/><button autoFocus className="graph-lightbox-close" onClick={()=>setImageOpen(false)}>关闭 ×</button><WorkMedia key={`${work.id}-${mediaIndex}`} item={media[mediaIndex]} title={work.title}/>{media.length>1&&<nav className="graph-media-nav" aria-label="作品图组"><button onClick={()=>setMediaIndex(i=>(i+media.length-1)%media.length)}>上一项</button><span>{mediaIndex+1} / {media.length}</span><button onClick={()=>setMediaIndex(i=>(i+1)%media.length)}>下一项</button></nav>}</>}
+   {imageOpen&&work&&media[mediaIndex]&&<><InteractiveCursor/><button autoFocus aria-label="关闭" className="graph-lightbox-close" onClick={()=>setImageOpen(false)}><span aria-hidden="true">×</span></button><WorkMedia key={`${work.id}-${mediaIndex}`} item={media[mediaIndex]} title={work.title}/>{media.length>1&&<nav className="graph-media-nav" aria-label="作品图组"><button onClick={()=>setMediaIndex(i=>(i+media.length-1)%media.length)} aria-label="上一项"><span aria-hidden="true">←</span></button><span>{mediaIndex+1} / {media.length}</span><button onClick={()=>setMediaIndex(i=>(i+1)%media.length)} aria-label="下一项"><span aria-hidden="true">→</span></button></nav>}</>}
   </dialog>
 
  </div>;

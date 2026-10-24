@@ -6,6 +6,8 @@
  if(!Object.hasOwn(projects,key)&&!['arti','earthquake'].includes(key)&&!route)return;
  const back=document.createElement('a');
  back.href=route||new URLSearchParams(location.search).get('from')==='graph'?'New/#works':'New/?journeyReturn=1#journey';back.textContent='← 返回新版 · 继续浏览';
+ const graphReturn=new URLSearchParams(location.search).get('graphReturn');
+ if(graphReturn)back.href='New/?graphReturn='+encodeURIComponent(graphReturn)+'#works';
  back.className='journey-return-link cursor-target';
  back.style.cssText='position:fixed;right:24px;bottom:28px;z-index:2147482990;padding:12px 18px;border:1px solid #827468;border-radius:4px;background:#20201ef2;color:#ffb093;font:14px/1.4 sans-serif;text-decoration:none;box-shadow:0 6px 24px #0004;';
  const placeReturn=()=>{const host=Array.from(document.querySelectorAll('dialog[open]')).at(-1)||document.body;if(back.parentElement!==host)host.appendChild(back);};
