@@ -12,7 +12,6 @@
 .journey-sidebar button small { font:10px var(--mono); }
 .journey-sidebar button[aria-current] { color:#ff936b; }.journey-sidebar button:hover span { transform:translateX(5px); }
 .journey-position { margin-top:30px; font:13px var(--mono); }.journey-position span { font-size:9px; color:#aaa39a; }
-.journey-mini-track { height:1px; background:#49433b; margin-top:16px; }.journey-mini-track i { display:block; height:100%; background:#ff936b; transform:scaleX(var(--journey-progress)); transform-origin:left; }
 .journey-records { position:relative; border-left:1px solid #49433b; }
 .journey-records:before { content:''; position:absolute; left:-1px; top:0; bottom:0; width:1px; background:#ff936b; transform:scaleY(var(--journey-progress)); transform-origin:top; }
 .journey-entry { position:relative; padding:0 0 65px 55px; margin-bottom:50px; border-bottom:1px solid #37332e; scroll-margin-top:15px; }

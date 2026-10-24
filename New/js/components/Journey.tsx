@@ -79,7 +79,6 @@ export function Journey() {
         <p className="journey-nav-label">YEARS / 年份导航</p>
         <nav aria-label="经历年份">{journeyYears.map(year=><button key={year} type="button" aria-current={journeyEntries[active].year===year?'step':undefined} onClick={()=>goToYear(year)}><span>{year}</span><small>{String(journeyEntries.filter(item=>item.year===year).length).padStart(2,'0')}</small></button>)}</nav>
         <p className="journey-position">{String(active+1).padStart(2,'0')} <span>/ {String(journeyEntries.length).padStart(2,'0')} RECORDS</span></p>
-        <div className="journey-mini-track" aria-hidden="true"><i/></div>
       </aside>
       <div className="journey-records">{journeyEntries.map((entry,index)=><article tabIndex={-1} key={entry.id} id={`journey-${entry.id}`} className={`journey-entry journey-entry--${entry.id}`} data-timeline-entry data-current={active===index} data-past={active>index} aria-current={active===index?'step':undefined}>
         <span className="journey-node" aria-hidden="true"/>
