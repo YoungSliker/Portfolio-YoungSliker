@@ -99,3 +99,21 @@
 .graph-phone-island{position:absolute;top:3.5%;left:36%;width:28%;height:4%;border-radius:20px;background:#050505}
 .graph-app-preview--native{width:100%;aspect-ratio:auto}.graph-app-preview--native video{display:block;max-width:100%;height:340px;margin:auto;object-fit:contain}
 @media(max-width:600px){.graph-video-grid{gap:12px}.graph-video-controls{gap:5px;padding:6px}.graph-video-time{font-size:9px}.graph-video-controls button{width:26px;height:30px}.graph-video-grid .graph-video-time{display:none}.graph-lightbox:has(.graph-video-grid){padding:70px 12px 30px}}
+/* Size the controls to the actual video, including portrait films. */
+.graph-video{width:min(100%,1100px,calc((100dvh - 200px) * var(--video-ratio,1.7778)));margin-inline:auto}
+.graph-video-stage{position:relative;width:100%;isolation:isolate}
+.graph-video-stage::after{content:'';position:absolute;inset:0;z-index:1}
+.graph-video-stage video{width:100%;height:auto;max-height:none;display:block;pointer-events:none}
+.graph-video video::-webkit-media-controls,.graph-app-preview video::-webkit-media-controls{display:none!important}
+.graph-video-grid .graph-video{width:min(100%,calc(min(30vh,320px) * var(--video-ratio,1.7778)))}
+.graph-video-grid .graph-video-stage video{height:auto;max-height:none}
+.graph-detail--app{overflow:visible;max-height:none;padding:18px 24px}
+.graph-detail--app .graph-app-preview{width:135px;margin:8px auto 16px}
+.graph-detail--app .graph-app-preview--native{width:100%}
+.graph-detail--app .graph-app-preview--native video{height:275px}
+.graph-detail--app h3{margin:10px 0;font-size:22px}
+.graph-detail--app small:empty{display:none}
+.graph-detail--app .graph-detail-link{margin-top:16px}
+.graph-phone-screen{inset:1.8% 4.1%;border-radius:24px}
+.graph-phone-screen img{transform:scale(1.025)}
+.graph-app-preview video{pointer-events:none}

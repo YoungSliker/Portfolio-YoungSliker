@@ -9,7 +9,7 @@ test('single image preview, dismissal and tidy detail action',async({page})=>{
  const dialog=page.getByRole('dialog',{name:'心脏衰老Ai可视化原图'});
  await expect(dialog).toBeVisible();
  await expect.poll(()=>dialog.locator('img').evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
- await expect(dialog.locator('img')).toHaveAttribute('src',/1\.png/);
+ await expect(dialog.locator('img')).toHaveAttribute('src',/b\.png/);
  await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();
  await card.getByRole('button',{name:'放大查看心脏衰老Ai可视化'}).click();
  await dialog.click({position:{x:5,y:5}});await expect(dialog).not.toBeVisible();

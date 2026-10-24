@@ -7,12 +7,15 @@ const clock=(seconds:number)=>`${Math.floor(seconds/60)}:${String(Math.floor(sec
 export function WorkMedia({item,title}:{item:WorkMedium;title:string}){
  const video=useRef<HTMLVideoElement>(null),seeking=useRef(false);
  const [playing,setPlaying]=useState(false),[muted,setMuted]=useState(false),[progress,setProgress]=useState(0),[error,setError]=useState(false),[duration,setDuration]=useState(0);
+ const [ratio,setRatio]=useState(16/9);
  const src=mediaUrl(item.src);
  if(item.type==='image')return <img src={src} alt={title}/>;
  const loop=item.type==='loop';
  const seek=(value:number)=>{setProgress(value);const v=video.current;if(v&&Number.isFinite(v.duration)&&v.duration>0)v.currentTime=value/1000*v.duration;};
- return <div className="graph-video">
-  <video ref={video} src={src} aria-label={title} playsInline preload="metadata" autoPlay={loop} muted={loop||muted} loop={loop} controls={false} onLoadedMetadata={()=>setDuration(Number.isFinite(video.current?.duration)?video.current!.duration:0)} onPlay={()=>{setPlaying(true);if(!loop)document.querySelectorAll<HTMLVideoElement>('.graph-video video').forEach(v=>{if(v!==video.current&&!v.loop)v.pause();});}} onPause={()=>setPlaying(false)} onError={()=>setError(true)} onTimeUpdate={()=>{const v=video.current;if(!seeking.current&&v?.duration)setProgress(v.currentTime/v.duration*1000);}}/>
+ return <div className="graph-video" style={{'--video-ratio':ratio} as CSSProperties}>
+  <div className="graph-video-stage">
+  <video ref={video} src={src} aria-label={title} playsInline preload="metadata" autoPlay={loop} muted={loop||muted} loop={loop} controls={false} disablePictureInPicture disableRemotePlayback controlsList="nodownload noremoteplayback nofullscreen" onLoadedMetadata={()=>{setDuration(Number.isFinite(video.current?.duration)?video.current!.duration:0);if(video.current?.videoHeight)setRatio(video.current.videoWidth/video.current.videoHeight);}} onPlay={()=>{setPlaying(true);if(!loop)document.querySelectorAll<HTMLVideoElement>('.graph-video video').forEach(v=>{if(v!==video.current&&!v.loop)v.pause();});}} onPause={()=>setPlaying(false)} onError={()=>setError(true)} onTimeUpdate={()=>{const v=video.current;if(!seeking.current&&v?.duration)setProgress(v.currentTime/v.duration*1000);}}/>
+  </div>
   {!loop&&<div className="graph-video-controls">
    <button aria-label={playing?'暂停':'播放'} onClick={()=>{const v=video.current;if(v)v.paused?v.play().catch(()=>setError(true)):v.pause();}}><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">{playing?<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>:<path d="m7 4 14 8-14 8z"/>}</svg></button>
    <span className="graph-video-time">{clock(progress/1000*duration)}</span>

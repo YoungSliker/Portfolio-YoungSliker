@@ -33,6 +33,7 @@ for w in entries:
   media[id]=[{'src':p,'type':'image'} for p in paths if isinstance(p,str) and (repo/p).exists()]
   media[id]+=[{'src':v['src'].replace('背景/网页预览/694/','背景/掌中建筑设计/694/'),'type':'video'} for v in w.get('videos',[])]
  elif id.startswith('media-'):routes[id]=id
+media['ai-extra-8']=media['ai-extra-8'][8:9]
 for id in ['ai-extra-9','ai-extra-11']:
  media[id]=[item for item in media[id] if item['type']=='video'][:1]
 for id,name in [('domestic-human','国内仿真人'),('international-human','国外仿真人')]:

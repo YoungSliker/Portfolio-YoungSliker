@@ -3,8 +3,8 @@ test('preview preserves groups, GIF, silent loop and playable films',async({page
  test.setTimeout(90000);await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/Portfolio-YoungSliker/New/#works');
  const activate=async(id:string)=>{await page.locator(`.react-flow__node[data-id="${id}"] button`).focus();await page.keyboard.press('Enter');};
  const card=page.getByRole('region',{name:'作品概况'});const dialog=page.locator('.graph-lightbox');
- await activate('aigc');await activate('ai-image');await activate('ai-extra-8');await card.locator('.graph-cover-button').click();
- await expect(dialog.locator('.graph-media-nav')).toContainText('1 / 10');const first=await dialog.locator('img').getAttribute('src');
+ await activate('aigc');await activate('ai-image');await activate('ai-extra-13');await card.locator('.graph-cover-button').click();
+ await expect(dialog.locator('.graph-media-nav')).toContainText('1 / 3');const first=await dialog.locator('img').getAttribute('src');
  await dialog.getByRole('button',{name:'下一项'}).click();await expect(dialog.locator('img')).not.toHaveAttribute('src',first!);await page.keyboard.press('Escape');
  await activate('visual');await activate('logos');await activate('visual-8');await expect(card.locator('.graph-cover-button')).toHaveCount(0);
  await activate('visual-video');

@@ -124,7 +124,7 @@ export default function WorkGraph(){
   </div>
   <div className="graph-layout">
    <GraphCanvas models={nodes} edges={edges} resetVersion={resetVersion} onInit={setFlow}/>
-   {work&&<div className="graph-detail" ref={detail} tabIndex={-1} role="region" aria-label="作品概况" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();close();}}}>
+   {work&&<div className={`graph-detail${work.group==='apps'?' graph-detail--app':''}`} ref={detail} tabIndex={-1} role="region" aria-label="作品概况" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();close();}}}>
     <button className="graph-close" onClick={close}>返回图谱 ×</button>{work.group==='apps'?<AppPreview key={work.id} id={work.id}/>:preview(work.id)&&(imageWork?<button className="graph-cover-button" onClick={openPreview} aria-label={`放大查看${work.title}`}><img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} decoding="async"/><span>{media.length>1?`查看作品 · ${media.length} 项`:'查看作品'} ↗</span></button>:<img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} loading="lazy" decoding="async"/>)}
     <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3>{work.title}</h3><p>{work.summary}</p><small>{work.pending?'待加入 · 暂无素材':work.date}</small>
     {!work.pending&&<a className="graph-detail-link" onClick={saveReturn} onAuxClick={saveReturn} target="_blank" rel="noopener noreferrer" aria-label={`${graphDetailKeys[work.id]?'查看完整作品详情':'查看完整作品详情'}（新标签页）`} href={graphDetailKeys[work.id]?`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${graphDetailKeys[work.id]}&from=graph&graphReturn=${returnToken}`:mediaUrl(work.original)}><span>{graphDetailKeys[work.id]?'查看完整作品':'查看完整作品'}</span><span aria-hidden="true">↗</span></a>}
