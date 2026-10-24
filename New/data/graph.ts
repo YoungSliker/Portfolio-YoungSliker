@@ -34,4 +34,4 @@ const confirmedSummaries:Record<string,string>={
  'ai-extra-9':'制作系列视频，传播活动断层探测成果的应用及减轻地震灾害损失的知识。',
  weiyuan:'与精灵相遇，在探索中认识维生素；让看不见的营养知识成为可探索、可互动的体验。',
 };
-export const graphWorks = [...mainWorks.map(w=>({...w,date:({suiyuan:"2025.07","mine-eco":"2023.08",weiyuan:"2024.06"} as Record<string,string>)[w.id]??"",pending:false,original:w.cover})),...extraWorks].map(w=>({...w,summary:confirmedSummaries[w.id]??w.summary}));
+export const graphWorks = [...mainWorks.map(w=>({...w,date:({suiyuan:"2025.07","mine-eco":"2023.08",weiyuan:"2024.06",kulun:"2023.06",wanbu:"2023.05",guisui:"2023.05"} as Record<string,string>)[w.id]??"",pending:false,original:w.cover})),...extraWorks].map(w=>({...w,summary:confirmedSummaries[w.id]??w.summary}));
