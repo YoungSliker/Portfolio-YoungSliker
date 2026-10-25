@@ -49,3 +49,21 @@
   .contact-link { margin-top: 30px; }
   .contact footer { flex-wrap: wrap; font-size: 9px; gap: 8px; }
 }
+
+/* Actual recorded device walkthroughs; no media request before opening. */
+.device-demos{display:grid;grid-template-columns:1.35fr 1fr .75fr;gap:28px;align-items:start;margin-top:60px}
+.device-demo{min-width:0;border-top:1px solid var(--ink);padding-top:18px}
+.device-demo-heading>span{font:10px var(--mono);color:#625e56}
+.device-demo h3{font-size:clamp(22px,3vw,42px);letter-spacing:-.04em;margin:20px 0 10px}
+.device-demo p{font-size:12px;line-height:1.8;color:#625e56}
+.device-demo-cover{display:block;width:100%;padding:0;border:0;background:none;text-align:left;margin-top:24px}
+.device-demo-cover>img{display:block;max-width:100%;width:auto;height:auto;max-height:360px;margin-inline:auto;border:5px solid #252722;border-radius:14px;box-sizing:border-box;box-shadow:0 12px 24px #22222212}
+.device-demo-cover>span{display:flex;justify-content:space-between;border-bottom:1px solid #c9c8c3;padding:16px 0;font-size:12px}
+.device-demo-cover:hover>span{color:#a93812}
+.device-demo-player{margin-top:24px}
+.device-demo-player .graph-video{width:min(100%,calc(460px * var(--video-ratio,1.7778)));max-width:100%}
+.device-demo-player .graph-video video{max-height:none}
+.device-demo-player .graph-video-controls{gap:5px;padding:6px}
+.device-demo-close{margin-top:14px;border:0;border-bottom:1px solid #aaa69c;background:none;min-height:44px;font-size:12px}
+@media(max-width:1023px){.device-demos{grid-template-columns:1fr}.device-demo{display:grid;grid-template-columns:1fr 1.5fr;gap:24px}.device-demo-cover,.device-demo-player{margin-top:0}}
+@media(max-width:479px){.device-demo{display:block}.device-demo-cover,.device-demo-player{margin-top:20px}}
