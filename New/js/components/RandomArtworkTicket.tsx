@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
-import { toPng } from 'html-to-image';
 import { ArtworkTicket } from './ArtworkTicket';
-import PaperCrumple from './PaperCrumple';
 import type { PaperController } from './PaperCrumple.types';
 import '../../css/random-artwork-ticket.css';
 
@@ -17,6 +15,7 @@ async function snapshot(root:HTMLElement) {
   }
   if(!sheet.querySelector('.artwork-ticket__qr'))throw Error('QR not ready');
   await Promise.all(Array.from(sheet.querySelectorAll('img')).map(img=>img.decode()));
+  const {toPng}=await import('html-to-image');
   return toPng(sheet,{width:280,height:464,pixelRatio:2,skipFonts:true,
     style:{transform:'none',transformOrigin:'0 0',filter:'none',opacity:'1'}});
 }
@@ -30,6 +29,7 @@ export function RandomArtworkTicket({works,initial}:{works:RandomWork[];initial:
   const control=useRef<PaperController|null>(null);
   const current=useRef(initial);
   const [work,setWork]=useState(initial),[texture,setTexture]=useState('');
+  const [PaperCrumple,setPaperCrumple]=useState<typeof import('./PaperCrumple').default|null>(null);
   const [ready,setReady]=useState(false),[failed,setFailed]=useState(false),[busy,setBusy]=useState(false);
   const [reduced,setReduced]=useState(()=>matchMedia('(prefers-reduced-motion: reduce)').matches);
   useEffect(()=>{const media=matchMedia('(prefers-reduced-motion: reduce)');const change=()=>setReduced(media.matches);media.addEventListener('change',change);return()=>media.removeEventListener('change',change);},[]);
@@ -39,7 +39,7 @@ export function RandomArtworkTicket({works,initial}:{works:RandomWork[];initial:
     const prepare=async()=>{
       while(!disposed && root.current?.closest('#hero')?.getAttribute('data-entrance')!=='ready')await wait(100);
       if(disposed||!live.current)return;
-      try{const image=await snapshot(live.current);if(!disposed)setTexture(image);}catch{if(!disposed)setFailed(true);}
+      try{const [image,module]=await Promise.all([snapshot(live.current),import('./PaperCrumple')]);if(!disposed){setPaperCrumple(()=>module.default);setTexture(image);}}catch{if(!disposed)setFailed(true);}
     };
     void prepare();return()=>{disposed=true;};
   },[reduced]);
@@ -89,7 +89,7 @@ export function RandomArtworkTicket({works,initial}:{works:RandomWork[];initial:
       <ArtworkTicket key={work.id} title={work.title} description="创作选集" date="RANDOM" image={work.image}
         qrValue={`${location.origin}${import.meta.env.BASE_URL}#work=${work.id}`} width={280} height={360}/>
     </div>
-    {texture&&!reduced&&!failed&&<div className="random-artwork__fold" aria-hidden="true">
+    {texture&&PaperCrumple&&!reduced&&!failed&&<div className="random-artwork__fold" aria-hidden="true">
       <PaperCrumple src={texture} autoRef={control} onReady={()=>setReady(true)} onError={()=>setFailed(true)}
         width={280} height={464} sceneHeight="100%" inset={0} detail={64} foldCount={8} foldSharpness={.35}
         crumpleDuration={.8} releaseDuration={.65} paperColor="#fffdf7" draggable={false} disabled

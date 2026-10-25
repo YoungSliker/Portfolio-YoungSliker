@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { resolve, extname, sep } from 'node:path';
 
 export const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
-export const repositoryRoot = resolve(projectRoot, '..');
+export const repositoryRoot = process.env.PAGES_PREVIEW ? resolve(projectRoot, 'release/site') : resolve(projectRoot, '..');
 export const sitePrefix = '/Portfolio-YoungSliker/';
 const allowedLegacy = new Set(['index.html', 'css', 'js', 'AIGC', '数字体验设计', '视觉传达设计', '主界面', 'Fonts', '简历_中文版.svg']);
 const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.gif': 'image/gif', '.mkv': 'video/x-matroska', '.mp4': 'video/mp4', '.webm': 'video/webm', '.woff2': 'font/woff2', '.otf': 'font/otf', '.ttf': 'font/ttf' };

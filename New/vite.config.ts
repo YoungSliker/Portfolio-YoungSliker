@@ -11,5 +11,5 @@ export default defineConfig({
   }],
   server: { port: 5173, strictPort: true },
   preview: { port: 4173, strictPort: true },
-  build: { outDir: 'dist', assetsDir: 'assets', emptyOutDir: true },
+  build: { assetsInlineLimit: 0, outDir: 'dist', assetsDir: 'assets', emptyOutDir: true },
 });

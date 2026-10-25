@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import QRCode from 'qrcode';
 import TearTicket from './TearTicket';
 import '../../css/artwork-ticket.css';
 
@@ -25,8 +24,8 @@ export function ArtworkTicket({ title, date, image, qrValue, width, height }: {
   }, [vertical]);
   useEffect(() => {
     let active = true;
-    QRCode.toDataURL(qrValue, { margin: 4, width: 256, color: { dark: '#d94a1c', light: '#ffffff' } })
-      .then(value => { if (active) setQr(value); });
+    import('qrcode').then(({default:QRCode})=>QRCode.toDataURL(qrValue, { margin: 4, width: 256, color: { dark: '#d94a1c', light: '#ffffff' } }))
+      .then(value => { if (active) setQr(value); }).catch(() => { if (active) setQr(''); });
     return () => { active = false; };
   }, [qrValue]);
   return <div ref={host} className="artwork-ticket" data-parallax={date === 'RANDOM' ? 'true' : 'false'} data-layout={vertical ? 'portrait' : 'landscape'}

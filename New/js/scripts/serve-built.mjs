@@ -10,6 +10,6 @@ createServer((req, res) => {
     catch { res.writeHead(400).end(); return; }
     if (path === '/' || path === base.slice(0, -1)) { res.writeHead(302, { Location: base }).end(); return; }
     if (!path.startsWith(base)) { res.writeHead(404).end(); return; }
-    void sendFile(req, res, resolve(projectRoot, 'dist'), path.slice(base.length) || 'index.html');
+    void sendFile(req, res, resolve(projectRoot, process.env.PAGES_PREVIEW ? 'release/site/New' : 'dist'), path.slice(base.length) || 'index.html');
   });
 }).listen(4173, '127.0.0.1', () => console.log(`Built preview: http://127.0.0.1:4173${base}`));

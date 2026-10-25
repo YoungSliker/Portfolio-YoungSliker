@@ -4,3 +4,4 @@ test-results/
 playwright-report/
 .vite/
 __pycache__/
+release/

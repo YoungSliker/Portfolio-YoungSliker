@@ -6,7 +6,7 @@ import path from 'node:path';
 test('all published graph entries have full routes and existing preview media',()=>{
  for(const w of graphWorks.filter(w=>!w.pending))expect(graphDetailKeys[w.id]||w.original.endsWith('.mp4'),w.title).toBeTruthy();
  for(const items of Object.values(media))for(const item of items)expect(fs.existsSync(path.resolve('..',item.src)),item.src).toBe(true);
- expect(media['visual-24'][0]).toMatchObject({type:'video',src:expect.stringContaining('.mkv')});
+ expect(media['visual-24'][0]).toMatchObject({type:'video',src:expect.stringContaining('.mp4')});
  expect(media['visual-29'][0]).toMatchObject({type:'video'});
  expect(media['visual-8'][0].src).toMatch(/\.gif$/);
  expect(media['visual-34'].length).toBeGreaterThan(1);
@@ -25,7 +25,7 @@ for(const [route,title,selector] of [
  await expect(dialog).toContainText(title);
  if(route==='visual-24'||route==='visual-29'){
   const video=dialog.locator('video').first();
-  await expect(video).toHaveAttribute('src',/\.mkv/);
+  await expect(video).toHaveAttribute('src',/\.mp4/);
   await video.evaluate((v:HTMLVideoElement)=>{v.muted=true;return v.play();});
   await expect.poll(()=>video.evaluate((v:HTMLVideoElement)=>v.currentTime),{timeout:15000}).toBeGreaterThan(0);
  }

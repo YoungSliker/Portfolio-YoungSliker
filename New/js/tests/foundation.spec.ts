@@ -37,6 +37,7 @@ test('reduced motion, keyboard entry, history and landscape remain readable', as
   await page.setViewportSize({ width: 844, height: 390 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(base);
+  await expect(page.locator('#hero')).toHaveAttribute('data-entrance','ready');
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: '跳到主要内容' })).toBeFocused();
   await page.keyboard.press('Enter');

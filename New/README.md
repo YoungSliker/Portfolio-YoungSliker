@@ -1,6 +1,6 @@
 # 新版作品集
 
-当前进度：PHASE 2、3 已实现；PHASE 4 已接入 12 件作品的关系图原型，支持分类展开、节点聚焦、缩放、复位及基础概况。视觉仍供用户审阅，完整作品数据、多端展示等后续章节待继续。见 [PHASE 3 报告](docs/phase-3-report.md)和 [PHASE 4 报告](docs/phase-4-report.md)。用户计划书为 [文档.md](文档.md)，首页以其后用户确认的中文标题、流体玻璃、小票和白点入场为准。
+当前进度：PHASE 8 发布准备。作品图谱、完整详情与返回状态、多端布局及媒体展示已接入；独立压缩发布副本与本地验收见 [PHASE 8 报告](docs/phase-8-report.md)。尚未宣称线上部署完成。用户计划书为 [文档.md](文档.md)，后续用户确认优先于原计划。
 
 ## 本地预览
 
@@ -17,7 +17,7 @@ npm run dev
 
 ```text
 npm run build
-npm run preview
+npm run serve:built
 ```
 
 访问 `http://127.0.0.1:4173/Portfolio-YoungSliker/New/`。开发和预览会从原仓库读取旧素材，不复制媒体。
@@ -26,7 +26,18 @@ npm run preview
 
 本机已安装 Edge 时，可在 PowerShell 设置 `$env:PW_BROWSER_CHANNEL = 'msedge'` 后执行 `npm test`，无需额外下载 Chromium。本阶段使用此方式验证。
 
-`dist` 不是独立可搬走的站点：发布时其内容需要位于旧网站同级的 `New/` URL 下，保留父级旧素材与首页。当前没有改变 GitHub Pages 发布配置。不要直接用文件管理器双击开发入口，也不要把开发源文件误当作已构建站点发布。
+`dist` 不是独立可搬走的站点。完整发布副本生成方式（在 `New` 下，Python 需要 Pillow 12.3.0，兼容视频转码需要 ffmpeg）：
+
+```text
+python python/compat-videos.py
+npm run build
+python python/package-pages.py
+python python/verify-pages.py
+```
+
+产物在 `release/site/`，同时包含旧版入口、素材和构建后的 `New/`。原始素材不覆盖。PowerShell 设置 `$env:PAGES_PREVIEW='1'` 后运行 `npm run serve:built` 可直接验收此发布副本；结束后删除该环境变量即可恢复源码素材预览。
+
+GitHub Actions 手动流程见仓库 `.github/workflows/pages.yml`：默认只生成发布产物，选择 `publish` 才部署。仓库 Pages 发布源须设置为 GitHub Actions，并先提交本阶段代码与素材。不要把 `release/` 或开发源文件直接当成 Pages 分支目录；工作流会构建并上传正确目录。现有线上设置尚未修改。
 
 ## 本阶段交付
 

@@ -27,7 +27,7 @@ for(const width of [1440,375]) {
     await expect(random).toHaveAttribute('data-changing','false');
     next=await random.getAttribute('data-work');
   }
-  await page.locator('#about').evaluate(e=>e.scrollIntoView({behavior:'instant'}));
+  await page.locator('#about').evaluate(e=>window.scrollTo({top:(e as HTMLElement).offsetTop,behavior:'instant'}));
   await page.waitForTimeout(5500);
   await expect(random).toHaveAttribute('data-work',next!);
   expect(errors).toEqual([]);
