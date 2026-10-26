@@ -21,7 +21,7 @@ export function ContactTitle() {
   return <h2 ref={heading} className="contact-tech-heading" aria-label={lines.join(' ')}>
     {lines.map(text => <span className="contact-tech-line" key={text} aria-hidden="true">
       {near && !reduced ? <Suspense fallback={<span className="contact-tech-fallback">{text}</span>}>
-        <TechText text={text} fontWeight={700} fontSize={160} letterSpacing={-.07} align="left"
+        <TechText text={text} fontWeight={700} fontSize={160} letterSpacing={-.07} align="center"
           color="#303d35" accentColor="#d86a42" reveal="letter" dashLength={2} dashGap={2}
           specks={24} intro="assemble" introDuration={2.2} clickKick guides={false} strokeWidth={1} />
       </Suspense> : <span className="contact-tech-fallback">{text}</span>}

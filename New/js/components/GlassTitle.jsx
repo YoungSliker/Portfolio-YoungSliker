@@ -5,8 +5,9 @@ import '../../css/glass-title.css';
 export function GlassTitle() {
   const title = useRef(null);
   const [fontSize, setFontSize] = useState(100);
+  const [compact, setCompact] = useState(false);
   useEffect(() => {
-    const update = () => setFontSize(parseFloat(getComputedStyle(title.current).fontSize));
+    const update = () => { setFontSize(parseFloat(getComputedStyle(title.current).fontSize)); setCompact(window.innerWidth <= 600); };
     const observer = new ResizeObserver(update);
     observer.observe(title.current); update();
     return () => observer.disconnect();
@@ -27,9 +28,9 @@ export function GlassTitle() {
     <h1 ref={title} id="hero-title">设计作品集</h1>
     {fontReady && !reduced && <div className="hero-glass-title__effect" aria-hidden="true"><Suspense fallback={null}>
       <FluidGlass text="设计作品集" fontFamily="PortfolioTitle, Microsoft YaHei, sans-serif"
-        fontWeight={400} fontSize={fontSize} textColor="#111111" shape="blob" size={190}
-        interaction="follow" refraction={.85} dispersion={.85} reflection={.75}
-        shadow={0} elevation={.25} wobble={.4} morphOnClick={false}
+        fontWeight={400} fontSize={fontSize} textColor="#111111" shape="blob" size={compact ? 68 : 190}
+        interaction="follow" refraction={compact ? .25 : .85} dispersion={compact ? .18 : .85} reflection={compact ? .3 : .75}
+        shadow={0} elevation={.25} wobble={compact ? .15 : .4} morphOnClick={false}
         maxDevicePixelRatio={1} intro={false} />
     </Suspense></div>}
   </div>;

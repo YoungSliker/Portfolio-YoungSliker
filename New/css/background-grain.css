@@ -17,10 +17,11 @@ html body :is(
 /* The grain follows each clipped paper piece, including the detached stub.
    A transparent print patina adds wear without replacing the source artwork. */
 .artwork-ticket .tear-ticket__paper {
-  background-color: #f5eddc;
+  background-color: #fffdf7;
   background-image: url('../assets/background-grain.png');
   background-size: 180px 180px;
 }
+.artwork-ticket { filter: drop-shadow(0 1px 1px #493d3060) drop-shadow(0 10px 14px #33271945); }
 .artwork-ticket .tear-ticket__paper::after {
   content: '';
   position: absolute;
