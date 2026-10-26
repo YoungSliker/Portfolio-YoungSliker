@@ -1,3 +1,4 @@
+import { DraftingDetails } from './DraftingDetails';
 import FlowingMenu from './FlowingMenu';
 import { categories } from '../../data/content';
 import { useRef, useState } from 'react';
@@ -18,7 +19,7 @@ export function About() {
   const root = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   useAboutMotion(root);
-  return <section ref={root} id="about" className="section about" aria-labelledby="about-title">
+  return <section ref={root} id="about" className="section about" aria-labelledby="about-title"><DraftingDetails variant="about" />
     <div className="about-portal">
     <div className="about-chapter"><p className="eyebrow"><span>02 /</span> ABOUT ME</p><span className="mono">IDEAS MEET POSSIBILITIES</span></div>
     <div className="about-lead">

@@ -1,3 +1,4 @@
+import { DraftingDetails } from './DraftingDetails';
 import { lazy, Suspense, useState, useId } from 'react';
 import { ContactTitle } from './ContactTitle';
 const Showcase = lazy(() => import('./Showcase').then(m => ({ default: m.Showcase })));
@@ -41,7 +42,7 @@ export function Contact() {
       setCopyStatus('未能自动复制，请长按或选中微信号复制。');
     }
   };
-  return <section id="contact" className="section contact" aria-label="联系与结束">
+  return <section id="contact" className="section contact" aria-label="联系与结束"><DraftingDetails variant="contact" />
     <p className="eyebrow">05 / WHAT'S NEXT</p><ContactTitle />
     <div className="contact-row">
       <div className="contact-details">

@@ -1,3 +1,4 @@
+import { DraftingDetails } from './DraftingDetails';
 import { useRef } from 'react';
 import { useHeroMotion } from '../hooks/useHeroMotion';
 import { ArtworkTicket } from './ArtworkTicket';
@@ -36,7 +37,7 @@ export function Hero() {
     <div className="hero-stage">
       <LoadingIntro onEnter={enter} />
       <div className="intro-aperture" aria-hidden="true" />
-      <div className="hero-landing">
+      <div className="hero-landing"><DraftingDetails variant="hero" />
       <div className="hero-meta"><span>CREATIVE ARCHIVE / 翟杨阳</span><span>AI · DESIGN · INTERACTION</span></div>
       <div className="hero-orbit" aria-hidden="true"><i /><span>+</span></div>
       <div className="hero-title-group">
