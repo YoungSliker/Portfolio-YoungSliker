@@ -1,0 +1,7 @@
+/* Grainient's fine-grain pass, baked once rather than redrawn every frame.
+   Background painting keeps all text, media and hit targets above the texture. */
+html body :is(.hero-landing, .about, .about-flowing-fields, .journey, .works, .contact) {
+  background-image: url('../assets/background-grain.png');
+  background-size: 256px 256px;
+  background-repeat: repeat;
+}
