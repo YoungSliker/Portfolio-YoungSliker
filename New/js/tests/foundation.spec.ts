@@ -55,8 +55,8 @@ test('reduced motion, keyboard entry, history and landscape remain readable', as
 
 test('slashless preview URL redirects and large accent text has sufficient contrast', async ({ page, request }) => {
   const redirect = await request.get(base.slice(0, -1), { maxRedirects: 0 });
-  expect.soft(redirect.status()).toBe(302);
-  expect.soft(redirect.headers().location).toBe(base);
+  expect.soft([301, 302, 307, 308]).toContain(redirect.status());
+  expect.soft(new URL(redirect.headers().location, redirect.url()).pathname).toBe(base);
   await page.goto(base);
   const ratio = await page.locator('#about h2 .accent').evaluate(element => {
     const luminance = (color: string) => {

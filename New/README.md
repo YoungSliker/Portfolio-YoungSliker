@@ -1,6 +1,6 @@
 # 新版作品集
 
-当前进度：PHASE 8 发布准备。作品图谱、完整详情与返回状态、多端布局及媒体展示已接入；独立压缩发布副本与本地验收见 [PHASE 8 报告](docs/phase-8-report.md)。尚未宣称线上部署完成。用户计划书为 [文档.md](文档.md)，后续用户确认优先于原计划。
+当前进度：PHASE 9 已正式发布并完成公网验收。访问 [新版作品集](https://youngsliker.github.io/Portfolio-YoungSliker/New/)，详见 [PHASE 9 报告](docs/phase-9-report.md)。压缩副本与本地兼容性边界见 [PHASE 8 报告](docs/phase-8-report.md)。用户计划书为 [文档.md](文档.md)，后续用户确认优先于原计划。
 
 ## 本地预览
 
@@ -37,7 +37,9 @@ python python/verify-pages.py
 
 产物在 `release/site/`，同时包含旧版入口、素材和构建后的 `New/`。原始素材不覆盖。PowerShell 设置 `$env:PAGES_PREVIEW='1'` 后运行 `npm run serve:built` 可直接验收此发布副本；结束后删除该环境变量即可恢复源码素材预览。
 
-GitHub Actions 手动流程见仓库 `.github/workflows/pages.yml`：默认只生成发布产物，选择 `publish` 才部署。仓库 Pages 发布源须设置为 GitHub Actions，并先提交本阶段代码与素材。不要把 `release/` 或开发源文件直接当成 Pages 分支目录；工作流会构建并上传正确目录。现有线上设置尚未修改。
+GitHub Actions 手动流程见仓库 `.github/workflows/pages.yml`：默认只生成发布产物，选择 `publish` 才部署。仓库 Pages 发布源须设置为 GitHub Actions，并先提交本阶段代码与素材。不要把 `release/` 或开发源文件直接当成 Pages 分支目录；工作流会构建并上传正确目录。2026-10-26 已切换到 GitHub Actions 并成功部署；后续更新继续运行此流程。
+
+公网回归：`npx playwright test -c playwright.online.config.ts`，直接访问已发布网站，不启动本地预览。
 
 ## 本阶段交付
 
