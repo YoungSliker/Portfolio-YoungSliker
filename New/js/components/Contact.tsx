@@ -1,4 +1,5 @@
 import { lazy, Suspense, useState } from 'react';
+import { ContactTitle } from './ContactTitle';
 const Showcase = lazy(() => import('./Showcase').then(m => ({ default: m.Showcase })));
 
 function ContactIcon({ copy = false }: { copy?: boolean }) {
@@ -19,7 +20,7 @@ export function Contact() {
     }
   };
   return <section id="contact" className="section contact" aria-label="联系与结束">
-    <p className="eyebrow">05 / WHAT'S NEXT</p><h2>STAY CURIOUS.<br />KEEP CREATING<span>.</span></h2>
+    <p className="eyebrow">05 / WHAT'S NEXT</p><ContactTitle />
     <div className="contact-row">
       <div className="contact-details">
         <p>有想法，欢迎聊聊。</p>

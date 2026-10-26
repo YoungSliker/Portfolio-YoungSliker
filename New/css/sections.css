@@ -22,6 +22,9 @@
 .contact { padding-bottom: 25px; background: #f3f0e8; color: #303d35; }
 .contact h2 { font-size: clamp(48px, 9vw, 160px); line-height: .95; letter-spacing: -.07em; }
 .contact h2 > span { color: #d86a42; }
+.contact h2.contact-tech-heading > span { color: #303d35; }
+.contact-tech-line { display: block; height: clamp(70px, 12vw, 200px); }
+.contact-tech-fallback { display: flex; align-items: center; height: 100%; padding-inline: 5%; font-size: clamp(30px, 8vw, 160px); white-space: nowrap; }
 .contact-row { margin: 55px 0 60px; display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
 .contact-row p { font-size: 20px; line-height: 1.8; }
 .contact-row p > span { font-size: 12px; }
