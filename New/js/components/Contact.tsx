@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useState, useId } from 'react';
 import { ContactTitle } from './ContactTitle';
 const Showcase = lazy(() => import('./Showcase').then(m => ({ default: m.Showcase })));
 
@@ -9,11 +9,24 @@ function ContactIcon({ copy = false }: { copy?: boolean }) {
 }
 
 function ContactArtwork({ kind }: { kind: 'mail' | 'phone' | 'wechat' | 'qq' }) {
-  return <svg className="contact-artwork" viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  const id = useId().replace(/:/g, '');
+  const colors = { mail: ['#85f7ff', '#459dff'], phone: ['#ffd79a', '#ff782e'], wechat: ['#60ffef', '#05c477'], qq: ['#8dbfff', '#7674ff'] }[kind];
+  return <svg className="contact-artwork" viewBox="0 0 100 100" fill="none" stroke="white" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <defs>
+      <linearGradient id={`${id}-color`} x2=".8" y2="1"><stop stopColor={colors[0]}/><stop offset="1" stopColor={colors[1]}/></linearGradient>
+      <linearGradient id={`${id}-glass`} x2="1" y2=".8"><stop stopColor="white" stopOpacity=".65"/><stop offset=".5" stopColor={colors[0]} stopOpacity=".3"/><stop offset="1" stopColor="white" stopOpacity=".8"/></linearGradient>
+      <filter id={`${id}-blur`} x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6"/></filter>
+    </defs>
+    <ellipse cx="55" cy="80" rx="27" ry="9" fill={colors[1]} opacity=".24" stroke="none" filter={`url(#${id}-blur)`}/>
+    <rect x="12" y="13" width="61" height="65" rx="19" fill={`url(#${id}-color)`} stroke="none" transform="rotate(-12 42 45)"/>
+    <rect x="31" y="38" width="47" height="42" rx="15" fill={colors[1]} stroke="none" opacity=".6" filter={`url(#${id}-blur)`}/>
+    <rect x="28" y="24" width="61" height="64" rx="20" fill={`url(#${id}-glass)`} strokeOpacity=".75" strokeWidth=".8"/>
+    <g transform="translate(31 28) scale(.67)">
     {kind === 'mail' && <><rect x="12" y="23" width="56" height="39" rx="7"/><path d="m14 26 26 20 26-20M13 59l18-19m36 19L49 40M24 14h32"/></>}
     {kind === 'phone' && <><rect x="23" y="9" width="34" height="62" rx="9"/><path d="M34 16h12M36 63h8M64 24q10 16 0 32M16 29q-6 11 0 22"/><circle cx="40" cy="39" r="10"/></>}
     {kind === 'wechat' && <><path d="M44 47c-4 3-9 4-14 4l-11 7 2-11C5 35 15 17 33 17c15 0 25 11 22 23"/><path d="M60 65l-9-5c-15 2-24-8-20-18s20-14 30-6 10 19-2 24z"/><circle cx="26" cy="32" r="2"/><circle cx="40" cy="32" r="2"/><circle cx="44" cy="46" r="1.5"/><circle cx="57" cy="46" r="1.5"/></>}
     {kind === 'qq' && <><path d="M24 37c-3-29 35-29 32 0l7 16-8-3c7 18-37 18-30 0l-8 3z"/><path d="M24 38q16 9 32 0M27 44l-3 10M30 66l-10 4m30-4 10 4"/><ellipse cx="40" cy="31" rx="7" ry="3"/><path d="M33 23v2m14-2v2"/></>}
+    </g>
   </svg>;
 }
 

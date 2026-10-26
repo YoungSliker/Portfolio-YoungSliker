@@ -70,8 +70,8 @@ function readGraphReturn():GraphReturn|null{
 }
 export default function WorkGraph(){
  const root=useRef<HTMLDivElement>(null),stage=useRef<HTMLDivElement>(null);
- const [story,setStory]=useState(false);
- const storyActive=useRef(false);
+ const [story,setStory]=useState(()=>!readGraphReturn()&&!location.hash.startsWith('#work=')&&!new URLSearchParams(location.search).has('project')&&innerWidth>=768&&innerHeight>=650);
+ const storyActive=useRef(story);
  const fitTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
  const stopStory=useCallback(()=>{
   if(!storyActive.current)return;

@@ -55,11 +55,11 @@
 }
 .contact-methods svg:not(.contact-artwork) { grid-row: 2; }
 .contact-methods svg.contact-artwork {
-  position: absolute; right: 24px; top: 14px; width: 80px; height: 80px;
+  position: absolute; right: 20px; top: 3px; width: 108px; height: 108px;
   padding: 0; border-radius: 0; background: none; color: #526d54;
-  transform: rotate(-7deg); pointer-events: none;
+  transform: none; pointer-events: none; overflow: visible;
 }
-.contact-methods li:nth-child(even) svg.contact-artwork { transform: rotate(7deg); }
+.contact-methods li:nth-child(even) svg.contact-artwork { transform: none; }
 @media (prefers-reduced-motion: reduce) { .contact-methods svg { transition: none; } }
 .contact-link { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-shrink: 0; border-bottom: 1px solid #9aa697; padding-bottom: 15px; margin-bottom: 28px; font-size: 14px; }
 .contact-link span { font-size: 42px; }
