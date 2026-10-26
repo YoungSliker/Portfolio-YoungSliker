@@ -4,6 +4,8 @@ Only the grain pass is needed: no gradient, WebGL context or animation loop.
 """
 from pathlib import Path
 from PIL import Image
+from random import Random
+rng = Random(20261026)
 
 
 def fract(value):
@@ -21,8 +23,8 @@ image = Image.new('RGBA', (256, 256))
 pixels = []
 for y in range(256):
     for x in range(256):
-        grain = noise(x + .5, y + .5) + noise(x + 7.63, y + 7.63) - 1
+        grain = rng.random() + rng.random() - 1
         shade = 255 if grain > 0 else 0
-        pixels.append((shade, shade, shade, round(abs(grain) * .11 * 255)))
+        pixels.append((shade, shade, shade, round(abs(grain) * .065 * 255)))
 image.putdata(pixels)
 image.save(Path(__file__).resolve().parents[1] / 'assets' / 'background-grain.png', optimize=True)

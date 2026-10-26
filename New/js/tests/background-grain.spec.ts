@@ -7,10 +7,10 @@ for (const width of [375, 1440]) {
     await page.goto('/Portfolio-YoungSliker/New/#contact');
     const contact = page.locator('#contact');
     await contact.scrollIntoViewIfNeeded();
-    for (const selector of ['.hero-landing', '#about', '.about-portal', '.flowing-menu', '.site-header', '#journey', '#works', '#contact', '.contact-methods a']) {
+    for (const selector of ['.hero-landing', '#about', '.about-portal', '.flowing-menu', '.site-header', '#journey', '#works']) {
       await expect(page.locator(selector).first()).toHaveCSS('background-image', /background-grain.*png/);
     }
-    const loaded = await contact.evaluate(async element => {
+    const loaded = await page.locator('#about').evaluate(async element => {
       const url = getComputedStyle(element).backgroundImage.slice(5, -2);
       const image = new Image();
       image.src = url;

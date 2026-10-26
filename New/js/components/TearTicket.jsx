@@ -601,6 +601,7 @@ export default function TearTicket({
                 <path d={geo.stubOutline} />
               </svg>
             ) : null}
+            {(vertical ? [[0,height-stubSize],[width,height-stubSize],[width,height],[0,height]] : [[width-stubSize,0],[width,0],[width,height],[width-stubSize,height]]).map(([x,y],i)=><span key={i} data-stub-corner="" style={{position:'absolute',left:x,top:y,width:0,height:0,pointerEvents:'none'}}/>)}
             <div className="tear-ticket__paper tear-ticket__paper--stub" style={{ clipPath: `path('${geo.stub}')` }}>
               <div className="tear-ticket__stub" role="button"
                 tabIndex={disabled || used ? -1 : 0} aria-label={ariaLabel}

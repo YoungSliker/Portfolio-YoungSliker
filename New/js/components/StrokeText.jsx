@@ -410,7 +410,9 @@ const StrokeText = ({
             x="0"
             y="0"
             fill={fillColor}
-            stroke="none"
+            stroke={fillColor}
+            strokeWidth={.35}
+            paintOrder="stroke fill"
             style={fontStyle}
             clipPath={fillMode === 'wipe' && wipeStart ? `url(#${wipeId})` : undefined}
           >

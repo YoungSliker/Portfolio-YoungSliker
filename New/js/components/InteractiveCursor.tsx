@@ -9,11 +9,11 @@ export function InteractiveCursor(){
    raf=0;el.toggleAttribute('data-visible',visible);if(!visible)return;
    el.style.left=`${x}px`;el.style.top=`${y}px`;
    const hit=document.elementFromPoint(x,y);
-   const ticket=hit?.closest('.artwork-ticket');
+   const ticket=hit?.closest('.tear-ticket__stub[role="button"]');
    const target=ticket||hit?.closest('a[href],button:not(:disabled),[role="button"]');
    const scoped=target?.querySelector('[data-cursor-bound]')||target;
    el.toggleAttribute('data-active',!!scoped);
-   const markers=ticket?.querySelectorAll('[data-cursor-corner]');
+   const markers=ticket?.closest('.tear-ticket__piece--stub')?.querySelectorAll('[data-stub-corner]');
    const rect=scoped?.getBoundingClientRect();
    const points=markers?.length===4?Array.from(markers).map(m=>{const r=m.getBoundingClientRect();return {x:r.x,y:r.y};}):rect?[{x:rect.left,y:rect.top},{x:rect.right,y:rect.top},{x:rect.right,y:rect.bottom},{x:rect.left,y:rect.bottom}]:[{x:x-24,y:y-24},{x:x+24,y:y-24},{x:x+24,y:y+24},{x:x-24,y:y+24}];
    el.querySelectorAll<HTMLElement>('.cursor-corner').forEach((corner,i)=>{

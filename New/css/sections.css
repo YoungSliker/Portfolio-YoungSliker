@@ -112,3 +112,34 @@
 .device-demo-close{margin-top:14px;border:0;border-bottom:1px solid #aaa69c;background:none;min-height:44px;font-size:12px}
 @media(max-width:1023px){.device-demos{grid-template-columns:1fr}.device-demo{display:grid;grid-template-columns:1fr 1.5fr;gap:24px}.device-demo-cover,.device-demo-player{margin-top:0}}
 @media(max-width:479px){.device-demo{display:block}.device-demo-cover,.device-demo-player{margin-top:20px}}
+/* Contact uses the same translucent, colored glass system as its icons. */
+html body #contact {
+  background-color:#f4f9fc;
+  background-image:radial-gradient(ellipse at 18% 30%,#b9e9ff80,transparent 50%),radial-gradient(ellipse at 85% 65%,#c9c4ff70,transparent 48%),linear-gradient(140deg,#f7fcff,#edf7f6 55%,#fff6ec);
+  background-size:auto;
+}
+html body .contact-methods a, html body .contact-methods button {
+  background-image:linear-gradient(125deg,#ffffffd9,#ffffff65 65%,#d9eeff45);
+  background-color:#ffffff45;
+  border:1px solid #ffffffed;
+  backdrop-filter:blur(12px);
+  box-shadow:inset 0 1px 0 white,0 12px 30px #53799618;
+}
+html body .contact-methods li:nth-child(2) > a { background-image:linear-gradient(125deg,#ffffffed,#fff1dd85); }
+html body .contact-methods li:nth-child(3) > button { background-image:linear-gradient(125deg,#ffffffed,#cdf5e980); }
+html body .contact-methods li:nth-child(4) > a { background-image:linear-gradient(125deg,#ffffffed,#e0dcff85); }
+.contact-methods svg:not(.contact-artwork) {
+  background:linear-gradient(135deg,#ffffffc9,#8dcaff80);
+  color:#235e8d;border:1px solid #ffffffdd;
+  box-shadow:0 5px 12px #459dff25,inset 0 1px 0 white;
+}
+.contact-methods li:nth-child(2) svg:not(.contact-artwork) { background:linear-gradient(135deg,#fff9ed,#ffbb7866);color:#9b501d; }
+.contact-methods li:nth-child(3) svg:not(.contact-artwork) { background:linear-gradient(135deg,#f3fffc,#60efce80);color:#186d58; }
+.contact-methods li:nth-child(4) svg:not(.contact-artwork) { background:linear-gradient(135deg,#faf9ff,#a8a4ff80);color:#514a99; }
+html body #contact .contact-methods :is(a,button) {
+  background-image:linear-gradient(125deg,#ffffffd9,#ffffff65 65%,#d9eeff45);
+  background-size:100% 100%;background-repeat:no-repeat;
+}
+html body #contact .contact-methods li:nth-child(2) > a { background-image:linear-gradient(125deg,#ffffffed,#fff1dd85); }
+html body #contact .contact-methods li:nth-child(3) > button { background-image:linear-gradient(125deg,#ffffffed,#cdf5e980); }
+html body #contact .contact-methods li:nth-child(4) > a { background-image:linear-gradient(125deg,#ffffffed,#e0dcff85); }

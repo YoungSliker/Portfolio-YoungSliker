@@ -45,7 +45,7 @@ export function Contact() {
     <p className="eyebrow">05 / WHAT'S NEXT</p><ContactTitle />
     <div className="contact-row">
       <div className="contact-details">
-        <p>有想法，欢迎聊聊。</p>
+        <p>联系我</p>
         <ul className="contact-methods" aria-label="联系方式">
           <li><a href="mailto:zyg203320@163.com" aria-label="发送邮件至 zyg203320@163.com"><ContactArtwork kind="mail" /><span className="contact-method-label">MAIL</span><span className="contact-method-value">zyg203320@163.com</span><ContactIcon /></a></li>
           <li><a href="tel:+8615248120655" aria-label="拨打电话 15248120655"><ContactArtwork kind="phone" /><span className="contact-method-label">TEL</span><span className="contact-method-value">15248120655</span><ContactIcon /></a></li>
