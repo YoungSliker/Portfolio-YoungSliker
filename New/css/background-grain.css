@@ -1,7 +1,39 @@
 /* Grainient's fine-grain pass, baked once rather than redrawn every frame.
    Background painting keeps all text, media and hit targets above the texture. */
-html body :is(.hero-landing, .about, .about-flowing-fields, .journey, .works, .contact) {
+html body :is(
+  .hero-landing, .about, .about-portal, .about-flowing-fields,
+  .flowing-menu, .flowing-menu__item, .flowing-menu__float, .flowing-menu__band,
+  .journey, .journey-overview, .journey-certificate,
+  .works, .work-graph--story .graph-stage, .graph-detail, .graph-detail-link, .graph-mobile-items button,
+  .archive-node-disc, .archive-node strong,
+  .contact, .contact-methods a, .contact-methods button,
+  .showcase--embedded, .site-header
+) {
   background-image: url('../assets/background-grain.png');
   background-size: 256px 256px;
   background-repeat: repeat;
+}
+
+/* The grain follows each clipped paper piece, including the detached stub.
+   A transparent print patina adds wear without replacing the source artwork. */
+.artwork-ticket .tear-ticket__paper {
+  background-color: #f5eddc;
+  background-image: url('../assets/background-grain.png');
+  background-size: 180px 180px;
+}
+.artwork-ticket .tear-ticket__paper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image:
+    url('../assets/background-grain.png'),
+    linear-gradient(94deg, #82572420, transparent 12%, transparent 89%, #82572418),
+    radial-gradient(ellipse at 12% 92%, #aa783322, transparent 48%),
+    linear-gradient(178deg, transparent 47%, #795c1612 49.5%, #fff9e51c 50%, transparent 52%);
+  background-size: 180px 180px, 100% 100%, 100% 100%, 100% 100%;
+}
+.hero-card:nth-child(even) .tear-ticket__paper::after {
+  background-position: 73px 41px, center, center, center;
 }

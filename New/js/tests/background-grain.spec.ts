@@ -7,8 +7,8 @@ for (const width of [375, 1440]) {
     await page.goto('/Portfolio-YoungSliker/New/#contact');
     const contact = page.locator('#contact');
     await contact.scrollIntoViewIfNeeded();
-    for (const selector of ['.hero-landing', '#about', '#journey', '#works', '#contact']) {
-      await expect(page.locator(selector)).toHaveCSS('background-image', /background-grain.*png/);
+    for (const selector of ['.hero-landing', '#about', '.about-portal', '.flowing-menu', '.site-header', '#journey', '#works', '#contact', '.contact-methods a']) {
+      await expect(page.locator(selector).first()).toHaveCSS('background-image', /background-grain.*png/);
     }
     const loaded = await contact.evaluate(async element => {
       const url = getComputedStyle(element).backgroundImage.slice(5, -2);
@@ -24,5 +24,16 @@ for (const width of [375, 1440]) {
     await page.getByRole('button', { name: /浏览体验 · 多设备演示/ }).click();
     await contact.scrollIntoViewIfNeeded();
     await page.screenshot({ path: `test-results/background-grain-${width}.png` });
+    await page.locator('#hero').scrollIntoViewIfNeeded();
+    await expect(page.locator('.artwork-ticket')).toHaveCount(4);
+    for (const ticket of await page.locator('.artwork-ticket').all()) {
+      const patina = await ticket.locator('.tear-ticket__paper').first().evaluate(el => {
+        const style = getComputedStyle(el, '::after');
+        return { texture: style.backgroundImage, events: style.pointerEvents };
+      });
+      expect(patina.texture).toContain('background-grain');
+      expect(patina.events).toBe('none');
+    }
+    await page.screenshot({ path: `test-results/aged-tickets-${width}.png` });
   });
 }
