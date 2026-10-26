@@ -1,0 +1,28 @@
+.stroke-text {
+  display: block;
+  width: 100%;
+  line-height: 0;
+}
+
+.stroke-text--hover {
+  cursor: pointer;
+}
+
+.stroke-text__svg {
+  display: block;
+  width: 100%;
+  max-width: var(--stroke-text-width, 600px);
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.stroke-text__stroke,
+.stroke-text__fill {
+  user-select: none;
+}
+
+
+/* Keep the existing heading size and left alignment. */
+.works-heading .stroke-text__svg { width: min(100%, var(--stroke-text-em)); max-width: none; margin: 0; }
+.works-heading .section-heading { width: 100%; }
