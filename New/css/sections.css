@@ -143,3 +143,9 @@ html body #contact .contact-methods :is(a,button) {
 html body #contact .contact-methods li:nth-child(2) > a { background-image:linear-gradient(125deg,#ffffffed,#fff1dd85); }
 html body #contact .contact-methods li:nth-child(3) > button { background-image:linear-gradient(125deg,#ffffffed,#cdf5e980); }
 html body #contact .contact-methods li:nth-child(4) > a { background-image:linear-gradient(125deg,#ffffffed,#e0dcff85); }
+/* Fine grain sits above the contact gradients without obscuring glass cards. */
+html body #contact {
+  background-image:url('../assets/background-grain.png'),radial-gradient(ellipse at 18% 30%,#b9e9ff80,transparent 50%),radial-gradient(ellipse at 85% 65%,#c9c4ff70,transparent 48%),linear-gradient(140deg,#f7fcff,#edf7f6 55%,#fff6ec);
+  background-size:256px 256px,100% 100%,100% 100%,100% 100%;
+  background-repeat:repeat,no-repeat,no-repeat,no-repeat;
+}
