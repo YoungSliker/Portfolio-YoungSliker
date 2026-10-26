@@ -1,15 +1,15 @@
 import { test, expect } from '@playwright/test';
 
 const base = '/Portfolio-YoungSliker/New/';
-const ids = ['hero', 'about', 'journey', 'works', 'showcase', 'contact'];
+const ids = ['hero', 'about', 'journey', 'works', 'contact'];
 
 for (const width of [375, 430, 768, 1024, 1440, 1920]) {
-  test(`six sections, readable navigation and images at ${width}px`, async ({ page }) => {
+  test(`five sections, readable navigation and images at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     const errors: string[] = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(base);
-    await expect(page.locator('main > section')).toHaveCount(6);
+    await expect(page.locator('main > section')).toHaveCount(5);
     for (const id of ids) {
       await page.locator(`#${id}`).scrollIntoViewIfNeeded();
       await expect(page.locator(`#${id}`)).toBeInViewport();

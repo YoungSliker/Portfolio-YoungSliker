@@ -8,7 +8,7 @@ for (const width of [375, 844, 1440, 1920]) {
   await page.locator('.scroll-cue').click();
   await expect(page.locator('#about h2')).toBeInViewport();
   await expect(page.locator('.site-header')).toBeVisible();
-  await expect(page.locator('.reading-footer')).toContainText('02 / 06');
+  await expect(page.locator('.reading-footer')).toContainText('02 / 05');
   await page.locator('.scroll-cue').evaluate(e=>(e as HTMLElement).blur());
   await page.screenshot({path:`docs/screenshots/phase2-about-top-${width}.png`});
   const menu=page.getByRole('navigation',{name:'创作领域'});

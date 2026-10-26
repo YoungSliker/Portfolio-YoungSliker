@@ -13,7 +13,7 @@ export function Header({ active }: { active: SectionId }) {
   return <header className="site-header" data-section={active} data-hidden={hidden} inert={hidden}>
     <a className="brand" href="#hero" aria-label="YoungSliker 返回封面">YOUNGSLIKER<span aria-hidden="true">®</span></a>
     <nav aria-label="章节导航">
-      {sections.filter(section => section.id !== 'hero' && section.id !== 'showcase').map(section =>
+      {sections.filter(section => section.id !== 'hero').map(section =>
         <a key={section.id} href={`#${section.id}`} aria-current={active === section.id ? 'location' : undefined}>
           {section.en}<span className="nav-cn">{section.label}</span>
         </a>)}

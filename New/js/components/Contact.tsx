@@ -1,5 +1,5 @@
-import { legacyAsset } from '../lib/assets';
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
+const Showcase = lazy(() => import('./Showcase').then(m => ({ default: m.Showcase })));
 
 function ContactIcon({ copy = false }: { copy?: boolean }) {
   return <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
@@ -8,6 +8,7 @@ function ContactIcon({ copy = false }: { copy?: boolean }) {
 }
 
 export function Contact() {
+  const [showExperience, setShowExperience] = useState(false);
   const [copyStatus, setCopyStatus] = useState('');
   const copyWechat = async () => {
     try {
@@ -18,7 +19,7 @@ export function Contact() {
     }
   };
   return <section id="contact" className="section contact" aria-label="联系与结束">
-    <p className="eyebrow">06 / WHAT'S NEXT</p><h2>STAY CURIOUS.<br />KEEP CREATING<span>.</span></h2>
+    <p className="eyebrow">05 / WHAT'S NEXT</p><h2>STAY CURIOUS.<br />KEEP CREATING<span>.</span></h2>
     <div className="contact-row">
       <div className="contact-details">
         <p>有想法，欢迎聊聊。</p>
@@ -30,8 +31,9 @@ export function Contact() {
         </ul>
         <span className="contact-copy-status" role="status">{copyStatus}</span>
       </div>
-      <a className="contact-link" href={legacyAsset('index.html', import.meta.env.BASE_URL)}>查看已有作品 <span aria-hidden="true">↗</span></a>
+      <button type="button" className="contact-link contact-experience-toggle" aria-expanded={showExperience} aria-controls="contact-experience" onClick={() => setShowExperience(open => !open)}>浏览体验 · 多设备演示 <span aria-hidden="true">{showExperience ? "−" : "+"}</span></button>
     </div>
+    <div id="contact-experience" hidden={!showExperience}>{showExperience && <Suspense fallback={<p role="status">正在载入浏览体验…</p>}><Showcase /></Suspense>}</div>
     <footer><span>YOUNGSLIKER® — CREATIVE ARCHIVE</span><a href="#hero">BACK TO TOP ↑</a></footer>
   </section>;
 }

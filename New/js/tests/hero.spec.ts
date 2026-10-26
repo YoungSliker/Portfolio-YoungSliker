@@ -50,10 +50,10 @@ for (const width of [375, 1440]) {
     await page.goto(base);
     await expect(page.locator('.cue-arrow')).toHaveCount(0);
     const footer = page.locator('.reading-footer');
-    for (const [index, id] of ['hero','about','journey','works','showcase','contact'].entries()) {
+    for (const [index, id] of ['hero','about','journey','works','contact'].entries()) {
       await page.locator(`#${id}`).evaluate(e => window.scrollTo({top:(e as HTMLElement).offsetTop,behavior:'instant'}));
       await expect(footer).toBeInViewport();
-      await expect(footer).toContainText(`${String(index+1).padStart(2,'0')} / 06`);
+      await expect(footer).toContainText(`${String(index+1).padStart(2,'0')} / 05`);
     }
     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
     await expect(page.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '100');

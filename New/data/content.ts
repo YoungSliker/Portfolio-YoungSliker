@@ -5,7 +5,6 @@ export const sections = [
   { id: 'about', label: '关于', en: 'ABOUT' },
   { id: 'journey', label: '经历', en: 'JOURNEY' },
   { id: 'works', label: '作品', en: 'WORKS' },
-  { id: 'showcase', label: '多端', en: 'SCREENS' },
   { id: 'contact', label: '联系', en: 'CONTACT' },
 ] as const;
 export type SectionId = typeof sections[number]['id'];
