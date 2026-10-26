@@ -25,6 +25,17 @@
 .contact-row { margin: 65px 0 80px; display: flex; align-items: center; justify-content: space-between; gap: 35px; }
 .contact-row p { font-size: 20px; line-height: 1.8; }
 .contact-row p > span { font-size: 12px; }
+.contact-details { width: min(100%, 440px); min-width: 0; }
+.contact-methods { list-style: none; padding: 0; margin: 22px 0 0; }
+.contact-methods a, .contact-methods button { display: grid; grid-template-columns: 48px minmax(0, 1fr) 20px; align-items: center; gap: 12px; width: 100%; min-height: 48px; padding: 10px 0; border: 0; border-bottom: 1px solid rgb(0 0 0 / 20%); background: none; color: inherit; text-align: left; font: inherit; cursor: pointer; }
+.contact-method-label { font: 11px var(--mono); }
+.contact-method-value { font-size: clamp(14px, 1.5vw, 19px); overflow-wrap: anywhere; user-select: text; }
+.contact-methods svg { transition: transform .2s ease; }
+.contact-methods a:hover svg { transform: translate(2px, -2px); }
+.contact-methods button:hover svg { transform: translateY(-2px); }
+.contact-copy-status { display: block; min-height: 20px; margin-top: 8px; font-size: 12px; }
+.contact-methods button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .contact-methods svg { transition: none; } }
 .contact-link { display: flex; align-items: center; justify-content: space-between; gap: 60px; border-bottom: 1px solid var(--ink); padding-bottom: 15px; font-size: 16px; }
 .contact-link span { font-size: 42px; }
 .contact footer { border-top: 1px solid #963818; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-top: 15px; font: 10px var(--mono); }
