@@ -6,9 +6,10 @@ import {legacyAsset} from '../lib/assets';
 import '../../css/journey.css';
 import awardImage from '../../assets/images/03 The Journey/亚洲大创一等奖.jpg';
 import silverImage from '../../assets/images/03 The Journey/“互联网+”大学生创新创业大赛省银.jpg';
+import educationLogo from '../../assets/images/03 The Journey/数媒/师大标志(左右组合).png';
 
 const journeyImages=import.meta.glob('../../assets/images/03 The Journey/thumbnails/**/*.webp',{eager:true,query:'?url',import:'default'}) as Record<string,string>;
-const imageFrom=(key:string)=>Object.entries(journeyImages).find(([path])=>path.includes(`/thumbnails/${key}`))?.[1];
+const imageFrom=(key:string)=>key==='数媒/师大标志(左右组合)'?educationLogo:Object.entries(journeyImages).find(([path])=>path.includes(`/thumbnails/${key}`))?.[1];
 const overviewCopy:Record<string,string>={
   education:'数字媒体艺术专业，围绕用户体验、影像创作与数字动态表达建立完整的设计基础。',
   mine:'以 Depth AI 建立场景模型，并在 UE5 中完成生态重建主题的实机演示。',
