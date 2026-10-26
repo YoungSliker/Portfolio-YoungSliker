@@ -16,6 +16,7 @@ for (const width of [375, 1440]) test(`contact actions and copy feedback at ${wi
   expect(await page.evaluate(() => (window as any).copiedContact)).toBe('YoungSlikera');
   await expect(contact.getByRole('status')).toContainText('微信号已复制');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await contact.screenshot({ path: `test-results/contact-${width}.png` });
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { value: { writeText: () => Promise.reject(new Error('Denied')) } }));
   await contact.getByRole('button', { name: /复制微信号/ }).click();
   await expect(contact.getByRole('status')).toContainText('未能自动复制');
