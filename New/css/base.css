@@ -15,7 +15,7 @@ img { display: block; max-width: 100%; }
 .site-header[data-hidden="true"] { opacity:0; visibility:hidden; transform:translateY(-100%); pointer-events:none; }
 .site-header[data-section="about"] { background:#eeeae3; }
 .brand { font-weight: 900; font-size: 20px; letter-spacing: -1px; white-space: nowrap; }
-.brand span { vertical-align: top; font-size: 11px; margin-left: 2px; }
+.brand > span[aria-hidden="true"] { vertical-align: top; font-size: 11px; margin-left: 2px; }
 .site-header nav { display: flex; gap: clamp(16px, 2.3vw, 38px); }
 .site-header nav a { min-height: 44px; display: inline-flex; align-items: center; gap: 6px; font: 11px var(--mono); position: relative; }
 .site-header nav a[aria-current]::before { content: ''; position: absolute; left: -10px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }

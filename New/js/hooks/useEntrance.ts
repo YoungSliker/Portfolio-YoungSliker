@@ -20,16 +20,17 @@ export function useEntrance(ref: RefObject<HTMLElement | null>, selector: string
       });
     }, { threshold: [0, .28], rootMargin: '0px 0px -10% 0px' });
     targets.forEach(element => {
+      element.dataset.entrancePending = 'true';
       const animation = element.animate([
         { opacity: 0, transform: 'translateY(38px) scale(.97)' },
         { opacity: 1, transform: 'translateY(0) scale(1)' },
       ], { duration: 1150, easing: 'cubic-bezier(.25,.65,.25,1)', fill: 'both' });
       animation.pause();
-      animation.onfinish = () => animation.cancel();
+      animation.onfinish = () => { delete element.dataset.entrancePending; animation.cancel(); };
       animations.set(element, animation);
       observer.observe(element);
     });
-    const finish = () => { observer.disconnect(); animations.forEach(animation => animation.cancel()); };
+    const finish = () => { observer.disconnect(); animations.forEach((animation, element) => { delete (element as HTMLElement).dataset.entrancePending; animation.cancel(); }); };
     const reduce = () => { if (preference.matches) finish(); };
     preference.addEventListener('change', reduce);
     root.addEventListener('focusin', finish);

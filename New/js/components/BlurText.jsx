@@ -82,7 +82,7 @@ const buildEffect = (effect, direction, blur, distance) => {
   }
 
   if (effect === 'focus') {
-    const soft = { filter: blurTo(b * 1.4), opacity: 0.32, scale: 1.12 };
+    const soft = { filter: blurTo(b * 1.4), opacity: 0, scale: 1.12 };
     return {
       from: soft,
       steps: [
@@ -173,18 +173,18 @@ const startPhase = trigger =>
 
 const BlurText = ({
   text = '',
-  delay = 18,
+  delay = 28,
   className = '',
   animateBy = 'letters',
   direction = 'top',
   threshold = 0.25,
-  rootMargin = '0px 0px -8% 0px',
+  rootMargin = '0px',
   animationFrom = undefined,
   animationTo = undefined,
   easing = undefined,
   onAnimationComplete = undefined,
-  stepDuration = 0.35,
-  blur = 14,
+  stepDuration = 0.65,
+  blur = 22,
   distance = 0,
   effect = 'focus',
   staggerFrom = 'center',
@@ -264,17 +264,32 @@ const BlurText = ({
     }
     const element = ref.current;
     if (!element) return undefined;
+    let pending = 0;
+    let inView = false;
+    const revealWhenReady = () => {
+      if (!inView) return;
+      let parent = element.parentElement;
+      while (parent) {
+        const css = getComputedStyle(parent);
+        const moving = parent.getAnimations().some(a => a.playState === 'running' || a.playState === 'paused');
+        if (parent.inert || css.visibility === 'hidden' || Number(css.opacity) < .95 || parent.dataset.entrancePending === 'true' || moving) {
+          pending = window.setTimeout(revealWhenReady, 80); return;
+        }
+        parent = parent.parentElement;
+      }
+      setPhase(current => current === 'from' ? 'in' : current);
+      observer.disconnect();
+    };
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setPhase(current => (current === 'from' ? 'in' : current));
-          observer.disconnect();
-        }
+        inView = entry.isIntersecting;
+        window.clearTimeout(pending);
+        if (inView) revealWhenReady();
       },
       { threshold, rootMargin }
     );
     observer.observe(element);
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); window.clearTimeout(pending); };
   }, [phase, trigger, threshold, rootMargin]);
 
   useEffect(() => {
@@ -306,7 +321,7 @@ const BlurText = ({
   };
 
   const inTransition = rank => {
-    const delayed = rank * stagger;
+    const delayed = Math.min(rank * stagger, .65);
     if (custom) return { duration: totalDuration, times, delay: delayed, ease: easing ?? 'linear' };
     const transition = { duration: totalDuration, delay: delayed, ease: fx.fade };
     if (fx.bounce === null) return transition;
@@ -374,7 +389,8 @@ const BlurText = ({
     <MotionConfig reducedMotion="user">
       <span
         ref={ref}
-        className={className}
+        className={`blur-text ${className}`}
+        data-blur-phase={reduced ? 'rest' : phase}
         style={{ display: 'inline', color, cursor: trigger === 'click' ? 'pointer' : undefined }}
         onPointerEnter={trigger === 'hover' ? handleEnter : undefined}
         onClick={trigger === 'click' ? replay : undefined}

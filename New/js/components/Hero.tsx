@@ -1,3 +1,4 @@
+import BlurText from './BlurText';
 import { DraftingDetails } from './DraftingDetails';
 import { useRef } from 'react';
 import { useHeroMotion } from '../hooks/useHeroMotion';
@@ -38,10 +39,10 @@ export function Hero() {
       <LoadingIntro onEnter={enter} />
       <div className="intro-aperture" aria-hidden="true" />
       <div className="hero-landing">
-      <div className="hero-meta"><span>CREATIVE ARCHIVE / 翟杨阳</span><span>AI · DESIGN · INTERACTION</span></div>
+      <div className="hero-meta"><span><BlurText text={'CREATIVE ARCHIVE / 翟杨阳'}/></span><span><BlurText text={'AI · DESIGN · INTERACTION'}/></span></div>
       <div className="hero-orbit" aria-hidden="true"><i /><span>+</span></div>
       <div className="hero-title-group"><DraftingDetails variant="hero" />
-        <p className="hero-kicker">IDEAS IN MOTION. WORLDS IN THE MAKING.</p>
+        <p className="hero-kicker"><BlurText text={'IDEAS IN MOTION. WORLDS IN THE MAKING.'}/></p>
         <GlassTitle />
       </div>
       <div className="hero-artworks">{artworks.map((artwork,index) =>
@@ -50,10 +51,10 @@ export function Hero() {
             image={artwork.image} qrValue={`${location.origin}${import.meta.env.BASE_URL}#work=${artwork.id}`}
             width={360} height={280} />}
         </div>)}</div>
-      <div className="hero-description"><span className="hero-rule" /><p>探索人工智能、数字体验<br className="mobile-break" />与视觉传播的边界。</p><span>AI × CREATIVE × INTERACTION</span></div>
+      <div className="hero-description"><span className="hero-rule" /><p><BlurText text={'探索人工智能、数字体验'}/><br className="mobile-break" /><BlurText text={'与视觉传播的边界。'}/></p><span><BlurText text={'AI × CREATIVE × INTERACTION'}/></span></div>
       <a href="#about" className="scroll-cue" aria-label="向下滚动，进入创作档案">
         <span className="cue-track" aria-hidden="true"><span className="cue-comet" /></span>
-        <span className="cue-label">SCROLL TO DISCOVER</span><span className="cue-chinese">向下滚动，进入创作档案</span>
+        <span className="cue-label"><BlurText text={'SCROLL TO DISCOVER'}/></span><span className="cue-chinese"><BlurText text={'向下滚动，进入创作档案'}/></span>
       </a>
       </div>
     </div>

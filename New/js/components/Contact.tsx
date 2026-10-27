@@ -47,21 +47,21 @@ export function Contact() {
     }
   };
   return <section id="contact" className="section contact" aria-label="联系与结束">
-    <p className="eyebrow">05 / WHAT'S NEXT</p><ContactTitle />
+    <p className="eyebrow"><BlurText text={"05 / WHAT'S NEXT"}/></p><ContactTitle />
     <div className="contact-row">
       <div className="contact-details"><DraftingDetails variant="contact" />
         <p><BlurText text="联系我"/></p>
         <ul ref={cards} className="contact-methods" aria-label="联系方式">
-          <li><a href="mailto:zyg203320@163.com" aria-label="发送邮件至 zyg203320@163.com"><ContactArtwork kind="mail" /><span className="contact-method-label">MAIL</span><span className="contact-method-value">zyg203320@163.com</span><ContactIcon /></a></li>
-          <li><a href="tel:+8615248120655" aria-label="拨打电话 15248120655"><ContactArtwork kind="phone" /><span className="contact-method-label">TEL</span><span className="contact-method-value">15248120655</span><ContactIcon /></a></li>
-          <li><button type="button" onClick={copyWechat} aria-label="复制微信号 YoungSlikera"><ContactArtwork kind="wechat" /><span className="contact-method-label">WX</span><span className="contact-method-value">YoungSlikera</span><ContactIcon copy /></button></li>
-          <li><a href="https://wpa.qq.com/msgrd?v=3&uin=3187134482&site=qq&menu=yes" target="_blank" rel="noopener noreferrer" aria-label="打开 QQ 会话 3187134482" title="打开 QQ 会话（需安装 QQ）"><ContactArtwork kind="qq" /><span className="contact-method-label">QQ</span><span className="contact-method-value">3187134482</span><ContactIcon /></a></li>
+          <li><a href="mailto:zyg203320@163.com" aria-label="发送邮件至 zyg203320@163.com"><ContactArtwork kind="mail" /><span className="contact-method-label"><BlurText text={'MAIL'}/></span><span className="contact-method-value"><BlurText text={'zyg203320@163.com'}/></span><ContactIcon /></a></li>
+          <li><a href="tel:+8615248120655" aria-label="拨打电话 15248120655"><ContactArtwork kind="phone" /><span className="contact-method-label"><BlurText text={'TEL'}/></span><span className="contact-method-value"><BlurText text={'15248120655'}/></span><ContactIcon /></a></li>
+          <li><button type="button" onClick={copyWechat} aria-label="复制微信号 YoungSlikera"><ContactArtwork kind="wechat" /><span className="contact-method-label"><BlurText text={'WX'}/></span><span className="contact-method-value"><BlurText text={'YoungSlikera'}/></span><ContactIcon copy /></button></li>
+          <li><a href="https://wpa.qq.com/msgrd?v=3&uin=3187134482&site=qq&menu=yes" target="_blank" rel="noopener noreferrer" aria-label="打开 QQ 会话 3187134482" title="打开 QQ 会话（需安装 QQ）"><ContactArtwork kind="qq" /><span className="contact-method-label"><BlurText text={'QQ'}/></span><span className="contact-method-value"><BlurText text={'3187134482'}/></span><ContactIcon /></a></li>
         </ul>
         <span className="contact-copy-status" role="status">{copyStatus}</span>
       </div>
-      <button type="button" className="contact-link contact-experience-toggle" aria-expanded={showExperience} aria-controls="contact-experience" onClick={() => setShowExperience(open => !open)}>浏览体验 · 多设备演示 <span aria-hidden="true">{showExperience ? "−" : "+"}</span></button>
+      <button type="button" className="contact-link contact-experience-toggle" aria-expanded={showExperience} aria-controls="contact-experience" onClick={() => setShowExperience(open => !open)}><BlurText text={'浏览体验 · 多设备演示 '}/><span aria-hidden="true">{showExperience ? "−" : "+"}</span></button>
     </div>
-    <div id="contact-experience" hidden={!showExperience}>{showExperience && <Suspense fallback={<p role="status">正在载入浏览体验…</p>}><Showcase /></Suspense>}</div>
-    <footer><span>YOUNGSLIKER® — CREATIVE ARCHIVE</span><a href="#hero">BACK TO TOP ↑</a></footer>
+    <div id="contact-experience" hidden={!showExperience}>{showExperience && <Suspense fallback={<p role="status"><BlurText text={'正在载入浏览体验…'}/></p>}><Showcase /></Suspense>}</div>
+    <footer><span><BlurText text={'YOUNGSLIKER® — CREATIVE ARCHIVE'}/></span><a href="#hero"><BlurText text={'BACK TO TOP ↑'}/></a></footer>
   </section>;
 }

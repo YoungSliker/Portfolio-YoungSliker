@@ -1,3 +1,4 @@
+import BlurText from './BlurText';
 import { useEffect, useRef } from 'react';
 import { sections, type SectionId } from '../../data/content';
 export function ScrollProgress({ active }: { active: SectionId }) {
@@ -17,8 +18,8 @@ export function ScrollProgress({ active }: { active: SectionId }) {
     return () => { observer.disconnect(); window.removeEventListener('scroll', update); window.removeEventListener('resize', update); };
   }, []);
   return <div className="reading-footer" aria-label="页面阅读进度"><div className="reading-chapter">
-    <span>{active === 'hero' ? 'DISCOVERY' : sections[index].en}</span>
+    <span><BlurText text={active === 'hero' ? 'DISCOVERY' : sections[index].en}/></span>
     <span ref={track} className="reading-track" role="progressbar" aria-label="整页滚动进度" aria-valuemin={0} aria-valuemax={100}><i /></span>
-    <span>{String(index + 1).padStart(2, '0')} / {String(sections.length).padStart(2, '0')}</span>
-    </div><span className="reading-note">SCROLL TO DISCOVER. CONNECT TO EXPLORE.</span></div>;
+    <span><BlurText text={`${String(index + 1).padStart(2, '0')} / ${String(sections.length).padStart(2, '0')}`}/></span>
+    </div><span className="reading-note"><BlurText text={'SCROLL TO DISCOVER. CONNECT TO EXPLORE.'}/></span></div>;
 }

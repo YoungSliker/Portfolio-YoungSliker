@@ -1,3 +1,4 @@
+import BlurText from './BlurText';
 import { useGraphGrowth } from '../hooks/useGraphGrowth';
 import { useEntrance } from '../hooks/useEntrance';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -38,9 +39,9 @@ function ArchiveNodeView({data}:NodeProps<ArchiveNode>){
  return <div className={`archive-node archive-node--${data.kind}`} data-active={data.active}>
   <Handle type="target" position={Position.Top}/><Handle type="source" position={Position.Bottom}/>
   <button onClick={data.choose} aria-label={data.label} aria-expanded={data.kind!=='work'?data.active:undefined}>
-   <span className="archive-node-disc">{data.cover?<img src={data.cover} alt="" draggable={false}/>:data.kind==='category'&&typography?<span className="graph-type"><span className="graph-type-en">{typography.en}</span><i/><span className="graph-type-lead">{typography.lead}</span><b>{typography.title}</b><span className="graph-type-note">{typography.note}</span></span>:<span>{data.kind==='root'?'我的作品':data.kind==='work'?'待加入':data.label}</span>}</span>
-   {data.kind==='work'&&<strong>{data.label}</strong>}
-   {data.date&&<span className="graph-date-tail">{data.date}</span>}
+   <span className="archive-node-disc">{data.cover?<img src={data.cover} alt="" draggable={false}/>:data.kind==='category'&&typography?<span className="graph-type"><span className="graph-type-en"><BlurText text={typography.en}/></span><i/><span className="graph-type-lead"><BlurText text={typography.lead}/></span><b><BlurText text={typography.title}/></b><span className="graph-type-note"><BlurText text={typography.note}/></span></span>:<span>{data.kind==='root'?'我的作品':data.kind==='work'?'待加入':data.label}</span>}</span>
+   {data.kind==='work'&&<strong><BlurText text={data.label}/></strong>}
+   {data.date&&<span className="graph-date-tail"><BlurText text={data.date}/></span>}
 
   </button>
  </div>;
@@ -51,7 +52,7 @@ const fitOptions={padding:.18,maxZoom:1};
 const readZoom=(state:{transform:[number,number,number]})=>Math.round(state.transform[2]*100);
 function ZoomReadout(){
  const zoom=useStore(readZoom);
- return <output className="graph-zoom-readout" aria-label="图谱缩放比例">{zoom}%</output>;
+ return <output className="graph-zoom-readout" aria-label="图谱缩放比例"><BlurText text={`${zoom}%`}/></output>;
 }
 // Pointer updates stay inside the canvas; unchanged nodes retain their data and callbacks.
 const GraphCanvas=memo(function GraphCanvas({models,edges,resetVersion,onInit,onManual}:{
@@ -183,13 +184,13 @@ export default function WorkGraph(){
  const mobileBack=()=>{setSelected(null);if(mobileGroup){setExpanded(old=>old.filter(id=>id!==mobileGroup));setGroup(null);}else if(mobileCategory){setExpanded(old=>old.filter(id=>id!==mobileCategory&&!graphGroups.some(g=>g.id===id&&g.category===mobileCategory)));setCategory(null);}};
  return <div ref={root} className={`work-graph${story?' work-graph--story':''}`} data-mode={story?'story':'explore'} data-story-domain={story?category:undefined}>
   <div ref={stage} className="graph-stage">
-  <div className="graph-mode-switch" role="group" aria-label="图谱浏览方式"><button aria-pressed={!story} onClick={stopStory}>自由探索</button><button aria-pressed={story} onClick={enterStory} disabled={story}>随页浏览</button>{story&&<span role="status">{String(categories.findIndex(c=>c.id===category)+1).padStart(2,'0')} / 03 · {categories.find(c=>c.id===category)?.label} · 滚动继续，点击或拖动进入探索</span>}</div>
-  <div className="graph-toolbar"><p className="graph-intro">三个设计领域，<br/>彼此连接的创作实践。</p>
-  <div className="graph-tools" aria-label="图谱操作"><button onClick={()=>{stopStory();void flow?.zoomOut({duration:reduced()?0:180});}} aria-label="缩小图谱">−</button><button onClick={()=>{stopStory();void flow?.zoomIn({duration:reduced()?0:180});}} aria-label="放大图谱">＋</button><button onClick={()=>{stopStory();void flow?.fitView({padding:.18,maxZoom:1,duration:reduced()?0:350});}}>适应画布</button><button onClick={reset}>重置图谱</button></div>
-  <p className="graph-hint">拖动圆点，自由整理关系 · 拖动空白处移动画布 · 滚轮继续浏览页面</p>
+  <div className="graph-mode-switch" role="group" aria-label="图谱浏览方式"><button aria-pressed={!story} onClick={stopStory}><BlurText text={'自由探索'}/></button><button aria-pressed={story} onClick={enterStory} disabled={story}><BlurText text={'随页浏览'}/></button>{story&&<span role="status">{String(categories.findIndex(c=>c.id===category)+1).padStart(2,'0')} / 03 · {categories.find(c=>c.id===category)?.label} · 滚动继续，点击或拖动进入探索</span>}</div>
+  <div className="graph-toolbar"><p className="graph-intro"><BlurText text={'三个设计领域，'}/><br/><BlurText text={'彼此连接的创作实践。'}/></p>
+  <div className="graph-tools" aria-label="图谱操作"><button onClick={()=>{stopStory();void flow?.zoomOut({duration:reduced()?0:180});}} aria-label="缩小图谱">−</button><button onClick={()=>{stopStory();void flow?.zoomIn({duration:reduced()?0:180});}} aria-label="放大图谱">＋</button><button onClick={()=>{stopStory();void flow?.fitView({padding:.18,maxZoom:1,duration:reduced()?0:350});}}><BlurText text={'适应画布'}/></button><button onClick={reset}><BlurText text={'重置图谱'}/></button></div>
+  <p className="graph-hint"><BlurText text={'拖动圆点，自由整理关系 · 拖动空白处移动画布 · 滚轮继续浏览页面'}/></p>
   </div>
   <nav className="graph-mobile-browser" aria-label="作品分层浏览">
-   <div className="graph-mobile-heading">{mobileCategory?<button onClick={mobileBack}>← 返回{mobileGroup?'分类':'领域'}</button>:<span>选择创作领域</span>}<span>{mobileGroup?graphGroups.find(g=>g.id===mobileGroup)?.label:categories.find(c=>c.id===mobileCategory)?.label}</span></div>
+   <div className="graph-mobile-heading">{mobileCategory?<button onClick={mobileBack}>← 返回{mobileGroup?'分类':'领域'}</button>:<span><BlurText text={'选择创作领域'}/></span>}<span>{mobileGroup?graphGroups.find(g=>g.id===mobileGroup)?.label:categories.find(c=>c.id===mobileCategory)?.label}</span></div>
    <div className="graph-mobile-items">
     {!mobileCategory?categories.map(c=><button key={c.id} onClick={()=>chooseCategory(c.id)}>{c.label}<span aria-hidden="true">↗</span></button>):!mobileGroup?<>
      {graphGroups.filter(g=>g.category===mobileCategory&&g.id!=='scenes').map(g=><button key={g.id} onClick={()=>chooseGroup(g.id)}>{g.label}<span>{graphWorks.filter(w=>w.group===g.id).length} 件</span></button>)}
@@ -200,10 +201,10 @@ export default function WorkGraph(){
   <div className="graph-layout">
    <GraphCanvas models={nodes} edges={edges} resetVersion={resetVersion} onInit={setFlow} onManual={stopStory}/>
    {work&&<div className={`graph-detail${work.group==='apps'?' graph-detail--app':''}`} ref={detail} tabIndex={-1} role="region" aria-label="作品概况" onKeyDown={e=>{if(e.key==='Escape'){e.preventDefault();close();}}}>
-    <button className="graph-close" onClick={close}>返回图谱 ×</button>{work.group==='apps'?<AppPreview key={work.id} id={work.id}/>:preview(work.id)&&(imageWork?<button className="graph-cover-button" onClick={openPreview} aria-label={`放大查看${work.title}`}><img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} decoding="async"/><span>{media.length>1?`查看作品 · ${media.length} 项`:'查看作品'} ↗</span></button>:<img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} loading="lazy" decoding="async"/>)}
-    <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3>{work.title}</h3><p>{work.summary}</p>{confirmedEntry&&<div className="graph-confirmed-tags" aria-label="作品相关方向">{confirmedEntry.tags.map(tag=><span key={tag}>{tag}</span>)}</div>}<small>{work.pending?'待加入 · 暂无素材':work.date}</small>
+    <button className="graph-close" onClick={close}><BlurText text={'返回图谱 ×'}/></button>{work.group==='apps'?<AppPreview key={work.id} id={work.id}/>:preview(work.id)&&(imageWork?<button className="graph-cover-button" onClick={openPreview} aria-label={`放大查看${work.title}`}><img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} decoding="async"/><span>{media.length>1?`查看作品 · ${media.length} 项`:'查看作品'} ↗</span></button>:<img key={work.id} src={preview(work.id)} alt={`${work.title}封面`} loading="lazy" decoding="async"/>)}
+    <span className="graph-detail-label">{graphGroups.find(g=>g.id===work.group)?.label}</span><h3><BlurText text={work.title}/></h3><p><BlurText text={work.summary}/></p>{confirmedEntry&&<div className="graph-confirmed-tags" aria-label="作品相关方向">{confirmedEntry.tags.map(tag=><span key={tag}><BlurText text={tag}/></span>)}</div>}<small>{work.pending?'待加入 · 暂无素材':work.date}</small>
     {!work.pending&&<a className="graph-detail-link" onClick={saveReturn} onAuxClick={saveReturn} target="_blank" rel="noopener noreferrer" aria-label={`${graphDetailKeys[work.id]?'查看完整作品详情':'查看完整作品详情'}（新标签页）`} href={graphDetailKeys[work.id]?`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${graphDetailKeys[work.id]}&from=graph&graphReturn=${returnToken}`:mediaUrl(work.original)}><span>{graphDetailKeys[work.id]?'查看完整作品':'查看完整作品'}</span><span aria-hidden="true">↗</span></a>}
-    <button className="graph-share" onClick={copyLink}>复制作品链接 ↗</button>{linkStatus&&<p role="status" className="graph-share-status">{linkStatus}</p>}
+    <button className="graph-share" onClick={copyLink}><BlurText text={'复制作品链接 ↗'}/></button>{linkStatus&&<p role="status" className="graph-share-status">{linkStatus}</p>}
    </div>}
   </div>
   </div>

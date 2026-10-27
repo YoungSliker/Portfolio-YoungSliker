@@ -81,30 +81,30 @@ export function Journey() {
     document.getElementById(`journey-${entry.id}`)?.scrollIntoView({block:'start',behavior:'instant'});
   };
   return <section ref={root} id="journey" className="section journey" aria-labelledby="journey-title">
-    <div className="journey-heading"><DraftingDetails variant="journey" /><p className="eyebrow"><span>03 /</span> THE JOURNEY</p><h2 id="journey-title"><FoldText text="每一步，" foldStyle="flip" splitBy="char" hinge="left" trigger="scroll" foldAngle={92} duration={1.15} stagger={.06} staggerFrom="start" ease="back.out(1.2)" hoverRefold refoldRadius={120} refoldAngle={40} perspective={900} creaseShading={.45} fontSize="inherit" fontWeight={800}/><br/><span className="journey-title-accent"><FoldText text="都是新的视角。" foldStyle="flip" splitBy="char" hinge="left" trigger="scroll" foldAngle={92} duration={1.15} stagger={.06} staggerFrom="start" ease="back.out(1.2)" hoverRefold refoldRadius={120} refoldAngle={40} perspective={900} creaseShading={.45} fontSize="inherit" fontWeight={800}/></span></h2></div>
+    <div className="journey-heading"><DraftingDetails variant="journey" /><p className="eyebrow"><span><BlurText text={'03 /'}/></span><BlurText text={' THE JOURNEY'}/></p><h2 id="journey-title"><FoldText text="每一步，" foldStyle="flip" splitBy="char" hinge="left" trigger="scroll" foldAngle={92} duration={1.15} stagger={.06} staggerFrom="start" ease="back.out(1.2)" hoverRefold refoldRadius={120} refoldAngle={40} perspective={900} creaseShading={.45} fontSize="inherit" fontWeight={800}/><br/><span className="journey-title-accent"><FoldText text="都是新的视角。" foldStyle="flip" splitBy="char" hinge="left" trigger="scroll" foldAngle={92} duration={1.15} stagger={.06} staggerFrom="start" ease="back.out(1.2)" hoverRefold refoldRadius={120} refoldAngle={40} perspective={900} creaseShading={.45} fontSize="inherit" fontWeight={800}/></span></h2></div>
     <div className="journey-layout">
       <aside className="journey-sidebar">
-        <p className="journey-nav-label">YEARS / 年份导航</p>
-        <nav aria-label="经历年份">{journeyYears.map(year=><button key={year} type="button" aria-current={journeyEntries[active].year===year?'step':undefined} onClick={()=>goToYear(year)}><span>{year}</span><small>{String(journeyEntries.filter(item=>item.year===year).length).padStart(2,'0')}</small></button>)}</nav>
+        <p className="journey-nav-label"><BlurText text={'YEARS / 年份导航'}/></p>
+        <nav aria-label="经历年份">{journeyYears.map(year=><button key={year} type="button" aria-current={journeyEntries[active].year===year?'step':undefined} onClick={()=>goToYear(year)}><span><BlurText text={year}/></span><small>{String(journeyEntries.filter(item=>item.year===year).length).padStart(2,'0')}</small></button>)}</nav>
         <p className="journey-position">{String(active+1).padStart(2,'0')} <span>/ {String(journeyEntries.length).padStart(2,'0')} RECORDS</span></p>
       </aside>
       <div className="journey-records">{journeyEntries.map((entry,index)=><article tabIndex={-1} key={entry.id} id={`journey-${entry.id}`} className={`journey-entry journey-entry--${entry.id}`} data-timeline-entry data-current={active===index} data-past={active>index} aria-current={active===index?'step':undefined}>
         <span className="journey-node" aria-hidden="true"/>
-        <div className="journey-entry-copy"><div className="journey-meta"><span>{entry.date}</span><span>{entry.kind}</span></div>
+        <div className="journey-entry-copy"><div className="journey-meta"><span><BlurText text={entry.date}/></span><span><BlurText text={entry.kind}/></span></div>
         <h3><FoldText text={entry.title} trigger="scroll" foldStyle="paper" fontSize="inherit" fontWeight={400} hoverRefold /></h3><p className="journey-organization"><BlurText text={entry.id==='award-1'?'2024第一届亚洲大学生创意设计展':entry.organization}/></p>
         <p className="journey-description"><FoldText text={entry.description} trigger="scroll" foldStyle="paper" fontSize="inherit" fontWeight={400} stagger={.008} hoverRefold={false}/></p>
         <ul className="journey-tags">{entry.tags.map(tag=><li key={tag}><Magnet padding={32} magnetStrength={4} maxOffset={9} spring={{stiffness:170,damping:20,mass:1}} onActiveChange={()=>{}} style={{}} innerClassName="journey-tag-magnet">{tag}</Magnet></li>)}</ul>
-        {!entry.confirmed&&<p className="journey-review">计划书记录 · 日期与职责待核对</p>}
+        {!entry.confirmed&&<p className="journey-review"><BlurText text={'计划书记录 · 日期与职责待核对'}/></p>}
         <button className="journey-work-link" aria-expanded={overview===entry.id} aria-controls={`overview-${entry.id}`} onClick={()=>toggleOverview(entry.id)}>查看「{entry.id==='internship'?'实习经历':entry.title}」概况 <span aria-hidden="true">{overview===entry.id?'−':'＋'}</span></button>
         </div>
         {overview===entry.id&&<section id={`overview-${entry.id}`} className="journey-overview" aria-label={`${entry.title}概况`}>
-          {['mine','arti','lingsu','earthquake','suiyuan'].includes(entry.id)&&<a className="journey-detail-link" href={`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${entry.id}`} onClick={()=>rememberPosition(entry.id)}>查看作品详情 ↗</a>}
-          {entry.kind==='获奖'?<button type="button" className="journey-certificate" onClick={()=>{setActiveCertificate(entry.id);setImageOpen(true);}} aria-label={`放大${entry.title}证书`}><span>点击查看大图</span><div data-cursor-bound className={`certificate-image${entry.id==='award-0'?' certificate-image--rotate':''}`}><img src={imageFrom(entry.id==='award-0'?'“互联网+”大学生创新创业大赛省银':'亚洲大创一等奖')} alt={`${entry.title}证书`}/></div></button>:<>
+          {['mine','arti','lingsu','earthquake','suiyuan'].includes(entry.id)&&<a className="journey-detail-link" href={`${legacyAsset('index.html',import.meta.env.BASE_URL)}?work=${entry.id}`} onClick={()=>rememberPosition(entry.id)}><BlurText text={'查看作品详情 ↗'}/></a>}
+          {entry.kind==='获奖'?<button type="button" className="journey-certificate" onClick={()=>{setActiveCertificate(entry.id);setImageOpen(true);}} aria-label={`放大${entry.title}证书`}><span><BlurText text={'点击查看大图'}/></span><div data-cursor-bound className={`certificate-image${entry.id==='award-0'?' certificate-image--rotate':''}`}><img src={imageFrom(entry.id==='award-0'?'“互联网+”大学生创新创业大赛省银':'亚洲大创一等奖')} alt={`${entry.title}证书`}/></div></button>:<>
             <span className="journey-nav-label">{entry.id==='internship'?'INTERNSHIP / 实习经历':'PROJECT / 概况'}</span>
             <h4>{entry.id==='internship'?'AIGC 实习 · 工作内容':entry.id==='earthquake'?'活动断层成果应用':entry.title}</h4>
-            {entry.id==='internship'?<ul className="journey-internship-list"><li>配置和优化 ComfyUI 的 LivePortrait、easyanimat。</li><li>完善和修改角色卡，制作抽卡抽奖动画及类 fufu 的角色 AI 动画。</li><li>制作 CP30 宣发海报、易拉宝，完善哄哄模拟器设计，迭代话题与话术。</li><li>完善 VUP 模拟器设计，使用 PyQt 编写界面。</li></ul>:<p><BlurText text={overviewCopy[entry.id]??entry.description}/></p>}
+            {entry.id==='internship'?<ul className="journey-internship-list"><li><BlurText text={'配置和优化 ComfyUI 的 LivePortrait、easyanimat。'}/></li><li><BlurText text={'完善和修改角色卡，制作抽卡抽奖动画及类 fufu 的角色 AI 动画。'}/></li><li><BlurText text={'制作 CP30 宣发海报、易拉宝，完善哄哄模拟器设计，迭代话题与话术。'}/></li><li><BlurText text={'完善 VUP 模拟器设计，使用 PyQt 编写界面。'}/></li></ul>:<p><BlurText text={overviewCopy[entry.id]??entry.description}/></p>}
             {overviewImages[entry.id]&&<div className={`journey-overview-images journey-overview-images--${entry.id}`}>{(entry.id==='suiyuan'?suiyuanImages:overviewImages[entry.id]).map((key,index)=>{const src=imageFrom(key);return src?<img key={key} src={src} alt={`${entry.title}展示 ${index+1}`} loading="lazy" decoding="async"/>:null;})}</div>}
-            <p className="journey-overview-meta">{entry.organization} · {entry.date}</p>{graphEntryIds[entry.id]&&<a className="journey-graph-link" href={`#work=${graphEntryIds[entry.id]}`}>在图谱中定位 ↗</a>}
+            <p className="journey-overview-meta">{entry.organization} · {entry.date}</p>{graphEntryIds[entry.id]&&<a className="journey-graph-link" href={`#work=${graphEntryIds[entry.id]}`}><BlurText text={'在图谱中定位 ↗'}/></a>}
           </>}
         </section>}
 
@@ -112,9 +112,9 @@ export function Journey() {
     </div>
     <dialog ref={lightbox} className="journey-lightbox" aria-label={`${certificateTitle}大图`} onClose={()=>setImageOpen(false)} onClick={event=>{if(event.target===event.currentTarget)setImageOpen(false);}}>
       {imageOpen&&<InteractiveCursor/>}
-      <button type="button" className="journey-lightbox-close" aria-label="关闭证书大图" onClick={()=>setImageOpen(false)}>关闭 ×</button>
+      <button type="button" className="journey-lightbox-close" aria-label="关闭证书大图" onClick={()=>setImageOpen(false)}><BlurText text={'关闭 ×'}/></button>
       <img className={activeCertificate==='award-0'?'certificate-full--rotate':undefined} src={activeCertificate==='award-0'?silverImage:awardImage} alt={`${certificateTitle}大图`}/>
     </dialog>
-    <a className="journey-next" href="#works"><span>探索汇成作品</span><span>04 / WORKS ↗</span></a>
+    <a className="journey-next" href="#works"><span><BlurText text={'探索汇成作品'}/></span><span><BlurText text={'04 / WORKS ↗'}/></span></a>
   </section>;
 }

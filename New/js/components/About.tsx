@@ -22,28 +22,28 @@ export function About() {
   useAboutMotion(root);
   return <section ref={root} id="about" className="section about" aria-labelledby="about-title">
     <div className="about-portal">
-    <div className="about-chapter"><p className="eyebrow"><span>02 /</span> ABOUT ME</p><span className="mono">IDEAS MEET POSSIBILITIES</span></div>
+    <div className="about-chapter"><p className="eyebrow"><span><BlurText text={'02 /'}/></span><BlurText text={' ABOUT ME'}/></p><span className="mono"><BlurText text={'IDEAS MEET POSSIBILITIES'}/></span></div>
     <div className="about-lead">
       <div className="about-statement" data-about-reveal><DraftingDetails variant="about" />
-        <p className="about-signature">HELLO, I'M YOUNGSLIKER.</p>
+        <p className="about-signature"><BlurText text={"HELLO, I'M YOUNGSLIKER."}/></p>
         <h2 id="about-title"><BlurText text="让"/><span className="accent"><BlurText text="好奇心"/></span><BlurText text="，"/><br /><BlurText text="成为作品。"/></h2>
-        <span className="about-caption">AI × DESIGN × INTERACTION</span>
+        <span className="about-caption"><BlurText text={'AI × DESIGN × INTERACTION'}/></span>
       </div>
       <div className="about-profile" data-about-reveal>
-        <div className="about-intersection" data-field={active} aria-hidden="true"><i/><i/><i/><b>+</b><span>CONNECT / CREATE</span></div>
-        <p className="about-name">翟杨阳 <span>YoungSliker</span></p>
+        <div className="about-intersection" data-field={active} aria-hidden="true"><i/><i/><i/><b>+</b><span><BlurText text={'CONNECT / CREATE'}/></span></div>
+        <p className="about-name"><BlurText text={'翟杨阳 '}/><span><BlurText text={'YoungSliker'}/></span></p>
         <p className="about-bio"><BlurText text="我关注 "/><em><BlurText text="AIGC、数字体验与视觉传播"/></em><BlurText text="之间的交汇，通过生成式工具、创意编程、动态视觉和交互设计探索新的表达方式。"/></p>
-        <a className="text-link" href="#works">浏览我的作品 <span aria-hidden="true">↗</span></a>
+        <a className="text-link" href="#works"><BlurText text={'浏览我的作品 '}/><span aria-hidden="true">↗</span></a>
       </div>
     </div>
     </div>
-    <div className="about-fields-heading" data-about-reveal><span className="mono">THREE FIELDS / ONE PRACTICE</span></div>
+    <div className="about-fields-heading" data-about-reveal><span className="mono"><BlurText text={'THREE FIELDS / ONE PRACTICE'}/></span></div>
     <div className="about-flowing-fields">
       <FlowingMenu items={fieldItems} intro={false} speed={65} carryContent showArrow={false}
         textColor="#171717" bgColor="#eeeae3" marqueeBgColor="#171717" marqueeTextColor="#faf9f6"
         borderColor="#d8d0c4" ariaLabel="创作领域" onItemClick={(_item:unknown,index:number)=>setActive(index)} />
     </div>
     <p className="about-field-summary" aria-live="polite"><BlurText key={active} text={details[active].text}/></p>
-    <a className="about-next" href="#journey"><span data-cursor-bound>继续了解我的经历</span><span className="mono">03 / JOURNEY ↓</span></a>
+    <a className="about-next" href="#journey"><span data-cursor-bound><BlurText text={'继续了解我的经历'}/></span><span className="mono"><BlurText text={'03 / JOURNEY ↓'}/></span></a>
   </section>;
 }
