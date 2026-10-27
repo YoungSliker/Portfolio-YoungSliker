@@ -1,3 +1,6 @@
+import FoldText from './FoldText';
+import Magnet from './Magnet';
+import { useEntrance } from '../hooks/useEntrance';
 import { DraftingDetails } from './DraftingDetails';
 import {useEffect,useRef,useState} from 'react';
 import {journeyEntries,journeyYears} from '../../data/journey';
@@ -29,6 +32,7 @@ const overviewImages:Record<string,string[]>= {
 
 export function Journey() {
   const root=useRef<HTMLElement>(null);
+  useEntrance(root, '.journey-entry-copy');
   const active=useJourney(root);
   const [overview,setOverview]=useState<string|null>(null);
   const [suiyuanImages,setSuiyuanImages]=useState<string[]>([]);
@@ -86,9 +90,9 @@ export function Journey() {
       <div className="journey-records">{journeyEntries.map((entry,index)=><article tabIndex={-1} key={entry.id} id={`journey-${entry.id}`} className={`journey-entry journey-entry--${entry.id}`} data-timeline-entry data-current={active===index} data-past={active>index} aria-current={active===index?'step':undefined}>
         <span className="journey-node" aria-hidden="true"/>
         <div className="journey-entry-copy"><div className="journey-meta"><span>{entry.date}</span><span>{entry.kind}</span></div>
-        <h3>{entry.title}</h3><p className="journey-organization">{entry.id==='award-1'?'2024第一届亚洲大学生创意设计展':entry.organization}</p>
-        <p className="journey-description">{entry.description}</p>
-        <ul className="journey-tags">{entry.tags.map(tag=><li key={tag}>{tag}</li>)}</ul>
+        <h3><FoldText text={entry.title} trigger="scroll" foldStyle="paper" fontSize="inherit" fontWeight={400} hoverRefold /></h3><p className="journey-organization">{entry.id==='award-1'?'2024第一届亚洲大学生创意设计展':entry.organization}</p>
+        <p className="journey-description"><FoldText text={entry.description} trigger="scroll" foldStyle="paper" fontSize="inherit" fontWeight={400} stagger={.008} hoverRefold={false}/></p>
+        <ul className="journey-tags">{entry.tags.map(tag=><li key={tag}><Magnet padding={32} magnetStrength={4} maxOffset={9} spring={{stiffness:170,damping:20,mass:1}} onActiveChange={()=>{}} style={{}} innerClassName="journey-tag-magnet">{tag}</Magnet></li>)}</ul>
         {!entry.confirmed&&<p className="journey-review">计划书记录 · 日期与职责待核对</p>}
         <button className="journey-work-link" aria-expanded={overview===entry.id} aria-controls={`overview-${entry.id}`} onClick={()=>toggleOverview(entry.id)}>查看「{entry.id==='internship'?'实习经历':entry.title}」概况 <span aria-hidden="true">{overview===entry.id?'−':'＋'}</span></button>
         </div>

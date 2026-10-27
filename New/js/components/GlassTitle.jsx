@@ -1,37 +1,23 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
-const FluidGlass=lazy(()=>import('./FluidGlass'));
+import FoldText from './FoldText';
+import { useEffect, useRef, useState } from 'react';
 import '../../css/glass-title.css';
 
 export function GlassTitle() {
-  const title = useRef(null);
-  const [fontSize, setFontSize] = useState(100);
-  const [compact, setCompact] = useState(false);
+  const host = useRef(null);
+  const [ready, setReady] = useState(false);
   useEffect(() => {
-    const update = () => { setFontSize(parseFloat(getComputedStyle(title.current).fontSize)); setCompact(window.innerWidth <= 600); };
-    const observer = new ResizeObserver(update);
-    observer.observe(title.current); update();
-    return () => observer.disconnect();
+    const landing = host.current.closest('.hero-landing');
+    let active = true, fontReady = false;
+    const reveal = () => { if (active && fontReady && !landing?.inert) setReady(true); };
+    const observer = new MutationObserver(reveal);
+    if (landing) observer.observe(landing, { attributes:true, attributeFilter:['inert'] });
+    document.fonts.load('400 100px "PortfolioTitle"', '设计作品集').finally(() => { fontReady = true; reveal(); });
+    return () => { active = false; observer.disconnect(); };
   }, []);
-  const [reduced, setReduced] = useState(false);
-  const [fontReady, setFontReady] = useState(false);
-  useEffect(() => {
-    let active = true;
-    document.fonts.load('400 100px "PortfolioTitle"', '设计作品集').then(() => {
-      if (active) setFontReady(true);
-    }).catch(() => { if (active) setFontReady(true); });
-    const media = matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => setReduced(media.matches);
-    update(); media.addEventListener('change', update);
-    return () => { active = false; media.removeEventListener('change', update); };
-  }, []);
-  return <div className="hero-glass-title">
-    <h1 ref={title} id="hero-title">设计作品集</h1>
-    {fontReady && !reduced && <div className="hero-glass-title__effect" aria-hidden="true"><Suspense fallback={null}>
-      <FluidGlass text="设计作品集" fontFamily="PortfolioTitle, Microsoft YaHei, sans-serif"
-        fontWeight={400} fontSize={fontSize} textColor="#111111" shape="blob" size={compact ? 68 : 190}
-        interaction="follow" refraction={compact ? .25 : .85} dispersion={compact ? .18 : .85} reflection={compact ? .3 : .75}
-        shadow={0} elevation={.25} wobble={compact ? .15 : .4} morphOnClick={false}
-        maxDevicePixelRatio={1} intro={false} />
-    </Suspense></div>}
-  </div>;
+  return <div ref={host} className="hero-glass-title hero-fold-title"><h1 id="hero-title">
+    {ready ? <FoldText text="设计作品集" foldStyle="blinds" splitBy="char" hinge="top"
+      trigger="scroll" foldAngle={90} duration={1.1} stagger={.08} staggerFrom="center"
+      ease="expo.out" hoverRefold refoldRadius={100} refoldAngle={60}
+      perspective={500} creaseShading={.8} fontSize="inherit" fontWeight={400}/> : '设计作品集'}
+  </h1></div>;
 }

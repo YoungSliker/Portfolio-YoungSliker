@@ -1,32 +1,41 @@
 import { useEffect, type RefObject } from 'react';
 
-/** One-shot entrances on real visibility; content stays usable if motion is disabled. */
+/** Reveal once the subject, rather than its first few pixels, is in view. */
 export function useEntrance(ref: RefObject<HTMLElement | null>, selector: string, stagger = 0) {
   useEffect(() => {
     const root = ref.current;
     if (!root) return;
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
-    const animations: Animation[] = [];
+    if (preference.matches) return;
+    const targets = Array.from(root.querySelectorAll<HTMLElement>(selector));
+    const animations = new Map<Element, Animation>();
     const observer = new IntersectionObserver(entries => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
+      const entering = entries.filter(entry => entry.isIntersecting && entry.intersectionRatio >= .28);
+      entering.forEach((entry, index) => {
         observer.unobserve(entry.target);
-        if (preference.matches) continue;
-        const index = Array.from(root.querySelectorAll(selector)).indexOf(entry.target);
-        animations.push(entry.target.animate([
-          { opacity: 0, transform: 'translateY(22px) scale(.985)' },
-          { opacity: 1, transform: 'translateY(0) scale(1)' },
-        ], { duration: 680, delay: Math.max(0, index) * stagger, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' }));
-      }
-    }, { threshold: .08 });
-    root.querySelectorAll(selector).forEach(element => observer.observe(element));
-    const finish = () => animations.forEach(animation => animation.cancel());
+        const animation = animations.get(entry.target);
+        if (!animation) return;
+        animation.effect?.updateTiming({ delay: index * stagger });
+        animation.play();
+      });
+    }, { threshold: [0, .28], rootMargin: '0px 0px -10% 0px' });
+    targets.forEach(element => {
+      const animation = element.animate([
+        { opacity: 0, transform: 'translateY(38px) scale(.97)' },
+        { opacity: 1, transform: 'translateY(0) scale(1)' },
+      ], { duration: 1150, easing: 'cubic-bezier(.25,.65,.25,1)', fill: 'both' });
+      animation.pause();
+      animation.onfinish = () => animation.cancel();
+      animations.set(element, animation);
+      observer.observe(element);
+    });
+    const finish = () => { observer.disconnect(); animations.forEach(animation => animation.cancel()); };
     const reduce = () => { if (preference.matches) finish(); };
     preference.addEventListener('change', reduce);
     root.addEventListener('focusin', finish);
     root.addEventListener('pointerdown', finish);
     return () => {
-      observer.disconnect(); finish();
+      finish();
       preference.removeEventListener('change', reduce);
       root.removeEventListener('focusin', finish);
       root.removeEventListener('pointerdown', finish);

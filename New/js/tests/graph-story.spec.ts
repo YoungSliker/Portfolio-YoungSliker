@@ -18,7 +18,8 @@ test('story exits on resize and keeps touch hierarchy usable',async({page})=>{
 test('drag and browser back release story control',async({page})=>{
  await page.setViewportSize({width:1440,height:1000});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/Portfolio-YoungSliker/New/#works');
  const graph=page.locator('.work-graph');const start=page.getByRole('button',{name:'随页浏览',exact:true});await expect(graph).toHaveAttribute('data-mode','story');
- const node=graph.locator('.react-flow__node[data-id="aigc"]');await expect(node).toBeVisible();const box=await node.boundingBox();if(!box)throw new Error('Missing node');
+ await graph.locator('.graph-stage').scrollIntoViewIfNeeded();
+ const node=graph.locator('.react-flow__node[data-id="aigc"]');await expect(node).toBeVisible();await node.scrollIntoViewIfNeeded();await page.waitForTimeout(500);const box=await node.boundingBox();if(!box)throw new Error('Missing node');
  await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+box.width/2+70,box.y+box.height/2+40,{steps:12});await page.mouse.up();await expect(graph).toHaveAttribute('data-mode','explore');
  await start.click();await expect(graph).toHaveAttribute('data-mode','story');await page.goBack();await expect(graph).toHaveAttribute('data-mode','explore');
 });

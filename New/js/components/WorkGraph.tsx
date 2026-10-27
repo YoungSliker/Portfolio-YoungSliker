@@ -1,3 +1,4 @@
+import { useGraphGrowth } from '../hooks/useGraphGrowth';
 import { useEntrance } from '../hooks/useEntrance';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Background, Handle, Position, ReactFlow, useStore, type Edge, type Node, type NodeProps, type ReactFlowInstance } from '@xyflow/react';
@@ -57,7 +58,9 @@ const GraphCanvas=memo(function GraphCanvas({models,edges,resetVersion,onInit,on
  models:ArchiveNode[];edges:Edge[];resetVersion:number;onInit:(flow:ReactFlowInstance<ArchiveNode>)=>void;onManual:()=>void;
 }){
  const {nodes,onNodesChange,onNodeDragStart,onNodeDragStop}=useElasticGraph(models,edges,resetVersion);
- return <div className="graph-canvas" aria-label="作品关系图">
+ const growthRoot=useRef<HTMLDivElement>(null);
+ useGraphGrowth(growthRoot);
+ return <div ref={growthRoot} className="graph-canvas" aria-label="作品关系图">
   <ReactFlow<ArchiveNode> nodes={nodes} edges={edges} nodeTypes={nodeTypes} onInit={onInit} onNodesChange={onNodesChange} onNodeDragStart={(event,node)=>{onManual();onNodeDragStart(event,node);}} onMoveStart={event=>{if(event)onManual();}} onNodeDragStop={onNodeDragStop} nodeOrigin={nodeOrigin}
    fitView fitViewOptions={fitOptions} minZoom={.15} maxZoom={1.8} nodeDragThreshold={5} nodesDraggable nodesConnectable={false} elementsSelectable={false}
    zoomOnScroll={false} zoomOnDoubleClick={false} zoomOnPinch panOnScroll={false} preventScrolling={false} panOnDrag zoomActivationKeyCode={null}>
@@ -71,7 +74,7 @@ function readGraphReturn():GraphReturn|null{
 }
 export default function WorkGraph(){
  const root=useRef<HTMLDivElement>(null),stage=useRef<HTMLDivElement>(null);
- useEntrance(root, '.graph-canvas, .graph-mobile-browser');
+ useEntrance(root, '.graph-mobile-browser');
  const [story,setStory]=useState(()=>!readGraphReturn()&&!location.hash.startsWith('#work=')&&!new URLSearchParams(location.search).has('project')&&innerWidth>=768&&innerHeight>=650);
  const storyActive=useRef(story);
  const fitTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);

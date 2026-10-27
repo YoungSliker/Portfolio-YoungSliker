@@ -147,3 +147,4 @@
 .work-graph--story .graph-stage{position:sticky;top:calc(var(--header-height,80px) + 10px);background:#faf9f6;z-index:2}
 .work-graph--story .graph-canvas{height:calc(100svh - var(--header-height,80px) - 210px);min-height:280px;max-height:660px}
 @media(max-width:767px),(max-height:649px){.graph-mode-switch{display:none}}
+.archive-node[data-growth-wait] { opacity:0; }
