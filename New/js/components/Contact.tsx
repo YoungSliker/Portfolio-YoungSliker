@@ -1,5 +1,6 @@
+import { useEntrance } from '../hooks/useEntrance';
 import { DraftingDetails } from './DraftingDetails';
-import { lazy, Suspense, useState, useId } from 'react';
+import { lazy, Suspense, useState, useId, useRef } from 'react';
 import { ContactTitle } from './ContactTitle';
 const Showcase = lazy(() => import('./Showcase').then(m => ({ default: m.Showcase })));
 
@@ -32,6 +33,8 @@ function ContactArtwork({ kind }: { kind: 'mail' | 'phone' | 'wechat' | 'qq' }) 
 }
 
 export function Contact() {
+  const cards = useRef<HTMLUListElement>(null);
+  useEntrance(cards, ':scope > li', 90);
   const [showExperience, setShowExperience] = useState(false);
   const [copyStatus, setCopyStatus] = useState('');
   const copyWechat = async () => {
@@ -47,7 +50,7 @@ export function Contact() {
     <div className="contact-row">
       <div className="contact-details"><DraftingDetails variant="contact" />
         <p>联系我</p>
-        <ul className="contact-methods" aria-label="联系方式">
+        <ul ref={cards} className="contact-methods" aria-label="联系方式">
           <li><a href="mailto:zyg203320@163.com" aria-label="发送邮件至 zyg203320@163.com"><ContactArtwork kind="mail" /><span className="contact-method-label">MAIL</span><span className="contact-method-value">zyg203320@163.com</span><ContactIcon /></a></li>
           <li><a href="tel:+8615248120655" aria-label="拨打电话 15248120655"><ContactArtwork kind="phone" /><span className="contact-method-label">TEL</span><span className="contact-method-value">15248120655</span><ContactIcon /></a></li>
           <li><button type="button" onClick={copyWechat} aria-label="复制微信号 YoungSlikera"><ContactArtwork kind="wechat" /><span className="contact-method-label">WX</span><span className="contact-method-value">YoungSlikera</span><ContactIcon copy /></button></li>

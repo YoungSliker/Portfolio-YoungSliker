@@ -1,3 +1,4 @@
+import { useEntrance } from '../hooks/useEntrance';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Background, Handle, Position, ReactFlow, useStore, type Edge, type Node, type NodeProps, type ReactFlowInstance } from '@xyflow/react';
 import {useGraphStory} from '../hooks/useGraphStory';
@@ -70,6 +71,7 @@ function readGraphReturn():GraphReturn|null{
 }
 export default function WorkGraph(){
  const root=useRef<HTMLDivElement>(null),stage=useRef<HTMLDivElement>(null);
+ useEntrance(root, '.graph-canvas, .graph-mobile-browser');
  const [story,setStory]=useState(()=>!readGraphReturn()&&!location.hash.startsWith('#work=')&&!new URLSearchParams(location.search).has('project')&&innerWidth>=768&&innerHeight>=650);
  const storyActive=useRef(story);
  const fitTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
