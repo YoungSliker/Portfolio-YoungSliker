@@ -168,6 +168,21 @@ const buildRanks = (count, staggerFrom, seedText) => {
   return ranks;
 };
 
+// Batch newly visible text by screen position, rather than observer callback order.
+const revealQueue = new Map();
+let revealFrame = 0;
+const queueReveal = (element, reveal) => {
+  revealQueue.set(element, reveal);
+  if (!revealFrame) revealFrame = requestAnimationFrame(() => {
+    revealFrame = 0;
+    const items = [...revealQueue].map(([element, reveal]) => ({element, reveal, rect: element.getBoundingClientRect()}));
+    revealQueue.clear();
+    items.sort((a, b) => Math.abs(a.rect.top - b.rect.top) > 12 ? a.rect.top - b.rect.top : a.rect.left - b.rect.left);
+    items.forEach((item, index) => item.reveal(Math.min(index * 35, 180)));
+  });
+  return () => revealQueue.delete(element);
+};
+
 const startPhase = trigger =>
   trigger === 'load' ? 'in' : trigger === 'hover' || trigger === 'click' ? 'rest' : 'from';
 
@@ -177,17 +192,17 @@ const BlurText = ({
   className = '',
   animateBy = 'letters',
   direction = 'top',
-  threshold = 0.25,
+  threshold = 0.1,
   rootMargin = '0px',
   animationFrom = undefined,
   animationTo = undefined,
   easing = undefined,
   onAnimationComplete = undefined,
-  stepDuration = 0.65,
+  stepDuration = 0.45,
   blur = 22,
   distance = 0,
   effect = 'focus',
-  staggerFrom = 'center',
+  staggerFrom = 'start',
   trigger = 'view',
   loop = false,
   loopDelay = 2,
@@ -249,7 +264,7 @@ const BlurText = ({
 
   const ranks = useMemo(() => buildRanks(pieces.length, staggerFrom, text), [pieces.length, staggerFrom, text]);
   const maxRank = ranks.reduce((max, rank) => Math.max(max, rank), 0);
-  const inTotal = (totalDuration * (custom ? 1 : Math.max(1, fx.settle * 2.2)) + maxRank * stagger) * 1000;
+  const inTotal = (totalDuration + Math.min(maxRank * stagger, .32)) * 1000;
   const outTotal = (exitDuration + maxRank * exitStagger) * 1000;
 
   useEffect(() => {
@@ -265,20 +280,24 @@ const BlurText = ({
     const element = ref.current;
     if (!element) return undefined;
     let pending = 0;
+    let cancelQueued = () => {};
     let inView = false;
     const revealWhenReady = () => {
       if (!inView) return;
       let parent = element.parentElement;
       while (parent) {
         const css = getComputedStyle(parent);
-        const moving = parent.getAnimations().some(a => a.playState === 'running' || a.playState === 'paused');
-        if (parent.inert || css.visibility === 'hidden' || Number(css.opacity) < .95 || parent.dataset.entrancePending === 'true' || moving) {
-          pending = window.setTimeout(revealWhenReady, 80); return;
+        const moving = parent.getAnimations().some(a => Number.isFinite(Number(a.effect?.getTiming().iterations)) && (a.playState === 'running' || a.playState === 'paused'));
+        // Intentionally muted labels must not wait forever for full opacity.
+        if (parent.inert || css.visibility === 'hidden' || Number(css.opacity) < .05 || parent.dataset.entrancePending === 'true' || moving) {
+          pending = window.setTimeout(revealWhenReady, 40); return;
         }
         parent = parent.parentElement;
       }
-      setPhase(current => current === 'from' ? 'in' : current);
       observer.disconnect();
+      cancelQueued = queueReveal(element, delay => {
+        pending = window.setTimeout(() => setPhase(current => current === 'from' ? 'in' : current), delay);
+      });
     };
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -289,7 +308,7 @@ const BlurText = ({
       { threshold, rootMargin }
     );
     observer.observe(element);
-    return () => { observer.disconnect(); window.clearTimeout(pending); };
+    return () => { observer.disconnect(); window.clearTimeout(pending); cancelQueued(); };
   }, [phase, trigger, threshold, rootMargin]);
 
   useEffect(() => {
@@ -321,7 +340,7 @@ const BlurText = ({
   };
 
   const inTransition = rank => {
-    const delayed = Math.min(rank * stagger, .65);
+    const delayed = rank * Math.min(stagger, .32 / Math.max(1, maxRank));
     if (custom) return { duration: totalDuration, times, delay: delayed, ease: easing ?? 'linear' };
     const transition = { duration: totalDuration, delay: delayed, ease: fx.fade };
     if (fx.bounce === null) return transition;

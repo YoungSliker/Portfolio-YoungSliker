@@ -13,7 +13,7 @@ export function useAboutMotion(root:RefObject<HTMLElement|null>) {
         const headerHeight=()=>document.querySelector('.site-header')?.getBoundingClientRect().height??80;
         const incoming=gsap.fromTo(section.querySelectorAll('.about-chapter,.about-statement,.about-profile,.about-fields-heading,.about-flowing-fields,.about-field-summary,.about-next'),
           {y:36,opacity:0,filter:'blur(6px)'},
-          {y:0,opacity:1,filter:'blur(0px)',duration:.65,stagger:.12,ease:'power2.out',paused:true});
+          {y:0,opacity:1,filter:'blur(0px)',duration:.45,stagger:.055,ease:'power2.out',paused:true});
         // The page position must track scroll exactly; lag exposes a gap beneath the header.
         // Content plays in real time after the slit opens, independent of wheel direction.
         const reveal=gsap.timeline({scrollTrigger:{trigger:section,start:()=>section.offsetTop-innerHeight*.92,end:()=>section.offsetTop-headerHeight(),scrub:true,invalidateOnRefresh:true,onUpdate:self=>{

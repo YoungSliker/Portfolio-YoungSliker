@@ -39,9 +39,9 @@ function ArchiveNodeView({data}:NodeProps<ArchiveNode>){
  return <div className={`archive-node archive-node--${data.kind}`} data-active={data.active}>
   <Handle type="target" position={Position.Top}/><Handle type="source" position={Position.Bottom}/>
   <button onClick={data.choose} aria-label={data.label} aria-expanded={data.kind!=='work'?data.active:undefined}>
-   <span className="archive-node-disc">{data.cover?<img src={data.cover} alt="" draggable={false}/>:data.kind==='category'&&typography?<span className="graph-type"><span className="graph-type-en"><BlurText text={typography.en}/></span><i/><span className="graph-type-lead"><BlurText text={typography.lead}/></span><b><BlurText text={typography.title}/></b><span className="graph-type-note"><BlurText text={typography.note}/></span></span>:<span>{data.kind==='root'?'我的作品':data.kind==='work'?'待加入':data.label}</span>}</span>
-   {data.kind==='work'&&<strong><BlurText text={data.label}/></strong>}
-   {data.date&&<span className="graph-date-tail"><BlurText text={data.date}/></span>}
+   <span className="archive-node-disc">{data.cover?<img src={data.cover} alt="" draggable={false}/>:data.kind==='category'&&typography?<span className="graph-type"><span className="graph-type-en"><BlurText stepDuration={.3} text={typography.en}/></span><i/><span className="graph-type-lead"><BlurText stepDuration={.3} text={typography.lead}/></span><b><BlurText stepDuration={.3} text={typography.title}/></b><span className="graph-type-note"><BlurText stepDuration={.3} text={typography.note}/></span></span>:<span>{data.kind==='root'?'我的作品':data.kind==='work'?'待加入':data.label}</span>}</span>
+   {data.kind==='work'&&<strong><BlurText stepDuration={.3} text={data.label}/></strong>}
+   {data.date&&<span className="graph-date-tail"><BlurText stepDuration={.3} text={data.date}/></span>}
 
   </button>
  </div>;

@@ -12,7 +12,7 @@ export function Works() {
   useEffect(()=>{
     const observer=new IntersectionObserver(entries=>{
       if(entries.some(e=>e.isIntersecting)){setGraphReady(true);observer.disconnect();}
-    },{rootMargin:'500px'});
+    },{rootMargin:'1000px'});
     if(graphAnchor.current)observer.observe(graphAnchor.current);
     return()=>observer.disconnect();
   },[]);

@@ -215,7 +215,7 @@ const FoldText = ({
       render();
       scrollTrigger = ScrollTrigger.create({
         trigger: root,
-        start: 'top 82%',
+        start: 'top 92%',
         once: true,
         onEnter: handleEnter
       });
