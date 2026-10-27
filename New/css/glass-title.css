@@ -12,8 +12,10 @@
 }
 .hero-glass-title__effect { position:absolute; inset:-110px 0; }
 .hero-fold-title .hero-glass-title__effect { opacity:0; pointer-events:none; }
-.hero-fold-title[data-glass-active='true']:has(.fluid-glass[data-glass-ready='true']) .hero-glass-title__effect { opacity:1; }
-.hero-fold-title[data-glass-active='true']:has(.fluid-glass[data-glass-ready='true']) h1 { opacity:0; }
+.hero-fold-title[data-glass-active='true']:has(.fluid-glass[data-glass-ready='true']) .hero-glass-title__effect { opacity:1; animation:glass-arrive .8s cubic-bezier(.22,.7,.3,1) both; }
+@keyframes glass-arrive { from { opacity:0; transform:translateY(12px) scale(.92); } to { opacity:1; transform:none; } }
+.hero-fold-title[data-title-ready='false'] h1 { opacity:0; }
+.hero-fold-title[data-glass-active='true'][data-fold-complete='true']:has(.fluid-glass[data-text-rendered='true']) h1 { opacity:0; }
 .hero .hero-fold-title h1 > .fold-text {
   font: inherit;
   letter-spacing: inherit;

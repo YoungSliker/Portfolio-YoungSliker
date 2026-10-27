@@ -25,22 +25,22 @@ export function GlassTitle() {
     return () => clearTimeout(timer);
   }, [ready,reduced]);
   useEffect(() => {
-    const landing = host.current.closest('.hero-landing');
+    const hero = host.current.closest('.hero');
     let active = true, fontReady = false;
-    const reveal = () => { if (active && fontReady && !landing?.inert) setReady(true); };
+    const reveal = () => { if (active && fontReady && Number(hero?.dataset.progress)>=.62) setReady(true); };
     const observer = new MutationObserver(reveal);
-    if (landing) observer.observe(landing, { attributes:true, attributeFilter:['inert'] });
+    if (hero) observer.observe(hero, { attributes:true, attributeFilter:['data-progress'] });
     document.fonts.load('400 100px "PortfolioTitle"', '设计作品集').finally(() => { if (!active) return; fontReady = true; setFontLoaded(true); reveal(); });
     return () => { active = false; observer.disconnect(); };
   }, []);
-  return <div ref={host} className="hero-glass-title hero-fold-title" data-glass-active={glass && !reduced ? 'true' : 'false'}><h1 id="hero-title">
+  return <div ref={host} className="hero-glass-title hero-fold-title" data-title-ready={ready} data-fold-complete={glass} data-glass-active={ready && !reduced ? 'true' : 'false'}><h1 id="hero-title">
     {ready ? <FoldText text="设计作品集" foldStyle="blinds" splitBy="char" hinge="top"
       trigger="mount" foldAngle={90} duration={1.1} stagger={.08} staggerFrom="center"
       ease="expo.out" hoverRefold={false} refoldRadius={100} refoldAngle={60}
       perspective={500} creaseShading={.8} fontSize="inherit" fontWeight={400}/> : '设计作品集'}
   </h1>
     {fontLoaded && !reduced && <div className="hero-glass-title__effect" aria-hidden="true"><Suspense fallback={null}>
-      <FluidGlass text="设计作品集" fontFamily="PortfolioTitle, Microsoft YaHei, sans-serif"
+      <FluidGlass text={glass ? '设计作品集' : ''} fontFamily="PortfolioTitle, Microsoft YaHei, sans-serif"
         fontWeight={400} fontSize={size.font} textColor="#111111" shape="blob" size={size.compact?68:190}
         interaction="follow" refraction={size.compact?.25:.85} dispersion={size.compact?.18:.85} reflection={size.compact?.3:.75}
         shadow={0} elevation={.25} wobble={size.compact?.15:.4} morphOnClick={false}

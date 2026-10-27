@@ -1235,6 +1235,7 @@ const FluidGlass = ({
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       container.dataset.rendered = 'true';
       container.dataset.glassReady = 'true';
+      container.dataset.textRendered = s.text.trim() ? 'true' : 'false';
 
       calm =
         !pointer.grabbed &&
