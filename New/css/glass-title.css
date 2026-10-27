@@ -12,6 +12,12 @@
 }
 .hero-glass-title__effect { position:absolute; inset:-110px 0; }
 .hero-glass-title:has(.fluid-glass[data-rendered='true']) h1 { opacity:0; }
+.hero .hero-fold-title h1 > .fold-text {
+  font: inherit;
+  letter-spacing: inherit;
+  margin: 0;
+  vertical-align: baseline;
+}
 @media(max-width:600px) {
   .hero-glass-title { height:150px; top:-15px; }
   .hero-glass-title__effect { inset:-80px 0; }

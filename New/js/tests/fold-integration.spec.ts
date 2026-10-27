@@ -5,6 +5,9 @@ for(const width of [375,1440]) test(`fold text and journey magnets ${width}`,asy
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/Portfolio-YoungSliker/New/');await enterArchive(page);
  await expect(page.locator('#hero-title .fold-text')).toBeVisible();
+ const sizes=await page.locator('#hero-title').evaluate(el=>({heading:parseFloat(getComputedStyle(el).fontSize),fold:parseFloat(getComputedStyle(el.querySelector('.fold-text')!).fontSize)}));
+ expect(sizes.fold).toBe(sizes.heading);
+ expect(sizes.fold).toBeGreaterThan(width<600?50:150);
  await page.waitForTimeout(1600);
  await page.screenshot({path:`test-results/fold-hero-${width}.png`});
  await page.locator('#journey-education').scrollIntoViewIfNeeded();
