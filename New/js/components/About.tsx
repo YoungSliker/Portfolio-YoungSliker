@@ -39,7 +39,7 @@ export function About() {
     </div>
     <div className="about-fields-heading" data-about-reveal><span className="mono"><BlurText text={'THREE FIELDS / ONE PRACTICE'}/></span></div>
     <div className="about-flowing-fields">
-      <FlowingMenu items={fieldItems} intro={false} speed={65} carryContent showArrow={false}
+      <FlowingMenu items={fieldItems} intro={false} animateLabels speed={65} carryContent showArrow={false}
         textColor="#171717" bgColor="#eeeae3" marqueeBgColor="#171717" marqueeTextColor="#faf9f6"
         borderColor="#d8d0c4" ariaLabel="创作领域" onItemClick={(_item:unknown,index:number)=>setActive(index)} />
     </div>

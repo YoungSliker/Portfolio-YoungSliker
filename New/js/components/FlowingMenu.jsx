@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import BlurText from './BlurText';
 import '../../css/flowing-menu.css';
 
 const ROOT = 'flowing-menu';
@@ -58,6 +59,7 @@ function FlowingMenu({
   showArrow = false,
   imageShape = 'pill',
   intro = true,
+  animateLabels = false,
   activeIndex,
   onItemClick,
   ariaLabel = 'Menu',
@@ -560,7 +562,7 @@ function FlowingMenu({
               </span>
               <span className={LABEL}>
                 <span className={LABEL_TEXT} data-intro-line="">
-                  {item.text}
+                  {animateLabels ? <BlurText text={item.text} /> : item.text}
                 </span>
                 {active && <span className={DOT} aria-hidden="true" />}
               </span>
