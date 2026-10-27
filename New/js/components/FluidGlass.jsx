@@ -793,8 +793,8 @@ const FluidGlass = ({
         ctx.textBaseline = 'alphabetic';
         if ('letterSpacing' in ctx) ctx.letterSpacing = `${-0.03 * px}px`;
         const metrics = ctx.measureText('Hg');
-        const ascent = metrics.actualBoundingBoxAscent || px * 0.72;
-        const descent = metrics.actualBoundingBoxDescent || px * 0.2;
+        const ascent = metrics.fontBoundingBoxAscent || metrics.actualBoundingBoxAscent || px * 0.72;
+        const descent = metrics.fontBoundingBoxDescent || metrics.actualBoundingBoxDescent || px * 0.2;
         const lineHeight = px * 1.02;
         const total = lineHeight * (lines.length - 1) + ascent + descent;
         let y = (height - total) / 2 + ascent;
@@ -868,9 +868,9 @@ const FluidGlass = ({
 
     const resize = () => {
       const s = settingsRef.current;
-      const rect = container.getBoundingClientRect();
-      const cssWidth = Math.max(1, rect.width);
-      const cssHeight = Math.max(1, rect.height);
+      // Entrance transforms affect visual bounds, not the canvas layout size.
+      const cssWidth = Math.max(1, container.clientWidth);
+      const cssHeight = Math.max(1, container.clientHeight);
       const ratio = Math.min(
         window.devicePixelRatio || 1,
         s.maxRatio,
