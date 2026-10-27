@@ -11,7 +11,9 @@
   font-size:clamp(70px,13.4vw,243px); letter-spacing:-.03em; line-height:1;
 }
 .hero-glass-title__effect { position:absolute; inset:-110px 0; }
-.hero-glass-title:has(.fluid-glass[data-rendered='true']) h1 { opacity:0; }
+.hero-fold-title .hero-glass-title__effect { opacity:0; pointer-events:none; }
+.hero-fold-title[data-glass-active='true']:has(.fluid-glass[data-glass-ready='true']) .hero-glass-title__effect { opacity:1; }
+.hero-fold-title[data-glass-active='true']:has(.fluid-glass[data-glass-ready='true']) h1 { opacity:0; }
 .hero .hero-fold-title h1 > .fold-text {
   font: inherit;
   letter-spacing: inherit;
