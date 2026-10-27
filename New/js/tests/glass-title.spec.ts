@@ -7,7 +7,7 @@ for (const width of [1440, 375]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/Portfolio-YoungSliker/New/');
     await enterArchive(page);
-    await expect(page.locator('#hero-title')).toHaveText('设计作品集');
+    await expect(page.locator('#hero-title')).toHaveAccessibleName('设计作品集');
     await expect(page.locator('.fluid-glass')).toHaveAttribute('data-rendered', 'true', { timeout: 20000 });
     await expect(page.locator('.fluid-glass')).toHaveAttribute('data-glass-ready', 'true', { timeout: 20000 });
     const box = await page.locator('.hero-glass-title').boundingBox();
@@ -20,3 +20,4 @@ for (const width of [1440, 375]) {
     await expect(page.locator('#hero-title')).toHaveCSS('opacity', '1');
   });
 }
+
