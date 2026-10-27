@@ -2,7 +2,8 @@
 .journey-heading { padding-bottom:70px; border-bottom:1px solid #3d3a35; }
 .journey .eyebrow span { color:#aaa39a; }
 .journey-heading h2 { font-size:clamp(40px,5.5vw,90px); line-height:1.2; letter-spacing:-.055em; }
-.journey-heading h2 span { color:#ff936b; }.journey-intro { margin-top:25px; font-size:15px; color:#bbb4aa; }
+.journey-heading h2 .journey-title-accent { color:#ff936b; }
+.journey-heading h2 .fold-text { font:inherit; letter-spacing:inherit; }.journey-intro { margin-top:25px; font-size:15px; color:#bbb4aa; }
 .journey-layout { display:grid; grid-template-columns:1fr 3fr; gap:7%; padding-top:70px; align-items:start; }
 .journey-sidebar { position:sticky; top:calc(var(--header-height) + 36px); }
 .journey-nav-label { font:10px var(--mono); letter-spacing:1px; color:#aaa39a; }

@@ -10,6 +10,11 @@ for(const width of [375,1440]) test(`fold text and journey magnets ${width}`,asy
  expect(sizes.fold).toBeGreaterThan(width<600?50:150);
  await page.waitForTimeout(1600);
  await page.screenshot({path:`test-results/fold-hero-${width}.png`});
+ await page.locator('#journey-title').scrollIntoViewIfNeeded();
+ await expect(page.locator('#journey-title .fold-text')).toHaveCount(2);
+ await page.waitForTimeout(1800);
+ const titleSizes=await page.locator('#journey-title').evaluate(el=>({heading:getComputedStyle(el).fontSize,fold:getComputedStyle(el.querySelector('.fold-text')!).fontSize}));
+ expect(titleSizes.fold).toBe(titleSizes.heading);
  await page.locator('#journey-education').scrollIntoViewIfNeeded();
  await expect(page.locator('#journey-education .fold-text')).toHaveCount(2);
  await expect(page.locator('#journey-education .journey-tag-magnet')).toHaveCount(5);
