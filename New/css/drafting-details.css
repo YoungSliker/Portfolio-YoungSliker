@@ -1,20 +1,35 @@
-.section:has(> .drafting-details) { position: relative; }
-.drafting-details { position:absolute; top:18px; right:var(--gutter); width:clamp(150px,17vw,240px); height:120px; color:#6d7960; opacity:.32; pointer-events:none; user-select:none; }
-.drafting-details svg { display:block; width:100%; height:auto; overflow:visible; }
-.drafting-labels { font:6px 'Courier New',monospace; letter-spacing:1px; }
-.drafting-accent { color:#d94a1c; }
-.drafting-margin { position:absolute; right:calc(-1 * var(--gutter) + 12px); top:170px; writing-mode:vertical-rl; display:flex; align-items:center; gap:12px; font:7px 'Courier New',monospace; letter-spacing:2px; }
-.drafting-margin i { width:1px; height:42px; background:currentColor; }
-.drafting-details--hero { top:auto; bottom:22px; right:9%; width:170px; opacity:.24; }
-.drafting-details--hero .drafting-margin { display:none; }
-.drafting-details--about { top:20px; right:calc(var(--gutter) + 200px); width:155px; }
-.drafting-details--about .drafting-margin { display:none; }
-.drafting-details--journey { color:#c2ab8a; opacity:.3; }
-.drafting-details--contact { top:20px; right:var(--gutter); opacity:.27; }
+/* All measurements follow real content bounds, rather than a floating motif. */
+.about-statement,.journey-heading,.works-heading,.contact-details { position:relative; }
+.drafting-details { position:absolute; inset:0; pointer-events:none; user-select:none; color:#7b846e; opacity:.48; }
+.drafting-dimension { position:absolute; left:0; right:0; bottom:-22px; height:9px; border-inline:1px solid currentColor; }
+.drafting-dimension::before { content:''; position:absolute; left:0; right:0; top:4px; border-top:1px solid currentColor; opacity:.4; }
+.drafting-dimension > span { position:absolute; right:12px; top:10px; font:7px 'Courier New',monospace; letter-spacing:1.5px; }
+.drafting-ruler { position:absolute; top:0; bottom:0; left:-15px; width:5px; border-left:1px solid currentColor; background:repeating-linear-gradient(to bottom,currentColor 0 1px,transparent 1px 12px); opacity:.35; }
+.drafting-cross { position:absolute; width:11px; height:11px; color:#d96537; }
+.drafting-cross::before,.drafting-cross::after { content:''; position:absolute; background:currentColor; }
+.drafting-cross::before { width:11px; height:1px; top:5px; }
+.drafting-cross::after { width:1px; height:11px; left:5px; }
+.drafting-cross--start { left:-5px; top:-5px; }
+.drafting-cross--end { right:-5px; bottom:-5px; }
+.drafting-arc { position:absolute; right:-14px; top:-14px; width:45px; height:45px; border-top:1px solid currentColor; border-right:1px solid currentColor; border-radius:0 100% 0 0; opacity:.45; }
+.drafting-details--hero { inset:10% 12% 15%; opacity:.28; }
+.drafting-details--hero .drafting-ruler { display:none; }
+.drafting-details--journey { color:#b8a489; }
+.journey-heading { width:fit-content; max-width:100%; }
+.drafting-details--journey .drafting-dimension { bottom:-30px; }
+.works-heading { margin-bottom:48px; }
+.drafting-details--works .drafting-dimension { bottom:-28px; }
+.drafting-details--contact .drafting-dimension { bottom:-12px; }
+.contact-methods li { position:relative; }
+.contact-methods li::before { content:''; position:absolute; z-index:1; top:18px; bottom:18px; left:-7px; width:3px; background:repeating-linear-gradient(to bottom,#64818455 0 1px,transparent 1px 10px); pointer-events:none; }
+.contact-methods li::after { content:''; position:absolute; width:7px; height:7px; right:-3px; top:-3px; border-top:1px solid #6c918866; border-right:1px solid #6c918866; pointer-events:none; }
+.about-profile { position:relative; }
+.about-profile::after { content:''; position:absolute; bottom:0; right:0; width:60px; height:60px; border-bottom:1px solid #88917844; border-right:1px solid #88917844; border-radius:0 0 100% 0; pointer-events:none; }
 @media(max-width:767px) {
-  .drafting-details { width:108px; top:12px; right:var(--gutter); opacity:.23; }
-  .drafting-details--about { display:none; }
-  .drafting-details--hero { top:auto; bottom:24px; right:22px; width:100px; }
-  .drafting-margin { display:none; }
-  .drafting-labels { display:none; }
+ .drafting-details { opacity:.3; }
+ .drafting-ruler { left:-10px; width:3px; }
+ .drafting-arc { width:28px; height:28px; right:-6px; top:-6px; }
+ .drafting-dimension > span { font-size:6px; letter-spacing:1px; }
+ .drafting-details--hero { inset:12% 10% 15%; }
+ .contact-methods li::before { left:-5px; }
 }

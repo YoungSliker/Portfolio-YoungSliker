@@ -19,11 +19,11 @@ export function About() {
   const root = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   useAboutMotion(root);
-  return <section ref={root} id="about" className="section about" aria-labelledby="about-title"><DraftingDetails variant="about" />
+  return <section ref={root} id="about" className="section about" aria-labelledby="about-title">
     <div className="about-portal">
     <div className="about-chapter"><p className="eyebrow"><span>02 /</span> ABOUT ME</p><span className="mono">IDEAS MEET POSSIBILITIES</span></div>
     <div className="about-lead">
-      <div className="about-statement" data-about-reveal>
+      <div className="about-statement" data-about-reveal><DraftingDetails variant="about" />
         <p className="about-signature">HELLO, I'M YOUNGSLIKER.</p>
         <h2 id="about-title">让<span className="accent">好奇心</span>，<br />成为作品。</h2>
         <span className="about-caption">AI × DESIGN × INTERACTION</span>

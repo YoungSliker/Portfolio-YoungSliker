@@ -75,8 +75,8 @@ export function Journey() {
     const entry=journeyEntries.find(item=>item.year===year)!;
     document.getElementById(`journey-${entry.id}`)?.scrollIntoView({block:'start',behavior:'instant'});
   };
-  return <section ref={root} id="journey" className="section journey" aria-labelledby="journey-title"><DraftingDetails variant="journey" />
-    <div className="journey-heading"><p className="eyebrow"><span>03 /</span> THE JOURNEY</p><h2 id="journey-title">每一步，<br/><span>都是新的视角。</span></h2></div>
+  return <section ref={root} id="journey" className="section journey" aria-labelledby="journey-title">
+    <div className="journey-heading"><DraftingDetails variant="journey" /><p className="eyebrow"><span>03 /</span> THE JOURNEY</p><h2 id="journey-title">每一步，<br/><span>都是新的视角。</span></h2></div>
     <div className="journey-layout">
       <aside className="journey-sidebar">
         <p className="journey-nav-label">YEARS / 年份导航</p>

@@ -37,10 +37,10 @@ export function Hero() {
     <div className="hero-stage">
       <LoadingIntro onEnter={enter} />
       <div className="intro-aperture" aria-hidden="true" />
-      <div className="hero-landing"><DraftingDetails variant="hero" />
+      <div className="hero-landing">
       <div className="hero-meta"><span>CREATIVE ARCHIVE / 翟杨阳</span><span>AI · DESIGN · INTERACTION</span></div>
       <div className="hero-orbit" aria-hidden="true"><i /><span>+</span></div>
-      <div className="hero-title-group">
+      <div className="hero-title-group"><DraftingDetails variant="hero" />
         <p className="hero-kicker">IDEAS IN MOTION. WORLDS IN THE MAKING.</p>
         <GlassTitle />
       </div>

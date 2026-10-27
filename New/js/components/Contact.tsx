@@ -42,10 +42,10 @@ export function Contact() {
       setCopyStatus('未能自动复制，请长按或选中微信号复制。');
     }
   };
-  return <section id="contact" className="section contact" aria-label="联系与结束"><DraftingDetails variant="contact" />
+  return <section id="contact" className="section contact" aria-label="联系与结束">
     <p className="eyebrow">05 / WHAT'S NEXT</p><ContactTitle />
     <div className="contact-row">
-      <div className="contact-details">
+      <div className="contact-details"><DraftingDetails variant="contact" />
         <p>联系我</p>
         <ul className="contact-methods" aria-label="联系方式">
           <li><a href="mailto:zyg203320@163.com" aria-label="发送邮件至 zyg203320@163.com"><ContactArtwork kind="mail" /><span className="contact-method-label">MAIL</span><span className="contact-method-value">zyg203320@163.com</span><ContactIcon /></a></li>
