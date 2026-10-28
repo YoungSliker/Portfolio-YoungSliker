@@ -6,10 +6,10 @@ for(const width of [375,844,1440,1920]) {
   await page.setViewportSize({width,height:width===844?390:900});
   await page.goto(base+'#journey');
   await expect(page.locator('#journey h2')).toBeInViewport();
-  await expect(page.locator('.journey-entry')).toHaveCount(9);
+  await expect(page.locator('.journey-entry')).toHaveCount(11);
   await expect(page.locator('.journey-review')).toHaveCount(0);
   const nav=page.getByRole('navigation',{name:'经历年份'});
-  for(const [year,id] of [['2025','suiyuan'],['2024','arti'],['2022','award-0'],['2021','education']]) {
+  for(const [year,id] of [['2026','independent-practice'],['2025','suiyuan'],['2024','arti'],['2022','award-0'],['2021','education']]) {
    const button=nav.getByRole('button',{name:new RegExp(year)});
    await button.focus();await page.keyboard.press('Enter');
    await expect(page.locator(`#journey-${id}`)).toHaveAttribute('data-current','true');
