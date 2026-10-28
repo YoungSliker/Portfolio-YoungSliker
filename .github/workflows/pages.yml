@@ -1,5 +1,7 @@
 name: Build compressed portfolio for Pages
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       publish:
@@ -10,7 +12,7 @@ permissions:
   contents: read
 concurrency:
   group: portfolio-pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,7 +39,7 @@ jobs:
         with:
           path: New/release/site
   deploy:
-    if: inputs.publish
+    if: github.event_name == 'push' || inputs.publish
     needs: build
     runs-on: ubuntu-latest
     permissions:
