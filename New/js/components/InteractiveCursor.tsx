@@ -7,7 +7,6 @@ export function InteractiveCursor(){
   let x=0,y=0,visible=false,raf=0;
   const paint=()=>{
    raf=0;el.toggleAttribute('data-visible',visible);if(!visible)return;
-   el.style.left=`${x}px`;el.style.top=`${y}px`;
    const hit=document.elementFromPoint(x,y);
    const ticket=hit?.closest('.tear-ticket__stub[role="button"]');
    const target=ticket||hit?.closest('a[href],button:not(:disabled),[role="button"]');
@@ -16,6 +15,8 @@ export function InteractiveCursor(){
    const markers=ticket?.closest('.tear-ticket__piece--stub')?.querySelectorAll('[data-stub-corner]');
    const rect=scoped?.getBoundingClientRect();
    const points=markers?.length===4?Array.from(markers).map(m=>{const r=m.getBoundingClientRect();return {x:r.x,y:r.y};}):rect?[{x:rect.left,y:rect.top},{x:rect.right,y:rect.top},{x:rect.right,y:rect.bottom},{x:rect.left,y:rect.bottom}]:[{x:x-24,y:y-24},{x:x+24,y:y-24},{x:x+24,y:y+24},{x:x-24,y:y+24}];
+   // Finish geometry reads before moving the cursor to avoid synchronous layout.
+   el.style.left=`${x}px`;el.style.top=`${y}px`;
    el.querySelectorAll<HTMLElement>('.cursor-corner').forEach((corner,i)=>{
     const p=points[i],next=points[(i+1)%4],prev=points[(i+3)%4];
     const unit=(q:{x:number;y:number})=>{const d=Math.hypot(q.x-p.x,q.y-p.y)||1;return {x:(q.x-p.x)/d,y:(q.y-p.y)/d};};

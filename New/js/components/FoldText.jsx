@@ -227,6 +227,18 @@ const FoldText = ({
     let centers = null;
     let measured = null;
     let relaxing = false;
+    let pointerFrame = 0;
+    let inViewport = false;
+    const visibility = refold ? new IntersectionObserver(([entry]) => {
+      inViewport = entry.isIntersecting;
+      if (!inViewport) {
+        pointer = null;
+        gsap.ticker.remove(relax);
+        relaxing = false;
+        pieces.forEach(piece => { piece.r = 0; piece.aim = 0; });
+        render();
+      }
+    }) : null;
 
     const measure = box => {
       centers = pieces.map(piece => {
@@ -253,6 +265,9 @@ const FoldText = ({
     };
 
     const aim = () => {
+      pointerFrame = 0;
+      // Entrance and hover must not render the same glyphs concurrently.
+      if (!inViewport || timeline?.isActive()) return;
       const box = root.getBoundingClientRect();
       const near =
         pointer &&
@@ -280,27 +295,33 @@ const FoldText = ({
       }
     };
 
+    const scheduleAim = () => {
+      if (!pointerFrame && inViewport && !timeline?.isActive()) pointerFrame = requestAnimationFrame(aim);
+    };
     const handleMove = event => {
       pointer = { x: event.clientX, y: event.clientY };
-      aim();
+      scheduleAim();
     };
 
     const handleLeave = () => {
       pointer = null;
-      aim();
+      scheduleAim();
     };
 
     const handleScroll = () => {
-      if (pointer) aim();
+      if (pointer) scheduleAim();
     };
 
     if (refold) {
+      visibility.observe(root);
       window.addEventListener('pointermove', handleMove, { passive: true });
       window.addEventListener('scroll', handleScroll, { passive: true, capture: true });
       document.documentElement.addEventListener('pointerleave', handleLeave);
     }
 
     return () => {
+      cancelAnimationFrame(pointerFrame);
+      visibility?.disconnect();
       root.removeEventListener('mouseenter', handleEnter);
       window.removeEventListener('pointermove', handleMove);
       window.removeEventListener('scroll', handleScroll, { capture: true });
